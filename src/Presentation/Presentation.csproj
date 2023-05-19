@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>AWC.Shared</RootNamespace>
+    <Nullable>enable</Nullable>
+    <RootNamespace>AWC.Presentation</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <SupportedPlatform Include="browser" />
+    <ProjectReference Include="..\Application\Application.csproj" />    
   </ItemGroup>
+
 </Project>
