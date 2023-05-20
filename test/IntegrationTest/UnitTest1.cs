@@ -1,4 +1,4 @@
-namespace IntegrationTest;
+namespace AWC.IntegrationTest;
 
 public class UnitTest1
 {

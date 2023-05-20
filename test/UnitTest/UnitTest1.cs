@@ -1,4 +1,4 @@
-namespace UnitTest;
+namespace AWC.UnitTest;
 
 public class UnitTest1
 {
