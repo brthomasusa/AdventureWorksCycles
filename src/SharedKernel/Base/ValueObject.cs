@@ -2,7 +2,7 @@
 
 using System.Reflection;
 
-namespace REA.Accounting.SharedKernel.Base
+namespace AWC.SharedKernel.Base
 {
     public abstract class ValueObject : IEquatable<ValueObject>
     {

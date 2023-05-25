@@ -1,5 +1,5 @@
 ﻿
-namespace REA.Accounting.SharedKernel.Base
+namespace AWC.SharedKernel.Base
 {
     public abstract class IntegrationEvent
     {
