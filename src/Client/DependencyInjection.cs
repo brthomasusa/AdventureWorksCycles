@@ -1,9 +1,6 @@
 using System.Reflection;
 using Mapster;
 using MapsterMapper;
-using Blazorise;
-using Blazorise.Bootstrap5;
-using Blazorise.Icons.FontAwesome;
 using FluentValidation;
 using Fluxor;
 
@@ -19,16 +16,6 @@ namespace AWC.Client
 
             services.AddSingleton(config);
             services.AddScoped<IMapper, ServiceMapper>();
-
-            return services;
-        }
-
-        public static IServiceCollection AddBlazorise(this IServiceCollection services)
-        {
-            services
-              .AddBlazorise(options => options.Immediate = true)
-              .AddBootstrap5Providers()
-              .AddFontAwesomeIcons();
 
             return services;
         }
