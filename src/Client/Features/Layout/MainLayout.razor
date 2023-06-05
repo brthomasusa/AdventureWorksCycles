@@ -1,0 +1,179 @@
+@inherits Fluxor.Blazor.Web.Components.FluxorLayout
+@using Radzen
+@using Radzen.Blazor
+<RadzenDialog />
+<RadzenNotification />
+<RadzenContextMenu />
+<RadzenTooltip />
+
+<RadzenLayout Style="height: 300px; grid-template-areas: 'rz-sidebar rz-header' 'rz-sidebar rz-body'">
+    <RadzenHeader>
+        <ChildContent>
+            <div class="row justify-content-start align-items-center">
+                <div class="col-6 d-flex align-items-center">
+                    <RadzenSidebarToggle Click="@SidebarToggleClick">
+                    </RadzenSidebarToggle>
+                    <RadzenLabel Text="Adventure Works Cycles">
+                    </RadzenLabel>
+                </div>
+                <div class="col-6 text-right">
+
+                </div>
+            </div>
+        </ChildContent>
+    </RadzenHeader>
+    <RadzenSidebar @bind-Expanded="@sidebar2Expanded">
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="Home" Icon="home" />
+            <RadzenPanelMenuItem Text="Company" Icon="account_box" />
+            <RadzenPanelMenuItem Text="Workers" Icon="account_box" />
+        </RadzenPanelMenu>
+        <div class="rz-p-4">
+<RadzenMenu>
+    <RadzenMenuItem Text="General" Icon="home">
+        <RadzenMenuItem Text="Buttons" Path="buttons" Icon="account_circle"></RadzenMenuItem>
+        <RadzenMenuItem Text="Menu" Path="menu" Icon="line_weight"></RadzenMenuItem>
+        <RadzenMenuItem Text="FileInput" Path="fileinput" Icon="attach_file"></RadzenMenuItem>
+        <RadzenMenuItem Text="Dialog" Path="dialog" Icon="perm_media"></RadzenMenuItem>
+        <RadzenMenuItem Text="Notification" Path="notification" Icon="announcement"></RadzenMenuItem>
+    </RadzenMenuItem>
+    <RadzenMenuItem Text="Inputs" Icon="payment">
+        <RadzenMenuItem Text="CheckBox" Path="checkbox" Icon="check_circle"></RadzenMenuItem>
+        <RadzenMenuItem Text="TextBox" Path="textbox" Icon="input"></RadzenMenuItem>
+        <RadzenMenuItem Text="TextArea" Path="textarea" Icon="description"></RadzenMenuItem>
+        <RadzenMenuItem Text="Password" Path="password" Icon="payment"></RadzenMenuItem>
+        <RadzenMenuItem Text="Numeric" Path="numeric" Icon="aspect_ratio"></RadzenMenuItem>
+        <RadzenMenuItem Text="DatePicker" Path="datepicker" Icon="date_range"></RadzenMenuItem>
+    </RadzenMenuItem>
+    <RadzenMenuItem Text="Data" Icon="save">
+        <RadzenMenuItem Text="DataGrid" Path="datagrid" Icon="grid_on"></RadzenMenuItem>
+        <RadzenMenuItem Text="DataList" Path="datalist" Icon="list"></RadzenMenuItem>
+        <RadzenMenuItem Text="DropDown" Path="dropdown" Icon="dns"></RadzenMenuItem>
+        <RadzenMenuItem Text="DropDownDataGrid" Path="dropdown-datagrid" Icon="receipt"></RadzenMenuItem>
+        <RadzenMenuItem Text="ListBox" Path="listbox" Icon="view_list"></RadzenMenuItem>
+        <RadzenMenuItem Text="TemplateForm" Path="templateform" Icon="line_style"></RadzenMenuItem>
+    </RadzenMenuItem>
+    <RadzenMenuItem Text="Containers" Icon="account_box">
+        <RadzenMenuItem Text="Tabs" Path="tabs" Icon="tab"></RadzenMenuItem>
+        <RadzenMenuItem Text="Panel" Path="panel" Icon="content_paste"></RadzenMenuItem>
+        <RadzenMenuItem Text="Fieldset" Path="fieldset" Icon="account_balance_wallet"></RadzenMenuItem>
+        <RadzenMenuItem Text="Card" Path="card" Icon="line_style"></RadzenMenuItem>
+    </RadzenMenuItem>
+    <RadzenMenuItem Text="More">
+        <RadzenMenuItem Text="Item1"></RadzenMenuItem>
+        <RadzenMenuItem Text="Item2"></RadzenMenuItem>
+        <RadzenMenuItem Text="More items">
+            <RadzenMenuItem Text="More sub items">
+                <RadzenMenuItem Text="Item1"></RadzenMenuItem>
+                <RadzenMenuItem Text="Item2"></RadzenMenuItem>
+            </RadzenMenuItem>
+        </RadzenMenuItem>
+    </RadzenMenuItem>
+</RadzenMenu>
+        </div>
+    </RadzenSidebar>
+    <RadzenBody>
+        <div class="rz-p-4">
+            Body
+        </div>
+    </RadzenBody>
+</RadzenLayout>
+
+@code {
+    bool sidebar2Expanded = true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* <main>
+<div class="container">
+<div class="row">
+<div class="col-md-auto">
+<div class="alert alert-secondary">
+<nav class="nav nav-pills flex-column">
+<div class="nav-item px-3">
+<NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+Home
+</NavLink>
+</div>
+<div class="nav-item px-3">
+<NavLink class="nav-link" href="categories" Match="NavLinkMatch.All">
+Categories
+</NavLink>
+</div>
+<div class="nav-item px-3">
+<NavLink class="nav-link" href="htmleditor">
+HTML Editor
+</NavLink>
+</div>
+<div class="nav-item px-3">
+<NavLink class="nav-link" href="orders-bar-chart">
+Orders Bar Chart
+</NavLink>
+</div>
+<div class="nav-item px-3">
+<NavLink class="nav-link" href="categories-pie-chart">
+Categories Pie Chart
+</NavLink>
+</div>
+<div class="nav-item px-3">
+<NavLink class="nav-link" href="employees">
+Employees
+</NavLink>
+</div>
+</nav>
+</div>
+</div>
+<div class="col">@Body</div>
+</div>
+</div>
+</main> *@
