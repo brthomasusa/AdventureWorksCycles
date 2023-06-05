@@ -4,7 +4,7 @@ using AWC.SharedKernel.Guards;
 
 namespace AWC.SharedKernel.CommonValueObjects
 {
-    public class Telephone : ValueObject
+    public partial class Telephone : ValueObject
     {
         public string? Value { get; }
 
@@ -29,9 +29,12 @@ namespace AWC.SharedKernel.CommonValueObjects
             Guard.Against.NullOrEmpty(value, "PhoneNumber", "The PhoneNumber number is required.");
             Guard.Against.LengthGreaterThan(value, 25, "PhoneNumber", "Invalid PhoneNumber number, maximum length is 25 characters.");
 
-            Regex validatePhoneNumberRegex = new("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$");
+            Regex validatePhoneNumberRegex = TelephoneRegex();
             if (!validatePhoneNumberRegex.IsMatch(value))
                 throw new ArgumentException($"{value} is not a valid phone number.");
         }
+
+        [GeneratedRegex("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$")]
+        private static partial Regex TelephoneRegex();
     }
 }
