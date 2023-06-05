@@ -5,7 +5,7 @@ using AWC.SharedKernel.Base;
 
 namespace AWC.SharedKernel.CommonValueObjects
 {
-    public class WebsiteUrl : ValueObject
+    public partial class WebsiteUrl : ValueObject
     {
         public string Value { get; }
 
@@ -23,13 +23,15 @@ namespace AWC.SharedKernel.CommonValueObjects
 
         private static void CheckValidity(string value)
         {
-            const string Pattern = @"^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$";
-            Regex Rgx = new(Pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            Regex Rgx = UrlRegex();
 
             if (!Rgx.IsMatch(value))
             {
                 throw new ArgumentException("Invalid website URL!", nameof(value));
             }
         }
+
+        [GeneratedRegex("^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
+        private static partial Regex UrlRegex();
     }
 }

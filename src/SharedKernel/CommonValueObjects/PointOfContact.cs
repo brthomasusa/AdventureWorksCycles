@@ -3,7 +3,7 @@ using AWC.SharedKernel.Base;
 
 namespace REA.Accounting.SharedKernel.CommonValueObjects
 {
-    public class PointOfContact : ValueObject
+    public partial class PointOfContact : ValueObject
     {
         protected PointOfContact() { }
 
@@ -60,17 +60,18 @@ namespace REA.Accounting.SharedKernel.CommonValueObjects
                 }
             }
 
-            const string rgPhoneNumber = @"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$";
-
             if (string.IsNullOrEmpty(telephone))
             {
                 throw new ArgumentNullException(nameof(telephone), "The PhoneNumber number is required.");
             }
 
-            if (!Regex.IsMatch(telephone, rgPhoneNumber))
+            if (!TelephoneRegex().IsMatch(telephone))
             {
                 throw new ArgumentException("Invalid PhoneNumber number!", nameof(telephone));
             }
         }
+
+        [GeneratedRegex("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$")]
+        private static partial Regex TelephoneRegex();
     }
 }
