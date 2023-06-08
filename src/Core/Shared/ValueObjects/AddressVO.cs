@@ -1,9 +1,8 @@
-using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
 
-namespace AWC.SharedKernel.CommonValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
-    public class Address : ValueObject
+    public sealed class AddressVO : ValueObject
     {
         public string? AddressLine1 { get; }
         public string? AddressLine2 { get; }
@@ -11,9 +10,7 @@ namespace AWC.SharedKernel.CommonValueObjects
         public int StateProvinceID { get; }
         public string? Zipcode { get; }
 
-        protected Address() { }
-
-        private Address(string line1, string? line2, string city, int stateCode, string zipcode)
+        private AddressVO(string line1, string? line2, string city, int stateCode, string zipcode)
         {
             AddressLine1 = line1;
             AddressLine2 = line2;
@@ -22,10 +19,10 @@ namespace AWC.SharedKernel.CommonValueObjects
             Zipcode = zipcode;
         }
 
-        public static Address Create(string line1, string? line2, string city, int stateCode, string zipcode)
+        public static AddressVO Create(string line1, string? line2, string city, int stateCode, string zipcode)
         {
             CheckValidity(line1, line2, city, stateCode, zipcode);
-            return new Address(line1, line2, city, stateCode, zipcode);
+            return new AddressVO(line1, line2, city, stateCode, zipcode);
         }
 
         private static void CheckValidity(string line1, string? line2, string city, int stateCode, string zipcode)

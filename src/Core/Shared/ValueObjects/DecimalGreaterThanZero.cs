@@ -1,15 +1,12 @@
 using AWC.SharedKernel.Base;
 
-namespace AWC.SharedKernel.CommonValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
-    public class DecimalGreaterThanZero : ValueObject
+    public sealed class DecimalGreaterThanZero : ValueObject
     {
         public decimal Value { get; }
 
-        protected DecimalGreaterThanZero() { }
-
         private DecimalGreaterThanZero(decimal amount)
-            : this()
         {
             Value = amount;
         }

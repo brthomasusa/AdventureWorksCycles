@@ -1,12 +1,10 @@
 using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
 
-namespace REA.Accounting.SharedKernel.CommonValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
-    public partial class PointOfContact : ValueObject
+    public sealed partial class PointOfContact : ValueObject
     {
-        protected PointOfContact() { }
-
         private PointOfContact(string fname, string lname, string? mi, string telephone)
         {
             FirstName = fname;

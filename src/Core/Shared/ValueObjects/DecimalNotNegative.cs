@@ -1,15 +1,12 @@
 using AWC.SharedKernel.Base;
 
-namespace AWC.SharedKernel.CommonValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
-    public class DecimalNotNegative : ValueObject
+    public sealed class DecimalNotNegative : ValueObject
     {
         public decimal Value { get; }
 
-        protected DecimalNotNegative() { }
-
         private DecimalNotNegative(decimal amount)
-            : this()
         {
             Value = amount;
         }

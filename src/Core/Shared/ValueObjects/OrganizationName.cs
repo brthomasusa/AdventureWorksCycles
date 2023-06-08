@@ -1,7 +1,7 @@
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Guards;
 
-namespace AWC.SharedKernel.CommonValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
     public sealed class OrganizationName : ValueObject
     {

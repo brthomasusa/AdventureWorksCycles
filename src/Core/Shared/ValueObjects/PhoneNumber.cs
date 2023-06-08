@@ -2,26 +2,23 @@ using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Guards;
 
-namespace AWC.SharedKernel.CommonValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
-    public partial class Telephone : ValueObject
+    public sealed partial class PhoneNumber : ValueObject
     {
         public string? Value { get; }
 
-        protected Telephone() { }
-
-        private Telephone(string phoneNumber)
-            : this()
+        private PhoneNumber(string phoneNumber)
         {
             Value = phoneNumber;
         }
 
-        public static implicit operator string(Telephone self) => self.Value!;
+        public static implicit operator string(PhoneNumber self) => self.Value!;
 
-        public static Telephone Create(string phoneNumber)
+        public static PhoneNumber Create(string phoneNumber)
         {
             CheckValidity(phoneNumber);
-            return new Telephone(phoneNumber);
+            return new PhoneNumber(phoneNumber);
         }
 
         private static void CheckValidity(string value)

@@ -3,15 +3,13 @@
 using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
 
-namespace AWC.SharedKernel.CommonValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
-    public partial class WebsiteUrl : ValueObject
+    public sealed partial class WebsiteUrl : ValueObject
     {
         public string Value { get; }
 
-        protected WebsiteUrl() { }
-
-        private WebsiteUrl(string value) : this() => Value = value;
+        private WebsiteUrl(string value) => Value = value;
 
         public static implicit operator string(WebsiteUrl self) => self.Value!;
 

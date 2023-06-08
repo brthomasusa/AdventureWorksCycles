@@ -3,21 +3,21 @@ using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Guards;
 
-namespace AWC.SharedKernel.CommonValueObjects
+namespace AAWC.Core.Shared.ValueObjects
 {
-    public sealed class EmailAddress : ValueObject
+    public sealed class EmailAddressVO : ValueObject
     {
         public string? Value { get; }
 
-        private EmailAddress(string email)
+        private EmailAddressVO(string email)
             => Value = email;
 
-        public static implicit operator string(EmailAddress self) => self.Value!;
+        public static implicit operator string(EmailAddressVO self) => self.Value!;
 
-        public static EmailAddress Create(string value)
+        public static EmailAddressVO Create(string value)
         {
             CheckValidity(value);
-            return new EmailAddress(value);
+            return new EmailAddressVO(value);
         }
 
         private static void CheckValidity(string value)
