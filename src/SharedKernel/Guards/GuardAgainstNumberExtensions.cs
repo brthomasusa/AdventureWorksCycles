@@ -48,5 +48,14 @@ namespace AWC.SharedKernel.Guards
             }
             return input;
         }
+
+        public static decimal GreaterThanTwoDecimalPlaces(this IGuardClause guardClause, decimal input, string parameterName = "Amount", string message = null!)
+        {
+            if (input % 0.01M != 0)
+            {
+                Error(message ?? $"'{parameterName}' is limited to two decimal places.");
+            }
+            return input;
+        }
     }
 }

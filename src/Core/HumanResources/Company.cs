@@ -77,6 +77,45 @@ namespace AWC.Core.HumanResources
             }
         }
 
+        public Result<Company> Update
+        (
+            string companyName,
+            string legalName,
+            string ein,
+            string companyWebSite,
+            string mailLine1,
+            string? mailLine2,
+            string mailCity,
+            int mailStateProvinceID,
+            string mailPostalCode,
+            string deliveryLine1,
+            string? deliveryLine2,
+            string deliveryCity,
+            int deliveryStateProvinceID,
+            string deliveryPostalCode,
+            string telephone,
+            string fax
+        )
+        {
+            try
+            {
+                CompanyName = OrganizationName.Create(companyName);
+                LegalName = OrganizationName.Create(legalName);
+                EIN = EmployerIdentificationNumber.Create(ein);
+                CompanyWebSite = WebsiteUrl.Create(companyWebSite);
+                PostalAddress = AddressVO.Create(mailLine1, mailLine2, mailCity, mailStateProvinceID, mailPostalCode);
+                DeliveryAddress = AddressVO.Create(deliveryLine1, deliveryLine2, deliveryCity, deliveryStateProvinceID, deliveryPostalCode);
+                Telephone = PhoneNumber.Create(telephone);
+                Fax = PhoneNumber.Create(fax);
+
+                return this;
+            }
+            catch (Exception ex)
+            {
+                return Result<Company>.Failure<Company>(new Error("Company.Update", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
         public OrganizationName CompanyName { get; private set; }
         public OrganizationName? LegalName { get; private set; }
         public EmployerIdentificationNumber EIN { get; private set; }
