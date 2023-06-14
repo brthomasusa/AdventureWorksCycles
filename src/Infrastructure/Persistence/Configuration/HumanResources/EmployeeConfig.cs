@@ -1,6 +1,4 @@
-using AWC.Infrastructure.Persistence;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
-using AWC.Infrastructure.Persistence.DataModels.Person;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Guards;
 
-namespace AAWC.Core.Shared.ValueObjects
+namespace AWC.Core.Shared.ValueObjects
 {
     public sealed class EmailAddressVO : ValueObject
     {

@@ -30,6 +30,10 @@ namespace AWC.Infrastructure.Persistence
         public DbSet<EmailAddress>? EmailAddress { get; set; }
         public DbSet<PersonPhone>? PersonPhone { get; set; }
         public DbSet<Password>? Password { get; set; }
+        public DbSet<Department>? Department { get; set; }
+        public DbSet<Shift>? Shift { get; set; }
+        public DbSet<EmployeeDepartmentHistory>? EmployeeDepartmentHistory { get; set; }
+        public DbSet<EmployeePayHistory>? EmployeePayHistory { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
