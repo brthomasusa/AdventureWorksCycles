@@ -1,15 +1,12 @@
-using System.Reflection;
 using AWC.Application;
 using AWC.Application.Behaviors;
+using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Server.Extensions;
 using AWC.Server.Interceptors;
 using AWC.Server.Middleware;
 using Carter;
 using FluentValidation;
-using Mapster;
-using MapsterMapper;
 using MediatR;
-using Microsoft.AspNetCore.ResponseCompression;
 using NLog;
 using NLog.Web;
 
@@ -29,11 +26,11 @@ try
     builder.Services.AddRazorPages();
     builder.Services.AddCarter();
     builder.Services.AddMediatR(ApplicationAssembly.Instance);
-    // builder.Services.AddValidatorsFromAssemblyContaining<CreateEmployeeCommandDataValidator>();
+    builder.Services.AddValidatorsFromAssemblyContaining<CreateEmployeeCommandDataValidator>();
     builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
     builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
     builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(BusinessRulesValidationBehavior<,>));
-    // builder.Services.AddPipelineBehaviorServices();
+    builder.Services.AddPipelineBehaviorServices();
 
     // Add services from namespace Server.Extensions to the container.
     builder.Services.ConfigureCors();

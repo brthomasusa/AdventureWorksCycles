@@ -1,6 +1,6 @@
 using AWC.Infrastructure.Persistence.Interfaces.HumanResources;
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
-// using AWC.Shared.Models.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Microsoft.Extensions.Logging;
 
@@ -15,5 +15,11 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             _logger = logger;
             _context = ctx;
         }
+
+        public async Task<Result<EmployeeDetailReadModel>> GetEmployeeDetailsByIdWithAllInfo(int employeeId)
+            => await GetEmployeeDetailsByIdWithAllInfoQuery.Query(employeeId, _context, _logger);
+
+        public async Task<Result<PagedList<EmployeeListItemReadModel>>> GetEmployeeListItemsSearchByLastName(string lastName, PagingParameters pagingParameters)
+            => await GetEmployeeListItemsQuery.Query(lastName, pagingParameters, _context, _logger);
     }
 }
