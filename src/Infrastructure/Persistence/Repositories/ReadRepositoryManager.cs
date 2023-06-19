@@ -26,7 +26,7 @@ namespace AWC.Infrastructure.Persistence.Repositories
                 => new CompanyReadRepository(_context, _logger));
         }
 
-        public IEmployeeReadRepository EmployeeReadRepository { get; }
-        public ICompanyReadRepository CompanyReadRepository { get; }
+        public IEmployeeReadRepository EmployeeReadRepository => _employeeRepository.Value;
+        public ICompanyReadRepository CompanyReadRepository => _companyRepository.Value;
     }
 }

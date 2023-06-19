@@ -1,7 +1,5 @@
 using System.Data;
-using AWC.Infrastructure.Persistence;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.Infrastructure.Persistence.Repositories.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Dapper;
 using Microsoft.Extensions.Logging;

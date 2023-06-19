@@ -262,7 +262,8 @@ namespace AWC.Core.HumanResources
 
         protected override void CheckValidity()
         {
-            if (!PersonType.Equals("EM", StringComparison.OrdinalIgnoreCase))
+
+            if (!PersonType.Value!.Equals("EM", StringComparison.OrdinalIgnoreCase))
                 throw new ArgumentException("Employee must be person type 'EM'.");
         }
     }

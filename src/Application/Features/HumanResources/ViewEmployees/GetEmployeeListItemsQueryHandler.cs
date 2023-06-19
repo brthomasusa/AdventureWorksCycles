@@ -3,7 +3,7 @@ using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
+namespace AWC.Application.Features.HumanResources.ViewEmployees
 {
     public sealed class GetEmployeeListItemsQueryHandler : IQueryHandler<GetEmployeeListItemsRequest, PagedList<EmployeeListItemReadModel>>
     {

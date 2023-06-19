@@ -22,7 +22,7 @@ namespace AWC.Core.HumanResources.ValueObjects
 
         private static void CheckValidity(int value)
         {
-            Guard.Against.LessThan(value, 1, "Manager Id should be greater than zero.");
+            Guard.Against.LessThan(value, 0, "Manager Id should be greater than or equal to zero.");
         }
     }
 }

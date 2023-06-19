@@ -22,6 +22,7 @@ namespace AWC.Infrastructure.Persistence.Configurations.HumanResources
                 .HasColumnType("money");
             entity.Property(e => e.PayFrequency)
                 .IsRequired()
+                .HasColumnType("tinyint")
                 .HasColumnName("PayFrequency");
             entity.Property(e => e.ModifiedDate)
                 .HasColumnName("ModifiedDate")

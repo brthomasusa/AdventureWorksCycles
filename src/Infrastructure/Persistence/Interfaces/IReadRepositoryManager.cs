@@ -6,6 +6,5 @@ namespace AWC.Infrastructure.Persistence.Interfaces
     {
         IEmployeeReadRepository EmployeeReadRepository { get; }
         ICompanyReadRepository CompanyReadRepository { get; }
-        // ILookupsReadRepository LookupsReadRepository { get; }
     }
 }

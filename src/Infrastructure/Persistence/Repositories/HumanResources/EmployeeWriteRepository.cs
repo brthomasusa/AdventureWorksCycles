@@ -57,7 +57,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
                     if (result.IsSuccess)
                     {
-                        EmployeeDomainModel employee = result.Value;
+                        EmployeeDomainModel? employee = result.Value;
 
                         // Add addresses to employee from person data model
                         if (person!.BusinessEntityAddresses.ToList().Any())

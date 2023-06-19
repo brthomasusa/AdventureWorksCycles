@@ -201,6 +201,8 @@ namespace AWC.Core.HumanResources
             }
         }
 
+        public IReadOnlyCollection<Shift> Shifts => _shifts.AsReadOnly();
+
         public Result AddShift
         (
             int id,

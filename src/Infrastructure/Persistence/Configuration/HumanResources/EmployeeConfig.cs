@@ -11,6 +11,14 @@ namespace AWC.Infrastructure.Persistence.Configurations.HumanResources
             entity.ToTable("Employee", schema: "HumanResources");
             entity.HasKey(e => e.BusinessEntityID);
             entity.Ignore(e => e.ManagerID);
+            entity.HasMany(employee => employee.DepartmentHistories)
+                  .WithOne()
+                  .HasForeignKey(employee => employee.BusinessEntityID)
+                  .IsRequired();
+            entity.HasMany(employee => employee.PayHistories)
+                  .WithOne()
+                  .HasForeignKey(employee => employee.BusinessEntityID)
+                  .IsRequired();
 
             entity.Property(e => e.BusinessEntityID)
                 .HasColumnName("BusinessEntityID")
