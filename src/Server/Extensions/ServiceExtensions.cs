@@ -53,7 +53,8 @@ namespace AWC.Server.Extensions
             return services
                 .AddScoped<IWriteRepositoryManager, WriteRepositoryManager>()
                 .AddScoped<IReadRepositoryManager, ReadRepositoryManager>()
-                .AddScoped<IValidationRepositoryManager, ValidationRepositoryManager>();
+                .AddScoped<IValidationRepositoryManager, ValidationRepositoryManager>()
+                .AddScoped<ILookupsRepositoryManager, LookupsRepositoryManager>();
         }
 
         public static IServiceCollection AddMappings(this IServiceCollection services)
