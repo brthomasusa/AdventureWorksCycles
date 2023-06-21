@@ -11,17 +11,22 @@ namespace AWC.Infrastructure.Persistence.Repositories
     {
         private readonly ILogger<LookupsRepositoryManager> _logger;
         private readonly DapperContext _context;
-        private readonly Lazy<ILookupsRepository> _lookupsRepository;
+        private readonly Lazy<IHumanResourcesLookupsRepository> _humanResourcesRepository;
+        private readonly Lazy<ISharedLookupsRepository> _sharedRepository;
 
         public LookupsRepositoryManager(DapperContext ctx, ILogger<LookupsRepositoryManager> logger)
         {
             _context = ctx;
             _logger = logger;
 
-            _lookupsRepository = new Lazy<ILookupsRepository>(()
-                => new LookupsRepository(_context, _logger));
+            _humanResourcesRepository = new Lazy<IHumanResourcesLookupsRepository>(()
+                => new HumanResourcesLookupsRepository(_context, _logger));
+
+            _sharedRepository = new Lazy<ISharedLookupsRepository>(()
+                => new SharedLookupsRepository(_context, _logger));
         }
 
-        public ILookupsRepository LookupsRepository => _lookupsRepository.Value;
+        public IHumanResourcesLookupsRepository HumanResourcesLookupsRepository => _humanResourcesRepository.Value;
+        public ISharedLookupsRepository SharedLookupsRepository => _sharedRepository.Value;
     }
 }

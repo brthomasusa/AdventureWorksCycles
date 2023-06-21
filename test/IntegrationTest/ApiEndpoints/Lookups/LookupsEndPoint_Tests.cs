@@ -1,7 +1,8 @@
 #pragma warning disable CS8600, CS8602
 
 using System.Text.Json;
-using AWC.Shared.Queries.Lookups;
+using AWC.Shared.Queries.Lookups.HumanResources;
+using AWC.Shared.Queries.Lookups.Shared;
 
 namespace AWC.IntegrationTests.Lookups.ApiEndPoint_Tests
 {

@@ -16,10 +16,10 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             _context = ctx;
         }
 
-        public async Task<Result<EmployeeDetailReadModel>> GetEmployeeDetailsByIdWithAllInfo(int employeeId)
+        public async Task<Result<EmployeeDetailsResponse>> GetEmployeeDetailsByIdWithAllInfo(int employeeId)
             => await GetEmployeeDetailsByIdWithAllInfoQuery.Query(employeeId, _context, _logger);
 
-        public async Task<Result<PagedList<EmployeeListItemReadModel>>> GetEmployeeListItemsSearchByLastName(string lastName, PagingParameters pagingParameters)
+        public async Task<Result<PagedList<EmployeeListItemResponse>>> GetEmployeeListItemsSearchByLastName(string lastName, PagingParameters pagingParameters)
             => await GetEmployeeListItemsQuery.Query(lastName, pagingParameters, _context, _logger);
     }
 }

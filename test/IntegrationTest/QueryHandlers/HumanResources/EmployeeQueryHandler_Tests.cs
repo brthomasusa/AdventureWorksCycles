@@ -17,10 +17,10 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
         [Fact]
         public async Task Handle_GetEmployeeDetailsByIdWithAllInfoQueryHandler_ShouldSucceed()
         {
-            GetEmployeeDetailsByIdWithAllInfoRequest request = new(EmployeeID: 2);
-            GetEmployeeDetailsByIdWithAllInfoQueryHandler handler = new(_repository);
+            GetEmployeeDetailsRequest request = new(EmployeeID: 2);
+            GetEmployeeDetailsRequestQueryHandler handler = new(_repository);
 
-            Result<EmployeeDetailReadModel> response = await handler.Handle(request, new CancellationToken());
+            Result<EmployeeDetailsResponse> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
         }
@@ -28,10 +28,10 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
         [Fact]
         public async Task Handle_GetEmployeeDetailsByIdWithAllInfoQueryHandler_ShouldFail_WithInvalidID()
         {
-            GetEmployeeDetailsByIdWithAllInfoRequest request = new(EmployeeID: 430);
-            GetEmployeeDetailsByIdWithAllInfoQueryHandler handler = new(_repository);
+            GetEmployeeDetailsRequest request = new(EmployeeID: 430);
+            GetEmployeeDetailsRequestQueryHandler handler = new(_repository);
 
-            Result<EmployeeDetailReadModel> response = await handler.Handle(request, new CancellationToken());
+            Result<EmployeeDetailsResponse> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsFailure);
         }
@@ -43,7 +43,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetEmployeeListItemsRequest request = new(LastName: "Bradley", PagingParameters: pagingParameters);
             GetEmployeeListItemsQueryHandler handler = new(_repository);
 
-            Result<PagedList<EmployeeListItemReadModel>> response = await handler.Handle(request, new CancellationToken());
+            Result<PagedList<EmployeeListItemResponse>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
 
@@ -58,7 +58,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetEmployeeListItemsRequest request = new(LastName: "A", PagingParameters: pagingParameters);
             GetEmployeeListItemsQueryHandler handler = new(_repository);
 
-            Result<PagedList<EmployeeListItemReadModel>> response = await handler.Handle(request, new CancellationToken());
+            Result<PagedList<EmployeeListItemResponse>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
 

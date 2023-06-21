@@ -1,6 +1,8 @@
 using AWC.Infrastructure.Persistence.Queries.Lookups;
+using AWC.Infrastructure.Persistence.Queries.Lookups.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.Shared.Queries.Lookups;
+using AWC.Shared.Queries.Lookups.HumanResources;
+using AWC.Shared.Queries.Lookups.Shared;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.DapperQueries

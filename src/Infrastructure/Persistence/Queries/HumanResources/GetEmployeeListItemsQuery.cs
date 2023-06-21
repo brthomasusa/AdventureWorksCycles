@@ -11,7 +11,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
     {
         private static int Offset(int page, int pageSize) => (page - 1) * pageSize;
 
-        public async static Task<Result<PagedList<EmployeeListItemReadModel>>> Query
+        public async static Task<Result<PagedList<EmployeeListItemResponse>>> Query
         (
             string lastName,
             PagingParameters pagingParameters,
@@ -35,10 +35,10 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 
                 using var connection = ctx.CreateConnection();
 
-                var items = await connection.QueryAsync<EmployeeListItemReadModel>(sql, parameters);
+                var items = await connection.QueryAsync<EmployeeListItemResponse>(sql, parameters);
                 int count = connection.ExecuteScalar<int>(countSql, parameters);
 
-                var pagedList = PagedList<EmployeeListItemReadModel>.CreatePagedList(
+                var pagedList = PagedList<EmployeeListItemResponse>.CreatePagedList(
                         items.ToList(), count, pagingParameters.PageNumber, pagingParameters.PageSize
                     );
 
@@ -48,7 +48,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
             {
                 logger.LogError(ex, $"Code Path: GetEmployeeListItemsQuery.Query - Message: {Helpers.GetExceptionMessage(ex)}");
 
-                return Result<PagedList<EmployeeListItemReadModel>>.Failure<PagedList<EmployeeListItemReadModel>>(
+                return Result<PagedList<EmployeeListItemResponse>>.Failure<PagedList<EmployeeListItemResponse>>(
                     new Error("GetEmployeeListItemsQuery.Query", Helpers.GetExceptionMessage(ex))
                 );
             }

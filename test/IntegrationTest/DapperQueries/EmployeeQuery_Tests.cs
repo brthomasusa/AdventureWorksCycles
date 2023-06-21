@@ -10,7 +10,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetEmployeeDetailsByIdWithAllInfoQuery_ShouldSucceed()
         {
-            Result<EmployeeDetailReadModel> result =
+            Result<EmployeeDetailsResponse> result =
                 await GetEmployeeDetailsByIdWithAllInfoQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
@@ -21,7 +21,7 @@ namespace AWC.IntegrationTests.DapperQueries
         {
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
-            Result<EmployeeDetailReadModel> result = await GetEmployeeDetailsByIdWithAllInfoQuery.Query(300, _dapperCtx, logger);
+            Result<EmployeeDetailsResponse> result = await GetEmployeeDetailsByIdWithAllInfoQuery.Query(300, _dapperCtx, logger);
 
             Assert.True(result.IsFailure);
         }
@@ -32,7 +32,7 @@ namespace AWC.IntegrationTests.DapperQueries
             const string lastName = "A";
             PagingParameters pagingParameters = new(1, 10);
 
-            Result<PagedList<EmployeeListItemReadModel>> result =
+            Result<PagedList<EmployeeListItemResponse>> result =
                 await GetEmployeeListItemsQuery.Query(lastName, pagingParameters, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
@@ -46,7 +46,7 @@ namespace AWC.IntegrationTests.DapperQueries
             string lastName = string.Empty;
             PagingParameters pagingParameters = new(1, 5);
 
-            Result<PagedList<EmployeeListItemReadModel>> result =
+            Result<PagedList<EmployeeListItemResponse>> result =
                 await GetEmployeeListItemsQuery.Query(lastName, pagingParameters, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);

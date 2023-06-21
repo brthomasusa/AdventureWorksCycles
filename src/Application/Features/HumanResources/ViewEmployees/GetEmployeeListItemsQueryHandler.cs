@@ -5,14 +5,14 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployees
 {
-    public sealed class GetEmployeeListItemsQueryHandler : IQueryHandler<GetEmployeeListItemsRequest, PagedList<EmployeeListItemReadModel>>
+    public sealed class GetEmployeeListItemsQueryHandler : IQueryHandler<GetEmployeeListItemsRequest, PagedList<EmployeeListItemResponse>>
     {
         private readonly IReadRepositoryManager _repo;
 
         public GetEmployeeListItemsQueryHandler(IReadRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<PagedList<EmployeeListItemReadModel>>> Handle
+        public async Task<Result<PagedList<EmployeeListItemResponse>>> Handle
         (
             GetEmployeeListItemsRequest request,
             CancellationToken cancellationToken
@@ -21,12 +21,12 @@ namespace AWC.Application.Features.HumanResources.ViewEmployees
             try
             {
 
-                Result<PagedList<EmployeeListItemReadModel>> result =
+                Result<PagedList<EmployeeListItemResponse>> result =
                     await _repo.EmployeeReadRepository.GetEmployeeListItemsSearchByLastName(request.LastName, request.PagingParameters);
 
                 if (result.IsFailure)
                 {
-                    return Result<PagedList<EmployeeListItemReadModel>>.Failure<PagedList<EmployeeListItemReadModel>>(
+                    return Result<PagedList<EmployeeListItemResponse>>.Failure<PagedList<EmployeeListItemResponse>>(
                         new Error("GGetEmployeeListItemsQueryHandler.Handle", result.Error.Message)
                     );
                 }
@@ -36,7 +36,7 @@ namespace AWC.Application.Features.HumanResources.ViewEmployees
             }
             catch (Exception ex)
             {
-                return Result<PagedList<EmployeeListItemReadModel>>.Failure<PagedList<EmployeeListItemReadModel>>(
+                return Result<PagedList<EmployeeListItemResponse>>.Failure<PagedList<EmployeeListItemResponse>>(
                     new Error("GetEmployeeListItemsQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
                 );
             }

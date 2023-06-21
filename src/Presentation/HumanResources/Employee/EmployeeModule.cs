@@ -20,8 +20,8 @@ namespace AWC.Presentation.HumanResources.Employee
         {
             app.MapGet("api/employees/allinfo/{id}", async (int id, ISender sender) =>
             {
-                Result<EmployeeDetailReadModel> result =
-                    await sender.Send(new GetEmployeeDetailsByIdWithAllInfoRequest(EmployeeID: id));
+                Result<EmployeeDetailsResponse> result =
+                    await sender.Send(new GetEmployeeDetailsRequest(EmployeeID: id));
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);
@@ -34,7 +34,7 @@ namespace AWC.Presentation.HumanResources.Employee
                 PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
                 GetEmployeeListItemsRequest request = new(LastName: parameters.LastName!, PagingParameters: pagingParameters);
 
-                Result<PagedList<EmployeeListItemReadModel>> result = await sender.Send(request);
+                Result<PagedList<EmployeeListItemResponse>> result = await sender.Send(request);
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);
@@ -48,7 +48,7 @@ namespace AWC.Presentation.HumanResources.Employee
 
                 if (result.IsSuccess)
                 {
-                    return Results.Created($"api/employees/allinfo/{result.Value}", new GetEmployeeDetailsByIdWithAllInfoRequest(EmployeeID: result.Value));
+                    return Results.Created($"api/employees/allinfo/{result.Value}", new GetEmployeeDetailsRequest(EmployeeID: result.Value));
                 }
 
                 return Results.Problem(result.Error);

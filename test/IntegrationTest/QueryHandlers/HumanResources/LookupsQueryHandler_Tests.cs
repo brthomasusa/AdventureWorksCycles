@@ -1,10 +1,11 @@
-using AWC.Application.Lookups.GetDepartmentIds;
-using AWC.Application.Lookups.GetShiftIds;
-using AWC.Application.Lookups.GetStateCodesForAll;
-using AWC.Application.Lookups.GetStateCodesForUSA;
+using AWC.Application.Lookups.HumanResources.GetDepartmentIds;
+using AWC.Application.Lookups.HumanResources.GetShiftIds;
+using AWC.Application.Lookups.Shared.GetStateCodesForAll;
+using AWC.Application.Lookups.Shared.GetStateCodesForUSA;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.Shared.Queries.Lookups;
+using AWC.Shared.Queries.Lookups.HumanResources;
+using AWC.Shared.Queries.Lookups.Shared;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.QueryHandlers.HumanResources

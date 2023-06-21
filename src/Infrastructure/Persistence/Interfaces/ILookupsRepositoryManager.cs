@@ -4,6 +4,7 @@ namespace AWC.Infrastructure.Persistence.Interfaces
 {
     public interface ILookupsRepositoryManager
     {
-        ILookupsRepository LookupsRepository { get; }
+        ISharedLookupsRepository SharedLookupsRepository { get; }
+        IHumanResourcesLookupsRepository HumanResourcesLookupsRepository { get; }
     }
 }

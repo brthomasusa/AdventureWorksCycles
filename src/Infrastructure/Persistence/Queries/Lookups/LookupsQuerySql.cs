@@ -15,6 +15,12 @@ namespace AWC.Infrastructure.Persistence.Queries.Lookups
         FROM Person.StateProvince 
         ORDER BY StateProvinceCode";
 
+        public const string GetCountryCodes =
+        @"SELECT 
+            CountryRegionCode, [Name] 
+        FROM Person.CountryRegion 
+        ORDER BY [Name]";
+
         public const string GetDepartmentIds =
         @"SELECT 
             DepartmentID, LTRIM(RTRIM([Name])) AS DepartmentName 

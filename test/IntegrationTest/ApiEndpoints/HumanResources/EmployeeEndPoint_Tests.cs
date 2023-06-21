@@ -27,7 +27,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var employee = await JsonSerializer.DeserializeAsync<EmployeeDetailReadModel>(jsonResponse, _options);
+            var employee = await JsonSerializer.DeserializeAsync<EmployeeDetailsResponse>(jsonResponse, _options);
 
             Assert.Equal("Ken", employee.FirstName);
             Assert.Equal("Sánchez", employee.LastName);
@@ -46,8 +46,8 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
                 ["lastName"] = lastName
             };
 
-            List<EmployeeListItemReadModel> response = await _client
-                .GetFromJsonAsync<List<EmployeeListItemReadModel>>(QueryHelpers.AddQueryString($"{_urlRoot}employees/filterbylastname", queryParams));
+            List<EmployeeListItemResponse> response = await _client
+                .GetFromJsonAsync<List<EmployeeListItemResponse>>(QueryHelpers.AddQueryString($"{_urlRoot}employees/filterbylastname", queryParams));
 
             Assert.Equal(10, response.Count);
         }

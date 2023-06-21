@@ -13,7 +13,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
-            Result<EmployeeDetailReadModel> result =
+            Result<EmployeeDetailsResponse> result =
                 await readRepository.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(1);
 
             Assert.True(result.IsSuccess);
@@ -25,7 +25,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
-            Result<EmployeeDetailReadModel> result =
+            Result<EmployeeDetailsResponse> result =
                 await readRepository.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(300);
 
             Assert.True(result.IsFailure);
@@ -38,7 +38,7 @@ namespace AWC.IntegrationTests.Repositories
             const string lastName = "A";
             PagingParameters pagingParameters = new(1, 10);
 
-            Result<PagedList<EmployeeListItemReadModel>> result =
+            Result<PagedList<EmployeeListItemResponse>> result =
                 await readRepository.EmployeeReadRepository.GetEmployeeListItemsSearchByLastName(lastName, pagingParameters);
 
             Assert.True(result.IsSuccess);
