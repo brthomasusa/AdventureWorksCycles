@@ -32,5 +32,11 @@ namespace AWC.Infrastructure.Persistence.Queries.Lookups
             ShiftID, LTRIM(RTRIM([Name])) AS ShiftName 
         FROM HumanResources.Shift 
         ORDER BY [Name]";
+
+        public const string GetManagerIds =
+        @"SELECT 
+            BusinessEntityID, DepartmentID, DepartmentName, JobTitle, ManagerFullName 
+        FROM HumanResources.vGetManagers 
+        ORDER BY ManagerFullName";
     }
 }

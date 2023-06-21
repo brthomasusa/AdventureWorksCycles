@@ -1,5 +1,7 @@
 using AWC.Application.Lookups.HumanResources.GetDepartmentIds;
+using AWC.Application.Lookups.HumanResources.GetManagerIds;
 using AWC.Application.Lookups.HumanResources.GetShiftIds;
+using AWC.Application.Lookups.Shared.GetCountryCodes;
 using AWC.Application.Lookups.Shared.GetStateCodesForAll;
 using AWC.Application.Lookups.Shared.GetStateCodesForUSA;
 using AWC.Infrastructure.Persistence.Interfaces;
@@ -57,6 +59,28 @@ namespace AWC.IntegrationTests.QueryHandlers.HumanResources
             GetShiftIdsQueryHandler handler = new(_repository);
 
             Result<List<ShiftId>> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+        }
+
+        [Fact]
+        public async Task Handle_GetCountryCodesQueryHandler_ShouldSucceed()
+        {
+            GetCountryCodesRequest request = new();
+            GetCountryCodesQueryHandler handler = new(_repository);
+
+            Result<List<CountryCode>> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+        }
+
+        [Fact]
+        public async Task Handle_GetManagerIdsQueryHandler_ShouldSucceed()
+        {
+            GetManagerIdsRequest request = new();
+            GetManagerIdsQueryHandler handler = new(_repository);
+
+            Result<List<ManagerId>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
         }

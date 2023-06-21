@@ -7,5 +7,6 @@ namespace AWC.Infrastructure.Persistence.Interfaces.Lookups
     {
         Task<Result<List<DepartmentId>>> DepartmentIds();
         Task<Result<List<ShiftId>>> ShiftIds();
+        Task<Result<List<ManagerId>>> ManagerIds();
     }
 }

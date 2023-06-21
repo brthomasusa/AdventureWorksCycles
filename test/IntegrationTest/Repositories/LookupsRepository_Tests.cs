@@ -50,5 +50,16 @@ namespace AWC.IntegrationTests.Repositories
             Assert.True(result.IsSuccess);
             Assert.True(result.Value.Any());
         }
+
+        [Fact]
+        public async Task ManagerIds_LookupsRepository_ShouldSucceed()
+        {
+            LookupsRepositoryManager repository = new(_dapperCtx, new NullLogger<LookupsRepositoryManager>());
+
+            Result<List<ManagerId>> result = await repository.HumanResourcesLookupsRepository.ManagerIds();
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Any());
+        }
     }
 }

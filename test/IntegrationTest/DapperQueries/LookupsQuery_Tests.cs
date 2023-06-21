@@ -40,5 +40,13 @@ namespace AWC.IntegrationTests.DapperQueries
 
             Assert.True(result.IsSuccess);
         }
+
+        [Fact]
+        public async Task Query_GetManagerIdsQuery_ShouldSucceed()
+        {
+            Result<List<ManagerId>> result = await GetManagerIdsQuery.Query(_dapperCtx, new NullLogger<LookupsRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+        }
     }
 }

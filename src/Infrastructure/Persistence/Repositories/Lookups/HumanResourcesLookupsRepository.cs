@@ -19,5 +19,8 @@ namespace AWC.Infrastructure.Persistence.Repositories.Lookups
 
         public async Task<Result<List<ShiftId>>> ShiftIds()
             => await GetShiftIdsQuery.Query(_context, _logger);
+
+        public async Task<Result<List<ManagerId>>> ManagerIds()
+            => await GetManagerIdsQuery.Query(_context, _logger);
     }
 }

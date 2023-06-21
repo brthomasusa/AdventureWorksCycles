@@ -1,5 +1,7 @@
 using AWC.Application.Lookups.HumanResources.GetDepartmentIds;
+using AWC.Application.Lookups.HumanResources.GetManagerIds;
 using AWC.Application.Lookups.HumanResources.GetShiftIds;
+using AWC.Application.Lookups.Shared.GetCountryCodes;
 using AWC.Application.Lookups.Shared.GetStateCodesForAll;
 using AWC.Application.Lookups.Shared.GetStateCodesForUSA;
 using AWC.Shared.Queries.Lookups.HumanResources;
@@ -37,6 +39,16 @@ namespace REA.Accounting.Presentation.Lookups
                 return Results.Problem(result.Error);
             });
 
+            app.MapGet("api/lookups/countrycodes", async (ISender sender) =>
+            {
+                Result<List<CountryCode>> result = await sender.Send(new GetCountryCodesRequest());
+
+                if (result.IsSuccess)
+                    return Results.Ok(result.Value);
+
+                return Results.Problem(result.Error);
+            });
+
             app.MapGet("api/lookups/departmentids", async (ISender sender) =>
             {
                 Result<List<DepartmentId>> result = await sender.Send(new GetDepartmentIdsRequest());
@@ -50,6 +62,16 @@ namespace REA.Accounting.Presentation.Lookups
             app.MapGet("api/lookups/shiftids", async (ISender sender) =>
             {
                 Result<List<ShiftId>> result = await sender.Send(new GetShiftIdsRequest());
+
+                if (result.IsSuccess)
+                    return Results.Ok(result.Value);
+
+                return Results.Problem(result.Error);
+            });
+
+            app.MapGet("api/lookups/managerids", async (ISender sender) =>
+            {
+                Result<List<ManagerId>> result = await sender.Send(new GetManagerIdsRequest());
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);

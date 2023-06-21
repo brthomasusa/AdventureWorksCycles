@@ -42,6 +42,21 @@ namespace AWC.IntegrationTests.Lookups.ApiEndPoint_Tests
         }
 
         [Fact]
+        public async Task Lookups_GetCountryCodes_ShouldSucceed()
+        {
+            using var response = await _client.GetAsync($"{_urlRoot}lookups/countrycodes",
+                                                        HttpCompletionOption.ResponseHeadersRead);
+
+            response.EnsureSuccessStatusCode();
+
+            var jsonResponse = await response.Content.ReadAsStreamAsync();
+            var countryCodes = await JsonSerializer.DeserializeAsync<List<CountryCode>>(jsonResponse, _options);
+
+            Assert.True(countryCodes!.Any());
+            Assert.Equal(53, countryCodes.Count);
+        }
+
+        [Fact]
         public async Task Lookups_GetDepartmentIds_ShouldSucceed()
         {
             using var response = await _client.GetAsync($"{_urlRoot}lookups/departmentids",
@@ -67,6 +82,20 @@ namespace AWC.IntegrationTests.Lookups.ApiEndPoint_Tests
             var shiftIds = await JsonSerializer.DeserializeAsync<List<ShiftId>>(jsonResponse, _options);
 
             Assert.True(shiftIds!.Any());
+        }
+
+        [Fact]
+        public async Task Lookups_GetManagerIds_ShouldSucceed()
+        {
+            using var response = await _client.GetAsync($"{_urlRoot}lookups/managerids",
+                                                        HttpCompletionOption.ResponseHeadersRead);
+
+            response.EnsureSuccessStatusCode();
+
+            var jsonResponse = await response.Content.ReadAsStreamAsync();
+            var managerIds = await JsonSerializer.DeserializeAsync<List<ManagerId>>(jsonResponse, _options);
+
+            Assert.True(managerIds!.Any());
         }
     }
 }
