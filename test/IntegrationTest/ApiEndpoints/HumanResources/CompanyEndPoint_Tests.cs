@@ -8,6 +8,8 @@ using AWC.Application.Features.HumanResources.ViewCompanyDepartments;
 using AWC.Application.Features.HumanResources.ViewCompanyDetails;
 using AWC.Application.Features.HumanResources.ViewCompanyShifts;
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
+using AWC.Shared.Queries.HumanResources;
+
 using AWC.SharedKernel.Utilities;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -28,7 +30,7 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var company = await JsonSerializer.DeserializeAsync<GetCompanyDetailByIdResponse>(jsonResponse, _options);
+            var company = await JsonSerializer.DeserializeAsync<CompanyDetailsForDisplay>(jsonResponse, _options);
 
             Assert.Equal("Adventure-Works Cycles", company.CompanyName);
             Assert.Equal("Adventure-Works Cycles, Inc.", company.LegalName);

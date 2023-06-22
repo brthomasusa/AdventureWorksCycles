@@ -1,5 +1,6 @@
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.DapperQueries
@@ -9,7 +10,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetCompanyDetailsByIdQuery_ShouldSucceed()
         {
-            Result<GetCompanyDetailByIdResponse> result = await GetCompanyDetailsByIdQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+            Result<CompanyDetailsForDisplay> result = await GetCompanyDetailsQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
         }
@@ -20,7 +21,7 @@ namespace AWC.IntegrationTests.DapperQueries
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
 
-            Result<GetCompanyDetailByIdResponse> result = await GetCompanyDetailsByIdQuery.Query(100, _dapperCtx, logger);
+            Result<CompanyDetailsForDisplay> result = await GetCompanyDetailsQuery.Query(100, _dapperCtx, logger);
 
             Assert.True(result.IsFailure);
         }
@@ -28,7 +29,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetCompanyCommandByIdQuery_ShouldSucceed()
         {
-            Result<GetCompanyCommandByIdResponse> result = await GetCompanyCommandByIdQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+            Result<CompanyDetailsForEdit> result = await GetCompanyCommandQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
         }
@@ -39,7 +40,7 @@ namespace AWC.IntegrationTests.DapperQueries
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
 
-            Result<GetCompanyCommandByIdResponse> result = await GetCompanyCommandByIdQuery.Query(100, _dapperCtx, logger);
+            Result<CompanyDetailsForEdit> result = await GetCompanyCommandQuery.Query(100, _dapperCtx, logger);
 
             Assert.True(result.IsFailure);
         }

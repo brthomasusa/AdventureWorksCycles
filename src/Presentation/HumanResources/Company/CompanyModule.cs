@@ -3,6 +3,7 @@ using AWC.Application.Features.HumanResources.ViewCompanyDepartments;
 using AWC.Application.Features.HumanResources.ViewCompanyDetails;
 using AWC.Application.Features.HumanResources.ViewCompanyShifts;
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Carter;
 using MediatR;
@@ -18,7 +19,7 @@ namespace AWC.Presentation.HumanResources.Company
         {
             app.MapGet("api/companies/details/{id}", async (int id, ISender sender) =>
             {
-                Result<GetCompanyDetailByIdResponse> result = await sender.Send(new GetCompanyDetailByIdRequest(CompanyID: id));
+                Result<CompanyDetailsForDisplay> result = await sender.Send(new GetCompanyDetailsRequest(CompanyID: id));
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);
@@ -28,7 +29,7 @@ namespace AWC.Presentation.HumanResources.Company
 
             app.MapGet("api/companies/command/{id}", async (int id, ISender sender) =>
             {
-                Result<GetCompanyCommandByIdResponse> result = await sender.Send(new GetCompanyCommandByIdRequest(CompanyID: id));
+                Result<CompanyDetailsForEdit> result = await sender.Send(new GetCompanyCommandRequest(CompanyID: id));
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);

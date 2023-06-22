@@ -13,7 +13,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
-            Result<EmployeeDetailsResponse> result =
+            Result<EmployeeDetailsForDisplay> result =
                 await readRepository.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(1);
 
             Assert.True(result.IsSuccess);
@@ -25,7 +25,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
-            Result<EmployeeDetailsResponse> result =
+            Result<EmployeeDetailsForDisplay> result =
                 await readRepository.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(300);
 
             Assert.True(result.IsFailure);

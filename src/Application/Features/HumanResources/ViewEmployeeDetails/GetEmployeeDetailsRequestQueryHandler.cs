@@ -5,14 +5,14 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
 {
-    public sealed class GetEmployeeDetailsRequestQueryHandler : IQueryHandler<GetEmployeeDetailsRequest, EmployeeDetailsResponse>
+    public sealed class GetEmployeeDetailsRequestQueryHandler : IQueryHandler<GetEmployeeDetailsRequest, EmployeeDetailsForDisplay>
     {
         private readonly IReadRepositoryManager _repo;
 
         public GetEmployeeDetailsRequestQueryHandler(IReadRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<EmployeeDetailsResponse>> Handle
+        public async Task<Result<EmployeeDetailsForDisplay>> Handle
         (
             GetEmployeeDetailsRequest request,
             CancellationToken cancellationToken
@@ -20,12 +20,12 @@ namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
         {
             try
             {
-                Result<EmployeeDetailsResponse> result =
+                Result<EmployeeDetailsForDisplay> result =
                     await _repo.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(request.EmployeeID);
 
                 if (result.IsFailure)
                 {
-                    return Result<EmployeeDetailsResponse>.Failure<EmployeeDetailsResponse>(
+                    return Result<EmployeeDetailsForDisplay>.Failure<EmployeeDetailsForDisplay>(
                         new Error("GetEmployeeDetailsByIdWithAllInfoQueryHandler.Handle", result.Error.Message)
                     );
                 }
@@ -35,7 +35,7 @@ namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
             }
             catch (Exception ex)
             {
-                return Result<EmployeeDetailsResponse>.Failure<EmployeeDetailsResponse>(
+                return Result<EmployeeDetailsForDisplay>.Failure<EmployeeDetailsForDisplay>(
                     new Error("GetEmployeeDetailsByIdWithAllInfoQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
                 );
             }

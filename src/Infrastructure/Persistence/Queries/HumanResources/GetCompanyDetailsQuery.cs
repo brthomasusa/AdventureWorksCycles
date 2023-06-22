@@ -1,14 +1,15 @@
 using System.Data;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Dapper;
 using Microsoft.Extensions.Logging;
 
 namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 {
-    public static class GetCompanyDetailsByIdQuery
+    public static class GetCompanyDetailsQuery
     {
-        public async static Task<Result<GetCompanyDetailByIdResponse>> Query
+        public async static Task<Result<CompanyDetailsForDisplay>> Query
         (
             int companyId,
             DapperContext ctx,
@@ -24,14 +25,14 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
                 parameters.Add("ID", companyId, DbType.Int32);
 
                 using var connection = ctx.CreateConnection();
-                GetCompanyDetailByIdResponse detail = await connection.QueryFirstOrDefaultAsync<GetCompanyDetailByIdResponse>(sql, parameters);
+                CompanyDetailsForDisplay detail = await connection.QueryFirstOrDefaultAsync<CompanyDetailsForDisplay>(sql, parameters);
 
                 if (detail is null)
                 {
                     string errMsg = $"Unable to retrieve company details for company with ID: {companyId}.";
                     logger.LogWarning($"Code Path: GetCompanyDetailsByIdQuery.Query - Message: {errMsg}");
 
-                    return Result<GetCompanyDetailByIdResponse>.Failure<GetCompanyDetailByIdResponse>(
+                    return Result<CompanyDetailsForDisplay>.Failure<CompanyDetailsForDisplay>(
                         new Error("GetCompanyDetailsByIdQuery.Query", errMsg)
                     );
                 }
@@ -41,7 +42,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
             catch (Exception ex)
             {
                 logger.LogError(ex, $"Code Path: GetCompanyDetailsByIdQuery.Query - Message: {Helpers.GetExceptionMessage(ex)}");
-                return Result<GetCompanyDetailByIdResponse>.Failure<GetCompanyDetailByIdResponse>(
+                return Result<CompanyDetailsForDisplay>.Failure<CompanyDetailsForDisplay>(
                     new Error("GetCompanyDetailsByIdQuery.Query", Helpers.GetExceptionMessage(ex))
                 );
             }

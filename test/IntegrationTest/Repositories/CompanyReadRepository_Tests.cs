@@ -1,6 +1,7 @@
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Infrastructure.Persistence.Repositories.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 
 using AWC.SharedKernel.Utilities;
 
@@ -12,7 +13,7 @@ namespace AWC.IntegrationTests.Repositories
         public async Task GetCompanyDetailsById_CompanyReadRepository_ShouldSucceed()
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
-            Result<GetCompanyDetailByIdResponse> result = await readRepository.CompanyReadRepository.GetCompanyDetailsById(1);
+            Result<CompanyDetailsForDisplay> result = await readRepository.CompanyReadRepository.GetCompanyDetails(1);
 
             Assert.True(result.IsSuccess);
             Assert.Equal("Adventure-Works Cycles", result.Value.CompanyName);
@@ -25,7 +26,7 @@ namespace AWC.IntegrationTests.Repositories
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
             ReadRepositoryManager readRepository = new(_dapperCtx, logger);
 
-            Result<GetCompanyDetailByIdResponse> result = await readRepository.CompanyReadRepository.GetCompanyDetailsById(111);
+            Result<CompanyDetailsForDisplay> result = await readRepository.CompanyReadRepository.GetCompanyDetails(111);
 
             Assert.True(result.IsFailure);
         }
@@ -35,7 +36,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
-            Result<GetCompanyCommandByIdResponse> result = await readRepository.CompanyReadRepository.GetCompanyCommandById(1);
+            Result<CompanyDetailsForEdit> result = await readRepository.CompanyReadRepository.GetCompanyCommand(1);
 
             Assert.True(result.IsSuccess);
             Assert.Equal("Adventure-Works Cycles", result.Value.CompanyName);
@@ -48,7 +49,7 @@ namespace AWC.IntegrationTests.Repositories
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
             ReadRepositoryManager readRepository = new(_dapperCtx, logger);
 
-            Result<GetCompanyCommandByIdResponse> result = await readRepository.CompanyReadRepository.GetCompanyCommandById(111);
+            Result<CompanyDetailsForEdit> result = await readRepository.CompanyReadRepository.GetCompanyCommand(111);
 
             Assert.True(result.IsFailure);
         }

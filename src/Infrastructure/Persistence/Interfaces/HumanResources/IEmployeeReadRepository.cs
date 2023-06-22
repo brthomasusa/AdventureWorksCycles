@@ -5,7 +5,7 @@ namespace AWC.Infrastructure.Persistence.Interfaces.HumanResources
 {
     public interface IEmployeeReadRepository
     {
-        Task<Result<EmployeeDetailsResponse>> GetEmployeeDetailsByIdWithAllInfo(int employeeId);
+        Task<Result<EmployeeDetailsForDisplay>> GetEmployeeDetailsByIdWithAllInfo(int employeeId);
         Task<Result<PagedList<EmployeeListItemResponse>>> GetEmployeeListItemsSearchByLastName(string lastName, PagingParameters pagingParameters);
     }
 }

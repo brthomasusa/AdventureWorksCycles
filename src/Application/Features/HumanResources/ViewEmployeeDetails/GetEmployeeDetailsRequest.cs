@@ -3,5 +3,5 @@ using AWC.Shared.Queries.HumanResources;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
 {
-    public sealed record GetEmployeeDetailsRequest(int EmployeeID) : IQuery<EmployeeDetailsResponse>;
+    public sealed record GetEmployeeDetailsRequest(int EmployeeID) : IQuery<EmployeeDetailsForDisplay>;
 }

@@ -1,5 +1,6 @@
 using AWC.Infrastructure.Persistence.Interfaces.HumanResources;
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Microsoft.Extensions.Logging;
 
@@ -16,11 +17,11 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             _context = ctx;
         }
 
-        public async Task<Result<GetCompanyDetailByIdResponse>> GetCompanyDetailsById(int companyId)
-            => await GetCompanyDetailsByIdQuery.Query(companyId, _context, _logger);
+        public async Task<Result<CompanyDetailsForDisplay>> GetCompanyDetails(int companyId)
+            => await GetCompanyDetailsQuery.Query(companyId, _context, _logger);
 
-        public async Task<Result<GetCompanyCommandByIdResponse>> GetCompanyCommandById(int companyId)
-            => await GetCompanyCommandByIdQuery.Query(companyId, _context, _logger);
+        public async Task<Result<CompanyDetailsForEdit>> GetCompanyCommand(int companyId)
+            => await GetCompanyCommandQuery.Query(companyId, _context, _logger);
 
         public async Task<Result<PagedList<GetCompanyDepartmentsResponse>>> GetCompanyDepartments(PagingParameters pagingParameters)
             => await GetCompanyDepartmentsQuery.Query(pagingParameters, _context, _logger);

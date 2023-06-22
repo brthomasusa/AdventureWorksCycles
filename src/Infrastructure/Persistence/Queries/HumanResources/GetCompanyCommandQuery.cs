@@ -1,15 +1,15 @@
 using System.Data;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.Infrastructure.Persistence.Repositories.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Dapper;
 using Microsoft.Extensions.Logging;
 
 namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 {
-    public static class GetCompanyCommandByIdQuery
+    public static class GetCompanyCommandQuery
     {
-        public async static Task<Result<GetCompanyCommandByIdResponse>> Query
+        public async static Task<Result<CompanyDetailsForEdit>> Query
         (
             int companyId,
             DapperContext ctx,
@@ -25,14 +25,14 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
                 parameters.Add("ID", companyId, DbType.Int32);
 
                 using var connection = ctx.CreateConnection();
-                GetCompanyCommandByIdResponse detail = await connection.QueryFirstOrDefaultAsync<GetCompanyCommandByIdResponse>(sql, parameters);
+                CompanyDetailsForEdit detail = await connection.QueryFirstOrDefaultAsync<CompanyDetailsForEdit>(sql, parameters);
 
                 if (detail is null)
                 {
                     string errMsg = $"Unable to retrieve company command for company with ID: {companyId}.";
-                    logger.LogWarning($"Code Path: GetCompanyCommandsByIdQuery.Query - Message: {errMsg}");
+                    logger.LogWarning($"Code Path: GetCompanyCommandsQuery.Query - Message: {errMsg}");
 
-                    return Result<GetCompanyCommandByIdResponse>.Failure<GetCompanyCommandByIdResponse>(
+                    return Result<CompanyDetailsForEdit>.Failure<CompanyDetailsForEdit>(
                         new Error("GetCompanyCommandByIdQuery.Query", errMsg)
                     );
                 }
@@ -41,9 +41,9 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, $"Code Path: GetCompanyCommandByIdQuery.Query - Message: {Helpers.GetExceptionMessage(ex)}");
-                return Result<GetCompanyCommandByIdResponse>.Failure<GetCompanyCommandByIdResponse>(
-                    new Error("GetCompanyCommandByIdQuery.Query", Helpers.GetExceptionMessage(ex))
+                logger.LogError(ex, $"Code Path: GetCompanyCommandQuery.Query - Message: {Helpers.GetExceptionMessage(ex)}");
+                return Result<CompanyDetailsForEdit>.Failure<CompanyDetailsForEdit>(
+                    new Error("GetCompanyCommandQuery.Query", Helpers.GetExceptionMessage(ex))
                 );
             }
         }

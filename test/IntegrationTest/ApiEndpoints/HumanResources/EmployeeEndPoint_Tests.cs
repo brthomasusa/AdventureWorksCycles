@@ -27,7 +27,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var employee = await JsonSerializer.DeserializeAsync<EmployeeDetailsResponse>(jsonResponse, _options);
+            var employee = await JsonSerializer.DeserializeAsync<EmployeeDetailsForDisplay>(jsonResponse, _options);
 
             Assert.Equal("Ken", employee.FirstName);
             Assert.Equal("Sánchez", employee.LastName);
