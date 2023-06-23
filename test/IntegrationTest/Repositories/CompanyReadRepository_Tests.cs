@@ -1,6 +1,4 @@
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.Infrastructure.Persistence.Repositories.HumanResources;
 using AWC.Shared.Queries.HumanResources;
 
 using AWC.SharedKernel.Utilities;
@@ -60,7 +58,7 @@ namespace AWC.IntegrationTests.Repositories
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
             PagingParameters pagingParameters = new(1, 10);
 
-            Result<PagedList<GetCompanyDepartmentsResponse>> result =
+            Result<PagedList<DepartmentDetails>> result =
                 await readRepository.CompanyReadRepository.GetCompanyDepartments(pagingParameters);
 
             Assert.True(result.IsSuccess);
@@ -75,7 +73,7 @@ namespace AWC.IntegrationTests.Repositories
             const string deptName = "Pr";
             PagingParameters pagingParameters = new(1, 10);
 
-            Result<PagedList<GetCompanyDepartmentsResponse>> result =
+            Result<PagedList<DepartmentDetails>> result =
                 await readRepository.CompanyReadRepository.GetCompanyDepartmentsSearchByName(deptName, pagingParameters);
 
             Assert.True(result.IsSuccess);
@@ -89,7 +87,7 @@ namespace AWC.IntegrationTests.Repositories
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
             PagingParameters pagingParameters = new(1, 10);
 
-            Result<PagedList<GetCompanyShiftsResponse>> result =
+            Result<PagedList<ShiftDetails>> result =
                 await readRepository.CompanyReadRepository.GetCompanyShifts(pagingParameters);
 
             Assert.True(result.IsSuccess);

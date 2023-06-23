@@ -1,5 +1,4 @@
 using AWC.Application.Interfaces.Messaging;
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Shared.Queries.HumanResources;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyDetails

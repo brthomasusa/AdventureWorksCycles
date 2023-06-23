@@ -32,7 +32,7 @@ namespace AWC.IntegrationTests.DapperQueries
             const string lastName = "A";
             PagingParameters pagingParameters = new(1, 10);
 
-            Result<PagedList<EmployeeListItemResponse>> result =
+            Result<PagedList<EmployeeListItem>> result =
                 await GetEmployeeListItemsQuery.Query(lastName, pagingParameters, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
@@ -46,7 +46,7 @@ namespace AWC.IntegrationTests.DapperQueries
             string lastName = string.Empty;
             PagingParameters pagingParameters = new(1, 5);
 
-            Result<PagedList<EmployeeListItemResponse>> result =
+            Result<PagedList<EmployeeListItem>> result =
                 await GetEmployeeListItemsQuery.Query(lastName, pagingParameters, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);

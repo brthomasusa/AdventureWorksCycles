@@ -2,7 +2,6 @@ using AWC.Application.Features.HumanResources.ViewCompanyDepartments;
 using AWC.Application.Features.HumanResources.ViewCompanyDetails;
 using AWC.Application.Features.HumanResources.ViewCompanyShifts;
 using AWC.Infrastructure.Persistence.Interfaces;
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
@@ -67,7 +66,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetCompanyDepartmentsRequest request = new(PagingParameters: pagingParameters);
             GetCompanyDepartmentsQueryHandler handler = new(_repository);
 
-            Result<PagedList<GetCompanyDepartmentsResponse>> response = await handler.Handle(request, new CancellationToken());
+            Result<PagedList<DepartmentDetails>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
 
@@ -82,7 +81,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetCompanyDepartmentsSearchByNameRequest request = new(DepartmentName: "Pro", PagingParameters: pagingParameters);
             GetCompanyDepartmentsSearchByNameQueryHandler handler = new(_repository);
 
-            Result<PagedList<GetCompanyDepartmentsResponse>> response = await handler.Handle(request, new CancellationToken());
+            Result<PagedList<DepartmentDetails>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
 
@@ -97,7 +96,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetCompanyShiftsRequest request = new(PagingParameters: pagingParameters);
             GetCompanyShiftsQueryHandler handler = new(_repository);
 
-            Result<PagedList<GetCompanyShiftsResponse>> response = await handler.Handle(request, new CancellationToken());
+            Result<PagedList<ShiftDetails>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
 

@@ -34,7 +34,7 @@ namespace AWC.Presentation.HumanResources.Employee
                 PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
                 GetEmployeeListItemsRequest request = new(LastName: parameters.LastName!, PagingParameters: pagingParameters);
 
-                Result<PagedList<EmployeeListItemResponse>> result = await sender.Send(request);
+                Result<PagedList<EmployeeListItem>> result = await sender.Send(request);
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);

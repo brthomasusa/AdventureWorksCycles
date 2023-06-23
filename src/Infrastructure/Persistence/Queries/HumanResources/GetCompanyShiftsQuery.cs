@@ -2,6 +2,7 @@ using System.Data;
 using AWC.Infrastructure.Persistence;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Infrastructure.Persistence.Repositories.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Dapper;
 using Microsoft.Extensions.Logging;
@@ -12,7 +13,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
     {
         private static int Offset(int page, int pageSize) => (page - 1) * pageSize;
 
-        public async static Task<Result<PagedList<GetCompanyShiftsResponse>>> Query
+        public async static Task<Result<PagedList<ShiftDetails>>> Query
         (
             PagingParameters pagingParameters,
             DapperContext ctx,
@@ -30,10 +31,10 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 
                 using var connection = ctx.CreateConnection();
 
-                var items = await connection.QueryAsync<GetCompanyShiftsResponse>(sql, parameters);
+                var items = await connection.QueryAsync<ShiftDetails>(sql, parameters);
                 int count = connection.ExecuteScalar<int>("SELECT COUNT(*) FROM HumanResources.Shift");
 
-                var pagedList = PagedList<GetCompanyShiftsResponse>.CreatePagedList(
+                var pagedList = PagedList<ShiftDetails>.CreatePagedList(
                         items.ToList(), count, pagingParameters.PageNumber, pagingParameters.PageSize
                     );
 
@@ -43,7 +44,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
             {
                 logger.LogError(ex, $"Code Path: GetCompanyShiftsQuery.Query - Message: {Helpers.GetExceptionMessage(ex)}");
 
-                return Result<PagedList<GetCompanyShiftsResponse>>.Failure<PagedList<GetCompanyShiftsResponse>>(
+                return Result<PagedList<ShiftDetails>>.Failure<PagedList<ShiftDetails>>(
                     new Error("GetCompanyShiftsQuery.Query", Helpers.GetExceptionMessage(ex))
                 );
             }

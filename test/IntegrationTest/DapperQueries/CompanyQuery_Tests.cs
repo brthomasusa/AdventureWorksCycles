@@ -49,7 +49,7 @@ namespace AWC.IntegrationTests.DapperQueries
         public async Task Query_GetCompanyDepartmentsQuery_ShouldSucceed()
         {
             PagingParameters pagingParameters = new(1, 10);
-            Result<PagedList<GetCompanyDepartmentsResponse>> result =
+            Result<PagedList<DepartmentDetails>> result =
                 await GetCompanyDepartmentsQuery.Query(pagingParameters, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
@@ -62,7 +62,7 @@ namespace AWC.IntegrationTests.DapperQueries
         {
             const string deptName = "Pr";
             PagingParameters pagingParameters = new(1, 10);
-            Result<PagedList<GetCompanyDepartmentsResponse>> result =
+            Result<PagedList<DepartmentDetails>> result =
                 await GetCompanyDepartmentsByNameQuery.Query(deptName, pagingParameters, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
@@ -74,7 +74,7 @@ namespace AWC.IntegrationTests.DapperQueries
         public async Task Query_GetCompanyShiftsQuery_ShouldSucceed()
         {
             PagingParameters pagingParameters = new(1, 10);
-            Result<PagedList<GetCompanyShiftsResponse>> result =
+            Result<PagedList<ShiftDetails>> result =
                 await GetCompanyShiftsQuery.Query(pagingParameters, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);

@@ -1,6 +1,6 @@
-namespace AWC.Infrastructure.Persistence.Queries.HumanResources
+namespace AWC.Shared.Queries.HumanResources
 {
-    public sealed class GetCompanyDepartmentsResponse
+    public class DepartmentDetails
     {
         public int DepartmentID { get; set; }
         public string? Name { get; set; }

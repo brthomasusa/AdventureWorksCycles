@@ -41,7 +41,7 @@ namespace AWC.Presentation.HumanResources.Company
             {
                 PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
                 GetCompanyDepartmentsRequest request = new(PagingParameters: pagingParameters);
-                Result<PagedList<GetCompanyDepartmentsResponse>> result = await sender.Send(request);
+                Result<PagedList<DepartmentDetails>> result = await sender.Send(request);
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);
@@ -54,7 +54,7 @@ namespace AWC.Presentation.HumanResources.Company
                 PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
                 GetCompanyDepartmentsSearchByNameRequest request = new(DepartmentName: parameters.DepartmentName!, PagingParameters: pagingParameters);
 
-                Result<PagedList<GetCompanyDepartmentsResponse>> result = await sender.Send(request);
+                Result<PagedList<DepartmentDetails>> result = await sender.Send(request);
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);
@@ -66,7 +66,7 @@ namespace AWC.Presentation.HumanResources.Company
             {
                 PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
                 GetCompanyShiftsRequest request = new(PagingParameters: pagingParameters);
-                Result<PagedList<GetCompanyShiftsResponse>> result = await sender.Send(request);
+                Result<PagedList<ShiftDetails>> result = await sender.Send(request);
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);

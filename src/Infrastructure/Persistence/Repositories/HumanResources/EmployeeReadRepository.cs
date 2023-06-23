@@ -19,7 +19,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         public async Task<Result<EmployeeDetailsForDisplay>> GetEmployeeDetailsByIdWithAllInfo(int employeeId)
             => await GetEmployeeDetailsByIdWithAllInfoQuery.Query(employeeId, _context, _logger);
 
-        public async Task<Result<PagedList<EmployeeListItemResponse>>> GetEmployeeListItemsSearchByLastName(string lastName, PagingParameters pagingParameters)
+        public async Task<Result<PagedList<EmployeeListItem>>> GetEmployeeListItemsSearchByLastName(string lastName, PagingParameters pagingParameters)
             => await GetEmployeeListItemsQuery.Query(lastName, pagingParameters, _context, _logger);
     }
 }

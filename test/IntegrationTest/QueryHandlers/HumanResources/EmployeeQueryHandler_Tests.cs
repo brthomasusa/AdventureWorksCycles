@@ -43,7 +43,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetEmployeeListItemsRequest request = new(LastName: "Bradley", PagingParameters: pagingParameters);
             GetEmployeeListItemsQueryHandler handler = new(_repository);
 
-            Result<PagedList<EmployeeListItemResponse>> response = await handler.Handle(request, new CancellationToken());
+            Result<PagedList<EmployeeListItem>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
 
@@ -58,7 +58,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetEmployeeListItemsRequest request = new(LastName: "A", PagingParameters: pagingParameters);
             GetEmployeeListItemsQueryHandler handler = new(_repository);
 
-            Result<PagedList<EmployeeListItemResponse>> response = await handler.Handle(request, new CancellationToken());
+            Result<PagedList<EmployeeListItem>> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
 

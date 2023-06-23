@@ -1,18 +1,18 @@
 using AWC.Application.Interfaces.Messaging;
 using AWC.Infrastructure.Persistence.Interfaces;
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyShifts
 {
-    public class GetCompanyShiftsQueryHandler : IQueryHandler<GetCompanyShiftsRequest, PagedList<GetCompanyShiftsResponse>>
+    public class GetCompanyShiftsQueryHandler : IQueryHandler<GetCompanyShiftsRequest, PagedList<ShiftDetails>>
     {
         private readonly IReadRepositoryManager _repo;
 
         public GetCompanyShiftsQueryHandler(IReadRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<PagedList<GetCompanyShiftsResponse>>> Handle
+        public async Task<Result<PagedList<ShiftDetails>>> Handle
         (
             GetCompanyShiftsRequest request,
             CancellationToken cancellationToken
@@ -21,12 +21,12 @@ namespace AWC.Application.Features.HumanResources.ViewCompanyShifts
             try
             {
 
-                Result<PagedList<GetCompanyShiftsResponse>> result =
+                Result<PagedList<ShiftDetails>> result =
                     await _repo.CompanyReadRepository.GetCompanyShifts(request.PagingParameters);
 
                 if (result.IsFailure)
                 {
-                    return Result<PagedList<GetCompanyShiftsResponse>>.Failure<PagedList<GetCompanyShiftsResponse>>(
+                    return Result<PagedList<ShiftDetails>>.Failure<PagedList<ShiftDetails>>(
                         new Error("GetCompanyShiftsQueryHandler.Handle", result.Error.Message)
                     );
                 }
@@ -36,7 +36,7 @@ namespace AWC.Application.Features.HumanResources.ViewCompanyShifts
             }
             catch (Exception ex)
             {
-                return Result<PagedList<GetCompanyShiftsResponse>>.Failure<PagedList<GetCompanyShiftsResponse>>(
+                return Result<PagedList<ShiftDetails>>.Failure<PagedList<ShiftDetails>>(
                     new Error("GetCompanyShiftsQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
                 );
             }

@@ -23,13 +23,13 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         public async Task<Result<CompanyDetailsForEdit>> GetCompanyCommand(int companyId)
             => await GetCompanyCommandQuery.Query(companyId, _context, _logger);
 
-        public async Task<Result<PagedList<GetCompanyDepartmentsResponse>>> GetCompanyDepartments(PagingParameters pagingParameters)
+        public async Task<Result<PagedList<DepartmentDetails>>> GetCompanyDepartments(PagingParameters pagingParameters)
             => await GetCompanyDepartmentsQuery.Query(pagingParameters, _context, _logger);
 
-        public async Task<Result<PagedList<GetCompanyDepartmentsResponse>>> GetCompanyDepartmentsSearchByName(string deptName, PagingParameters pagingParameters)
+        public async Task<Result<PagedList<DepartmentDetails>>> GetCompanyDepartmentsSearchByName(string deptName, PagingParameters pagingParameters)
             => await GetCompanyDepartmentsByNameQuery.Query(deptName, pagingParameters, _context, _logger);
 
-        public async Task<Result<PagedList<GetCompanyShiftsResponse>>> GetCompanyShifts(PagingParameters pagingParameters)
+        public async Task<Result<PagedList<ShiftDetails>>> GetCompanyShifts(PagingParameters pagingParameters)
             => await GetCompanyShiftsQuery.Query(pagingParameters, _context, _logger);
     }
 }

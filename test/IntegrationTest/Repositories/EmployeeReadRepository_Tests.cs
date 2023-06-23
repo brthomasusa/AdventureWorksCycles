@@ -38,7 +38,7 @@ namespace AWC.IntegrationTests.Repositories
             const string lastName = "A";
             PagingParameters pagingParameters = new(1, 10);
 
-            Result<PagedList<EmployeeListItemResponse>> result =
+            Result<PagedList<EmployeeListItem>> result =
                 await readRepository.EmployeeReadRepository.GetEmployeeListItemsSearchByLastName(lastName, pagingParameters);
 
             Assert.True(result.IsSuccess);

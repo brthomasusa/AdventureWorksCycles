@@ -1,6 +1,7 @@
 using System.Data;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Infrastructure.Persistence.Repositories.HumanResources;
+using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Dapper;
 using Microsoft.Extensions.Logging;
@@ -11,7 +12,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
     {
         private static int Offset(int page, int pageSize) => (page - 1) * pageSize;
 
-        public async static Task<Result<PagedList<GetCompanyDepartmentsResponse>>> Query
+        public async static Task<Result<PagedList<DepartmentDetails>>> Query
         (
             PagingParameters pagingParameters,
             DapperContext ctx,
@@ -29,10 +30,10 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 
                 using var connection = ctx.CreateConnection();
 
-                var items = await connection.QueryAsync<GetCompanyDepartmentsResponse>(sql, parameters);
+                var items = await connection.QueryAsync<DepartmentDetails>(sql, parameters);
                 int count = connection.ExecuteScalar<int>("SELECT COUNT(*) FROM HumanResources.Department");
 
-                var pagedList = PagedList<GetCompanyDepartmentsResponse>.CreatePagedList(
+                var pagedList = PagedList<DepartmentDetails>.CreatePagedList(
                         items.ToList(), count, pagingParameters.PageNumber, pagingParameters.PageSize
                     );
 
@@ -42,7 +43,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
             {
                 logger.LogError(ex, $"Code Path: GetCompanyDepartmentsQuery.Query - Message: {Helpers.GetExceptionMessage(ex)}");
 
-                return Result<PagedList<GetCompanyDepartmentsResponse>>.Failure<PagedList<GetCompanyDepartmentsResponse>>(
+                return Result<PagedList<DepartmentDetails>>.Failure<PagedList<DepartmentDetails>>(
                     new Error("GetCompanyDepartmentsQuery.Query", Helpers.GetExceptionMessage(ex))
                 );
             }

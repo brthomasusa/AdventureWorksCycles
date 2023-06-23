@@ -6,7 +6,6 @@ using System.Text.Json;
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.DeleteEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Shared.Queries.HumanResources;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -46,8 +45,8 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
                 ["lastName"] = lastName
             };
 
-            List<EmployeeListItemResponse> response = await _client
-                .GetFromJsonAsync<List<EmployeeListItemResponse>>(QueryHelpers.AddQueryString($"{_urlRoot}employees/filterbylastname", queryParams));
+            List<EmployeeListItem> response = await _client
+                .GetFromJsonAsync<List<EmployeeListItem>>(QueryHelpers.AddQueryString($"{_urlRoot}employees/filterbylastname", queryParams));
 
             Assert.Equal(10, response.Count);
         }
@@ -73,7 +72,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var employeeResponse = await JsonSerializer.DeserializeAsync<GetEmployeeDetailByIdResponse>(jsonResponse, _options);
+            var employeeResponse = await JsonSerializer.DeserializeAsync<EmployeeDetailsForDisplay>(jsonResponse, _options);
         }
 
         [Fact]

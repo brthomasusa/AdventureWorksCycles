@@ -1,6 +1,6 @@
 namespace AWC.Shared.Queries.HumanResources
 {
-    public sealed class EmployeeListItemResponse
+    public sealed class EmployeeListItem
     {
         public int BusinessEntityID { get; set; }
         public string? LastName { get; set; }

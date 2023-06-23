@@ -4,13 +4,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using AWC.Application.Features.HumanResources.UpdateCompany;
-using AWC.Application.Features.HumanResources.ViewCompanyDepartments;
-using AWC.Application.Features.HumanResources.ViewCompanyDetails;
-using AWC.Application.Features.HumanResources.ViewCompanyShifts;
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Shared.Queries.HumanResources;
-
-using AWC.SharedKernel.Utilities;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
@@ -46,7 +40,7 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var company = await JsonSerializer.DeserializeAsync<GetCompanyCommandByIdResponse>(jsonResponse, _options);
+            var company = await JsonSerializer.DeserializeAsync<CompanyDetailsForEdit>(jsonResponse, _options);
 
             Assert.Equal(79, company.MailStateProvinceID);
             Assert.Equal(79, company.DeliveryStateProvinceID);
@@ -86,8 +80,8 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
                 ["departmentName"] = deptName
             };
 
-            List<GetCompanyDepartmentsResponse> response = await _client
-                .GetFromJsonAsync<List<GetCompanyDepartmentsResponse>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/departments/filterbyname", queryParams));
+            List<DepartmentDetails> response = await _client
+                .GetFromJsonAsync<List<DepartmentDetails>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/departments/filterbyname", queryParams));
 
             Assert.Equal(2, response.Count);
         }
@@ -103,8 +97,8 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
                 ["pageSize"] = pagingParams.PageSize.ToString()
             };
 
-            List<GetCompanyDepartmentsResponse> response = await _client
-                .GetFromJsonAsync<List<GetCompanyDepartmentsResponse>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/departments", queryParams));
+            List<DepartmentDetails> response = await _client
+                .GetFromJsonAsync<List<DepartmentDetails>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/departments", queryParams));
 
             Assert.Equal(10, response.Count);
         }
@@ -120,8 +114,8 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
                 ["pageSize"] = pagingParams.PageSize.ToString()
             };
 
-            List<GetCompanyShiftsResponse> response = await _client
-                .GetFromJsonAsync<List<GetCompanyShiftsResponse>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/shifts", queryParams));
+            List<ShiftDetails> response = await _client
+                .GetFromJsonAsync<List<ShiftDetails>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/shifts", queryParams));
 
             Assert.Equal(2, response.Count);
         }
