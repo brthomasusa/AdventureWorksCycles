@@ -5,14 +5,14 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
 {
-    public sealed class GetEmployeeDetailsRequestQueryHandler : IQueryHandler<GetEmployeeDetailsRequest, EmployeeDetailsForDisplay>
+    public sealed class GetEmployeeDetailsRequestQueryHandler : IQueryHandler<GetEmployeeDetailsRequest, EmployeeDetails>
     {
         private readonly IReadRepositoryManager _repo;
 
         public GetEmployeeDetailsRequestQueryHandler(IReadRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<EmployeeDetailsForDisplay>> Handle
+        public async Task<Result<EmployeeDetails>> Handle
         (
             GetEmployeeDetailsRequest request,
             CancellationToken cancellationToken
@@ -20,12 +20,12 @@ namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
         {
             try
             {
-                Result<EmployeeDetailsForDisplay> result =
+                Result<EmployeeDetails> result =
                     await _repo.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(request.EmployeeID);
 
                 if (result.IsFailure)
                 {
-                    return Result<EmployeeDetailsForDisplay>.Failure<EmployeeDetailsForDisplay>(
+                    return Result<EmployeeDetails>.Failure<EmployeeDetails>(
                         new Error("GetEmployeeDetailsByIdWithAllInfoQueryHandler.Handle", result.Error.Message)
                     );
                 }
@@ -35,7 +35,7 @@ namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
             }
             catch (Exception ex)
             {
-                return Result<EmployeeDetailsForDisplay>.Failure<EmployeeDetailsForDisplay>(
+                return Result<EmployeeDetails>.Failure<EmployeeDetails>(
                     new Error("GetEmployeeDetailsByIdWithAllInfoQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
                 );
             }

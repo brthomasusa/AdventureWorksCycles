@@ -1,6 +1,7 @@
 using AWC.Infrastructure.Persistence.Interfaces.HumanResources;
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 using Microsoft.Extensions.Logging;
 
@@ -17,10 +18,10 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             _context = ctx;
         }
 
-        public async Task<Result<CompanyDetailsForDisplay>> GetCompanyDetails(int companyId)
+        public async Task<Result<CompanyDetails>> GetCompanyDetails(int companyId)
             => await GetCompanyDetailsQuery.Query(companyId, _context, _logger);
 
-        public async Task<Result<CompanyDetailsForEdit>> GetCompanyCommand(int companyId)
+        public async Task<Result<CompanyGenericCommand>> GetCompanyCommand(int companyId)
             => await GetCompanyCommandQuery.Query(companyId, _context, _logger);
 
         public async Task<Result<PagedList<DepartmentDetails>>> GetCompanyDepartments(PagingParameters pagingParameters)
@@ -28,6 +29,9 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
         public async Task<Result<PagedList<DepartmentDetails>>> GetCompanyDepartmentsSearchByName(string deptName, PagingParameters pagingParameters)
             => await GetCompanyDepartmentsByNameQuery.Query(deptName, pagingParameters, _context, _logger);
+
+        public async Task<Result<PagedList<DepartmentDetails>>> GetCompanyDepartmentsFiltered(StringSearchCriteria searchCriteria)
+            => await GetCompanyDepartmentsFilteredQuery.Query(searchCriteria, _context, _logger);
 
         public async Task<Result<PagedList<ShiftDetails>>> GetCompanyShifts(PagingParameters pagingParameters)
             => await GetCompanyShiftsQuery.Query(pagingParameters, _context, _logger);

@@ -7,14 +7,14 @@ using Xunit;
 namespace AWC.IntegrationTests.Base
 {
     [Trait("Category", "Integration")]
-    public abstract class IntegrationTest : IClassFixture<ApiWebApplicationFactory>
+    public abstract class IntegrationTestBase : IClassFixture<ApiWebApplicationFactory>
     {
         protected readonly ApiWebApplicationFactory _factory;
         protected readonly HttpClient _client;
         protected readonly string _urlRoot = "api/";
         protected readonly JsonSerializerOptions _options;
 
-        protected IntegrationTest(ApiWebApplicationFactory fixture)
+        protected IntegrationTestBase(ApiWebApplicationFactory fixture)
         {
             _factory = fixture;
             _client = _factory.CreateClient();

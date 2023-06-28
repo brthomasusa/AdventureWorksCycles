@@ -1,5 +1,6 @@
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 
 using AWC.SharedKernel.Utilities;
 
@@ -11,7 +12,7 @@ namespace AWC.IntegrationTests.Repositories
         public async Task GetCompanyDetailsById_CompanyReadRepository_ShouldSucceed()
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
-            Result<CompanyDetailsForDisplay> result = await readRepository.CompanyReadRepository.GetCompanyDetails(1);
+            Result<CompanyDetails> result = await readRepository.CompanyReadRepository.GetCompanyDetails(1);
 
             Assert.True(result.IsSuccess);
             Assert.Equal("Adventure-Works Cycles", result.Value.CompanyName);
@@ -24,7 +25,7 @@ namespace AWC.IntegrationTests.Repositories
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
             ReadRepositoryManager readRepository = new(_dapperCtx, logger);
 
-            Result<CompanyDetailsForDisplay> result = await readRepository.CompanyReadRepository.GetCompanyDetails(111);
+            Result<CompanyDetails> result = await readRepository.CompanyReadRepository.GetCompanyDetails(111);
 
             Assert.True(result.IsFailure);
         }
@@ -34,7 +35,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
-            Result<CompanyDetailsForEdit> result = await readRepository.CompanyReadRepository.GetCompanyCommand(1);
+            Result<CompanyGenericCommand> result = await readRepository.CompanyReadRepository.GetCompanyCommand(1);
 
             Assert.True(result.IsSuccess);
             Assert.Equal("Adventure-Works Cycles", result.Value.CompanyName);
@@ -47,7 +48,7 @@ namespace AWC.IntegrationTests.Repositories
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
             ReadRepositoryManager readRepository = new(_dapperCtx, logger);
 
-            Result<CompanyDetailsForEdit> result = await readRepository.CompanyReadRepository.GetCompanyCommand(111);
+            Result<CompanyGenericCommand> result = await readRepository.CompanyReadRepository.GetCompanyCommand(111);
 
             Assert.True(result.IsFailure);
         }
@@ -75,6 +76,20 @@ namespace AWC.IntegrationTests.Repositories
 
             Result<PagedList<DepartmentDetails>> result =
                 await readRepository.CompanyReadRepository.GetCompanyDepartmentsSearchByName(deptName, pagingParameters);
+
+            Assert.True(result.IsSuccess);
+            int departments = result.Value.Count;
+            Assert.Equal(2, departments);
+        }
+
+        [Fact]
+        public async Task GetCompanyDepartmentsFilteredByName_CompanyReadRepository_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10);
+
+            Result<PagedList<DepartmentDetails>> result =
+                await readRepository.CompanyReadRepository.GetCompanyDepartmentsFiltered(criteria);
 
             Assert.True(result.IsSuccess);
             int departments = result.Value.Count;

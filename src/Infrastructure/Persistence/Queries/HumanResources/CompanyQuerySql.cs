@@ -26,7 +26,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
         FROM HumanResources.Department   
         ORDER BY [Name]";
 
-        public const string GetCompanyDepartmentsByName =
+        public const string GetCompanyDepartmentsFiltered =
         @"SELECT 
             DepartmentID, [Name], GroupName, ModifiedDate 
         FROM HumanResources.Department";

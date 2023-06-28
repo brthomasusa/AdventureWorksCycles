@@ -5,14 +5,14 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
 {
-    public sealed class GetCompanyDetailsQueryHandler : IQueryHandler<GetCompanyDetailsRequest, CompanyDetailsForDisplay>
+    public sealed class GetCompanyDetailsQueryHandler : IQueryHandler<GetCompanyDetailsRequest, CompanyDetails>
     {
         private readonly IReadRepositoryManager _repo;
 
         public GetCompanyDetailsQueryHandler(IReadRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<CompanyDetailsForDisplay>> Handle
+        public async Task<Result<CompanyDetails>> Handle
         (
             GetCompanyDetailsRequest request,
             CancellationToken cancellationToken
@@ -20,12 +20,12 @@ namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
         {
             try
             {
-                Result<CompanyDetailsForDisplay> result = await _repo.CompanyReadRepository.GetCompanyDetails(request.CompanyID);
+                Result<CompanyDetails> result = await _repo.CompanyReadRepository.GetCompanyDetails(request.CompanyID);
 
                 if (result.IsFailure)
                 {
-                    return Result<CompanyDetailsForDisplay>.Failure<CompanyDetailsForDisplay>(
-                        new Error("GetCompanyDetailQueryHandler.Handle.Handle", result.Error.Message)
+                    return Result<CompanyDetails>.Failure<CompanyDetails>(
+                        new Error("GetCompanyDetailQueryHandler.Handle", result.Error.Message)
                     );
                 }
 
@@ -34,7 +34,7 @@ namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
             }
             catch (Exception ex)
             {
-                return Result<CompanyDetailsForDisplay>.Failure<CompanyDetailsForDisplay>(
+                return Result<CompanyDetails>.Failure<CompanyDetails>(
                     new Error("GetCompanyDetailQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
                 );
             }

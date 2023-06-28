@@ -1,6 +1,6 @@
 namespace AWC.Shared.Queries.HumanResources
 {
-    public class CompanyDetailsForEdit
+    public sealed class CompanyGenericCommand
     {
         public int Id { get; set; }
         public string CompanyName { get; set; } = string.Empty;

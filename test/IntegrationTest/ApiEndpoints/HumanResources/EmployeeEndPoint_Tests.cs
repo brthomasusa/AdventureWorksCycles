@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace AWC.IntegrationTests.ApiEndPoint_Tests
 {
-    public class EmployeeEndPoint_Tests : IntegrationTest
+    public class EmployeeEndPoint_Tests : IntegrationTestBase
     {
         public EmployeeEndPoint_Tests(ApiWebApplicationFactory fixture) : base(fixture)
         { }
@@ -26,7 +26,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var employee = await JsonSerializer.DeserializeAsync<EmployeeDetailsForDisplay>(jsonResponse, _options);
+            var employee = await JsonSerializer.DeserializeAsync<EmployeeDetails>(jsonResponse, _options);
 
             Assert.Equal("Ken", employee.FirstName);
             Assert.Equal("Sánchez", employee.LastName);
@@ -72,7 +72,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var employeeResponse = await JsonSerializer.DeserializeAsync<EmployeeDetailsForDisplay>(jsonResponse, _options);
+            var employeeResponse = await JsonSerializer.DeserializeAsync<EmployeeDetails>(jsonResponse, _options);
         }
 
         [Fact]

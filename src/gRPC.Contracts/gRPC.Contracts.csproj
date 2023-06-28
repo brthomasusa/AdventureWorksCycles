@@ -10,10 +10,19 @@
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.23.1" />
     <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.54.0">
+    <PackageReference Include="Grpc.Tools" Version="*">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+	<ItemGroup>
+        <Protobuf Include="Protos/Shared/shared.proto" />
+        <Protobuf Include="Protos/Lookups/grpc_lookups.proto" />
+        <Protobuf Include="Protos/HumanResources/grpc_company.proto" />
+        <Protobuf Include="Protos/HumanResources/grpc_department.proto" />
+        <Protobuf Include="Protos/HumanResources/grpc_shift.proto" />
+        <Protobuf Include="Protos/HumanResources/grpc_employee.proto" />
+	</ItemGroup>
 
 </Project>

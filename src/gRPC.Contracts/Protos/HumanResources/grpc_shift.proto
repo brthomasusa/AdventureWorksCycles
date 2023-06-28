@@ -12,7 +12,7 @@ message grpc_Shift{
     google.protobuf.Timestamp modified_date = 6;    
 }
 
-message grpc_GetCompanyShiftsResponse {
+message grpc_GetCompanyShifts {
     repeated grpc_Shift grpc_shifts = 1; 
     map<string, int32> grpc_meta_data = 2;   
 }

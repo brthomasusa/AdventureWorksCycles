@@ -10,7 +10,7 @@ message grpc_Department {
     google.protobuf.Timestamp modified_date = 4;
 }
 
-message grpc_GetCompanyDepartmentsResponse {
+message grpc_GetCompanyDepartments {
     repeated grpc_Department grpc_departments = 1; 
     map<string, int32> grpc_meta_data = 2;   
 }

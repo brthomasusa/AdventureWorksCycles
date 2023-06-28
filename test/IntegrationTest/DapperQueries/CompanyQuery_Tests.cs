@@ -1,6 +1,7 @@
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.DapperQueries
@@ -10,7 +11,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetCompanyDetailsByIdQuery_ShouldSucceed()
         {
-            Result<CompanyDetailsForDisplay> result = await GetCompanyDetailsQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+            Result<CompanyDetails> result = await GetCompanyDetailsQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
         }
@@ -21,7 +22,7 @@ namespace AWC.IntegrationTests.DapperQueries
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
 
-            Result<CompanyDetailsForDisplay> result = await GetCompanyDetailsQuery.Query(100, _dapperCtx, logger);
+            Result<CompanyDetails> result = await GetCompanyDetailsQuery.Query(100, _dapperCtx, logger);
 
             Assert.True(result.IsFailure);
         }
@@ -29,7 +30,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetCompanyCommandByIdQuery_ShouldSucceed()
         {
-            Result<CompanyDetailsForEdit> result = await GetCompanyCommandQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+            Result<CompanyGenericCommand> result = await GetCompanyCommandQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
         }
@@ -40,7 +41,7 @@ namespace AWC.IntegrationTests.DapperQueries
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
 
-            Result<CompanyDetailsForEdit> result = await GetCompanyCommandQuery.Query(100, _dapperCtx, logger);
+            Result<CompanyGenericCommand> result = await GetCompanyCommandQuery.Query(100, _dapperCtx, logger);
 
             Assert.True(result.IsFailure);
         }
@@ -68,6 +69,71 @@ namespace AWC.IntegrationTests.DapperQueries
             Assert.True(result.IsSuccess);
             int departments = result.Value.Count;
             Assert.Equal(2, departments);
+        }
+
+        [Fact]
+        public async Task Query_GetCompanyDepartmentsUnfilteredQuery_ShouldSucceed()
+        {
+            StringSearchCriteria criteria = new(null, null, "[Name]", 1, 10);
+
+            Result<PagedList<DepartmentDetails>> result =
+                await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            int departments = result.Value.Count;
+            Assert.Equal(10, departments);
+        }
+
+        [Fact]
+        public async Task Query_GetCompanyDepartmentsFilteredByNameQuery_ShouldSucceed()
+        {
+            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10);
+
+            Result<PagedList<DepartmentDetails>> result =
+                await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            int departments = result.Value.Count;
+            Assert.Equal(2, departments);
+        }
+
+        [Fact]
+        public async Task Query_GetCompanyDepartmentsFilteredByGroupNameQuery_ShouldSucceed()
+        {
+            StringSearchCriteria criteria = new("[GroupName]", "Man", "[Name]", 1, 10);
+
+            Result<PagedList<DepartmentDetails>> result =
+                await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            int departments = result.Value.Count;
+            Assert.Equal(4, departments);
+        }
+
+        [Fact]
+        public async Task Query_GetCompanyDepartmentsNullCriteriaQuery_ShouldSucceed()
+        {
+            StringSearchCriteria criteria = new("[GroupName]", null, "[Name]", 1, 20);
+
+            Result<PagedList<DepartmentDetails>> result =
+                await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            int departments = result.Value.Count;
+            Assert.Equal(16, departments);
+        }
+
+        [Fact]
+        public async Task Query_GetCompanyDepartmentsNullFieldAndCriteriaQuery_ShouldFail()
+        {
+            StringSearchCriteria criteria = new("[GroupName]", null, "[Name]", 1, 20);
+
+            Result<PagedList<DepartmentDetails>> result =
+                await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            int departments = result.Value.Count;
+            Assert.Equal(16, departments);
         }
 
         [Fact]

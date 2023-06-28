@@ -20,7 +20,7 @@ namespace AWC.Presentation.HumanResources.Employee
         {
             app.MapGet("api/employees/allinfo/{id}", async (int id, ISender sender) =>
             {
-                Result<EmployeeDetailsForDisplay> result =
+                Result<EmployeeDetails> result =
                     await sender.Send(new GetEmployeeDetailsRequest(EmployeeID: id));
 
                 if (result.IsSuccess)

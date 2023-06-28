@@ -1,8 +1,8 @@
 namespace AWC.Shared.Queries.HumanResources
 {
-    public class CompanyDetailsForDisplay
+    public sealed class CompanyDetails
     {
-        public int Id { get; set; }
+        public int CompanyID { get; set; }
         public string CompanyName { get; set; } = string.Empty;
         public string LegalName { get; set; } = string.Empty;
         public string EIN { get; set; } = string.Empty;

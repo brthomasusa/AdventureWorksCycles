@@ -4,10 +4,11 @@ option csharp_namespace = "gRPC.Contracts.Lookups";
 import "google/protobuf/empty.proto";
 
 service LookupsContract {
-	rpc GetStateCodesUs(google.protobuf.Empty) returns (stream StateProvinceCode);
-    rpc GetStateCodesUsa(google.protobuf.Empty) returns (stream StateProvinceCode);
+	rpc GetStateCodesUs(google.protobuf.Empty) returns (stream grpc_StateProvinceCode);
+    rpc GetStateCodesUsa(google.protobuf.Empty) returns (stream grpc_StateProvinceCode);
     rpc GetDepartmentIds(google.protobuf.Empty) returns (stream grpc_DepartmentId);
     rpc GetShiftIds(google.protobuf.Empty) returns (stream grpc_ShiftId);
+    rpc GetManagerIds(google.protobuf.Empty) returns (stream grpc_ManagerId);
 }
 
 message grpc_StateProvinceCode {
@@ -24,3 +25,11 @@ message grpc_ShiftId {
     int32 shift_id = 1;
     string name = 2;   
 }
+
+message grpc_ManagerId {
+	int32 business_entity_id = 1;
+    int32 department_id = 2;
+    string department_name = 3;
+    string job_title = 4;
+    string manager_full_name = 5;   
+} 

@@ -2,8 +2,8 @@ using AWC.Application.Features.HumanResources.UpdateCompany;
 using AWC.Application.Features.HumanResources.ViewCompanyDepartments;
 using AWC.Application.Features.HumanResources.ViewCompanyDetails;
 using AWC.Application.Features.HumanResources.ViewCompanyShifts;
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 using Carter;
 using MediatR;
@@ -19,7 +19,7 @@ namespace AWC.Presentation.HumanResources.Company
         {
             app.MapGet("api/companies/details/{id}", async (int id, ISender sender) =>
             {
-                Result<CompanyDetailsForDisplay> result = await sender.Send(new GetCompanyDetailsRequest(CompanyID: id));
+                Result<CompanyDetails> result = await sender.Send(new GetCompanyDetailsRequest(CompanyID: id));
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);
@@ -29,7 +29,7 @@ namespace AWC.Presentation.HumanResources.Company
 
             app.MapGet("api/companies/command/{id}", async (int id, ISender sender) =>
             {
-                Result<CompanyDetailsForEdit> result = await sender.Send(new GetCompanyCommandRequest(CompanyID: id));
+                Result<CompanyGenericCommand> result = await sender.Send(new GetCompanyCommandRequest(CompanyID: id));
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);
@@ -49,10 +49,18 @@ namespace AWC.Presentation.HumanResources.Company
                 return Results.Problem(result.Error);
             });
 
-            app.MapGet("api/companies/departments/filterbyname", async (QueryParameters.FilterDepartmentByNameParameters parameters, ISender sender) =>
+            app.MapGet("api/companies/departments/filterbyname", async (QueryParameters.FilterByFieldNameParameters parameters, ISender sender) =>
             {
-                PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
-                GetCompanyDepartmentsSearchByNameRequest request = new(DepartmentName: parameters.DepartmentName!, PagingParameters: pagingParameters);
+                StringSearchCriteria criteria = new
+                (
+                    parameters.SearchField,
+                    parameters.SearchCriteria,
+                    parameters.OrderBy,
+                    parameters.PageNumber,
+                    parameters.PageSize
+                );
+
+                GetCompanyDepartmentsFilteredRequest request = new(SearchCriteria: criteria);
 
                 Result<PagedList<DepartmentDetails>> result = await sender.Send(request);
 
@@ -76,6 +84,7 @@ namespace AWC.Presentation.HumanResources.Company
 
             app.MapPut("api/companies/update", async (UpdateCompanyCommand cmd, ISender sender) =>
             {
+                Console.WriteLine($"CompanyID: {cmd.CompanyID}");
                 Result<int> result = await sender.Send(cmd);
 
                 if (result.IsSuccess)

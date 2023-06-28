@@ -4,6 +4,7 @@ using AWC.Application.Features.HumanResources.ViewCompanyShifts;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.HumanResources.QueryHandlers
@@ -21,7 +22,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetCompanyDetailsRequest request = new(CompanyID: 1);
             GetCompanyDetailsQueryHandler handler = new(_repository);
 
-            Result<CompanyDetailsForDisplay> response = await handler.Handle(request, new CancellationToken());
+            Result<CompanyDetails> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
         }
@@ -32,7 +33,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetCompanyDetailsRequest request = new(CompanyID: 2);
             GetCompanyDetailsQueryHandler handler = new(_repository);
 
-            Result<CompanyDetailsForDisplay> response = await handler.Handle(request, new CancellationToken());
+            Result<CompanyDetails> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsFailure);
         }
@@ -43,7 +44,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetCompanyCommandRequest request = new(CompanyID: 1);
             GetCompanyCommandQueryHandler handler = new(_repository);
 
-            Result<CompanyDetailsForEdit> response = await handler.Handle(request, new CancellationToken());
+            Result<CompanyGenericCommand> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
         }
@@ -54,7 +55,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetCompanyCommandRequest request = new(CompanyID: 2);
             GetCompanyCommandQueryHandler handler = new(_repository);
 
-            Result<CompanyDetailsForEdit> response = await handler.Handle(request, new CancellationToken());
+            Result<CompanyGenericCommand> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsFailure);
         }
@@ -87,6 +88,38 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
 
             int departments = response.Value.Count;
             Assert.Equal(2, departments);
+        }
+
+        [Fact]
+        public async Task Handle_GetCompanyDepartmentsFilteredByNameQueryHandler_ShouldSucceed()
+        {
+            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10);
+            GetCompanyDepartmentsFilteredRequest request = new(SearchCriteria: criteria);
+
+            GetCompanyDepartmentsFilteredQueryHandler handler = new(_repository);
+
+            Result<PagedList<DepartmentDetails>> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+
+            int departments = response.Value.Count;
+            Assert.Equal(2, departments);
+        }
+
+        [Fact]
+        public async Task Handle_GetCompanyDepartmentsFilteredByGroupNameQueryHandler_ShouldSucceed()
+        {
+            StringSearchCriteria criteria = new("GroupName", "Man", "[Name]", 1, 10);
+            GetCompanyDepartmentsFilteredRequest request = new(SearchCriteria: criteria);
+
+            GetCompanyDepartmentsFilteredQueryHandler handler = new(_repository);
+
+            Result<PagedList<DepartmentDetails>> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+
+            int departments = response.Value.Count;
+            Assert.Equal(4, departments);
         }
 
         [Fact]

@@ -1,6 +1,6 @@
 namespace AWC.Shared.Queries.HumanResources
 {
-    public class ShiftDetails
+    public sealed class ShiftDetails
     {
         public int ShiftID { get; set; }
         public string? Name { get; set; }

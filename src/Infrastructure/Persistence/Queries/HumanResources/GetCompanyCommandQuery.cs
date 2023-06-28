@@ -9,7 +9,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 {
     public static class GetCompanyCommandQuery
     {
-        public async static Task<Result<CompanyDetailsForEdit>> Query
+        public async static Task<Result<CompanyGenericCommand>> Query
         (
             int companyId,
             DapperContext ctx,
@@ -25,14 +25,14 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
                 parameters.Add("ID", companyId, DbType.Int32);
 
                 using var connection = ctx.CreateConnection();
-                CompanyDetailsForEdit detail = await connection.QueryFirstOrDefaultAsync<CompanyDetailsForEdit>(sql, parameters);
+                CompanyGenericCommand detail = await connection.QueryFirstOrDefaultAsync<CompanyGenericCommand>(sql, parameters);
 
                 if (detail is null)
                 {
                     string errMsg = $"Unable to retrieve company command for company with ID: {companyId}.";
                     logger.LogWarning($"Code Path: GetCompanyCommandsQuery.Query - Message: {errMsg}");
 
-                    return Result<CompanyDetailsForEdit>.Failure<CompanyDetailsForEdit>(
+                    return Result<CompanyGenericCommand>.Failure<CompanyGenericCommand>(
                         new Error("GetCompanyCommandByIdQuery.Query", errMsg)
                     );
                 }
@@ -42,7 +42,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
             catch (Exception ex)
             {
                 logger.LogError(ex, $"Code Path: GetCompanyCommandQuery.Query - Message: {Helpers.GetExceptionMessage(ex)}");
-                return Result<CompanyDetailsForEdit>.Failure<CompanyDetailsForEdit>(
+                return Result<CompanyGenericCommand>.Failure<CompanyGenericCommand>(
                     new Error("GetCompanyCommandQuery.Query", Helpers.GetExceptionMessage(ex))
                 );
             }

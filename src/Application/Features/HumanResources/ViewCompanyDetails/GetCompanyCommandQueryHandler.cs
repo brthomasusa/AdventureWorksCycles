@@ -5,14 +5,14 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
 {
-    public sealed class GetCompanyCommandQueryHandler : IQueryHandler<GetCompanyCommandRequest, CompanyDetailsForEdit>
+    public sealed class GetCompanyCommandQueryHandler : IQueryHandler<GetCompanyCommandRequest, CompanyGenericCommand>
     {
         private readonly IReadRepositoryManager _repo;
 
         public GetCompanyCommandQueryHandler(IReadRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<CompanyDetailsForEdit>> Handle
+        public async Task<Result<CompanyGenericCommand>> Handle
         (
             GetCompanyCommandRequest request,
             CancellationToken cancellationToken
@@ -20,11 +20,11 @@ namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
         {
             try
             {
-                Result<CompanyDetailsForEdit> result = await _repo.CompanyReadRepository.GetCompanyCommand(request.CompanyID);
+                Result<CompanyGenericCommand> result = await _repo.CompanyReadRepository.GetCompanyCommand(request.CompanyID);
 
                 if (result.IsFailure)
                 {
-                    return Result<CompanyDetailsForEdit>.Failure<CompanyDetailsForEdit>(
+                    return Result<CompanyGenericCommand>.Failure<CompanyGenericCommand>(
                         new Error("GetCompanyCommandQueryHandler.Handle", result.Error.Message)
                     );
                 }
@@ -34,7 +34,7 @@ namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
             }
             catch (Exception ex)
             {
-                return Result<CompanyDetailsForEdit>.Failure<CompanyDetailsForEdit>(
+                return Result<CompanyGenericCommand>.Failure<CompanyGenericCommand>(
                     new Error("GetCompanyCommandQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
                 );
             }

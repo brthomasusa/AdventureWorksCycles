@@ -6,7 +6,7 @@ using AWC.Shared.Queries.Lookups.Shared;
 
 namespace AWC.IntegrationTests.Lookups.ApiEndPoint_Tests
 {
-    public class LookupsEndPoint_Tests : IntegrationTest
+    public class LookupsEndPoint_Tests : IntegrationTestBase
     {
         public LookupsEndPoint_Tests(ApiWebApplicationFactory fixture) : base(fixture)
         { }

@@ -1,6 +1,5 @@
 using System.Data;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.Infrastructure.Persistence.Repositories.HumanResources;
 using AWC.Shared.Queries.HumanResources;
 using AWC.SharedKernel.Utilities;
 using Dapper;
@@ -22,7 +21,7 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
         {
             try
             {
-                const string sql = CompanyQuerySql.GetCompanyDepartmentsByName +
+                const string sql = CompanyQuerySql.GetCompanyDepartmentsFiltered +
                     " WHERE [Name] LIKE CONCAT('%',@DeptName,'%')" +
                     " ORDER BY [Name]" +
                     " OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";

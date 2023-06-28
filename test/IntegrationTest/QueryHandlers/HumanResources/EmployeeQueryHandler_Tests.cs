@@ -20,7 +20,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetEmployeeDetailsRequest request = new(EmployeeID: 2);
             GetEmployeeDetailsRequestQueryHandler handler = new(_repository);
 
-            Result<EmployeeDetailsForDisplay> response = await handler.Handle(request, new CancellationToken());
+            Result<EmployeeDetails> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
         }
@@ -31,7 +31,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             GetEmployeeDetailsRequest request = new(EmployeeID: 430);
             GetEmployeeDetailsRequestQueryHandler handler = new(_repository);
 
-            Result<EmployeeDetailsForDisplay> response = await handler.Handle(request, new CancellationToken());
+            Result<EmployeeDetails> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsFailure);
         }

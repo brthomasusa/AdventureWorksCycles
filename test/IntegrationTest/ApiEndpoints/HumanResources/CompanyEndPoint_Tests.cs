@@ -4,12 +4,14 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using AWC.Application.Features.HumanResources.UpdateCompany;
+using AWC.IntegrationTests.Base;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
 {
-    public class CompanyEndPoint_Tests : IntegrationTest
+    public class CompanyEndPoint_Tests : IntegrationTestBase
     {
         public CompanyEndPoint_Tests(ApiWebApplicationFactory fixture) : base(fixture)
         { }
@@ -24,7 +26,7 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var company = await JsonSerializer.DeserializeAsync<CompanyDetailsForDisplay>(jsonResponse, _options);
+            var company = await JsonSerializer.DeserializeAsync<CompanyDetails>(jsonResponse, _options);
 
             Assert.Equal("Adventure-Works Cycles", company.CompanyName);
             Assert.Equal("Adventure-Works Cycles, Inc.", company.LegalName);
@@ -40,7 +42,7 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var company = await JsonSerializer.DeserializeAsync<CompanyDetailsForEdit>(jsonResponse, _options);
+            var company = await JsonSerializer.DeserializeAsync<CompanyGenericCommand>(jsonResponse, _options);
 
             Assert.Equal(79, company.MailStateProvinceID);
             Assert.Equal(79, company.DeliveryStateProvinceID);
@@ -68,22 +70,43 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
         }
 
         [Fact]
-        public async Task Company_GetCompanyDepartmentsSearchByName_ShouldSucceed()
+        public async Task Company_GetCompanyDepartmentsFilteredByDepartmentName_ShouldSucceed()
         {
             var pagingParams = new { PageNumber = 1, PageSize = 10 };
-            const string deptName = "Pro";
 
             var queryParams = new Dictionary<string, string?>
             {
+                ["searchField"] = "Name",
+                ["searchCriteria"] = "Pr",
+                ["orderBy"] = "Name",
                 ["pageNumber"] = pagingParams.PageNumber.ToString(),
-                ["pageSize"] = pagingParams.PageSize.ToString(),
-                ["departmentName"] = deptName
+                ["pageSize"] = pagingParams.PageSize.ToString()
             };
 
             List<DepartmentDetails> response = await _client
                 .GetFromJsonAsync<List<DepartmentDetails>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/departments/filterbyname", queryParams));
 
             Assert.Equal(2, response.Count);
+        }
+
+        [Fact]
+        public async Task Company_GetCompanyDepartmentsFilteredByDepartmentGroupName_ShouldSucceed()
+        {
+            var pagingParams = new { PageNumber = 1, PageSize = 10 };
+
+            var queryParams = new Dictionary<string, string?>
+            {
+                ["searchField"] = "GroupName",
+                ["searchCriteria"] = "Ad",
+                ["orderBy"] = "Name",
+                ["pageNumber"] = pagingParams.PageNumber.ToString(),
+                ["pageSize"] = pagingParams.PageSize.ToString()
+            };
+
+            List<DepartmentDetails> response = await _client
+                .GetFromJsonAsync<List<DepartmentDetails>>(QueryHelpers.AddQueryString($"{_urlRoot}companies/departments/filterbyname", queryParams));
+
+            Assert.Equal(5, response.Count);
         }
 
         [Fact]

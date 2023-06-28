@@ -1,6 +1,7 @@
 using AWC.Application;
 using AWC.Application.Behaviors;
 using AWC.Application.Features.HumanResources.CreateEmployee;
+using AWC.Server.Contracts;
 using AWC.Server.Extensions;
 using AWC.Server.Interceptors;
 using AWC.Server.Middleware;
@@ -9,6 +10,7 @@ using FluentValidation;
 using MediatR;
 using NLog;
 using NLog.Web;
+
 
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 GlobalDiagnosticsContext.Set("logDirectory", Directory.GetCurrentDirectory());
@@ -72,7 +74,8 @@ try
     app.UseCors("CorsPolicy");
     app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
     app.MapGrpcReflectionService();
-    // app.MapGrpcService<CompanyContractService>().RequireCors("AllowAll");
+    app.MapGrpcService<CompanyContractService>().RequireCors("AllowAll");
+
     // app.MapGrpcService<EmployeeContractService>().RequireCors("AllowAll");
     // app.MapGrpcService<LookupsContractService>().RequireCors("AllowAll");
 

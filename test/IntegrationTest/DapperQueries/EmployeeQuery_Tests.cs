@@ -10,7 +10,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetEmployeeDetailsByIdWithAllInfoQuery_ShouldSucceed()
         {
-            Result<EmployeeDetailsForDisplay> result =
+            Result<EmployeeDetails> result =
                 await GetEmployeeDetailsByIdWithAllInfoQuery.Query(1, _dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Assert.True(result.IsSuccess);
@@ -21,7 +21,7 @@ namespace AWC.IntegrationTests.DapperQueries
         {
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<ReadRepositoryManager>();
-            Result<EmployeeDetailsForDisplay> result = await GetEmployeeDetailsByIdWithAllInfoQuery.Query(300, _dapperCtx, logger);
+            Result<EmployeeDetails> result = await GetEmployeeDetailsByIdWithAllInfoQuery.Query(300, _dapperCtx, logger);
 
             Assert.True(result.IsFailure);
         }

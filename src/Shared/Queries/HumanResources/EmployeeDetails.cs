@@ -1,6 +1,6 @@
 namespace AWC.Shared.Queries.HumanResources
 {
-    public sealed class EmployeeDetailsForDisplay
+    public sealed class EmployeeDetails
     {
         public int BusinessEntityID { get; set; }
         public string? NameStyle { get; set; }

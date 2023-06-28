@@ -6,50 +6,49 @@ import "Protos/HumanResources/grpc_department.proto";
 import "Protos/HumanResources/grpc_shift.proto";
 
 service CompanyContract {
-	rpc Update(CompanyCommand) returns (contracts.shared.GenericResponse);
-	rpc GetCompanyCommandById(contracts.shared.ItemRequest) returns (CompanyCommand);
-    rpc GetCompanyDetailById(contracts.shared.ItemRequest) returns (CompanyDetail);
-    rpc GetCompanyDepartments(contracts.shared.grpc_PagingParameters) returns (grpc_GetCompanyDepartmentsResponse);
-    rpc GetCompanyDepartmentsBySearchTerm(contracts.shared.grpc_StringSearchTerm) returns (grpc_GetCompanyDepartmentsResponse);
-    rpc GetCompanyShifts(contracts.shared.grpc_PagingParameters) returns (grpc_GetCompanyShiftsResponse);
+	rpc Update(grpc_CompanyGenericCommand) returns (contracts.shared.GenericResponse);
+	rpc GetCompanyForEdit(contracts.shared.ItemRequest) returns (grpc_CompanyGenericCommand);
+    rpc GetCompanyForDisplay(contracts.shared.ItemRequest) returns (grpc_CompanyForDisplay);
+    rpc GetDepartmentsSearchByName(contracts.shared.grpc_StringSearchCriteria) returns (grpc_GetCompanyDepartments);
+    rpc GetShifts(contracts.shared.grpc_PagingParameters) returns (grpc_GetCompanyShifts);
 }
 
-message CompanyCommand {
-    int32 id = 1;
-    string companyName = 2;
-    string legalName = 3;
+message grpc_CompanyGenericCommand {
+    int32 company_id = 1;
+    string company_name = 2;
+    string legal_name = 3;
     string ein = 4;
-    string companyWebSite = 5;
-    string mailAddressLine1 = 6;
-    string mailAddressLine2 = 7;
-    string mailCity = 8;
-    int32 mailStateProvinceID = 9;
-    string mailPostalCode = 10;
-    string deliveryAddressLine1 = 11;
-    string deliveryAddressLine2 = 12;
-    string deliveryCity = 13;
-    int32 deliveryStateProvinceID = 14;
-    string deliveryPostalCode = 15;
+    string company_web_site = 5;
+    string mail_address_line1 = 6;
+    string mail_address_line2 = 7;
+    string mail_city = 8;
+    int32 mail_state_province_id = 9;
+    string mail_postal_code = 10;
+    string delivery_address_line1 = 11;
+    string delivery_address_line2 = 12;
+    string delivery_city = 13;
+    int32 delivery_state_province_id = 14;
+    string delivery_postal_code = 15;
     string telephone = 16;
     string fax = 17;   
 }
 
-message CompanyDetail {
-    int32 id = 1;
-    string companyName = 2;
-    string legalName = 3;
+message grpc_CompanyForDisplay {
+    int32 company_id = 1;
+    string company_name = 2;
+    string legal_name = 3;
     string ein = 4;
-    string companyWebSite = 5;
-    string mailAddressLine1 = 6;
-    string mailAddressLine2 = 7;
-    string mailCity = 8;
-    string mailStateProvinceCode = 9;
-    string mailPostalCode = 10;
-    string deliveryAddressLine1 = 11;
-    string deliveryAddressLine2 = 12;
-    string deliveryCity = 13;
-    string deliveryStateProvinceCode = 14;
-    string deliveryPostalCode = 15;
+    string company_web_site = 5;
+    string mail_address_line1 = 6;
+    string mail_address_line2 = 7;
+    string mail_city = 8;
+    string mail_state_province_code = 9;
+    string mail_postal_code = 10;
+    string delivery_address_line1 = 11;
+    string delivery_address_line2 = 12;
+    string delivery_city = 13;
+    string delivery_state_province_code = 14;
+    string delivery_postal_code = 15;
     string telephone = 16;
     string fax = 17;   
 }

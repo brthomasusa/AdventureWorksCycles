@@ -24,26 +24,30 @@ namespace AWC.Presentation.HumanResources.Company
             public int PageSize { get; set; }
         }
 
-        public sealed class FilterDepartmentByNameParameters
+        public sealed class FilterByFieldNameParameters
         {
-            public static ValueTask<FilterDepartmentByNameParameters?> BindAsync(HttpContext context)
+            public static ValueTask<FilterByFieldNameParameters?> BindAsync(HttpContext context)
             {
                 _ = int.TryParse(context.Request.Query["PageNumber"], out var page);
                 _ = int.TryParse(context.Request.Query["PageSize"], out var size);
 
-                var result = new FilterDepartmentByNameParameters
+                var result = new FilterByFieldNameParameters
                 {
+                    SearchField = context.Request.Query["SearchField"],
+                    SearchCriteria = context.Request.Query["SearchCriteria"],
+                    OrderBy = context.Request.Query["OrderBy"],
                     PageNumber = page,
-                    PageSize = size,
-                    DepartmentName = context.Request.Query["DepartmentName"]
+                    PageSize = size
                 };
 
-                return ValueTask.FromResult<FilterDepartmentByNameParameters?>(result);
+                return ValueTask.FromResult<FilterByFieldNameParameters?>(result);
             }
 
+            public string? SearchField { get; set; }
+            public string? SearchCriteria { get; set; }
+            public string? OrderBy { get; set; }
             public int PageNumber { get; set; }
             public int PageSize { get; set; }
-            public string? DepartmentName { get; set; }
         }
     }
 }

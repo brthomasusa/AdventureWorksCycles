@@ -16,7 +16,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             _context = ctx;
         }
 
-        public async Task<Result<EmployeeDetailsForDisplay>> GetEmployeeDetailsByIdWithAllInfo(int employeeId)
+        public async Task<Result<EmployeeDetails>> GetEmployeeDetailsByIdWithAllInfo(int employeeId)
             => await GetEmployeeDetailsByIdWithAllInfoQuery.Query(employeeId, _context, _logger);
 
         public async Task<Result<PagedList<EmployeeListItem>>> GetEmployeeListItemsSearchByLastName(string lastName, PagingParameters pagingParameters)

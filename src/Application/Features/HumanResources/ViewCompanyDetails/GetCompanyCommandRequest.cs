@@ -3,5 +3,5 @@ using AWC.Shared.Queries.HumanResources;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
 {
-    public sealed record GetCompanyCommandRequest(int CompanyID) : IQuery<CompanyDetailsForEdit>;
+    public sealed record GetCompanyCommandRequest(int CompanyID) : IQuery<CompanyGenericCommand>;
 }
