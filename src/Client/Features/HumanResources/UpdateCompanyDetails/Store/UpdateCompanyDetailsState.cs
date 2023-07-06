@@ -3,7 +3,7 @@ using AWC.Shared.Queries.Lookups.Shared;
 
 namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
 {
-    public record UpdateCompanyDetailsState
+    public sealed record UpdateCompanyDetailsState
     {
         public bool Initialized { get; init; }
         public bool Loading { get; init; }

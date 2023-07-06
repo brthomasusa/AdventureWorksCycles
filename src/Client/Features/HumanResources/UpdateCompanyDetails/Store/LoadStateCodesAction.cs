@@ -1,4 +1,4 @@
 namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
 {
-    public record LoadStateCodesAction();
+    public sealed record LoadStateCodesAction();
 }

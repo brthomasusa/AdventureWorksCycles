@@ -3,5 +3,5 @@ using AWC.Shared.Queries.Lookups.Shared;
 
 namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
 {
-    public record UpdateCompanyDetailsSubmitSuccessAction();
+    public sealed record UpdateCompanyDetailsSubmitSuccessAction();
 }

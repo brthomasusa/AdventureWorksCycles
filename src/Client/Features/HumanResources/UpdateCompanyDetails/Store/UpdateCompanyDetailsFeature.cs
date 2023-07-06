@@ -3,7 +3,7 @@ using Fluxor;
 
 namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
 {
-    public class UpdateCompanyDetailsFeature : Feature<UpdateCompanyDetailsState>
+    public sealed class UpdateCompanyDetailsFeature : Feature<UpdateCompanyDetailsState>
     {
         public override string GetName() => "UpdateCompanyDetails";
 

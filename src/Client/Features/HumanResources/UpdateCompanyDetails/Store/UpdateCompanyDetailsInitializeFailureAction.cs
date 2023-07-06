@@ -1,4 +1,4 @@
 namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
 {
-    public record UpdateCompanyDetailsInitializeFailureAction(string ErrorMessage);
+    public sealed record UpdateCompanyDetailsInitializeFailureAction(string ErrorMessage);
 }
