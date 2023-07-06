@@ -1,7 +1,5 @@
 @page "/Features/HumanResources/ViewCompanyDetail/Pages/ViewCompanyDetailPage"
 @inherits FluxorComponent
-@using AWC.Client.Components
-
 
 <PageTitle>Company Details</PageTitle>
 
@@ -63,10 +61,10 @@ else
                         <RadzenText Text="Postal Address" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start"
                             class="rz-mb-2">
                         </RadzenText>
-                        <RadzenFormField Text="Line 1" Variant="Variant.Filled">
+                        <RadzenFormField Text="Address Line 1" Variant="Variant.Filled">
                             <RadzenTextBox @bind-Value="@DetailsModel!.MailAddressLine1" />
                         </RadzenFormField>
-                        <RadzenFormField Text="Line2" Variant="Variant.Filled">
+                        <RadzenFormField Text="Address Line2" Variant="Variant.Filled">
                             <RadzenTextBox @bind-Value="@DetailsModel!.MailAddressLine2" />
                         </RadzenFormField>
                         <RadzenFormField Text="City" Variant="Variant.Filled">
@@ -85,10 +83,10 @@ else
                         <RadzenText Text="Delivery Address" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start"
                             class="rz-mb-2">
                         </RadzenText>
-                        <RadzenFormField Text="Line 1" Variant="Variant.Filled">
+                        <RadzenFormField Text="Address Line 1" Variant="Variant.Filled">
                             <RadzenTextBox @bind-Value="@DetailsModel!.DeliveryAddressLine1" />
                         </RadzenFormField>
-                        <RadzenFormField Text="Line2" Variant="Variant.Filled">
+                        <RadzenFormField Text="Address Line2" Variant="Variant.Filled">
                             <RadzenTextBox @bind-Value="@DetailsModel!.DeliveryAddressLine2" />
                         </RadzenFormField>
                         <RadzenFormField Text="City" Variant="Variant.Filled">

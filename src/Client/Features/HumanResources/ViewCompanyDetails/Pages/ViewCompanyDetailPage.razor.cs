@@ -22,13 +22,13 @@ namespace AWC.Client.Features.HumanResources.ViewCompanyDetails.Pages
             {
                 Dispatcher!.Dispatch(new SetViewCompanyDetailsAction(ViewCompanyDetailState!.Value.CompanyID));
             }
-            Console.WriteLine($"DetailModel {DetailsModel!.ToJson()}");
+
             base.OnInitialized();
         }
 
-        protected async Task EditButtonClicked()
+        protected void EditButtonClicked()
         {
-            await Task.CompletedTask;
+            NavManager!.NavigateTo("/Features/HumanResources/UpdateCompanyDetails/Pages/UpdateCompanyDetailsPage");
         }
     }
 }
