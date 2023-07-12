@@ -18,20 +18,17 @@ namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
         private readonly GrpcChannel? _channel;
         private readonly IMapper _mapper;
         private readonly NotificationService _notificationService;
-        private readonly IDispatcher _dispatcher;
 
         public UpdateCompanyDetailsEffects
         (
             GrpcChannel channel,
             IMapper mapper,
-            NotificationService notificationService,
-            IDispatcher dispatcher
+            NotificationService notificationService
         )
         {
             _channel = channel;
             _mapper = mapper;
             _notificationService = notificationService;
-            _dispatcher = dispatcher;
         }
 
         [EffectMethod(typeof(LoadStateCodesAction))]
