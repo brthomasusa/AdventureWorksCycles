@@ -26,7 +26,7 @@ namespace AWC.Client.Features.HumanResources.ViewCompanyDetails.Pages
             base.OnInitialized();
         }
 
-        protected void EditButtonClicked()
+        private void EditButtonClicked()
         {
             NavManager!.NavigateTo("/Features/HumanResources/UpdateCompanyDetails/Pages/UpdateCompanyDetailsPage");
         }

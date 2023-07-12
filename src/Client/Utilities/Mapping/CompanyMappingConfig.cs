@@ -19,6 +19,7 @@ namespace AWC.Client.Utilities.Mapping
 
             // Used when sending a CompanyGenericCommand to the server api
             config.NewConfig<CompanyGenericCommand, grpc_CompanyGenericCommand>()
+                .Map(dest => dest.CompanyId, src => src.CompanyID)
                 .Map(dest => dest.LegalName, src => string.IsNullOrEmpty(src.LegalName) ? string.Empty : src.LegalName)
                 .Map(dest => dest.CompanyWebSite, src => string.IsNullOrEmpty(src.CompanyWebSite) ? string.Empty : src.CompanyWebSite)
                 .Map(dest => dest.MailAddressLine2, src => string.IsNullOrEmpty(src.MailAddressLine2) ? string.Empty : src.MailAddressLine2)

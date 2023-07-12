@@ -1,15 +1,268 @@
 @page "/Features/HumanResources/UpdateCompanyDetails/Pages/UpdateCompanyDetailsPage"
 
+@using AWC.Shared.Commands.HumanResources
+@using Radzen
+@using AWC.Shared.Queries.Lookups.Shared
+
 @inherits FluxorComponent
+
 <PageTitle>Company Details</PageTitle>
 
-<RadzenRow>
-    <RadzenColumn Size="6" SizeMD="6" JustifyContent="JustifyContent">
-        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
-            JustifyContent="JustifyContent.Normal">
-        </RadzenStack>
-        <RadzenText Text="Updating company details" TextStyle="TextStyle.H6" TextAlign="TextAlign.Start"
-            class="rz-my-0">
-        </RadzenText>
-    </RadzenColumn>>
+<div class="row mb-3">
+    <div class="col">
+        <RadzenText Text="Updating company details" TextStyle="TextStyle.H6" TextAlign="TextAlign.Start" class="rz-my-0" />
+    </div>
+</div>
+
+@if (Loading)
+{
+    <LoadingComponent />
+}
+else if (!string.IsNullOrEmpty(UpdateCompanyDetailsState!.Value.ErrorMessage))
+{
+    NotificationService!.Notify(
+            new NotificationMessage { 
+                Style = "position: relative; left: -500px; top: 490px; width: 100%", 
+                Severity = NotificationSeverity.Error, 
+                Summary = UpdateCompanyDetailsState!.Value.ErrorMessage, 
+                Duration = 2500 
+            }
+        );
+}
+else
+{
+    <RadzenRow>
+    <RadzenColumn Size="12" JustifyContent="JustifyContent">
+
+        <RadzenTemplateForm TItem="CompanyGenericCommand" Data=@UpdateCompanyDetailsState!.Value.CommandModel Submit=@OnValidSubmit InvalidSubmit=@OnInvalidSubmit>
+            
+            <ChildContent>
+                <RadzenRow class="rz-mb-1">
+                    <RadzenColumn>
+                        <RadzenText Text="General Information" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start" class="rz-my-0" style="font-weight: bolder;" />
+                    </RadzenColumn>     
+                </RadzenRow>                
+                <RadzenRow class="rz-mb-1">
+                    <RadzenColumn Size="5">
+                        <RadzenFormField Text="* Company Name" Variant="@variant" style="width: 100%">
+                            <Start></Start>
+                            <ChildContent>
+                                <RadzenTextBox Name="companyName" Placeholder="Company Name" MaxLength="50"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.CompanyName" />                                
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="companyName" Text="The company name is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>
+                    <RadzenColumn Size="5">
+                        <RadzenFormField Text="Legal Name" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="legalName" Placeholder="Company legal name" MaxLength="50"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.LegalName" />
+                            </ChildContent>
+                        </RadzenFormField>
+                    </RadzenColumn>
+                    <RadzenColumn Size="2">
+                        <RadzenFormField Text="* EIN" Variant="@variant">
+                            <ChildContent>
+                                <RadzenTextBox Name="ein" Placeholder="EIN" MaxLength="10"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.EIN" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="ein" Text="ZIP code is required" Popup=true Style="position: absolute"/>
+                                <RadzenCustomValidator Component="ein" 
+                                Validator="@(() => ValidateEIN(UpdateCompanyDetailsState!.Value.CommandModel!.EIN))" 
+                                Text="Valid EIN has 9 digits" Popup=true />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>
+                </RadzenRow>
+                <RadzenRow class="rz-mb-1">
+                    <RadzenColumn Size="5" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="Company Website" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="website" Placeholder="Company Website" MaxLength="50"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.CompanyWebSite" />
+                                <RadzenRequiredValidator Component="website" Text="The company website is required"
+                                    Popup=true style="position: absolute" />
+                            </ChildContent>
+                        </RadzenFormField>
+                    </RadzenColumn>
+                    <RadzenColumn Size="3" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="Telephone" Variant="@variant">
+                            <ChildContent>
+                                <RadzenTextBox Name="telephone" Placeholder="Telephone" MaxLength="14"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.Telephone" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="telephone" Text="The company telephone is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>
+                    <RadzenColumn Size="3" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="Fax" Variant="@variant">
+                            <ChildContent>
+                                <RadzenTextBox Name="fax" Placeholder="Fax" MaxLength="14"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.Fax" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="fax" Text="The company fax is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>                                        
+                </RadzenRow>
+                <RadzenRow class="rz-mb-1">
+                    <RadzenColumn>
+                        <RadzenText Text="Postal Address" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start" class="rz-my-0" style="font-weight: bolder;" />
+                    </RadzenColumn>     
+                </RadzenRow>
+                <RadzenRow>
+                    <RadzenColumn Size="6" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* Address Line1" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="mailLine1" Placeholder="Address line 1" MaxLength="60"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.MailAddressLine1" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="mailLine1" Text="The mail address line 1 is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn> 
+                    <RadzenColumn Size="6" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="Address Line2" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="mailLine2" Placeholder="Address line 2" MaxLength="60"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.MailAddressLine2" />
+                            </ChildContent>
+                        </RadzenFormField>
+                    </RadzenColumn> 
+                </RadzenRow>
+                <RadzenRow>
+                    <RadzenColumn Size="6" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* City" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="mailCity" Placeholder="City" MaxLength="30"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.MailCity" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="mailCity" Text="The mail postal city is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn> 
+                    <RadzenColumn Size="3" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* State" Variant="@variant">
+                            <ChildContent>
+                                <RadzenDropDown Data="@UpdateCompanyDetailsState!.Value.StateCodes" TextProperty="StateProvinceCode"
+                                ValueProperty="StateProvinceID" Placeholder="Choose StateProvince" style="width: 100%"
+                                @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.MailStateProvinceID" Name="postalStateProvinceID">
+                                </RadzenDropDown>
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="postalStateProvinceID" Text="Postal state code is required"
+                                style="position: absolute" DefaultValue="0">
+                                </RadzenRequiredValidator>
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>
+                    <RadzenColumn Size="3" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* Postal Code" Variant="@variant">
+                            <ChildContent>
+                                <RadzenTextBox Name="mailPostalCode" Placeholder="Postal Code" MaxLength="15"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.MailPostalCode" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="mailPostalCode" Text="The postal code is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>                      
+                </RadzenRow>                                
+                <RadzenRow class="rz-mb-1">
+                    <RadzenColumn>
+                        <RadzenText Text="Delivery Address" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start" class="rz-my-0" style="font-weight: bolder;" />
+                    </RadzenColumn>     
+                </RadzenRow>
+                <RadzenRow>
+                    <RadzenColumn Size="6" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* Address Line1" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="deliveryLine1" Placeholder="Address line 1" MaxLength="60"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.DeliveryAddressLine1" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="deliveryLine1" Text="The delivery address line 1 is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn> 
+                    <RadzenColumn Size="6" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="Address Line2" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="deliveryLine2" Placeholder="Address line 2" MaxLength="60"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.DeliveryAddressLine2" />
+                            </ChildContent>
+                        </RadzenFormField>
+                    </RadzenColumn> 
+                </RadzenRow>
+                <RadzenRow>
+                    <RadzenColumn Size="6" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* City" Variant="@variant" style="width: 100%">
+                            <ChildContent>
+                                <RadzenTextBox Name="deliveryCity" Placeholder="City" MaxLength="30"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.DeliveryCity" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="deliveryCity" Text="The delivery city is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn> 
+                    <RadzenColumn Size="3" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* State" Variant="@variant">
+                            <ChildContent>
+                                <RadzenDropDown Data="@UpdateCompanyDetailsState!.Value.StateCodes" TextProperty="StateProvinceCode"
+                                ValueProperty="StateProvinceID" Placeholder="Choose StateProvince" style="width: 100%"
+                                @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.DeliveryStateProvinceID" Name="deliveryStateProvinceID">
+                                </RadzenDropDown>
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="deliveryStateProvinceID" Text="Delivery state code is required"
+                                style="position: absolute" DefaultValue="0">
+                                </RadzenRequiredValidator>
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>
+                    <RadzenColumn Size="3" JustifyContent="JustifyContent">
+                        <RadzenFormField Text="* Postal Code" Variant="@variant">
+                            <ChildContent>
+                                <RadzenTextBox Name="deliveryPostalCode" Placeholder="Postal Code" MaxLength="15"
+                                    @bind-Value="@UpdateCompanyDetailsState!.Value.CommandModel!.DeliveryPostalCode" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="deliveryPostalCode" Text="The postal code is required"
+                                    Popup=true style="position: absolute" />
+                            </Helper>
+                        </RadzenFormField>
+                    </RadzenColumn>                      
+                </RadzenRow>                  
+                <div class="row mt-2">
+                    <div class="col offset-sm-3">
+                        <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save"
+                            ButtonStyle="ButtonStyle.Primary">
+                        </RadzenButton>
+                        <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel"
+                            Click="@OnCancelEdit" />                            
+                    </div>
+                </div>
+            </ChildContent>
+        </RadzenTemplateForm>
+
+    </RadzenColumn>
 </RadzenRow>
+}

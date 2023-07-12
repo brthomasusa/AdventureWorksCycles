@@ -4,7 +4,7 @@ option csharp_namespace = "gRPC.Contracts.Lookups";
 import "google/protobuf/empty.proto";
 
 service LookupsContract {
-	rpc GetStateCodesUs(google.protobuf.Empty) returns (stream grpc_StateProvinceCode);
+	rpc GetStateCodesAll(google.protobuf.Empty) returns (stream grpc_StateProvinceCode);
     rpc GetStateCodesUsa(google.protobuf.Empty) returns (stream grpc_StateProvinceCode);
     rpc GetDepartmentIds(google.protobuf.Empty) returns (stream grpc_DepartmentId);
     rpc GetShiftIds(google.protobuf.Empty) returns (stream grpc_ShiftId);

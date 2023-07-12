@@ -2,7 +2,7 @@ namespace AWC.Shared.Queries.HumanResources
 {
     public sealed class CompanyGenericCommand
     {
-        public int Id { get; set; }
+        public int CompanyID { get; set; }
         public string CompanyName { get; set; } = string.Empty;
         public string LegalName { get; set; } = string.Empty;
         public string EIN { get; set; } = string.Empty;

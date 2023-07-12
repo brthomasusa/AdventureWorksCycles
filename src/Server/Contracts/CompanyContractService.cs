@@ -32,6 +32,7 @@ namespace AWC.Server.Contracts
             Result<CompanyGenericCommand> result = await _sender.Send(new GetCompanyCommandRequest(CompanyID: request.Id));
             return _mapper.Map<grpc_CompanyGenericCommand>(result.Value);
         }
+
         public override async Task<grpc_GetCompanyDepartments> GetDepartmentsSearchByName(grpc_StringSearchCriteria request, ServerCallContext context)
         {
             StringSearchCriteria criteria = new
