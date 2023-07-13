@@ -1,10 +1,7 @@
 using AWC.Client.Features.HumanResources.ViewCompanyDetails.Store;
-using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
-using Radzen;
-using Radzen.Blazor;
 
 namespace AWC.Client.Features.HumanResources.ViewCompanyDetails.Pages
 {

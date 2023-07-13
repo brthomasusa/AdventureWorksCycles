@@ -31,6 +31,14 @@ namespace AWC.Client.Utilities.Mapping
                 .Map(dest => dest.CompanyWebSite, src => string.IsNullOrEmpty(src.CompanyWebSite) ? string.Empty : src.CompanyWebSite)
                 .Map(dest => dest.MailAddressLine2, src => string.IsNullOrEmpty(src.MailAddressLine2) ? string.Empty : src.MailAddressLine2)
                 .Map(dest => dest.DeliveryAddressLine2, src => string.IsNullOrEmpty(src.DeliveryAddressLine2) ? string.Empty : src.DeliveryAddressLine2);
+
+            // Used when receiving a grpc_ompanyGenericCommand to populate the CompnayUpdatePage
+            config.NewConfig<grpc_Department, DepartmentDetails>()
+                .Map(dest => dest.DepartmentID, src => src.DepartmentId)
+                .Map(dest => dest.Name, src => src.Name)
+                .Map(dest => dest.GroupName, src => src.GroupName)
+                .Map(dest => dest.ModifiedDate, src => src.ModifiedDate.ToDateTime().ToLocalTime());
+
         }
     }
 }

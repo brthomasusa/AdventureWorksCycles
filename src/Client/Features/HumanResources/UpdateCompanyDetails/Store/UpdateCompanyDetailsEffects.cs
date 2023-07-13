@@ -15,7 +15,7 @@ namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
 {
     public sealed class UpdateCompanyDetailsEffects : Effect<LoadCompanyDetailsForEditingAction>
     {
-        private readonly GrpcChannel? _channel;
+        private readonly GrpcChannel _channel;
         private readonly IMapper _mapper;
         private readonly NotificationService _notificationService;
 

@@ -1,26 +1,44 @@
 @page "/Features/HumanResources/ViewDepartments/Pages/ViewDepartmentsPage"
+@inherits FluxorComponent
+@using Radzen
+@using Radzen.Blazor
+@using AWC.Client.Utilities;
+@using AWC.Shared.Queries.HumanResources;
+@using AWC.Shared.Queries.Shared;
 
 <PageTitle>Departments</PageTitle>
 
-<div class="row"
-    style="background:Gray; padding: 10px 0; border: 1px solid rgb(1, 18, 1); color: white; text-align: center;">
+<div class="row mb-3">
     <div class="col">
         <RadzenText Text="Viewing department list" TextStyle="TextStyle.H6" TextAlign="TextAlign.Start" class="rz-my-0">
         </RadzenText>
     </div>
 </div>
 
-<div class="row align-items-center"
-    style="min-height: 200px; background:rgb(193, 149, 149); padding: 10px 0; border: 1px solid rgb(1, 18, 1); color: rgb(7, 0, 0);">
-    <RadzenStack Orientation="Orientation.Horizontal">
-        <div class="col-md-4" style="border: 1px solid rgb(1, 18, 1);">
-            <RadzenText Text="One" TextStyle="TextStyle.H6" />
-        </div>
-        <div class="col-md-4" style="border: 1px solid rgb(1, 18, 1);">
-            <RadzenText Text="two" TextStyle="TextStyle.H6" />
-        </div>
-        <div class="col-md-4" style="border: 1px solid rgb(1, 18, 1);">
-            <RadzenText Text="Three" TextStyle="TextStyle.H6" />
-        </div>
-    </RadzenStack>
+@if (Loading)
+{
+    <LoadingComponent />
+}
+else
+{
+    <div class="row">
+    <div class="col-md-12">
+        <RadzenDataGrid @ref="departmentGrid" AllowFiltering="true" AllowAlternatingRows="true"
+            FilterMode="FilterMode.Simple" AllowPaging="true" PageSize="@ViewDepartmentsState!.Value.MetaData!.PageSize"
+            AllowSorting="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+            Data="@ViewDepartmentsState!.Value.DepartmentList" Count="@ViewDepartmentsState!.Value.MetaData!.TotalCount"
+            TItem="DepartmentDetails" LoadData="@GridLoadData">
+            <Columns>
+                <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="DepartmentID"
+                    Title="Department ID">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DepartmentDetails" Property="Name" Title="Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="GroupName"
+                    Title="Group Name">
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
 </div>
+}
