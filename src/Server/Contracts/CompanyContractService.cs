@@ -41,7 +41,9 @@ namespace AWC.Server.Contracts
                 request.SearchCriteria,
                 request.OrderBy,
                 request.PageNumber,
-                request.PageSize
+                request.PageSize,
+                request.Skip,
+                request.Take
             );
 
             GetCompanyDepartmentsFilteredRequest requestParameter = new(criteria);

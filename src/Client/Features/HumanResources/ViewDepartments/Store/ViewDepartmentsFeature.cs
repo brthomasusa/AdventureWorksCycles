@@ -21,7 +21,9 @@ namespace AWC.Client.Features.HumanResources.ViewDepartments.Store
                     SearchCriteria: string.Empty,
                     OrderBy: "Name",
                     PageNumber: 1,
-                    PageSize: 10
+                    PageSize: 10,
+                    Skip: 0,
+                    Take: 10
                 )
             };
     }

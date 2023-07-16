@@ -6,6 +6,8 @@ namespace AWC.Shared.Queries.Shared
         string? SearchCriteria,
         string? OrderBy,
         int PageNumber,
-        int PageSize
+        int PageSize,
+        int Skip,
+        int Take
     );
 }

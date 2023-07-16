@@ -1,56 +1,65 @@
-using AWC.Client.Features.HumanResources.ViewDepartments.Store;
 using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Shared;
-using Fluxor;
+using gRPC.Contracts.HumanResources;
+using gRPC.Contracts.Shared;
+using Grpc.Net.Client;
+using MapsterMapper;
 using Microsoft.AspNetCore.Components;
 using Radzen;
-using Radzen.Blazor;
-
 
 namespace AWC.Client.Features.HumanResources.ViewDepartments.Pages
 {
     public partial class ViewDepartmentsPage
     {
+        private bool isLoading;
+        private IEnumerable<DepartmentDetails>? departmentDetails;
+        private int count;
+        private readonly IEnumerable<int> pageSizeOptions = new List<int>() { 5, 10, 15, 20 };
+
         protected NotificationService? NotificationService { get; set; }
-        [Inject] private IState<ViewDepartmentsState>? ViewDepartmentsState { get; set; }
-        [Inject] private IDispatcher? Dispatcher { get; set; }
-        private bool Loading => ViewDepartmentsState!.Value.Loading;
-        protected RadzenDataGrid<DepartmentDetails>? departmentGrid;
 
-        protected override void OnInitialized()
-        {
-            if (!ViewDepartmentsState!.Value.Initialized)
-            {
-                Dispatcher!.Dispatch(new GetDepartmentsAction(ViewDepartmentsState!.Value.SearchCriteria!));
-            }
+        [Inject] private GrpcChannel? GrpcChannel { get; set; }
+        [Inject] private IMapper? Mapper { get; set; }
 
-            base.OnInitialized();
-        }
-
-        protected async Task GridLoadData(LoadDataArgs args)
+        protected async Task LoadDepartmentData(LoadDataArgs args)
         {
             try
             {
-                int currentPage = departmentGrid!.CurrentPage;
-                int totalPages = ViewDepartmentsState!.Value.MetaData!.TotalPages;
+                string searchField = string.Empty;
+                string searchCriteria = string.Empty;
 
-                Console.WriteLine($"CurrentPage before: {currentPage}, TotalPages: {totalPages}");
-                Console.WriteLine($"Entering GridLoadData() with LoadDataArgs: {args.ToJson()}");
+                if (args.Filters is not null)
+                {
+                    List<FilterDescriptor> descriptors = args.Filters.ToList();
+                    FilterDescriptor? filterDescriptor
+                        = descriptors.Find(x => !string.IsNullOrEmpty(x.Property) && !string.IsNullOrEmpty(x.FilterValue.ToString()));
+
+                    if (filterDescriptor is not null)
+                    {
+                        searchField = filterDescriptor.Property;
+                        searchCriteria = filterDescriptor.FilterValue.ToString()!;
+                    }
+                }
+
                 StringSearchCriteria criteria = new
                 (
-                    string.Empty,
-                    string.Empty,
-                    string.Empty,
-                    2,
-                    10
+                    searchField,
+                    searchCriteria,
+                    !string.IsNullOrEmpty(args.OrderBy) ? args.OrderBy : string.Empty,
+                    0,
+                    0,
+                    args.Skip ?? default,
+                    args.Top ?? default
                 );
 
-                Dispatcher!.Dispatch(new GetDepartmentsAction(criteria));
-                departmentGrid!.CurrentPage = currentPage + 1;
-                Console.WriteLine($"CurrentPage after: {currentPage}");
+                isLoading = true;
+
+                await GetDepartments(criteria);
+
+                isLoading = false;
+
                 await InvokeAsync(StateHasChanged);
-                // await Task.CompletedTask;
 
             }
             catch (Exception ex)
@@ -65,6 +74,20 @@ namespace AWC.Client.Features.HumanResources.ViewDepartments.Pages
                     }
                 );
             }
+        }
+
+        private async Task GetDepartments(StringSearchCriteria criteria)
+        {
+            var client = new CompanyContract.CompanyContractClient(GrpcChannel);
+            grpc_GetCompanyDepartments grpcResponse =
+                await client.GetDepartmentsSearchByNameAsync(Mapper!.Map<grpc_StringSearchCriteria>(criteria));
+
+            List<DepartmentDetails> departments = new();
+            grpcResponse.GrpcDepartments.ToList()
+                                        .ForEach(grpcDept => departments.Add(Mapper.Map<DepartmentDetails>(grpcDept)));
+
+            departmentDetails = departments;
+            count = grpcResponse.GrpcMetaData["TotalCount"];
         }
     }
 }

@@ -72,9 +72,9 @@ namespace AWC.IntegrationTests.DapperQueries
         }
 
         [Fact]
-        public async Task Query_GetCompanyDepartmentsUnfilteredQuery_ShouldSucceed()
+        public async Task Query_GetCompanyDepartmentsUnfilteredQuery_PageOne_ShouldSucceed()
         {
-            StringSearchCriteria criteria = new(null, null, "[Name]", 1, 10);
+            StringSearchCriteria criteria = new(null, null, "[Name]", 1, 10, 0, 10);
 
             Result<PagedList<DepartmentDetails>> result =
                 await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
@@ -85,9 +85,22 @@ namespace AWC.IntegrationTests.DapperQueries
         }
 
         [Fact]
+        public async Task Query_GetCompanyDepartmentsUnfilteredQuery_PageTwo_ShouldSucceed()
+        {
+            StringSearchCriteria criteria = new(null, null, "[Name]", 1, 10, 10, 10);
+
+            Result<PagedList<DepartmentDetails>> result =
+                await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            int departments = result.Value.Count;
+            Assert.Equal(6, departments);
+        }
+
+        [Fact]
         public async Task Query_GetCompanyDepartmentsFilteredByNameQuery_ShouldSucceed()
         {
-            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10);
+            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10, 0, 10);
 
             Result<PagedList<DepartmentDetails>> result =
                 await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
@@ -100,7 +113,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetCompanyDepartmentsFilteredByGroupNameQuery_ShouldSucceed()
         {
-            StringSearchCriteria criteria = new("[GroupName]", "Man", "[Name]", 1, 10);
+            StringSearchCriteria criteria = new("[GroupName]", "Man", "[Name]", 1, 10, 0, 10);
 
             Result<PagedList<DepartmentDetails>> result =
                 await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
@@ -113,7 +126,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetCompanyDepartmentsNullCriteriaQuery_ShouldSucceed()
         {
-            StringSearchCriteria criteria = new("[GroupName]", null, "[Name]", 1, 20);
+            StringSearchCriteria criteria = new("[GroupName]", null, "[Name]", 1, 20, 0, 20);
 
             Result<PagedList<DepartmentDetails>> result =
                 await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());
@@ -126,7 +139,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetCompanyDepartmentsNullFieldAndCriteriaQuery_ShouldFail()
         {
-            StringSearchCriteria criteria = new("[GroupName]", null, "[Name]", 1, 20);
+            StringSearchCriteria criteria = new("[GroupName]", null, "[Name]", 1, 20, 0, 20);
 
             Result<PagedList<DepartmentDetails>> result =
                 await GetCompanyDepartmentsFilteredQuery.Query(criteria, _dapperCtx, new NullLogger<ReadRepositoryManager>());

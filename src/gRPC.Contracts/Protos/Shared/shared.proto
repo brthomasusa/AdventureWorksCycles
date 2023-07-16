@@ -11,7 +11,9 @@ message grpc_StringSearchCriteria {
 	string search_criteria = 2;
     string order_by = 3;
 	int32 page_number = 4;
-	int32 page_size = 5;    
+	int32 page_size = 5;
+    int32 skip = 6;
+    int32 take = 7;    
 }
 
 message grpc_PagingParameters {

@@ -92,7 +92,7 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
         [Fact]
         public async Task Company_GetCompanyDepartmentsFilteredByDepartmentGroupName_ShouldSucceed()
         {
-            var pagingParams = new { PageNumber = 1, PageSize = 10 };
+            var pagingParams = new { PageNumber = 1, PageSize = 10, Skip = 0, Take = 10 };
 
             var queryParams = new Dictionary<string, string?>
             {
@@ -100,7 +100,9 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
                 ["searchCriteria"] = "Ad",
                 ["orderBy"] = "Name",
                 ["pageNumber"] = pagingParams.PageNumber.ToString(),
-                ["pageSize"] = pagingParams.PageSize.ToString()
+                ["pageSize"] = pagingParams.PageSize.ToString(),
+                ["skip"] = pagingParams.Skip.ToString(),
+                ["take"] = pagingParams.Take.ToString()
             };
 
             List<DepartmentDetails> response = await _client

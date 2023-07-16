@@ -43,8 +43,8 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 
                 sb.Append(" OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY");
 
-                parameters.Add("Offset", Offset(searchCriteria.PageNumber, searchCriteria.PageSize), DbType.Int32);
-                parameters.Add("PageSize", searchCriteria.PageSize, DbType.Int32);
+                parameters.Add("Offset", searchCriteria.Skip, DbType.Int32);
+                parameters.Add("PageSize", searchCriteria.Take, DbType.Int32);
 
                 string countSql = !string.IsNullOrEmpty(searchCriteria.SearchCriteria) ?
                     $"SELECT COUNT(*) FROM HumanResources.Department WHERE {searchCriteria.SearchField} LIKE CONCAT('%',@Criteria,'%')" :

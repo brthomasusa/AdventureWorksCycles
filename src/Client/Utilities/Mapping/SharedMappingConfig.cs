@@ -4,7 +4,7 @@ using Mapster;
 
 namespace AWC.Client.Utilities.Mapping
 {
-    public sealed class SharedMappingConfig
+    public sealed class SharedMappingConfig : IRegister
     {
         public void Register(TypeAdapterConfig config)
         {
@@ -16,7 +16,9 @@ namespace AWC.Client.Utilities.Mapping
                 .Map(dest => dest.OrderBy, src => src.OrderBy)
                 .Map(dest => dest.SearchField, src => src.SearchField)
                 .Map(dest => dest.PageNumber, src => src.PageNumber)
-                .Map(dest => dest.PageSize, src => src.PageSize);
+                .Map(dest => dest.PageSize, src => src.PageSize)
+                .Map(dest => dest.Skip, src => src.Skip)
+                .Map(dest => dest.Take, src => src.Take);
         }
     }
 }

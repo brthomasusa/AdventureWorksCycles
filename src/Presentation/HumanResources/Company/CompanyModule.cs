@@ -57,7 +57,9 @@ namespace AWC.Presentation.HumanResources.Company
                     parameters.SearchCriteria,
                     parameters.OrderBy,
                     parameters.PageNumber,
-                    parameters.PageSize
+                    parameters.PageSize,
+                    parameters.Skip,
+                    parameters.Take
                 );
 
                 GetCompanyDepartmentsFilteredRequest request = new(SearchCriteria: criteria);

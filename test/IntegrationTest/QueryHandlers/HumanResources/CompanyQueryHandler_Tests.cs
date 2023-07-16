@@ -93,7 +93,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
         [Fact]
         public async Task Handle_GetCompanyDepartmentsFilteredByNameQueryHandler_ShouldSucceed()
         {
-            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10);
+            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10, 0, 10);
             GetCompanyDepartmentsFilteredRequest request = new(SearchCriteria: criteria);
 
             GetCompanyDepartmentsFilteredQueryHandler handler = new(_repository);
@@ -109,7 +109,7 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
         [Fact]
         public async Task Handle_GetCompanyDepartmentsFilteredByGroupNameQueryHandler_ShouldSucceed()
         {
-            StringSearchCriteria criteria = new("GroupName", "Man", "[Name]", 1, 10);
+            StringSearchCriteria criteria = new("GroupName", "Man", "[Name]", 1, 10, 0, 10);
             GetCompanyDepartmentsFilteredRequest request = new(SearchCriteria: criteria);
 
             GetCompanyDepartmentsFilteredQueryHandler handler = new(_repository);

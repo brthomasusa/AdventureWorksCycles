@@ -30,6 +30,8 @@ namespace AWC.Presentation.HumanResources.Company
             {
                 _ = int.TryParse(context.Request.Query["PageNumber"], out var page);
                 _ = int.TryParse(context.Request.Query["PageSize"], out var size);
+                _ = int.TryParse(context.Request.Query["Skip"], out var skip);
+                _ = int.TryParse(context.Request.Query["Take"], out var take);
 
                 var result = new FilterByFieldNameParameters
                 {
@@ -37,7 +39,9 @@ namespace AWC.Presentation.HumanResources.Company
                     SearchCriteria = context.Request.Query["SearchCriteria"],
                     OrderBy = context.Request.Query["OrderBy"],
                     PageNumber = page,
-                    PageSize = size
+                    PageSize = size,
+                    Skip = skip,
+                    Take = take
                 };
 
                 return ValueTask.FromResult<FilterByFieldNameParameters?>(result);
@@ -48,6 +52,8 @@ namespace AWC.Presentation.HumanResources.Company
             public string? OrderBy { get; set; }
             public int PageNumber { get; set; }
             public int PageSize { get; set; }
+            public int Skip { get; set; }
+            public int Take { get; set; }
         }
     }
 }

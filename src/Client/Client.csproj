@@ -5,6 +5,15 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>AWC.Client</RootNamespace>
+    <VersionSuffix>0.0.$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
+    <AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
+    <AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
+    <Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
+    <Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
+    <Company>BTechnical Consulting</Company>
+    <Authors>BTechnical Consulting</Authors>
+    <Copyright>Copyright © BTechnical Consulting 2023</Copyright>
+    <Product>Adventure Works Cycles 1.0</Product>    
   </PropertyGroup>
 
   <ItemGroup>

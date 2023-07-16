@@ -72,13 +72,3 @@ namespace AWC.Client.Features.HumanResources.ViewDepartments.Store
         }
     }
 }
-
-/*
-message grpc_StringSearchCriteria {
-    string search_field = 1;
-	string search_criteria = 2;
-    string order_by = 3;
-	int32 page_number = 4;
-	int32 page_size = 5;    
-}
-*/

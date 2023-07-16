@@ -86,7 +86,7 @@ namespace AWC.IntegrationTests.Repositories
         public async Task GetCompanyDepartmentsFilteredByName_CompanyReadRepository_ShouldSucceed()
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
-            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10);
+            StringSearchCriteria criteria = new("[Name]", "Pr", "[Name]", 1, 10, 0, 10);
 
             Result<PagedList<DepartmentDetails>> result =
                 await readRepository.CompanyReadRepository.GetCompanyDepartmentsFiltered(criteria);
