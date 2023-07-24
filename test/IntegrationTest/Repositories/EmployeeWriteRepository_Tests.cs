@@ -2,7 +2,9 @@ using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.IntegrationTest.Base;
 using AWC.SharedKernel.Utilities;
+using MapsterMapper;
 
 namespace AWC.IntegrationTests.Repositories
 {
@@ -13,7 +15,12 @@ namespace AWC.IntegrationTests.Repositories
 
         public EmployeeWriteRepository_Tests()
         {
-            _writeRepository = new WriteRepositoryManager(_dbContext, new NullLogger<WriteRepositoryManager>());
+            _writeRepository =
+                new WriteRepositoryManager
+                (
+                    _dbContext,
+                    new NullLogger<WriteRepositoryManager>()
+                );
             _validationRepository = new ValidationRepositoryManager(_dbContext, new NullLogger<WriteRepositoryManager>());
         }
 

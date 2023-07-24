@@ -4,6 +4,7 @@ using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Application.Features.HumanResources.ViewEmployeeDetails;
 using AWC.Application.Features.HumanResources.ViewEmployees;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 using Carter;
 using MediatR;
@@ -18,7 +19,7 @@ namespace AWC.Presentation.HumanResources.Employee
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapGet("api/employees/allinfo/{id}", async (int id, ISender sender) =>
+            app.MapGet("api/employees/details/{id}", async (int id, ISender sender) =>
             {
                 Result<EmployeeDetails> result =
                     await sender.Send(new GetEmployeeDetailsRequest(EmployeeID: id));
@@ -29,10 +30,33 @@ namespace AWC.Presentation.HumanResources.Employee
                 return Results.Problem(result.Error);
             });
 
-            app.MapGet("api/employees/filterbylastname", async (QueryParameters.FilterEmployeesByNameParameters parameters, ISender sender) =>
+            app.MapGet("api/employees/command/{id}", async (int id, ISender sender) =>
             {
+                Result<EmployeeGenericCommand> result =
+                    await sender.Send(new GetEmployeeCommandRequest(EmployeeID: id));
+
+                if (result.IsSuccess)
+                    return Results.Ok(result.Value);
+
+                return Results.Problem(result.Error);
+            });
+
+            app.MapGet("api/employees/filterbylastname", async (QueryParameters.FilterByFieldNameParameters parameters, ISender sender) =>
+            {
+                StringSearchCriteria criteria = new
+                (
+                    parameters.SearchField,
+                    parameters.SearchCriteria,
+                    parameters.OrderBy,
+                    parameters.PageNumber,
+                    parameters.PageSize,
+                    parameters.Skip,
+                    parameters.Take
+                );
+
+
                 PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
-                GetEmployeeListItemsRequest request = new(LastName: parameters.LastName!, PagingParameters: pagingParameters);
+                GetEmployeeListItemsRequest request = new(SearchCriteria: criteria);
 
                 Result<PagedList<EmployeeListItem>> result = await sender.Send(request);
 

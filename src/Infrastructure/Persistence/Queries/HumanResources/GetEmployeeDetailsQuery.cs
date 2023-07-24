@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 {
-    public static class GetEmployeeDetailsByIdWithAllInfoQuery
+    public static class GetEmployeeDetailsQuery
     {
         public async static Task<Result<EmployeeDetails>> Query
         (
@@ -18,7 +18,8 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
         {
             try
             {
-                const string sql = "SELECT * FROM HumanResources.udfGetEmployeeDetails(@ID)";
+                const string sql = EmployeeQuerySql.GetEmployeeDetails;
+
                 var parameters = new DynamicParameters();
                 parameters.Add("ID", employeeId, DbType.Int32);
 

@@ -24,12 +24,20 @@ namespace AWC.Server.Contracts
         public override async Task<grpc_CompanyForDisplay> GetCompanyForDisplay(ItemRequest request, ServerCallContext context)
         {
             Result<CompanyDetails> result = await _sender.Send(new GetCompanyDetailsRequest(CompanyID: request.Id));
+
+            if (result.IsFailure)
+                throw new RpcException(new(StatusCode.Internal, result.Error.Message));
+
             return _mapper.Map<grpc_CompanyForDisplay>(result.Value);
         }
 
         public override async Task<grpc_CompanyGenericCommand> GetCompanyForEdit(ItemRequest request, ServerCallContext context)
         {
             Result<CompanyGenericCommand> result = await _sender.Send(new GetCompanyCommandRequest(CompanyID: request.Id));
+
+            if (result.IsFailure)
+                throw new RpcException(new(StatusCode.Internal, result.Error.Message));
+
             return _mapper.Map<grpc_CompanyGenericCommand>(result.Value);
         }
 
@@ -50,6 +58,9 @@ namespace AWC.Server.Contracts
 
             Result<PagedList<DepartmentDetails>> result = await _sender.Send(requestParameter);
 
+            if (result.IsFailure)
+                throw new RpcException(new(StatusCode.Internal, result.Error.Message));
+
             grpc_GetCompanyDepartments grpcDepartmentContainer = new();
             List<grpc_Department> grpcDepartmentListItems = new();
 
@@ -69,6 +80,9 @@ namespace AWC.Server.Contracts
             GetCompanyShiftsRequest shiftsRequest = new(PagingParameters: pagingParameters);
             Result<PagedList<ShiftDetails>> getShiftsResult = await _sender.Send(shiftsRequest);
 
+            if (getShiftsResult.IsFailure)
+                throw new RpcException(new(StatusCode.Internal, getShiftsResult.Error.Message));
+
             grpc_GetCompanyShifts grpcResponse = new();
             List<grpc_Shift> grpcShiftList = new();
 
@@ -87,7 +101,7 @@ namespace AWC.Server.Contracts
             Result<int> result = await _sender.Send(cmd);
 
             if (result.IsFailure)
-                return new GenericResponse { Success = false };
+                throw new RpcException(new(StatusCode.Internal, result.Error.Message));
 
             return new GenericResponse { Success = true };
         }

@@ -17,25 +17,25 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
         {
             Result<Employee> getEmployee = Employee.Create
             (
-                request.EmployeeID,
-                request.PersonType,
-                request.NameStyle ? NameStyleEnum.Eastern : NameStyleEnum.Western,
+                request.BusinessEntityID,
+                "EM",
+                request.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
                 request.Title,
                 request.FirstName,
                 request.LastName,
                 request.MiddleName!,
                 request.Suffix,
                 request.ManagerID,
-                request.NationalID,
-                request.Login,
+                request.NationalIDNumber,
+                request.LoginID,
                 request.JobTitle,
                 DateOnly.FromDateTime(request.BirthDate),
                 request.MaritalStatus,
                 request.Gender,
                 DateOnly.FromDateTime(request.HireDate),
                 request.Salaried,
-                request.Vacation,
-                request.SickLeave,
+                request.VacationHours,
+                request.SickLeaveHours,
                 request.Active
             );
 
@@ -66,12 +66,12 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
             (
                 0,
                 getEmployee.Value.Id,
-                (AddressTypeEnum)request.AddressType,
+                AddressTypeEnum.Home,
                 request.AddressLine1,
                 request.AddressLine2,
                 request.City,
-                request.StateCode,
-                request.PersonType
+                request.StateProvinceID,
+                "EM"
             );
             if (addrResult.IsFailure)
                 return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", addrResult.Error.Message));
@@ -88,7 +88,7 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
             Result<PersonPhone> phoneResult = getEmployee.Value.AddPhoneNumber
             (
                 getEmployee.Value.Id,
-                (PhoneNumberTypeEnum)request.PhoneNumberType,
+                (PhoneNumberTypeEnum)request.PhoneNumberTypeID,
                 request.PhoneNumber
             );
             if (phoneResult.IsFailure)

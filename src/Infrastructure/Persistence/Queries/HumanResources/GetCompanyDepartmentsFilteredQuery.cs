@@ -11,8 +11,6 @@ namespace AWC.Infrastructure.Persistence.Queries.HumanResources
 {
     public static class GetCompanyDepartmentsFilteredQuery
     {
-        private static int Offset(int page, int pageSize) => (page - 1) * pageSize;
-
         public async static Task<Result<PagedList<DepartmentDetails>>> Query
         (
             StringSearchCriteria searchCriteria,

@@ -6,6 +6,7 @@ using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.Person;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
+using MapsterMapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -17,10 +18,10 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
     public sealed class EmployeeWriteRepository : IEmployeeWriteRepository
     {
         private readonly ILogger<WriteRepositoryManager> _logger;
-        private readonly EfCoreContext _context;
+        private readonly AwcContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
-        public EmployeeWriteRepository(EfCoreContext ctx, ILogger<WriteRepositoryManager> logger)
+        public EmployeeWriteRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger)
         {
             _context = ctx;
             _unitOfWork = new UnitOfWork(_context);

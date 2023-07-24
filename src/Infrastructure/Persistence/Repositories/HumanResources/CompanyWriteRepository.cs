@@ -15,10 +15,10 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
     {
         private const int SUCCESS_MARKER = 0;
         private readonly ILogger<WriteRepositoryManager> _logger;
-        private readonly EfCoreContext _context;
+        private readonly AwcContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CompanyWriteRepository(EfCoreContext ctx, ILogger<WriteRepositoryManager> logger)
+        public CompanyWriteRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger)
         {
             _context = ctx;
             _unitOfWork = new UnitOfWork(_context);

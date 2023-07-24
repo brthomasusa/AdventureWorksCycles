@@ -6,14 +6,9 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
     {
         public UpdateEmployeeCommandDataValidator()
         {
-            RuleFor(employee => employee.EmployeeID)
+            RuleFor(employee => employee.BusinessEntityID)
                                         .GreaterThan(0)
                                         .WithMessage("An ID is required in order to locate the employee to be updated.");
-
-            RuleFor(employee => employee.PersonType)
-                                        .NotEmpty()
-                                        .WithMessage("Missing person type flag; this is required.")
-                                        .Equal("EM").WithMessage("Valid person type is EM for employee");
 
             RuleFor(employee => employee.Title)
                                         .MaximumLength(8).WithMessage("Title cannot be longer than 8 characters");
@@ -36,11 +31,11 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
                                         .Must(emailPromo => emailPromo >= 0 && emailPromo <= 2)
                                         .WithMessage("Valid email promo codes are 0, 1, or 2.");
 
-            RuleFor(employee => employee.NationalID)
+            RuleFor(employee => employee.NationalIDNumber)
                                         .NotEmpty().WithMessage("National ID; this is required.")
                                         .MaximumLength(50).WithMessage("National ID cannot be longer than 15 characters");
 
-            RuleFor(employee => employee.Login)
+            RuleFor(employee => employee.LoginID)
                                         .NotEmpty().WithMessage("Employee login; this is required.")
                                         .MaximumLength(50).WithMessage("Employee login cannot be longer than 256 characters");
 
@@ -70,11 +65,11 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
                                         .Must(hireDate => hireDate >= new DateTime(1996, 7, 1))
                                         .WithMessage("Hire date must be on or after July 1, 1996.");
 
-            RuleFor(employee => employee.Vacation)
+            RuleFor(employee => employee.VacationHours)
                                         .Must(vacation => vacation >= -40 && vacation <= 240)
                                         .WithMessage("Valid vacation hours are between negative 40 and 240.");
 
-            RuleFor(employee => employee.SickLeave)
+            RuleFor(employee => employee.SickLeaveHours)
                                         .Must(sickleave => sickleave >= 0 && sickleave <= 120)
                                         .WithMessage("Valid sick leave hours are between 0 and 120.");
         }

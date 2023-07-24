@@ -1,7 +1,6 @@
 using AWC.Application.Lookups.HumanResources.GetDepartmentIds;
 using AWC.Application.Lookups.HumanResources.GetManagerIds;
 using AWC.Application.Lookups.HumanResources.GetShiftIds;
-using AWC.Application.Lookups.Shared.GetCountryCodes;
 using AWC.Application.Lookups.Shared.GetStateCodesForAll;
 using AWC.Application.Lookups.Shared.GetStateCodesForUSA;
 using AWC.Shared.Queries.Lookups.HumanResources;
@@ -30,9 +29,17 @@ namespace AWC.Server.Contracts
         {
             Result<List<StateCode>> stateCodes = await _sender.Send(new GetStateCodeIdForAllRequest());
 
-            stateCodes.Value.ToList().ForEach(stateCode => responseStream.WriteAsync(
-                new grpc_StateProvinceCode { Id = stateCode.StateProvinceID, StateCode = stateCode.StateProvinceCode }
-            ));
+            if (stateCodes.IsSuccess)
+            {
+                stateCodes.Value.ToList().ForEach(stateCode => responseStream.WriteAsync(
+                    new grpc_StateProvinceCode { Id = stateCode.StateProvinceID, StateCode = stateCode.StateProvinceCode }
+                ));
+            }
+            else
+            {
+                throw new RpcException(new(StatusCode.Internal, stateCodes.Error.Message));
+            }
+
         }
 
         public async override Task GetStateCodesUsa
@@ -44,9 +51,64 @@ namespace AWC.Server.Contracts
         {
             Result<List<StateCode>> stateCodes = await _sender.Send(new GetStateCodeIdForUSARequest());
 
-            stateCodes.Value.ToList().ForEach(stateCode => responseStream.WriteAsync(
-                new grpc_StateProvinceCode { Id = stateCode.StateProvinceID, StateCode = stateCode.StateProvinceCode }
-            ));
+            if (stateCodes.IsSuccess)
+            {
+                stateCodes.Value.ToList().ForEach(stateCode => responseStream.WriteAsync(
+                    new grpc_StateProvinceCode { Id = stateCode.StateProvinceID, StateCode = stateCode.StateProvinceCode }
+                ));
+            }
+            else
+            {
+                throw new RpcException(new(StatusCode.Internal, stateCodes.Error.Message));
+            }
+        }
+
+        public async override Task GetDepartmentIds(Empty request, IServerStreamWriter<grpc_DepartmentId> responseStream, ServerCallContext context)
+        {
+            Result<List<DepartmentId>> result = await _sender.Send(new GetDepartmentIdsRequest());
+
+            if (result.IsSuccess)
+            {
+                result.Value.ToList().ForEach(dept => responseStream.WriteAsync(
+                    new grpc_DepartmentId { DepartmentId = dept.DepartmentID, Name = dept.DepartmentName }
+                ));
+            }
+            else
+            {
+                throw new RpcException(new(StatusCode.Internal, result.Error.Message));
+            }
+        }
+
+        public async override Task GetManagerIds(Empty request, IServerStreamWriter<grpc_ManagerId> responseStream, ServerCallContext context)
+        {
+            Result<List<ManagerId>> result = await _sender.Send(new GetManagerIdsRequest());
+
+            if (result.IsSuccess)
+            {
+                result.Value.ToList().ForEach(mgr => responseStream.WriteAsync(
+                    new grpc_ManagerId { BusinessEntityId = mgr.BusinessEntityID, ManagerFullName = mgr.ManagerFullName }
+                ));
+            }
+            else
+            {
+                throw new RpcException(new(StatusCode.Internal, result.Error.Message));
+            }
+        }
+
+        public async override Task GetShiftIds(Empty request, IServerStreamWriter<grpc_ShiftId> responseStream, ServerCallContext context)
+        {
+            Result<List<ShiftId>> result = await _sender.Send(new GetShiftIdsRequest());
+
+            if (result.IsSuccess)
+            {
+                result.Value.ToList().ForEach(shift => responseStream.WriteAsync(
+                    new grpc_ShiftId { ShiftId = shift.ShiftID, Name = shift.ShiftName }
+                ));
+            }
+            else
+            {
+                throw new RpcException(new(StatusCode.Internal, result.Error.Message));
+            }
         }
     }
 }

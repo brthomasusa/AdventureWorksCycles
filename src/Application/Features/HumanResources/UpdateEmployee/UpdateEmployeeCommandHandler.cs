@@ -19,30 +19,30 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         {
             try
             {
-                Result<Employee> getEmployee = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.EmployeeID);
+                Result<Employee> getEmployee = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.BusinessEntityID);
 
                 if (getEmployee.IsSuccess)
                 {
                     Result<Employee> updateDomainObjResult = getEmployee.Value.Update
                     (
-                        request.PersonType,
-                        request.NameStyle ? NameStyleEnum.Eastern : NameStyleEnum.Western,
+                        "EM",
+                        request.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
                         request.Title!,
                         request.FirstName,
                         request.LastName,
                         request.MiddleName!,
                         request.Suffix!,
                         (EmailPromotionEnum)request.EmailPromotion,
-                        request.NationalID,
-                        request.Login,
+                        request.NationalIDNumber,
+                        request.LoginID,
                         request.JobTitle,
                         DateOnly.FromDateTime(request.BirthDate),
                         request.MaritalStatus,
                         request.Gender,
                         DateOnly.FromDateTime(request.HireDate),
                         request.Salaried,
-                        request.Vacation,
-                        request.SickLeave,
+                        request.VacationHours,
+                        request.SickLeaveHours,
                         request.Active
                     );
 

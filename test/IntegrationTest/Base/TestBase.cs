@@ -10,7 +10,7 @@ namespace AWC.IntegrationTests.Base
     public abstract class TestBase : IDisposable
     {
         protected readonly string _connectionString;
-        protected readonly EfCoreContext _dbContext;
+        protected readonly AwcContext _dbContext;
         protected readonly DapperContext _dapperCtx;
 
         protected TestBase()
@@ -19,16 +19,16 @@ namespace AWC.IntegrationTests.Base
             _connectionString = config.GetConnectionString("DefaultConnection");
             _dapperCtx = new DapperContext(_connectionString);
 
-            var optionsBuilder = new DbContextOptionsBuilder<EfCoreContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<AwcContext>();
 
             optionsBuilder.UseSqlServer(
                 _connectionString,
-                msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(EfCoreContext).Assembly.FullName)
+                msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(AwcContext).Assembly.FullName)
             )
             .EnableSensitiveDataLogging()
             .EnableDetailedErrors();
 
-            _dbContext = new EfCoreContext(optionsBuilder.Options);
+            _dbContext = new AwcContext(optionsBuilder.Options);
             _dbContext.Database.ExecuteSqlRaw("EXEC dbo.usp_InitializeTestDb");
         }
 

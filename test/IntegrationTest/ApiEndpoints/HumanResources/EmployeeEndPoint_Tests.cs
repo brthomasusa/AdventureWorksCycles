@@ -17,10 +17,10 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
         { }
 
         [Fact]
-        public async Task Employee_GetEmployeeDetailsByIdWithAllInfoQuery_ShouldSucceed()
+        public async Task Employee_GetEmployeeDetails_ShouldSucceed()
         {
             const int employeeId = 1;
-            using var response = await _client.GetAsync($"{_urlRoot}employees/allinfo/{employeeId}",
+            using var response = await _client.GetAsync($"{_urlRoot}employees/details/{employeeId}",
                                                         HttpCompletionOption.ResponseHeadersRead);
 
             response.EnsureSuccessStatusCode();
@@ -33,22 +33,40 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
         }
 
         [Fact]
+        public async Task Employee_GetEmployeeCommand_ShouldSucceed()
+        {
+            const int employeeId = 1;
+            using var response = await _client.GetAsync($"{_urlRoot}employees/command/{employeeId}",
+                                                        HttpCompletionOption.ResponseHeadersRead);
+
+            response.EnsureSuccessStatusCode();
+
+            var jsonResponse = await response.Content.ReadAsStreamAsync();
+            var employee = await JsonSerializer.DeserializeAsync<EmployeeGenericCommand>(jsonResponse, _options);
+
+            Assert.Equal("Ken", employee.FirstName);
+            Assert.Equal("Sánchez", employee.LastName);
+        }
+
+        [Fact]
         public async Task Employee_GetEmployeeListItemsFilterByLastName_ShouldSucceed()
         {
-            var pagingParams = new { PageNumber = 1, PageSize = 10 };
-            const string lastName = "A";
-
             var queryParams = new Dictionary<string, string?>
             {
-                ["pageNumber"] = pagingParams.PageNumber.ToString(),
-                ["pageSize"] = pagingParams.PageSize.ToString(),
-                ["lastName"] = lastName
+                ["searchField"] = "LastName",
+                ["searchCriteria"] = "Du",
+                ["orderBy"] = "LastName",
+                ["pageNumber"] = "0",
+                ["pageSize"] = "0",
+                ["skip"] = "0",
+                ["take"] = "10"
             };
+
 
             List<EmployeeListItem> response = await _client
                 .GetFromJsonAsync<List<EmployeeListItem>>(QueryHelpers.AddQueryString($"{_urlRoot}employees/filterbylastname", queryParams));
 
-            Assert.Equal(10, response.Count);
+            Assert.Equal(4, response.Count);
         }
 
         [Fact]
@@ -142,7 +160,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
         public async Task Employee_DeleteEmployeeInfo_Valid_ShouldSucceed()
         {
             string uri = $"{_urlRoot}employees/delete";
-            DeleteEmployeeCommand command = new(EmployeeID: 2);
+            DeleteEmployeeCommand command = new(BusinessEntityID: 2);
 
             var memStream = new MemoryStream();
             await JsonSerializer.SerializeAsync(memStream, command);
@@ -163,7 +181,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
         public async Task Employee_DeleteEmployeeInfo_InvalidEmployeeID_ShouldFail()
         {
             string uri = $"{_urlRoot}employees/delete";
-            DeleteEmployeeCommand command = new(EmployeeID: 2221);
+            DeleteEmployeeCommand command = new(BusinessEntityID: 2221);
 
             var memStream = new MemoryStream();
             await JsonSerializer.SerializeAsync(memStream, command);

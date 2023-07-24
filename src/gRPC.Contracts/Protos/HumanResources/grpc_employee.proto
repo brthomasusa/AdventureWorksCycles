@@ -23,7 +23,7 @@ message grpc_EmployeeGenericCommand {
     string suffix = 7;
     string job_title = 8;
     string phone_number = 9;
-    string phone_number_type = 10;
+    int32 phone_number_type_id = 10;
     string email_address = 11;
     int32 email_promotion = 12;
     string national_id_number = 13;
@@ -33,20 +33,19 @@ message grpc_EmployeeGenericCommand {
     string city = 17;
     int32 state_province_id = 18;
     string postal_code = 19;
-    string country_region_code = 20;
-    google.protobuf.Timestamp birth_date = 21;
-    string marital_status = 22;
-    string gender = 23;
-    google.protobuf.Timestamp hire_date = 24;
-    bool salaried = 25;
-    int32 vacation_hours = 26;
-    int32 sick_leave_hours = 27;
+    google.protobuf.Timestamp birth_date = 20;
+    string marital_status = 21;
+    string gender = 22;
+    google.protobuf.Timestamp hire_date = 23;
+    bool salaried = 24;
+    int32 vacation_hours = 25;
+    int32 sick_leave_hours = 26;
+    double pay_rate = 27;
     int32 pay_frequency = 28;
-    double pay_rate = 29;
-    bool active = 30;
-    int32 manager_id = 31;
-    int32 department_id = 32;
-    int32 shift_id = 33;   
+    bool active = 29;
+    int32 manager_id = 30;
+    int32 department_id = 31;
+    int32 shift_id = 32;   
 }
 
 message grpc_EmployeeForDisplay {
@@ -69,36 +68,37 @@ message grpc_EmployeeForDisplay {
     string city = 17;
     string state_province_name = 18;
     string postal_code = 19;
-    string country_region_name = 20;
-    google.protobuf.Timestamp birth_date = 21;
-    string marital_status = 22;
-    string gender = 23;
-    google.protobuf.Timestamp hire_date = 24;
-    bool salaried = 25;
-    int32 vacation_hours = 26;
-    int32 sick_leave_hours = 27;
-    string pay_frequency = 28;
-    double pay_rate = 29;
-    bool active = 30;
-    string manager_full_name = 31;
-    string department_name = 32;   
-    string shift_name = 33;
+    google.protobuf.Timestamp birth_date = 20;
+    string marital_status = 21;
+    string gender = 22;
+    google.protobuf.Timestamp hire_date = 23;
+    bool salaried = 24;
+    int32 vacation_hours = 25;
+    int32 sick_leave_hours = 26;
+    double pay_rate = 27;
+    string pay_frequency = 28;    
+    bool active = 29;
+    string manager_name = 30;
+    string department = 31;   
+    string shift = 32;
+    string address = 33;
 }
 
 message grpc_EmployeeListItem {
-    int32 businessEntityId = 1;
-    string lastName = 2;
-    string firstName = 3;
-    string middleName = 4;    
-    string jobTitle = 5;
+    int32 business_Entity_Id = 1;
+    string last_Name = 2;
+    string first_Name = 3;
+    string middle_Name = 4;    
+    string job_Title = 5;
     string department = 6;
-    string phoneNumber = 7;
-    string emailAddress = 8;
-    bool active = 9;
-    string fullName = 10;
-    int32 managerId = 11;
-    int32 employeesManaged = 12;
-    string managerName = 13;       
+    string shift = 7;
+    string phone_Number = 8;
+    string email_Address = 9;
+    bool active = 10;
+    string full_Name = 11;
+    int32 manager_Id = 12;
+    int32 employees_Managed = 13;
+    string manager_Name = 14;       
 }
 
 message grpc_EmployeeListItems {

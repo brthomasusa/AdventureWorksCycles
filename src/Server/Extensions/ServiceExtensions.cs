@@ -27,10 +27,10 @@ namespace AWC.Server.Extensions
 
         public static void ConfigureEfCoreDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<EfCoreContext>(options =>
+            services.AddDbContext<AwcContext>(options =>
                 options.UseSqlServer(
                     configuration["ConnectionStrings:DefaultConnection"],
-                    msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(EfCoreContext).Assembly.FullName)
+                    msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(AwcContext).Assembly.FullName)
                 )
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors()

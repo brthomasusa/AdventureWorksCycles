@@ -1,7 +1,6 @@
-using AWC.Core.HumanResources;
-using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.Repositories
@@ -9,24 +8,36 @@ namespace AWC.IntegrationTests.Repositories
     public class EmployeeReadRepository_Tests : TestBase
     {
         [Fact]
-        public async Task GetEmployeeDetailsByIdWithAllInfo_EmployeeReadRepository_ShouldSucceed()
+        public async Task GetEmployeeDetails_EmployeeReadRepository_ShouldSucceed()
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Result<EmployeeDetails> result =
-                await readRepository.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(1);
+                await readRepository.EmployeeReadRepository.GetEmployeeDetails(1);
 
             Assert.True(result.IsSuccess);
             Assert.Equal("Sánchez", result.Value.LastName);
         }
 
         [Fact]
-        public async Task GetEmployeeDetailsByIdWithAllInfo_EmployeeReadRepository_ShouldFail()
+        public async Task GetEmployeeCommand_EmployeeReadRepository_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Result<EmployeeGenericCommand> result =
+                await readRepository.EmployeeReadRepository.GetEmployeeGenericCommand(1);
+
+            Assert.True(result.IsSuccess);
+            Assert.Equal("Sánchez", result.Value.LastName);
+        }
+
+        [Fact]
+        public async Task GetEmployeeDetails_EmployeeReadRepository_WithInvalidID_ShouldFail()
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
 
             Result<EmployeeDetails> result =
-                await readRepository.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(300);
+                await readRepository.EmployeeReadRepository.GetEmployeeDetails(300);
 
             Assert.True(result.IsFailure);
         }
@@ -35,11 +46,10 @@ namespace AWC.IntegrationTests.Repositories
         public async Task GetEmployeeListItemsSearchByLastName_EmployeeReadRepository_ShouldSucceed()
         {
             ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
-            const string lastName = "A";
-            PagingParameters pagingParameters = new(1, 10);
 
+            StringSearchCriteria criteria = new("[LastName]", "A", "[LastName]", 1, 10, 0, 10);
             Result<PagedList<EmployeeListItem>> result =
-                await readRepository.EmployeeReadRepository.GetEmployeeListItemsSearchByLastName(lastName, pagingParameters);
+                await readRepository.EmployeeReadRepository.GetEmployeeListItemsSearchByLastName(criteria);
 
             Assert.True(result.IsSuccess);
             int employees = result.Value.Count;

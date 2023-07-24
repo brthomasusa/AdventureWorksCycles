@@ -7,9 +7,9 @@ namespace AWC.Infrastructure.Persistence.Repositories
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private bool _isDisposed;
-        private readonly EfCoreContext _dbContext;
+        private readonly AwcContext _dbContext;
 
-        public UnitOfWork(EfCoreContext ctx) => _dbContext = ctx;
+        public UnitOfWork(AwcContext ctx) => _dbContext = ctx;
 
         ~UnitOfWork() => Dispose(false);
 

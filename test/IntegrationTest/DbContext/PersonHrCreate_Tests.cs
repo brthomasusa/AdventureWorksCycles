@@ -1,4 +1,3 @@
-using System.Transactions;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;

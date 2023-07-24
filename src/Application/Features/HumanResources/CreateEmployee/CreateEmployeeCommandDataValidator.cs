@@ -6,14 +6,9 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
     {
         public CreateEmployeeCommandDataValidator()
         {
-            RuleFor(employee => employee.EmployeeID)
+            RuleFor(employee => employee.BusinessEntityID)
                                         .Equal(0)
                                         .WithMessage("ID for new employee should be zero.");
-
-            RuleFor(employee => employee.PersonType)
-                                        .NotEmpty()
-                                        .WithMessage("Missing person type flag; this is required.")
-                                        .Equal("EM").WithMessage("Valid person type is EM for employee");
 
             RuleFor(employee => employee.Title)
                                         .MaximumLength(8).WithMessage("Title cannot be longer than 8 characters");
@@ -36,11 +31,11 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
                                         .Must(emailPromo => emailPromo >= 0 && emailPromo <= 2)
                                         .WithMessage("Valid email promo codes are 0, 1, or 2.");
 
-            RuleFor(employee => employee.NationalID)
+            RuleFor(employee => employee.NationalIDNumber)
                                         .NotEmpty().WithMessage("National ID; this is required.")
                                         .MaximumLength(50).WithMessage("National ID cannot be longer than 15 characters");
 
-            RuleFor(employee => employee.Login)
+            RuleFor(employee => employee.LoginID)
                                         .NotEmpty().WithMessage("Employee login; this is required.")
                                         .MaximumLength(50).WithMessage("Employee login cannot be longer than 256 characters");
 
@@ -70,11 +65,11 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
                                         .Must(hireDate => hireDate >= new DateTime(1996, 7, 1))
                                         .WithMessage("Hire date must be on or after July 1, 1996.");
 
-            RuleFor(employee => employee.Vacation)
+            RuleFor(employee => employee.VacationHours)
                                         .Must(vacation => vacation >= -40 && vacation <= 240)
                                         .WithMessage("Valid vacation hours are between negative 40 and 240.");
 
-            RuleFor(employee => employee.SickLeave)
+            RuleFor(employee => employee.SickLeaveHours)
                                         .Must(sickleave => sickleave >= 0 && sickleave <= 120)
                                         .WithMessage("Valid sick leave hours are between 0 and 120.");
 
@@ -84,7 +79,7 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
 
             RuleFor(employee => employee.PayFrequency)
                                         .Must(freq => freq == 1 || freq == 2)
-                                        .WithMessage("Valid pay frequencies are 1 for monthly and 2 for biweekly.");
+                                        .WithMessage("Valid pay frequencies are 1 for biweekly and 2 for monthly.");
 
             RuleFor(employee => employee.DepartmentID)
                                         .GreaterThan(0)
@@ -93,10 +88,6 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
             RuleFor(employee => employee.ShiftID)
                                         .GreaterThan(0)
                                         .WithMessage("A shift ID is required.");
-
-            RuleFor(employee => employee.AddressType)
-                                        .Equal(2)
-                                        .WithMessage("Address type for an employee is 2 (Home).");
 
             RuleFor(employee => employee.AddressLine1)
                                         .NotEmpty().WithMessage("Address line 1; this is required.")
@@ -109,7 +100,7 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
                                         .NotEmpty().WithMessage("City name; this is required.")
                                         .MaximumLength(30).WithMessage("City name cannot be longer than 30 characters");
 
-            RuleFor(employee => employee.StateCode)
+            RuleFor(employee => employee.StateProvinceID)
                                         .Must(code => code >= 1 && code <= 181)
                                         .WithMessage("Valid state province codes are between 1 and 181.");
 
@@ -121,7 +112,7 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
 
             RuleFor(employee => employee.PhoneNumber).Matches("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$");
 
-            RuleFor(employee => employee.PhoneNumberType)
+            RuleFor(employee => employee.PhoneNumberTypeID)
                                         .Must(phType => phType >= 1 && phType <= 3)
                                         .WithMessage("Valid phone number types are 1, 2, and 3 (cell, home, work).");
         }

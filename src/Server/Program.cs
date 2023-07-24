@@ -22,6 +22,7 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Logging.ClearProviders();
+    builder.Logging.AddConsole();
     builder.Host.UseNLog();
 
     builder.Services.AddControllersWithViews();
@@ -46,7 +47,7 @@ try
     builder.Services.AddGrpc(options =>
     {
         options.EnableDetailedErrors = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
-        options.Interceptors.Add<TracingInterceptor>();
+        options.Interceptors.Add<ServerTracingInterceptor>();
     });
 
     builder.Services.AddGrpcReflection();
@@ -76,7 +77,7 @@ try
     app.MapGrpcReflectionService();
     app.MapGrpcService<CompanyContractService>().RequireCors("AllowAll");
     app.MapGrpcService<LookupsContractService>().RequireCors("AllowAll");
-    // app.MapGrpcService<EmployeeContractService>().RequireCors("AllowAll");
+    app.MapGrpcService<EmployeeContractService>().RequireCors("AllowAll");
 
 
     app.MapRazorPages();

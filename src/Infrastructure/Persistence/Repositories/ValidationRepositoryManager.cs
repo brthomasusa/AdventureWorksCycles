@@ -8,13 +8,13 @@ namespace AWC.Infrastructure.Persistence.Repositories
     public sealed class ValidationRepositoryManager : IValidationRepositoryManager
     {
         private readonly ILogger<WriteRepositoryManager> _logger;
-        private readonly EfCoreContext _context;
+        private readonly AwcContext _context;
         private readonly Lazy<IEmployeeValidationRepository> _employeeRepository;
         private readonly Lazy<ICompanyValidationRepository> _companyRepository;
 
         public ValidationRepositoryManager
         (
-            EfCoreContext context,
+            AwcContext context,
             ILogger<WriteRepositoryManager> logger
         )
         {

@@ -43,7 +43,8 @@
     <PackageReference Include="EfCore.TestSupport" Version="5.2.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />       
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Mapster" Version="7.3.0" />       
   </ItemGroup>
 
   <ItemGroup>

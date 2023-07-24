@@ -12,9 +12,9 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
     public sealed class EmployeeValidationRepository : IEmployeeValidationRepository
     {
         private readonly ILogger<WriteRepositoryManager> _logger;
-        private readonly EfCoreContext _context;
+        private readonly AwcContext _context;
 
-        public EmployeeValidationRepository(EfCoreContext ctx, ILogger<WriteRepositoryManager> logger)
+        public EmployeeValidationRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger)
         {
             _context = ctx;
             _logger = logger;

@@ -8,13 +8,13 @@ namespace AWC.Infrastructure.Persistence.Repositories
     public class WriteRepositoryManager : IWriteRepositoryManager
     {
         private readonly ILogger<WriteRepositoryManager> _logger;
-        private readonly EfCoreContext _context;
+        private readonly AwcContext _context;
         private readonly Lazy<IEmployeeWriteRepository> _employeeRepository;
         private readonly Lazy<ICompanyWriteRepository> _companyRepository;
 
         public WriteRepositoryManager
         (
-            EfCoreContext context,
+            AwcContext context,
             ILogger<WriteRepositoryManager> logger
         )
         {

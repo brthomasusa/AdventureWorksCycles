@@ -6,7 +6,7 @@ namespace AWC.Application.Features.HumanResources.DeleteEmployee
     {
         public DeleteEmployeeCommandDataValidator()
         {
-            RuleFor(employee => employee.EmployeeID)
+            RuleFor(employee => employee.BusinessEntityID)
                                         .GreaterThan(0)
                                         .WithMessage("An ID is required in order to locate the employee to be deleted.");
         }

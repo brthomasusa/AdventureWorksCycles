@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AWC.Infrastructure.Persistence
 {
-    public class EfCoreContext : DbContext
+    public sealed class AwcContext : DbContext
     {
-        public EfCoreContext(DbContextOptions<EfCoreContext> options)
+        public AwcContext(DbContextOptions<AwcContext> options)
             : base(options)
         { }
 
@@ -39,7 +39,7 @@ namespace AWC.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            _ = modelBuilder.HasDbFunction(typeof(EfCoreContext).GetMethod(nameof(Get_Manager_ID), new[] { typeof(int) }));
+            _ = modelBuilder.HasDbFunction(typeof(AwcContext).GetMethod(nameof(Get_Manager_ID), new[] { typeof(int) }));
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

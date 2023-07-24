@@ -1,8 +1,9 @@
 using AWC.Application.Interfaces.Messaging;
 using AWC.Shared.Queries.HumanResources;
+using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployees
 {
-    public sealed record GetEmployeeListItemsRequest(string LastName, PagingParameters PagingParameters) : IQuery<PagedList<EmployeeListItem>>;
+    public sealed record GetEmployeeListItemsRequest(StringSearchCriteria SearchCriteria) : IQuery<PagedList<EmployeeListItem>>;
 }

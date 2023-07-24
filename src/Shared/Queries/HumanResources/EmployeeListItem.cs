@@ -8,6 +8,7 @@ namespace AWC.Shared.Queries.HumanResources
         public string? MiddleName { get; set; }
         public string? JobTitle { get; set; }
         public string? Department { get; set; }
+        public string? Shift { get; set; }
         public string? PhoneNumber { get; set; }
         public string? EmailAddress { get; set; }
         public bool Active { get; set; }

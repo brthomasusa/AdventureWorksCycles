@@ -17,7 +17,7 @@ namespace AWC.Application.BusinessRules.HumanResources
             ValidationResult validationResult = new();
 
             Result result =
-                await _repository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(employee.EmployeeID, employee.NationalID);
+                await _repository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(employee.BusinessEntityID, employee.NationalIDNumber);
 
             if (result.IsSuccess)
             {

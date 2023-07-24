@@ -21,7 +21,7 @@ namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
             try
             {
                 Result<EmployeeDetails> result =
-                    await _repo.EmployeeReadRepository.GetEmployeeDetailsByIdWithAllInfo(request.EmployeeID);
+                    await _repo.EmployeeReadRepository.GetEmployeeDetails(request.EmployeeID);
 
                 if (result.IsFailure)
                 {

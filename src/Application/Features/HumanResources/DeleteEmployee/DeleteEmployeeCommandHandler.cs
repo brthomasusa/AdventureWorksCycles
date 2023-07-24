@@ -18,7 +18,7 @@ namespace AWC.Application.Features.HumanResources.DeleteEmployee
         {
             try
             {
-                Result<Employee> getResult = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.EmployeeID);
+                Result<Employee> getResult = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.BusinessEntityID);
 
                 if (getResult.IsSuccess)
                 {
