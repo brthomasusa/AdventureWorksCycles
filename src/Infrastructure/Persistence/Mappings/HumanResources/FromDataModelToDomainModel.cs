@@ -9,7 +9,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
     {
         public static Result<Employee> MapToEmployeeDomainObject(this PersonDataModel person)
         {
-            Result<Employee> employee = Employee.Create
+            Result<Employee> createEmployee = Employee.Create
             (
                 person!.BusinessEntityID,
                 person!.PersonType!,
@@ -33,29 +33,31 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 person!.Employee!.CurrentFlag
             );
 
-            if (employee.IsSuccess)
+            if (createEmployee.IsSuccess)
             {
                 // Add dept histories to employee from person data model
                 person!.Employee!.DepartmentHistories.ToList().ForEach(dept =>
-                    employee.Value.AddDepartmentHistory(dept.BusinessEntityID,
-                                                        dept.ShiftID,
-                                                        DateOnly.FromDateTime(dept.StartDate),
-                                                        dept.EndDate));
+                    createEmployee.Value.AddDepartmentHistory(
+                        dept.BusinessEntityID,
+                        dept.DepartmentID,
+                        dept.ShiftID,
+                        DateOnly.FromDateTime(dept.StartDate),
+                        dept.EndDate));
 
                 // Add pay histories to employee from person data model
                 person!.Employee!.PayHistories.ToList().ForEach(pay =>
-                    employee.Value.AddPayHistory(
+                    createEmployee.Value.AddPayHistory(
                         pay.BusinessEntityID,
                         pay.RateChangeDate,
                         pay.Rate,
                         (PayFrequencyEnum)pay.PayFrequency
                     ));
 
-                return employee;
+                return createEmployee;
             }
             else
             {
-                return Result<Employee>.Failure<Employee>(new Error("FromDataModelToDomainModel.MapToEmployeeDomainObject", employee.Error.Message));
+                return Result<Employee>.Failure<Employee>(new Error("FromDataModelToDomainModel.MapToEmployeeDomainObject", createEmployee.Error.Message));
             }
         }
     }

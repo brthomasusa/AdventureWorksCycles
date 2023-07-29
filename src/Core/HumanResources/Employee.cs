@@ -189,6 +189,7 @@ namespace AWC.Core.HumanResources
         public Result<DepartmentHistory> AddDepartmentHistory
         (
             int id,
+            int departmentId,
             int shiftId,
             DateOnly startDate,
             DateTime? endDate
@@ -200,7 +201,7 @@ namespace AWC.Core.HumanResources
 
                 if (search is null)
                 {
-                    Result<DepartmentHistory> result = DepartmentHistory.Create(id, shiftId, startDate, endDate);
+                    Result<DepartmentHistory> result = DepartmentHistory.Create(id, departmentId, shiftId, startDate, endDate);
                     if (result.IsSuccess)
                     {
                         _deptHistories.Add(result.Value);

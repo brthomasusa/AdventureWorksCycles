@@ -21,58 +21,42 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
             {
                 Result<Employee> getEmployee = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.BusinessEntityID);
 
-                if (getEmployee.IsSuccess)
-                {
-                    Result<Employee> updateDomainObjResult = getEmployee.Value.Update
-                    (
-                        "EM",
-                        request.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
-                        request.Title!,
-                        request.FirstName,
-                        request.LastName,
-                        request.MiddleName!,
-                        request.Suffix!,
-                        (EmailPromotionEnum)request.EmailPromotion,
-                        request.NationalIDNumber,
-                        request.LoginID,
-                        request.JobTitle,
-                        DateOnly.FromDateTime(request.BirthDate),
-                        request.MaritalStatus,
-                        request.Gender,
-                        DateOnly.FromDateTime(request.HireDate),
-                        request.Salaried,
-                        request.VacationHours,
-                        request.SickLeaveHours,
-                        request.Active
-                    );
-
-                    if (updateDomainObjResult.IsSuccess)
-                    {
-                        // Employee domain obj update succeeded
-                        Result<int> updateDbResult = await _repo.EmployeeAggregateRepository.Update(updateDomainObjResult.Value);
-
-                        if (updateDbResult.IsSuccess)
-                        {
-                            // db update succeeded
-                            return RETURN_VALUE;
-                        }
-                        else
-                        {
-                            // db update failed
-                            return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", updateDbResult.Error.Message));
-                        }
-                    }
-                    else
-                    {
-                        // Employee domain obj update failed, probably because of validation errors
-                        return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", updateDomainObjResult.Error.Message));
-                    }
-                }
-                else
-                {
-                    // Employee info could not be retrieved from the db
+                if (getEmployee.IsFailure)
                     return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", getEmployee.Error.Message));
-                }
+
+                Result<Employee> updateEmployee = getEmployee.Value.Update
+                (
+                    "EM",
+                    request.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
+                    request.Title!,
+                    request.FirstName,
+                    request.LastName,
+                    request.MiddleName!,
+                    request.Suffix!,
+                    (EmailPromotionEnum)request.EmailPromotion,
+                    request.NationalIDNumber,
+                    request.LoginID,
+                    request.JobTitle,
+                    DateOnly.FromDateTime(request.BirthDate),
+                    request.MaritalStatus,
+                    request.Gender,
+                    DateOnly.FromDateTime(request.HireDate),
+                    request.Salaried,
+                    request.VacationHours,
+                    request.SickLeaveHours,
+                    request.Active
+                );
+
+                if (updateEmployee.IsFailure)
+                    return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", updateEmployee.Error.Message));
+
+                Result<int> updateDbResult = await _repo.EmployeeAggregateRepository.Update(updateEmployee.Value);
+
+                if (updateDbResult.IsFailure)
+                    return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", updateDbResult.Error.Message));
+
+                return RETURN_VALUE;
+
             }
             catch (Exception ex)
             {

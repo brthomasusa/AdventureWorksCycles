@@ -5,10 +5,56 @@ using AWC.Infrastructure.Persistence.DataModels.Person;
 
 namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
 {
-    public static class FromDomainModelToDataModel
+    public static class FromEmployeeDomainModelToDataModel
     {
         public static PersonDataModel MapToPersonDataModelForCreate(this Employee employee)
-            => new()
+        {
+            List<EmployeeDepartmentHistory> departmentHistories = new();
+            List<EmployeePayHistory> payHistories = new();
+            List<AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress> emailAddresses = new();
+            List<AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone> personPhones = new();
+
+            // DateOnly dateOnly = new(2021, 9, 16);
+
+            employee.DepartmentHistories.ToList().ForEach(dept =>
+                departmentHistories.Add(new EmployeeDepartmentHistory()
+                {
+                    BusinessEntityID = dept.Id,
+                    DepartmentID = (short)dept.DepartmentID,
+                    ShiftID = (byte)dept.ShiftID,
+                    StartDate = dept.StartDate.ToDateTime(TimeOnly.MinValue)
+                })
+            );
+
+            employee.PayHistories.ToList().ForEach(payHistory =>
+                payHistories.Add(new EmployeePayHistory()
+                {
+                    BusinessEntityID = payHistory.Id,
+                    RateChangeDate = payHistory.RateChangeDate,
+                    Rate = payHistory.PayRate.Value.Amount,
+                    PayFrequency = (byte)payHistory.PayFrequency
+                })
+            );
+
+            employee.Telephones.ToList().ForEach(phone =>
+                personPhones.Add(new AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone()
+                {
+                    BusinessEntityID = phone.Id,
+                    PhoneNumber = phone.Telephone,
+                    PhoneNumberTypeID = ((int)PhoneNumberTypeEnum.Home)
+                })
+            );
+
+            employee.EmailAddresses.ToList().ForEach(email =>
+                emailAddresses.Add(new AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress()
+                {
+                    BusinessEntityID = email.Id,
+                    EmailAddressID = email.EmailAddressID,
+                    MailAddress = email.EmailAddress
+                })
+            );
+
+            PersonDataModel person = new()
             {
                 PersonType = employee.PersonType,
                 NameStyle = employee.NameStyle != NameStyleEnum.Western,
@@ -30,9 +76,16 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                     SalariedFlag = employee.IsSalaried,
                     VacationHours = employee.VacationHours,
                     SickLeaveHours = employee.SickLeaveHours,
-                    CurrentFlag = employee.IsActive
-                }
+                    CurrentFlag = employee.IsActive,
+                    DepartmentHistories = departmentHistories,
+                    PayHistories = payHistories
+                },
+                EmailAddresses = emailAddresses,
+                Telephones = personPhones
             };
+
+            return person;
+        }
 
         public static void MapToPersonDataModelForUpdate(this Employee employee, ref PersonDataModel person)
         {

@@ -10,12 +10,14 @@ namespace AWC.Core.HumanResources
         private DepartmentHistory
         (
             int id,
+            int departmentId,
             int shiftId,
             DepartmentStartDate startDate,
             DateOnly? endDate
         )
         {
             Id = id;
+            DepartmentID = departmentId;
             ShiftID = shiftId;
             StartDate = startDate.Value;
             EndDate = endDate;
@@ -26,6 +28,7 @@ namespace AWC.Core.HumanResources
         internal static Result<DepartmentHistory> Create
         (
             int id,
+            int departmentId,
             int shiftId,
             DateOnly startDate,
             DateTime? endDate
@@ -33,14 +36,15 @@ namespace AWC.Core.HumanResources
         {
             try
             {
-                DepartmentHistory history = new
+                return new DepartmentHistory
                     (
-                        Guard.Against.LessThanZero(id, "Id", "DepartmentHistory id can not be negative."),
-                        Guard.Against.LessThanZero(shiftId, nameof(shiftId), "Shift id can not be negative."),
+                        Guard.Against.LessThanZero(id, nameof(Id), "Employee id can not be negative."),
+                        Guard.Against.GreaterThan(departmentId, 0, nameof(DepartmentID), "Department id is required."),
+                        Guard.Against.GreaterThan(shiftId, 0, nameof(shiftId), "Shift id is required."),
                         DepartmentStartDate.Create(startDate),
                         DateOnly.FromDateTime(endDate is null ? default : (DateTime)endDate)
                     );
-                return history;
+
             }
             catch (Exception ex)
             {

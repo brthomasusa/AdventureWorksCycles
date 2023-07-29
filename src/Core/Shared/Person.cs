@@ -99,7 +99,7 @@ namespace AWC.Core.Shared
             {
                 if (_addresses.Find(addr => addr.Id == addressID) is not null)
                 {
-                    return Result<Address>.Failure<Address>(new Error("Person.AddAddress", "There is already an address with this Id."));
+                    return Result.Failure<Address>(new Error("Person.AddAddress", "There is already an address with this Id."));
                 }
 
                 Result<Address> result = Address.Create
@@ -170,6 +170,8 @@ namespace AWC.Core.Shared
                 if (result.IsFailure)
                     return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.AddEmailAddress", result.Error.Message));
 
+                _emailAddresses.Add(result.Value);
+
                 return result.Value;
             }
             catch (Exception ex)
@@ -195,6 +197,8 @@ namespace AWC.Core.Shared
 
                 if (result.IsFailure)
                     return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.AddPhoneNumber", result.Error.Message));
+
+                _telephones.Add(result.Value);
 
                 return result.Value;
             }

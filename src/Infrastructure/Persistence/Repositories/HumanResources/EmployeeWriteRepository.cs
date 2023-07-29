@@ -116,20 +116,46 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             {
                 using var transaction = _context.Database.BeginTransaction();
 
+                AWC.Core.Shared.Address? domainAddress = employee.Addresses.FirstOrDefault() ??
+                    throw new Exception("Unable to retrieve employee address from Employee domain object.");
+
+                AWC.Infrastructure.Persistence.DataModels.Person.Address address = new()
+                {
+                    AddressLine1 = domainAddress.Location.AddressLine1,
+                    AddressLine2 = domainAddress.Location.AddressLine2,
+                    City = domainAddress.Location.City,
+                    StateProvinceID = domainAddress.Location.StateProvinceID,
+                    PostalCode = domainAddress.Location.Zipcode
+                };
+
+                await _context.AddAsync(address);
+                await _context.SaveChangesAsync();
+
+                PersonDataModel personModel = employee.MapToPersonDataModelForCreate();
+                BusinessEntityAddress businessEntityAddress = new()
+                {
+                    BusinessEntityID = personModel.BusinessEntityID,
+                    AddressID = address.AddressID,
+                    Address = address,
+                    AddressTypeID = (int)domainAddress.AddressType
+                };
+
+                personModel.BusinessEntityAddresses.Add(businessEntityAddress);
+
                 BusinessEntity entity = new()
                 {
-                    BusinessEntityID = 0,
-                    PersonModel = employee.MapToPersonDataModelForCreate()
+                    // BusinessEntityID = 0,
+                    PersonModel = personModel
                 };
 
                 await _context.AddAsync(entity);
-
-                await _unitOfWork.CommitAsync();
+                await _context.SaveChangesAsync();
+                // await _unitOfWork.CommitAsync();
 
                 object[] parameters = new object[]
                 {
                     new SqlParameter("@paramEmployeeID", entity.BusinessEntityID),
-                    new SqlParameter("@paramManagerID", 285)
+                    new SqlParameter("@paramManagerID", employee.ManagerID.Value)
                 };
 
                 await _context.Database.ExecuteSqlRawAsync(
