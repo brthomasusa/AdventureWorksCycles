@@ -25,5 +25,17 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
         public async Task<Result<PagedList<EmployeeListItem>>> GetEmployeeListItemsSearchByLastName(StringSearchCriteria searchCriteria)
             => await GetEmployeeListItemsQuery.Query(searchCriteria, _context, _logger);
+
+        public async Task<Result<List<DepartmentHistory>>> GetDepartmentHistories(int businessEntityID)
+            => await GetDepartmentHistoriesQuery.Query(businessEntityID, _context, _logger);
+
+        public async Task<Result<List<DepartmentHistoryCommand>>> GetDepartmentHistoryCommands(int businessEntityID)
+            => await GetDepartmentHistoriesCommandQuery.Query(businessEntityID, _context, _logger);
+
+        public async Task<Result<List<PayHistory>>> GetPayHistories(int businessEntityID)
+            => await GetPayHistoriesQuery.Query(businessEntityID, _context, _logger);
+
+        public async Task<Result<List<PayHistoryCommand>>> GetPayHistoryCommands(int businessEntityID)
+            => await GetPayHistoryCommandsQuery.Query(businessEntityID, _context, _logger);
     }
 }

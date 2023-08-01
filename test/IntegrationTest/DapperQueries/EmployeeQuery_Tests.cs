@@ -1,3 +1,4 @@
+using System.Linq;
 using AWC.Infrastructure.Persistence.Queries.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.Shared.Queries.HumanResources;
@@ -73,6 +74,49 @@ namespace AWC.IntegrationTests.DapperQueries
             int employees = result.Value.Count;
             Assert.Equal(10, employees);
         }
+
+        [Fact]
+        public async Task Query_GetDepartmentHistoriesQuery_ShouldSucceed()
+        {
+            const int businessEntityID = 16;
+            Result<List<DepartmentHistory>> result = await GetDepartmentHistoriesQuery.Query(businessEntityID, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 2);
+        }
+
+        [Fact]
+        public async Task Query_GetDepartmentHistoryCommandsQuery_ShouldSucceed()
+        {
+            const int businessEntityID = 16;
+            Result<List<DepartmentHistoryCommand>> result =
+                await GetDepartmentHistoriesCommandQuery.Query(businessEntityID, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 2);
+        }
+
+        [Fact]
+        public async Task Query_GetPayHistoriesQuery_ShouldSucceed()
+        {
+            const int businessEntityID = 16;
+            Result<List<PayHistory>> result = await GetPayHistoriesQuery.Query(businessEntityID, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 3);
+        }
+
+        [Fact]
+        public async Task Query_GetPayHistoryCommandsQuery_ShouldSucceed()
+        {
+            const int businessEntityID = 16;
+            Result<List<PayHistoryCommand>> result =
+                await GetPayHistoryCommandsQuery.Query(businessEntityID, _dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 3);
+        }
+
 
     }
 }

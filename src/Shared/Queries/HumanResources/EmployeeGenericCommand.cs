@@ -35,5 +35,7 @@ namespace AWC.Shared.Queries.HumanResources
         public int ManagerID { get; set; }
         public int DepartmentID { get; set; }
         public int ShiftID { get; set; }
+        public List<DepartmentHistoryCommand>? DepartmentHistories { get; set; }
+        public List<PayHistoryCommand>? PayHistories { get; set; }
     }
 }

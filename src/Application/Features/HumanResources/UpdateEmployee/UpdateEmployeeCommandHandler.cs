@@ -19,7 +19,7 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         {
             try
             {
-                Result<Employee> getEmployee = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.BusinessEntityID);
+                Result<Employee> getEmployee = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.BusinessEntityID, true);
 
                 if (getEmployee.IsFailure)
                     return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", getEmployee.Error.Message));

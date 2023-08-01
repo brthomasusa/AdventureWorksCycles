@@ -20,17 +20,41 @@ namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
         {
             try
             {
-                Result<EmployeeGenericCommand> result =
+                Result<EmployeeGenericCommand> getGenericCommand =
                     await _repo.EmployeeReadRepository.GetEmployeeGenericCommand(request.EmployeeID);
 
-                if (result.IsFailure)
+                if (getGenericCommand.IsFailure)
                 {
                     return Result<EmployeeGenericCommand>.Failure<EmployeeGenericCommand>(
-                        new Error("GetEmployeeCommandQueryHandler.Handle", result.Error.Message)
+                        new Error("GetEmployeeCommandQueryHandler.Handle", getGenericCommand.Error.Message)
                     );
                 }
 
-                return result.Value;
+                Result<List<PayHistoryCommand>> getPayHistoryCommand =
+                    await _repo.EmployeeReadRepository.GetPayHistoryCommands(request.EmployeeID);
+
+                if (getPayHistoryCommand.IsFailure)
+                {
+                    return Result<EmployeeGenericCommand>.Failure<EmployeeGenericCommand>(
+                        new Error("GetEmployeeCommandQueryHandler.Handle", getPayHistoryCommand.Error.Message)
+                    );
+                }
+
+                getGenericCommand.Value.PayHistories = new(getPayHistoryCommand.Value.ToList());
+
+                Result<List<DepartmentHistoryCommand>> getDepartmentHistoryCommand =
+                    await _repo.EmployeeReadRepository.GetDepartmentHistoryCommands(16);
+
+                if (getDepartmentHistoryCommand.IsFailure)
+                {
+                    return Result<EmployeeGenericCommand>.Failure<EmployeeGenericCommand>(
+                        new Error("GetEmployeeCommandQueryHandler.Handle", getDepartmentHistoryCommand.Error.Message)
+                    );
+                }
+
+                getGenericCommand.Value.DepartmentHistories = new(getDepartmentHistoryCommand.Value.ToList());
+
+                return getGenericCommand.Value;
 
             }
             catch (Exception ex)

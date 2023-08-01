@@ -20,23 +20,47 @@ namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
         {
             try
             {
-                Result<EmployeeDetails> result =
+                Result<EmployeeDetails> getEmployeeDetails =
                     await _repo.EmployeeReadRepository.GetEmployeeDetails(request.EmployeeID);
 
-                if (result.IsFailure)
+                if (getEmployeeDetails.IsFailure)
                 {
                     return Result<EmployeeDetails>.Failure<EmployeeDetails>(
-                        new Error("GetEmployeeDetailsByIdWithAllInfoQueryHandler.Handle", result.Error.Message)
+                        new Error("GetEmployeeDetailsRequestQueryHandler.Handle", getEmployeeDetails.Error.Message)
                     );
                 }
 
-                return result.Value;
+                Result<List<PayHistory>> getPayHistory =
+                    await _repo.EmployeeReadRepository.GetPayHistories(request.EmployeeID);
+
+                if (getPayHistory.IsFailure)
+                {
+                    return Result<EmployeeDetails>.Failure<EmployeeDetails>(
+                        new Error("GetEmployeeDetailsRequestQueryHandler.Handle", getPayHistory.Error.Message)
+                    );
+                }
+
+                getEmployeeDetails.Value.PayHistories = new(getPayHistory.Value.ToList());
+
+                Result<List<DepartmentHistory>> getDepartmentHistory =
+                    await _repo.EmployeeReadRepository.GetDepartmentHistories(request.EmployeeID);
+
+                if (getDepartmentHistory.IsFailure)
+                {
+                    return Result<EmployeeDetails>.Failure<EmployeeDetails>(
+                        new Error("GetEmployeeDetailsRequestQueryHandler.Handle", getDepartmentHistory.Error.Message)
+                    );
+                }
+
+                getEmployeeDetails.Value.DepartmentHistories = new(getDepartmentHistory.Value.ToList());
+
+                return getEmployeeDetails.Value;
 
             }
             catch (Exception ex)
             {
                 return Result<EmployeeDetails>.Failure<EmployeeDetails>(
-                    new Error("GetEmployeeDetailsByIdWithAllInfoQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
+                    new Error("GetEmployeeDetailsRequestQueryHandler.Handle", Helpers.GetExceptionMessage(ex))
                 );
             }
         }

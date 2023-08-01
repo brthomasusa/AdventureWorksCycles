@@ -55,5 +55,77 @@ namespace AWC.IntegrationTests.Repositories
             int employees = result.Value.Count;
             Assert.Equal(10, employees);
         }
+
+        [Fact]
+        public async Task GetDepartmentHistories_EmployeeReadRepository_WithInvalidID_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Result<List<DepartmentHistory>> result =
+                await readRepository.EmployeeReadRepository.GetDepartmentHistories(16);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 2);
+        }
+
+        [Fact]
+        public async Task GetDepartmentHistoryCommands_EmployeeReadRepository_WithInvalidID_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Result<List<DepartmentHistoryCommand>> result =
+                await readRepository.EmployeeReadRepository.GetDepartmentHistoryCommands(16);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 2);
+        }
+
+        [Fact]
+        public async Task GetPayHistories_EmployeeReadRepository_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Result<List<PayHistory>> result =
+                await readRepository.EmployeeReadRepository.GetPayHistories(16);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 3);
+        }
+
+        [Fact]
+        public async Task GetPayHistoryCommands_EmployeeReadRepository_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Result<List<PayHistoryCommand>> result =
+                await readRepository.EmployeeReadRepository.GetPayHistoryCommands(16);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 3);
+        }
+
+        [Fact]
+        public async Task GetDepartmentHistories_EmployeeReadRepository_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Result<List<DepartmentHistory>> result =
+                await readRepository.EmployeeReadRepository.GetDepartmentHistories(16);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 2);
+        }
+
+        [Fact]
+        public async Task GetDepartmentHistoryCommands_EmployeeReadRepository_ShouldSucceed()
+        {
+            ReadRepositoryManager readRepository = new(_dapperCtx, new NullLogger<ReadRepositoryManager>());
+
+            Result<List<DepartmentHistoryCommand>> result =
+                await readRepository.EmployeeReadRepository.GetDepartmentHistoryCommands(16);
+
+            Assert.True(result.IsSuccess);
+            Assert.True(result.Value.Count == 2);
+        }
     }
 }

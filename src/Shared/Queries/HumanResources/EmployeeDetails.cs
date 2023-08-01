@@ -36,5 +36,7 @@ namespace AWC.Shared.Queries.HumanResources
         public string? Department { get; set; }
         public string? Shift { get; set; }
         public string? Address { get; set; }
+        public List<DepartmentHistory>? DepartmentHistories { get; set; }
+        public List<PayHistory>? PayHistories { get; set; }
     }
 }

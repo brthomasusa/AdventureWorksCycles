@@ -1,5 +1,5 @@
 using AWC.Application.Interfaces.Messaging;
-using MediatR;
+using AWC.Shared.Commands.HumanResources;
 
 namespace AWC.Application.Features.HumanResources.UpdateEmployee
 {
@@ -36,6 +36,8 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         bool Active,
         int ManagerID,
         int DepartmentID,
-        int ShiftID
+        int ShiftID,
+        List<DepartmentHistoryCommand>? DepartmentHistories,
+        List<PayHistoryCommand>? PayHistories
     ) : ICommand<int>;
 }

@@ -27,6 +27,30 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
         }
 
         [Fact]
+        public async Task Handle_GetEmployeeDetailsQueryHandler_WithPayHistories_ShouldSucceed()
+        {
+            GetEmployeeDetailsRequest request = new(EmployeeID: 16);
+            GetEmployeeDetailsRequestQueryHandler handler = new(_repository);
+
+            Result<EmployeeDetails> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+            Assert.True(response.Value.PayHistories!.Count == 3);
+        }
+
+        [Fact]
+        public async Task Handle_GetEmployeeDetailsQueryHandler_WithDepartmentHistories_ShouldSucceed()
+        {
+            GetEmployeeDetailsRequest request = new(EmployeeID: 16);
+            GetEmployeeDetailsRequestQueryHandler handler = new(_repository);
+
+            Result<EmployeeDetails> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+            Assert.True(response.Value.DepartmentHistories!.Count == 2);
+        }
+
+        [Fact]
         public async Task Handle_GetEmployeeCommandQueryHandler_ShouldSucceed()
         {
             GetEmployeeCommandRequest request = new(EmployeeID: 2);
@@ -35,6 +59,30 @@ namespace AWC.IntegrationTests.HumanResources.QueryHandlers
             Result<EmployeeGenericCommand> response = await handler.Handle(request, new CancellationToken());
 
             Assert.True(response.IsSuccess);
+        }
+
+        [Fact]
+        public async Task Handle_GetEmployeeCommandQueryHandler_WithPayHistoryCommands_ShouldSucceed()
+        {
+            GetEmployeeCommandRequest request = new(EmployeeID: 16);
+            GetEmployeeCommandQueryHandler handler = new(_repository);
+
+            Result<EmployeeGenericCommand> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+            Assert.True(response.Value.PayHistories!.Count == 3);
+        }
+
+        [Fact]
+        public async Task Handle_GetEmployeeCommandQueryHandler_WithDepartmentHistoryCommands_ShouldSucceed()
+        {
+            GetEmployeeCommandRequest request = new(EmployeeID: 16);
+            GetEmployeeCommandQueryHandler handler = new(_repository);
+
+            Result<EmployeeGenericCommand> response = await handler.Handle(request, new CancellationToken());
+
+            Assert.True(response.IsSuccess);
+            Assert.True(response.Value.DepartmentHistories!.Count == 2);
         }
 
         [Fact]
