@@ -13,65 +13,61 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
         public CreateEmployeeCommandHandler(IWriteRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<int>> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
+        public async Task<Result<int>> Handle(CreateEmployeeCommand command, CancellationToken cancellationToken)
         {
             Result<Employee> createEmployee = Employee.Create
             (
-                request.BusinessEntityID,
+                command.BusinessEntityID,
                 "EM",
-                request.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
-                request.Title,
-                request.FirstName,
-                request.LastName,
-                request.MiddleName!,
-                request.Suffix,
-                request.ManagerID,
-                request.NationalIDNumber,
-                request.LoginID,
-                request.JobTitle,
-                DateOnly.FromDateTime(request.BirthDate),
-                request.MaritalStatus,
-                request.Gender,
-                DateOnly.FromDateTime(request.HireDate),
-                request.Salaried,
-                request.VacationHours,
-                request.SickLeaveHours,
-                request.Active
+                command.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
+                command.Title,
+                command.FirstName,
+                command.LastName,
+                command.MiddleName!,
+                command.Suffix,
+                command.ManagerID,
+                command.NationalIDNumber,
+                command.LoginID,
+                command.JobTitle,
+                DateOnly.FromDateTime(command.BirthDate),
+                command.MaritalStatus,
+                command.Gender,
+                DateOnly.FromDateTime(command.HireDate),
+                command.Salaried,
+                command.VacationHours,
+                command.SickLeaveHours,
+                command.Active
             );
 
             if (createEmployee.IsFailure)
                 return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", createEmployee.Error.Message));
 
-            Result<DepartmentHistory> createDepartmentHistory = createEmployee.Value.AddDepartmentHistory
+            command.DepartmentHistories!.ForEach(cmd => createEmployee.Value.AddDepartmentHistory
             (
-                createEmployee.Value.Id,
-                request.DepartmentID,
-                request.ShiftID,
-                DateOnly.FromDateTime(request.HireDate),
+                cmd.BusinessEntityID,
+                cmd.DepartmentID,
+                cmd.ShiftID,
+                DateOnly.FromDateTime(cmd.StartDate),
                 null
-            );
-            if (createDepartmentHistory.IsFailure)
-                return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", createDepartmentHistory.Error.Message));
+            ));
 
-            Result<PayHistory> createPayHistory = createEmployee.Value.AddPayHistory
+            command.PayHistories!.ForEach(cmd => createEmployee.Value.AddPayHistory
             (
-                createEmployee.Value.Id,
-                request.HireDate,
-                request.PayRate,
-                (PayFrequencyEnum)request.PayFrequency
-            );
-            if (createPayHistory.IsFailure)
-                return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", createPayHistory.Error.Message));
+                cmd.BusinessEntityID,
+                cmd.RateChangeDate,
+                cmd.Rate,
+                (PayFrequencyEnum)cmd.PayFrequency
+            ));
 
             Result<Address> createAddress = createEmployee.Value.AddAddress
             (
                 0,
                 createEmployee.Value.Id,
                 AddressTypeEnum.Home,
-                request.AddressLine1,
-                request.AddressLine2,
-                request.City,
-                request.StateProvinceID,
+                command.AddressLine1,
+                command.AddressLine2,
+                command.City,
+                command.StateProvinceID,
                 "EM"
             );
             if (createAddress.IsFailure)
@@ -81,7 +77,7 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
             (
                 createEmployee.Value.Id,
                 0,
-                request.EmailAddress
+                command.EmailAddress
             );
             if (createEmailAddress.IsFailure)
                 return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", createEmailAddress.Error.Message));
@@ -89,8 +85,8 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
             Result<PersonPhone> createPersonPhone = createEmployee.Value.AddPhoneNumber
             (
                 createEmployee.Value.Id,
-                (PhoneNumberTypeEnum)request.PhoneNumberTypeID,
-                request.PhoneNumber
+                (PhoneNumberTypeEnum)command.PhoneNumberTypeID,
+                command.PhoneNumber
             );
             if (createPersonPhone.IsFailure)
                 return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", createPersonPhone.Error.Message));

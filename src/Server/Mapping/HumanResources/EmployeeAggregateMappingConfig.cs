@@ -2,6 +2,7 @@ using AWC.Shared.Queries.HumanResources;
 using gRPC.Contracts.HumanResources;
 using Mapster;
 using GoogleDateTime = Google.Protobuf.WellKnownTypes.Timestamp;
+using AWC.Application.Features.HumanResources.CreateEmployee;
 
 namespace AWC.Server.Mapping.HumanResources
 {
@@ -13,6 +14,7 @@ namespace AWC.Server.Mapping.HumanResources
                     TypeAdapterConfig<TSource, TDestination>   
             */
 
+            // To the UI, used to display employee details
             config.NewConfig<EmployeeDetails, grpc_EmployeeForDisplay>()
                 .Map(dest => dest.Title, src => string.IsNullOrEmpty(src.Title) ? string.Empty : src.Title)
                 .Map(dest => dest.MiddleName, src => string.IsNullOrEmpty(src.MiddleName) ? string.Empty : src.MiddleName)
@@ -22,6 +24,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate))
                 .Map(dest => dest.PayRate, src => Decimal.ToDouble(src.PayRate));
 
+            // To the UI, used to populate employee update page
             config.NewConfig<EmployeeGenericCommand, grpc_EmployeeGenericCommand>()
                 .Map(dest => dest.Title, src => string.IsNullOrEmpty(src.Title) ? string.Empty : src.Title)
                 .Map(dest => dest.MiddleName, src => string.IsNullOrEmpty(src.MiddleName) ? string.Empty : src.MiddleName)
@@ -31,7 +34,13 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate))
                 .Map(dest => dest.PayRate, src => Decimal.ToDouble(src.PayRate));
 
-            config.NewConfig<grpc_EmployeeGenericCommand, EmployeeGenericCommand>()
+            // To the UI, used to populate employee list page
+            config.NewConfig<EmployeeListItem, grpc_EmployeeListItem>()
+                .Map(dest => dest.MiddleName, src => string.IsNullOrEmpty(src.MiddleName) ? string.Empty : src.MiddleName)
+                .Map(dest => dest.ManagerName, src => string.IsNullOrEmpty(src.ManagerName) ? string.Empty : src.ManagerName);
+
+            // From the UI
+            config.NewConfig<grpc_EmployeeGenericCommand, CreateEmployeeCommand>()
                 .Map(dest => dest.Title, src => string.IsNullOrEmpty(src.Title) ? null : src.Title)
                 .Map(dest => dest.MiddleName, src => string.IsNullOrEmpty(src.MiddleName) ? null : src.MiddleName)
                 .Map(dest => dest.Suffix, src => string.IsNullOrEmpty(src.Suffix) ? null : src.Suffix)
@@ -40,9 +49,20 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.HireDate, src => src.HireDate.ToDateTime().ToLocalTime())
                 .Map(dest => dest.PayRate, src => (decimal)src.PayRate);
 
-            config.NewConfig<EmployeeListItem, grpc_EmployeeListItem>()
-                .Map(dest => dest.MiddleName, src => string.IsNullOrEmpty(src.MiddleName) ? string.Empty : src.MiddleName)
-                .Map(dest => dest.ManagerName, src => string.IsNullOrEmpty(src.ManagerName) ? string.Empty : src.ManagerName);
+            // From the UI
+            config.NewConfig<grpc_DepartmentHistoryCommand, AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand>()
+                .Map(dest => dest.BusinessEntityID, src => src.BusinessEntityId)
+                .Map(dest => dest.DepartmentID, src => src.DepartmentId)
+                .Map(dest => dest.ShiftID, src => src.ShiftId)
+                .Map(dest => dest.StartDate, src => src.StartDate.ToDateTime().ToLocalTime())
+                .Map(dest => dest.EndDate, src => src.StartDate.ToDateTime().ToLocalTime());
+
+            // From the UI
+            config.NewConfig<grpc_PayHistoryCommand, AWC.Shared.Commands.HumanResources.PayHistoryCommand>()
+                .Map(dest => dest.BusinessEntityID, src => src.BusinessEntityId)
+                .Map(dest => dest.RateChangeDate, src => src.RateChangeDate.ToDateTime().ToLocalTime())
+                .Map(dest => dest.Rate, src => (decimal)src.Rate)
+                .Map(dest => dest.PayFrequency, src => src.PayFrequency);
 
         }
     }

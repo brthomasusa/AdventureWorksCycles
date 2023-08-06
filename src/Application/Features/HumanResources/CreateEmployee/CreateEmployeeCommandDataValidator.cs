@@ -1,4 +1,5 @@
 using FluentValidation;
+using AWC.Shared.Commands.HumanResources;
 
 namespace AWC.Application.Features.HumanResources.CreateEmployee
 {
@@ -73,21 +74,13 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
                                         .Must(sickleave => sickleave >= 0 && sickleave <= 120)
                                         .WithMessage("Valid sick leave hours are between 0 and 120.");
 
-            RuleFor(employee => employee.PayRate)
-                                        .Must(pay => pay >= 6.50M && pay <= 200M)
-                                        .WithMessage("Valid pay rate is between $6.50 and $200.00 per hour.");
+            RuleFor(employee => employee.Active)
+                                        .Must(status => status == true)
+                                        .WithMessage("The status of a new employee must be active.");
 
-            RuleFor(employee => employee.PayFrequency)
-                                        .Must(freq => freq == 1 || freq == 2)
-                                        .WithMessage("Valid pay frequencies are 1 for biweekly and 2 for monthly.");
-
-            RuleFor(employee => employee.DepartmentID)
+            RuleFor(employee => employee.ManagerID)
                                         .GreaterThan(0)
-                                        .WithMessage("A department ID is required.");
-
-            RuleFor(employee => employee.ShiftID)
-                                        .GreaterThan(0)
-                                        .WithMessage("A shift ID is required.");
+                                        .WithMessage("A manager ID is required.");
 
             RuleFor(employee => employee.AddressLine1)
                                         .NotEmpty().WithMessage("Address line 1; this is required.")
@@ -115,6 +108,34 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
             RuleFor(employee => employee.PhoneNumberTypeID)
                                         .Must(phType => phType >= 1 && phType <= 3)
                                         .WithMessage("Valid phone number types are 1, 2, and 3 (cell, home, work).");
+
+            RuleFor(employee => employee.DepartmentHistories).NotEmpty()
+                                                             .Must(list => list!.Count == 1)
+                                                             .WithMessage("A new employee can only have one department history record");
+
+            RuleForEach(employee => employee.DepartmentHistories).SetValidator(new DepartmentHistoryCommandCreateValidator());
+
+            RuleFor(employee => employee.PayHistories).NotEmpty()
+                                                      .Must(list => list!.Count == 1)
+                                                      .WithMessage("A new employee can only have one pay history record");
+
+            RuleForEach(employee => employee.PayHistories).SetValidator(new PayHistoryCommandCreateValidator());
+
+            RuleFor(employee => employee).Custom((employeeArgs, context) =>
+            {
+                // A new employee should only have one department history and one pay history
+                DepartmentHistoryCommand? departmentHistoryCommand = employeeArgs.DepartmentHistories!.FirstOrDefault();
+                PayHistoryCommand? payHistoryCommand = employeeArgs.PayHistories!.FirstOrDefault();
+
+                if (departmentHistoryCommand is not null && departmentHistoryCommand.StartDate != employeeArgs.HireDate)
+                {
+                    context.AddFailure("Department start date must equal employee hire date.");
+                }
+                else if (payHistoryCommand is not null && payHistoryCommand.RateChangeDate != employeeArgs.HireDate)
+                {
+                    context.AddFailure("Rate change date must equal employee hire date.");
+                }
+            });
         }
     }
 }

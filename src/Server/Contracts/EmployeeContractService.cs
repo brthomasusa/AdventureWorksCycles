@@ -24,8 +24,22 @@ namespace AWC.Server.Contracts
 
         public async override Task<CreateResponse> Create(grpc_EmployeeGenericCommand request, ServerCallContext context)
         {
-            EmployeeGenericCommand genericCommand = _mapper.Map<EmployeeGenericCommand>(request);
-            CreateEmployeeCommand createEmployeeCommand = _mapper.Map<CreateEmployeeCommand>(genericCommand);
+            List<AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand> departmentHistory = new();
+            request.DepartmentHistories.ToList().ForEach(grpcDept =>
+                departmentHistory.Add(_mapper.Map<AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand>(grpcDept))
+            );
+
+            List<AWC.Shared.Commands.HumanResources.PayHistoryCommand> payHistory = new();
+            request.PayHistories.ToList().ForEach(grpcPay =>
+                payHistory.Add(_mapper.Map<AWC.Shared.Commands.HumanResources.PayHistoryCommand>(grpcPay))
+            );
+
+            CreateEmployeeCommand createEmployeeCommand = _mapper.Map<CreateEmployeeCommand>(request);
+            createEmployeeCommand = createEmployeeCommand with
+            {
+                DepartmentHistories = departmentHistory,
+                PayHistories = payHistory
+            };
 
             Result<int> result = await _sender.Send(createEmployeeCommand);
 

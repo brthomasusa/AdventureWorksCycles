@@ -6,7 +6,6 @@ using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.Person;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
-using MapsterMapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -119,7 +118,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 AWC.Core.Shared.Address? domainAddress = employee.Addresses.FirstOrDefault() ??
                     throw new Exception("Unable to retrieve employee address from Employee domain object.");
 
-                AWC.Infrastructure.Persistence.DataModels.Person.Address address = new()
+                AWC.Infrastructure.Persistence.DataModels.Person.Address dataModelAddress = new()
                 {
                     AddressLine1 = domainAddress.Location.AddressLine1,
                     AddressLine2 = domainAddress.Location.AddressLine2,
@@ -128,30 +127,30 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                     PostalCode = domainAddress.Location.Zipcode
                 };
 
-                await _context.AddAsync(address);
+                await _context.AddAsync(dataModelAddress);
                 await _context.SaveChangesAsync();
 
-                PersonDataModel personModel = employee.MapToPersonDataModelForCreate();
+                PersonDataModel personDataModel = employee.MapToPersonDataModelForCreate();
+
                 BusinessEntityAddress businessEntityAddress = new()
                 {
-                    BusinessEntityID = personModel.BusinessEntityID,
-                    AddressID = address.AddressID,
-                    Address = address,
+                    BusinessEntityID = personDataModel.BusinessEntityID,
+                    AddressID = dataModelAddress.AddressID,
+                    Address = dataModelAddress,
                     AddressTypeID = (int)domainAddress.AddressType
                 };
 
-                personModel.BusinessEntityAddresses.Add(businessEntityAddress);
+                personDataModel.BusinessEntityAddresses.Add(businessEntityAddress);
 
                 BusinessEntity entity = new()
                 {
-                    // BusinessEntityID = 0,
-                    PersonModel = personModel
+                    PersonModel = personDataModel
                 };
 
                 await _context.AddAsync(entity);
                 await _context.SaveChangesAsync();
-                // await _unitOfWork.CommitAsync();
 
+                // Keep all of the hierarchy/orgnode stuff in the database
                 object[] parameters = new object[]
                 {
                     new SqlParameter("@paramEmployeeID", entity.BusinessEntityID),
