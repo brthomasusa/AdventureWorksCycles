@@ -7,10 +7,10 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
 {
     public class PayHistoryCommandCreateValidatorTest
     {
-        private PayHistoryCommandCreateValidator _payHistoryValidator;
+        private readonly PayHistoryCommandCreateValidator _payHistoryValidator;
 
         public PayHistoryCommandCreateValidatorTest()
-            => _payHistoryValidator = new PayHistoryCommandCreateValidator();
+            => _payHistoryValidator = new();
 
         [Fact]
         public void PayHistoryCommandCreateValidator_ValidData_ShouldSucceed()

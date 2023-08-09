@@ -7,10 +7,10 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
 {
     public class DepartmentistoryCommandCreateValidatorTest
     {
-        private DepartmentHistoryCommandCreateValidator _departmentHistoryValidator;
+        private readonly DepartmentHistoryCommandCreateValidator _departmentHistoryValidator;
 
         public DepartmentistoryCommandCreateValidatorTest()
-            => _departmentHistoryValidator = new DepartmentHistoryCommandCreateValidator();
+            => _departmentHistoryValidator = new();
 
         [Fact]
         public void DepartmentHistoryCommandCreateValidator_ValidData_ShouldSucceed()

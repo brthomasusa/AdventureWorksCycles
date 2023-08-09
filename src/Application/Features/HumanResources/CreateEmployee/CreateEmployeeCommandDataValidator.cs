@@ -94,8 +94,8 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
                                         .MaximumLength(30).WithMessage("City name cannot be longer than 30 characters");
 
             RuleFor(employee => employee.StateProvinceID)
-                                        .Must(code => code >= 1 && code <= 181)
-                                        .WithMessage("Valid state province codes are between 1 and 181.");
+                                        .GreaterThan(0)
+                                        .WithMessage("Missing state province code.");
 
             RuleFor(employee => employee.PostalCode)
                                         .NotEmpty().WithMessage("Postal code; this is required.")
@@ -131,7 +131,8 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
                 {
                     context.AddFailure("Department start date must equal employee hire date.");
                 }
-                else if (payHistoryCommand is not null && payHistoryCommand.RateChangeDate != employeeArgs.HireDate)
+
+                if (payHistoryCommand is not null && payHistoryCommand.RateChangeDate != employeeArgs.HireDate)
                 {
                     context.AddFailure("Rate change date must equal employee hire date.");
                 }
