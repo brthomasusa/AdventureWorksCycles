@@ -5,11 +5,11 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.BusinessRules.HumanResources
 {
-    public sealed class DepartmentMustExistForCreateEmployee : BusinessRule<CreateEmployeeCommand>
+    public sealed class CreateEmployeeDepartmentMustExist : BusinessRule<CreateEmployeeCommand>
     {
         private readonly IValidationRepositoryManager _repository;
 
-        public DepartmentMustExistForCreateEmployee(IValidationRepositoryManager repo)
+        public CreateEmployeeDepartmentMustExist(IValidationRepositoryManager repo)
             => _repository = repo;
 
         public override async Task<ValidationResult> Validate(CreateEmployeeCommand employee)

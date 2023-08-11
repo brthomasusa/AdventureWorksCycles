@@ -9,18 +9,14 @@ namespace AWC.IntegrationTests.Repositories
     public class EmployeeWriteRepository_Tests : TestBase
     {
         private readonly IWriteRepositoryManager _writeRepository;
-        private readonly IValidationRepositoryManager _validationRepository;
 
         public EmployeeWriteRepository_Tests()
-        {
-            _writeRepository =
+            => _writeRepository =
                 new WriteRepositoryManager
                 (
                     _dbContext,
                     new NullLogger<WriteRepositoryManager>()
                 );
-            _validationRepository = new ValidationRepositoryManager(_dbContext, new NullLogger<WriteRepositoryManager>());
-        }
 
         [Fact]
         public async Task GetById_EmployeeAggregateRepo_ShouldSucceed()
