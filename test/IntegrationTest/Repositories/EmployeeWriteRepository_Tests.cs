@@ -2,9 +2,7 @@ using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.IntegrationTest.Base;
 using AWC.SharedKernel.Utilities;
-using MapsterMapper;
 
 namespace AWC.IntegrationTests.Repositories
 {
@@ -80,79 +78,6 @@ namespace AWC.IntegrationTests.Repositories
 
             Result<Employee> test = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
             Assert.True(test.IsFailure);
-        }
-
-        [Fact]
-        public async Task ValidatePersonNameIsUnique_EmployeeAggregateRepo_NewRecord_ShouldReturnTrue()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidatePersonNameIsUnique(0, "Henry", "Jones", "Z");
-
-            Assert.True(result.IsSuccess);
-        }
-
-        [Fact]
-        public async Task ValidatePersonNameIsUnique_EmployeeAggregateRepo_EditingExistingWithoutNameChange_ShouldReturnTrue()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidatePersonNameIsUnique(25, "James", "Hamilton", "R");
-
-            Assert.True(result.IsSuccess);
-        }
-
-        [Fact]
-        public async Task ValidatePersonNameIsUnique_EmployeeAggregateRepo_EditingExistingNameChangeWouldCauseDupe_ShouldReturnFalse()
-        {
-            // EmployeeID 2 is Terri Lee Duffy, changing name to James R Hamilton would be a duplicate name of EmployeeID 25
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidatePersonNameIsUnique(2, "James", "Hamilton", "R");
-
-            Assert.False(result.IsSuccess);
-        }
-
-        [Fact]
-        public async Task ValidateNationalIdNumberIsUnique_EmployeeAggregateRepo_NewRecord_ShouldReturnTrue()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(0, "632145877");
-
-            Assert.True(result.IsSuccess);
-        }
-
-        [Fact]
-        public async Task ValidateNationalIdNumberIsUnique_EmployeeAggregateRepo_EditingExistingWithoutNatlIDChange_ShouldReturnTrue()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(2, "245797967");
-
-            Assert.True(result.IsSuccess);
-        }
-
-        [Fact]
-        public async Task ValidateNationalIdNumberIsUnique_EmployeeAggregateRepo_EditingExistingWithNatlIDChange_ShouldReturnFalse()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(1, "245797967");
-
-            Assert.True(result.IsFailure);
-        }
-
-        [Fact]
-        public async Task ValidateEmployeeEmailIsUnique_EmployeeAggregateRepo_NewRecord_ShouldReturnTrue()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique(0, "david4@adventure-works.com");
-
-            Assert.True(result.IsFailure);
-        }
-
-        [Fact]
-        public async Task ValidateEmployeeEmailIsUnique_EmployeeAggregateRepo_EditingExistingWithoutEmailChange_ShouldReturnTrue()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique(16, "david0@adventure-works.com");
-
-            Assert.True(result.IsSuccess);
-        }
-
-        [Fact]
-        public async Task ValidateEmployeeEmailIsUnique_EmployeeAggregateRepo_EditingExistingWithEmailChange_ShouldReturnFalse()
-        {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique(25, "david0@adventure-works.com");
-
-            Assert.True(result.IsFailure);
         }
 
         private static Employee GetEmployeeForCreate_ValidData()

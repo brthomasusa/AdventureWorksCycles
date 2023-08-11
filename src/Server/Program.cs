@@ -29,7 +29,7 @@ try
     builder.Services.AddRazorPages();
     builder.Services.AddCarter();
     builder.Services.AddMediatR(ApplicationAssembly.Instance);
-    builder.Services.AddValidatorsFromAssemblyContaining<CreateEmployeeCommandDataValidator>();
+    builder.Services.AddValidatorsFromAssemblyContaining<CreateEmployeeDataValidator>();
     builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
     builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
     builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(BusinessRulesValidationBehavior<,>));

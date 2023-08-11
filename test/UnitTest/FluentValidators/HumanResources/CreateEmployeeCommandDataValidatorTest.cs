@@ -8,7 +8,7 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
 {
     public class CreateEmployeeCommandDataValidatorTest
     {
-        private readonly CreateEmployeeCommandDataValidator _employeeCreateValidator;
+        private readonly CreateEmployeeDataValidator _employeeCreateValidator;
 
         public CreateEmployeeCommandDataValidatorTest()
             => _employeeCreateValidator = new();
@@ -56,6 +56,8 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
         [InlineData("1234")]
         [InlineData("1234567890")]
         [InlineData("1234-5678")]
+        [InlineData("1234A5678")]
+        [InlineData("1234.5678")]
         public void CreateEmployeeCommandDataValidator_InvalidNationalID_ShouldFail(string nationalId)
         {
             CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();

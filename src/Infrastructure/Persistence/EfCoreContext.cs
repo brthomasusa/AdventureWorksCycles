@@ -34,6 +34,7 @@ namespace AWC.Infrastructure.Persistence
         public DbSet<Shift>? Shift { get; set; }
         public DbSet<EmployeeDepartmentHistory>? EmployeeDepartmentHistory { get; set; }
         public DbSet<EmployeePayHistory>? EmployeePayHistory { get; set; }
+        public DbSet<EmployeeManager>? EmployeeManagers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

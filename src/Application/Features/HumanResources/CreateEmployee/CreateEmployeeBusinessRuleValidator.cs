@@ -15,6 +15,10 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
 
         public override async Task<Result> Validate(CreateEmployeeCommand command)
         {
+            // DepartmentID must exist
+            // ShiftID must exist
+            // ManagerID must exist
+
             CreateEmployeeNameMustBeUnique verifyNameIsUnique = new(_repo);
             CreateEmployeeEmailMustBeUnique verifyEmailIsUnique = new(_repo);
             CreateEmployeeNationalIdNumberMustBeUnique verifyNationalIdIsUnique = new(_repo);

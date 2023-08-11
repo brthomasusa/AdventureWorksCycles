@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace AWC.Application.Features.HumanResources.CreateEmployee
 {
-    public class DepartmentHistoryCommandCreateValidator : AbstractValidator<DepartmentHistoryCommand>
+    public class DepartmentHistoryCreateValidator : AbstractValidator<DepartmentHistoryCommand>
     {
-        public DepartmentHistoryCommandCreateValidator()
+        public DepartmentHistoryCreateValidator()
         {
             RuleFor(departHistory => departHistory.BusinessEntityID)
                                                   .Equal(0)

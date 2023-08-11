@@ -1,6 +1,6 @@
 namespace AWC.Infrastructure.Persistence.DataModels.HumanResources
 {
-    public class EmployeeDepartmentHistory
+    public sealed class EmployeeDepartmentHistory
     {
         public int BusinessEntityID { get; set; }
         public Int16 DepartmentID { get; set; }

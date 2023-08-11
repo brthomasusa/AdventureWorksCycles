@@ -1,6 +1,6 @@
 namespace AWC.Infrastructure.Persistence.DataModels.HumanResources
 {
-    public class Department
+    public sealed class Department
     {
         public Int16 DepartmentID { get; set; }
         public string? Name { get; set; }

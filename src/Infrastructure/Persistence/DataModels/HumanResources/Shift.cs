@@ -1,6 +1,6 @@
 namespace AWC.Infrastructure.Persistence.DataModels.HumanResources
 {
-    public class Shift
+    public sealed class Shift
     {
         public byte ShiftID { get; set; }
         public string? Name { get; set; }

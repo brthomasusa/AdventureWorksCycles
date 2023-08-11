@@ -29,33 +29,33 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 var person = await
                     SpecificationEvaluator.Default.GetQuery
                     (
-                        asNoTracking ? _context.Set<PersonDataModel>().AsNoTracking() : _context.Set<PersonDataModel>(),
+                        _context.Set<PersonDataModel>().AsNoTracking(),
                         new ValidateEmployeeNameIsUniqueSpec(fname, lname, middleName)
                     )
-                    .Select(s => new { EmployeeID = s.BusinessEntityID, s.FirstName, s.MiddleName, s.LastName })
+                    .Select(p => new { p.BusinessEntityID })
                     .FirstOrDefaultAsync(cancellationToken);
 
-                if (person is null || person.EmployeeID == id)
+                if (person is null || person.BusinessEntityID == id)
                     return Result.Success();
 
                 return Result.Failure
                 (
                     new Error
                     (
-                        "EmployeeAggregateRepository.ValidatePersonNameIsUnique",
+                        "EmployeeValidationRepository.ValidatePersonNameIsUnique",
                         $"A person named ${fname} {middleName} {lname} is already in the database."
                     )
                 );
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"EmployeeAggregateRepository.ValidatePersonNameIsUnique - {Helpers.GetExceptionMessage(ex)}");
+                _logger.LogError(ex, $"EmployeeValidationRepository.ValidatePersonNameIsUnique - {Helpers.GetExceptionMessage(ex)}");
 
                 return Result.Failure
                 (
                     new Error
                     (
-                        "EmployeeAggregateRepository.ValidatePersonNameIsUnique",
+                        "EmployeeValidationRepository.ValidatePersonNameIsUnique",
                         Helpers.GetExceptionMessage(ex)
                     )
                 );
@@ -68,24 +68,24 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             {
                 CancellationToken cancellationToken = default;
 
-                var nationalId = await
+                var employee = await
                     SpecificationEvaluator.Default.GetQuery
                     (
-                        asNoTracking ? _context.Set<EmployeeDataModel>().AsNoTracking() : _context.Set<EmployeeDataModel>(),
+                        _context.Set<EmployeeDataModel>().AsNoTracking(),
                         new ValidateNationalIdNumberIsUniqueSpec(nationalIdNumber)
                     )
-                    .Select(s => new { EmployeeID = s.BusinessEntityID, NationalID = s.NationalIDNumber })
+                    .Select(s => new { s.BusinessEntityID })
                     .FirstOrDefaultAsync(cancellationToken);
 
-                if (nationalId is null || nationalId.EmployeeID == id)
+                if (employee is null || employee.BusinessEntityID == id)
                     return Result.Success();
 
-                return Result.Failure(new Error("EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique", $"An employee with natioanal ID {nationalIdNumber} is already in the database."));
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateNationalIdNumberIsUnique", $"An employee with natioanal ID {nationalIdNumber} is already in the database."));
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique - {Helpers.GetExceptionMessage(ex)}");
-                return Result.Failure(new Error("EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique.", Helpers.GetExceptionMessage(ex)));
+                _logger.LogError(ex, $"EmployeeValidationRepository.ValidateNationalIdNumberIsUnique - {Helpers.GetExceptionMessage(ex)}");
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateNationalIdNumberIsUnique.", Helpers.GetExceptionMessage(ex)));
             }
         }
 
@@ -98,19 +98,21 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 var email = await
                     SpecificationEvaluator.Default.GetQuery
                     (
-                        asNoTracking ? _context.Set<PersonDataModel>().AsNoTracking() : _context.Set<PersonDataModel>(),
+                        _context.Set<PersonDataModel>().AsNoTracking(),
                         new ValidateEmployeeEmailIsUniqueSpec(emailAddres)
-                    ).FirstOrDefaultAsync(cancellationToken);
+                    )
+                    .Select(s => new { s.BusinessEntityID })
+                    .FirstOrDefaultAsync(cancellationToken);
 
                 if (email is null || email.BusinessEntityID == id)
                     return Result.Success();
 
-                return Result.Failure(new Error("EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique", $"An employee with email address {emailAddres} is already in the database."));
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateEmployeeEmailIsUnique", $"An employee with email address {emailAddres} is already in the database."));
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique - {Helpers.GetExceptionMessage(ex)}");
-                return Result.Failure(new Error("EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique", Helpers.GetExceptionMessage(ex)));
+                _logger.LogError(ex, $"EmployeeValidationRepository.ValidateEmployeeEmailIsUnique - {Helpers.GetExceptionMessage(ex)}");
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateEmployeeEmailIsUnique", Helpers.GetExceptionMessage(ex)));
             }
         }
 
@@ -120,24 +122,105 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             {
                 CancellationToken cancellationToken = default;
 
-                var employeeId = await
+                var employee = await
                     SpecificationEvaluator.Default.GetQuery
                     (
-                        asNoTracking ? _context.Set<EmployeeDataModel>().AsNoTracking() : _context.Set<EmployeeDataModel>(),
+                        _context.Set<EmployeeDataModel>().AsNoTracking(),
                         new ValidateEmployeeExistSpec(id)
                     )
-                    .Select(s => new { EmployeeID = s.BusinessEntityID })
+                    .Select(s => new { s.BusinessEntityID })
                     .FirstOrDefaultAsync(cancellationToken);
 
-                if (employeeId is not null)
+                if (employee is not null)
                     return Result.Success();
 
-                return Result.Failure(new Error("EmployeeAggregateRepository.ValidateEmployeeExist", $"An employee with ID {id} could not be found."));
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateEmployeeExist", $"An employee with ID {id} could not be found."));
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"EmployeeAggregateRepository.ValidateEmployeeExist - {Helpers.GetExceptionMessage(ex)}");
-                return Result.Failure(new Error("EmployeeAggregateRepository.ValidateEmployeeExist", Helpers.GetExceptionMessage(ex)));
+                _logger.LogError(ex, $"EmployeeValidationRepository.ValidateEmployeeExist - {Helpers.GetExceptionMessage(ex)}");
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateEmployeeExist", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
+        public async Task<Result> ValidateDepartmentExist(short id, bool asNoTracking = true)
+        {
+            try
+            {
+                CancellationToken cancellationToken = default;
+
+                var department = await
+                    SpecificationEvaluator.Default.GetQuery
+                    (
+                        _context.Set<Department>().AsNoTracking(),
+                        new ValidateDepartmentExistSpec(id)
+                    )
+                    .Select(s => new { s.DepartmentID })
+                    .FirstOrDefaultAsync(cancellationToken);
+
+                if (department is not null)
+                    return Result.Success();
+
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateDepartmentExist", $"A department with ID {id} could not be found."));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"EmployeeValidationRepository.ValidateDepartmentExist - {Helpers.GetExceptionMessage(ex)}");
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateDepartmentExist", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
+        public async Task<Result> ValidateShiftExist(byte id, bool asNoTracking = true)
+        {
+            try
+            {
+                CancellationToken cancellationToken = default;
+
+                var shift = await
+                    SpecificationEvaluator.Default.GetQuery
+                    (
+                        _context.Set<Shift>().AsNoTracking(),
+                        new ValidateShiftExistSpec(id)
+                    )
+                    .Select(s => new { s.ShiftID })
+                    .FirstOrDefaultAsync(cancellationToken);
+
+                if (shift is not null)
+                    return Result.Success();
+
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateShiftExist", $"A shift with ID {id} could not be found."));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"EmployeeValidationRepository.ValidateShiftExist - {Helpers.GetExceptionMessage(ex)}");
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateShiftExist", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
+        public async Task<Result> ValidateManagerExist(int id, bool asNoTracking = true)
+        {
+            try
+            {
+                CancellationToken cancellationToken = default;
+
+                var manager = await
+                    SpecificationEvaluator.Default.GetQuery
+                    (
+                        _context.Set<EmployeeManager>().AsNoTracking(),
+                        new ValidateEmployeeManagerExistSpec(id)
+                    )
+                    .Select(s => new { s.BusinessEntityID })
+                    .FirstOrDefaultAsync(cancellationToken);
+
+                if (manager is not null)
+                    return Result.Success();
+
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateManagerExist", $"A manager with ID {id} could not be found."));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"EmployeeValidationRepository.ValidateManagerExist - {Helpers.GetExceptionMessage(ex)}");
+                return Result.Failure(new Error("EmployeeValidationRepository.ValidateManagerExist", Helpers.GetExceptionMessage(ex)));
             }
         }
     }

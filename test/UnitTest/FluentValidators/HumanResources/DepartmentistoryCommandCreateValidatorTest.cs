@@ -7,7 +7,7 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
 {
     public class DepartmentistoryCommandCreateValidatorTest
     {
-        private readonly DepartmentHistoryCommandCreateValidator _departmentHistoryValidator;
+        private readonly DepartmentHistoryCreateValidator _departmentHistoryValidator;
 
         public DepartmentistoryCommandCreateValidatorTest()
             => _departmentHistoryValidator = new();

@@ -3,6 +3,19 @@ namespace AWC.IntegrationTests.DbContext
     public class DbContextRetrieve_Tests : TestBase
     {
         [Fact]
+        public void Get_EmployeeManagers_ShouldSucceed()
+        {
+            //SETUP
+
+            //ATTEMPT
+            var managers = _dbContext.EmployeeManagers!.ToList();
+            int count = managers.Count;
+
+            //VERIFY
+            Assert.Equal(47, count);
+        }
+
+        [Fact]
         public void Get_ContactTypes_ShouldSucceed()
         {
             //SETUP

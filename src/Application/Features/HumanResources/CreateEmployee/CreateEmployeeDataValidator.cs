@@ -3,9 +3,9 @@ using AWC.Shared.Commands.HumanResources;
 
 namespace AWC.Application.Features.HumanResources.CreateEmployee
 {
-    public class CreateEmployeeCommandDataValidator : AbstractValidator<CreateEmployeeCommand>
+    public class CreateEmployeeDataValidator : AbstractValidator<CreateEmployeeCommand>
     {
-        public CreateEmployeeCommandDataValidator()
+        public CreateEmployeeDataValidator()
         {
             RuleFor(employee => employee.BusinessEntityID)
                                         .Equal(0)
@@ -34,7 +34,9 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
 
             RuleFor(employee => employee.NationalIDNumber)
                                         .NotEmpty().WithMessage("National ID; this is required.")
-                                        .MaximumLength(50).WithMessage("National ID cannot be longer than 15 characters");
+                                        .Matches(@"^[0-9]+$").WithMessage("Valid national ID has between 5 and 9 digits, numbers only - no dashes.")
+                                        .MinimumLength(5).WithMessage("National ID cannot be longer than 15 characters")
+                                        .MaximumLength(9).WithMessage("National ID cannot be longer than 9 characters");
 
             RuleFor(employee => employee.LoginID)
                                         .NotEmpty().WithMessage("Employee login; this is required.")
@@ -113,13 +115,13 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
                                                              .Must(list => list!.Count == 1)
                                                              .WithMessage("A new employee can only have one department history record");
 
-            RuleForEach(employee => employee.DepartmentHistories).SetValidator(new DepartmentHistoryCommandCreateValidator());
+            RuleForEach(employee => employee.DepartmentHistories).SetValidator(new DepartmentHistoryCreateValidator());
 
             RuleFor(employee => employee.PayHistories).NotEmpty()
                                                       .Must(list => list!.Count == 1)
                                                       .WithMessage("A new employee can only have one pay history record");
 
-            RuleForEach(employee => employee.PayHistories).SetValidator(new PayHistoryCommandCreateValidator());
+            RuleForEach(employee => employee.PayHistories).SetValidator(new PayHistoryCreateValidator());
 
             RuleFor(employee => employee).Custom((employeeArgs, context) =>
             {
