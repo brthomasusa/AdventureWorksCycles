@@ -16,7 +16,7 @@ namespace AWC.IntegrationTest.Validation.HumanResources
             => _validationRepository = new ValidationRepositoryManager(_dbContext, new NullLogger<WriteRepositoryManager>());
 
         [Fact]
-        public async Task Validate_CreateEmployeeDepartmentMustExist_ValidID_ShouldReturnTrue()
+        public async Task Validate_CreateEmployeeDepartmentMustExist_ValidData_ShouldReturnTrue()
         {
             CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();
             CreateEmployeeDepartmentMustExist verifyDeptExistRule = new(_validationRepository);

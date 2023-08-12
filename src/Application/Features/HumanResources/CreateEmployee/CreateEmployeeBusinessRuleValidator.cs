@@ -15,18 +15,19 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
 
         public override async Task<Result> Validate(CreateEmployeeCommand command)
         {
-            // DepartmentID must exist
-            // ShiftID must exist
-            // ManagerID must exist
+            CreateEmployeeNameMustBeUnique verifyNameIsUniqueRule = new(_repo);
+            CreateEmployeeEmailMustBeUnique verifyEmailIsUniqueRule = new(_repo);
+            CreateEmployeeNationalIdNumberMustBeUnique verifyNationalIdIsUniqueRule = new(_repo);
+            CreateEmployeeDepartmentMustExist verifyDeptExistRule = new(_repo);
+            CreateEmployeeShiftMustExist verifyShiftExistRule = new(_repo);
+            CreateEmployeeManagerMustExist verifyMgrExistRule = new(_repo);
 
-            CreateEmployeeNameMustBeUnique verifyNameIsUnique = new(_repo);
-            CreateEmployeeEmailMustBeUnique verifyEmailIsUnique = new(_repo);
-            CreateEmployeeNationalIdNumberMustBeUnique verifyNationalIdIsUnique = new(_repo);
+            verifyNameIsUniqueRule.SetNext(verifyEmailIsUniqueRule);
+            verifyEmailIsUniqueRule.SetNext(verifyNationalIdIsUniqueRule);
+            verifyNationalIdIsUniqueRule.SetNext(verifyDeptExistRule);
+            verifyShiftExistRule.SetNext(verifyMgrExistRule);
 
-            verifyNameIsUnique.SetNext(verifyEmailIsUnique);
-            verifyEmailIsUnique.SetNext(verifyNationalIdIsUnique);
-
-            ValidationResult result = await verifyNameIsUnique.Validate(command);
+            ValidationResult result = await verifyNameIsUniqueRule.Validate(command);
 
             if (result.IsValid)
             {
