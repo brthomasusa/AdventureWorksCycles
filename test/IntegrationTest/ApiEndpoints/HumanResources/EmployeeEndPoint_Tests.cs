@@ -90,7 +90,8 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
             response.EnsureSuccessStatusCode();
 
             var jsonResponse = await response.Content.ReadAsStreamAsync();
-            var employeeResponse = await JsonSerializer.DeserializeAsync<EmployeeDetails>(jsonResponse, _options);
+            var employee = await JsonSerializer.DeserializeAsync<EmployeeDetails>(jsonResponse, _options);
+            Assert.Equal("13232145", employee.NationalIDNumber);
         }
 
         [Fact]

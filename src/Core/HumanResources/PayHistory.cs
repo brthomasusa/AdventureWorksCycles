@@ -35,7 +35,7 @@ namespace AWC.Core.HumanResources
                     (
                         id,
                         DateOfRateChange.Create(rateChangeDate),
-                        RateOfPay.Create(Money.Create(Currency.Create("USD", "US Dollar"), rate)),
+                        RateOfPay.Create(Money.Create(Currency.Create("USD", "US Dollar"), Math.Round(rate, 2))),
                         Enum.IsDefined(typeof(PayFrequencyEnum), payFrequency) ? payFrequency :
                                                                                  throw new ArgumentException("Invalid pay frequency.")
                     );

@@ -72,7 +72,10 @@ namespace AWC.Presentation.HumanResources.Employee
 
                 if (result.IsSuccess)
                 {
-                    return Results.Created($"api/employees/allinfo/{result.Value}", new GetEmployeeDetailsRequest(EmployeeID: result.Value));
+                    Result<EmployeeDetails> getResult =
+                        await sender.Send(new GetEmployeeDetailsRequest(EmployeeID: result.Value));
+
+                    return Results.Created($"api/employees/details/{result.Value}", getResult.Value);
                 }
 
                 return Results.Problem(result.Error);

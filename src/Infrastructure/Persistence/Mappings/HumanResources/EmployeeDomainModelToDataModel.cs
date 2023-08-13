@@ -5,7 +5,7 @@ using AWC.Infrastructure.Persistence.DataModels.Person;
 
 namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
 {
-    public static class FromEmployeeDomainModelToDataModel
+    public static class EmployeeDomainModelToDataModel
     {
         public static PersonDataModel MapToPersonDataModelForCreate(this Employee employee)
         {
@@ -111,14 +111,22 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             person.Employee!.CurrentFlag = employee.IsActive;
         }
 
+        /*
+            The Employee class does not have an AddAddress method. It's base class Person has the AddAddress method.
+            The Person class has a collection of BusinessEntityAddress instances; each one links the Person to one
+            Address class. This extension method gets the actual addresses and embeds them directly in the 
+            Person class. It's just easier to manipulate.
+        */
         public static void MapDataModelAddressToDomainAddress(this BusinessEntityAddress businessEntityAddress, ref Employee employee)
-            => employee.AddAddress(businessEntityAddress.AddressID,
-                                   businessEntityAddress.BusinessEntityID,
-                                   (AddressTypeEnum)businessEntityAddress.AddressTypeID,
-                                   businessEntityAddress.Address!.AddressLine1!,
-                                   businessEntityAddress.Address.AddressLine2,
-                                   businessEntityAddress.Address!.City!,
-                                   businessEntityAddress.Address.StateProvinceID,
-                                   businessEntityAddress.Address!.PostalCode!);
+            => employee.AddAddress(
+                businessEntityAddress.AddressID,
+                    businessEntityAddress.BusinessEntityID,
+                    (AddressTypeEnum)businessEntityAddress.AddressTypeID,
+                    businessEntityAddress.Address!.AddressLine1!,
+                    businessEntityAddress.Address.AddressLine2,
+                    businessEntityAddress.Address!.City!,
+                    businessEntityAddress.Address.StateProvinceID,
+                    businessEntityAddress.Address!.PostalCode!
+                );
     }
 }

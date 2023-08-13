@@ -40,66 +40,35 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                         new PersonByIDWithEmployeeSpec(employeeID)
                     ).FirstOrDefaultAsync(cancellationToken);
 
-                if (person is not null)
-                {
-                    // Call a db udf that converts organization node of 
-                    // employee's manager to an int BusinessEntityID
-                    var query = from emp in _context.Employee
-                                where emp.BusinessEntityID == employeeID
-                                select new
-                                {
-                                    ManagerID = _context.Get_Manager_ID(emp.BusinessEntityID)
-                                };
-                    var queryResult = query.FirstOrDefault();
-                    person.Employee!.ManagerID = queryResult!.ManagerID;
-
-                    Result<EmployeeDomainModel> result = person!.MapToEmployeeDomainObject();
-
-                    if (result.IsSuccess)
-                    {
-                        EmployeeDomainModel? employee = result.Value;
-
-                        // Add addresses to employee from person data model
-                        if (person!.BusinessEntityAddresses.ToList().Any())
-                        {
-                            person!.BusinessEntityAddresses.ToList().ForEach(dataModelAddress =>
-                                dataModelAddress.MapDataModelAddressToDomainAddress(ref employee));
-                        }
-
-                        // Add email addresses to employee from person data model
-                        if (person.EmailAddresses.ToList().Any())
-                        {
-                            person.EmailAddresses.ToList().ForEach(email =>
-                                employee.AddEmailAddress(
-                                    email.BusinessEntityID,
-                                    email.EmailAddressID,
-                                    email.MailAddress!
-                                ));
-                        }
-
-                        // Add email addresses to employee from person data model
-                        if (person!.Telephones.ToList().Any())
-                        {
-                            person!.Telephones.ToList().ForEach(tel =>
-                                employee.AddPhoneNumber(
-                                    tel.BusinessEntityID,
-                                    (PhoneNumberTypeEnum)tel.PhoneNumberTypeID,
-                                    tel.PhoneNumber!
-                                ));
-                        }
-
-                        return employee;
-                    }
-                    else
-                    {
-                        return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeAggregateRepository.GetByIdAsync", result.Error.Message));
-                    }
-                }
-                else
+                if (person is null)
                 {
                     string errMsg = $"An employee with ID: {employeeID} could not be found.";
                     return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeAggregateRepository.GetByIdAsync", errMsg));
                 }
+
+                // Call a db udf that converts organization node of 
+                // employee's manager to an int BusinessEntityID. We then
+                // add that to the employee as ManagerID.
+                var query = from emp in _context.Employee
+                            where emp.BusinessEntityID == employeeID
+                            select new
+                            {
+                                ManagerID = _context.Get_Manager_ID(emp.BusinessEntityID)
+                            };
+
+                var queryResult = query.FirstOrDefault();
+                person.Employee!.ManagerID = queryResult!.ManagerID;
+
+                Result<EmployeeDomainModel> result = person!.MapToEmployeeDomainObject();
+
+                if (result.IsFailure)
+                {
+                    return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeAggregateRepository.GetByIdAsync", result.Error.Message));
+                }
+
+                EmployeeDomainModel? employee = result.Value;
+
+                return employee;
             }
             catch (Exception ex)
             {

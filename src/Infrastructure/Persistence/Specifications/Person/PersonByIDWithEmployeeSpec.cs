@@ -10,12 +10,12 @@ namespace AWC.Infrastructure.Persistence.Specifications.Person
         {
             Query.Where(person => person.BusinessEntityID == businessEntityID)
                  .Include(person => person.Employee!)
+                 .Include(person => person.Employee!.DepartmentHistories)
+                 .Include(person => person.Employee!.PayHistories)
                  .Include(person => person.EmailAddresses!)
                  .Include(person => person.Telephones!)
                  .Include(person => person.BusinessEntityAddresses!)
-                    .ThenInclude(addr => addr.Address!)
-                 .Include(person => person.Employee!.DepartmentHistories)
-                 .Include(person => person.Employee!.PayHistories);
+                    .ThenInclude(addr => addr.Address!);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace AWC.Core.HumanResources.ValueObjects
 
         private static void CheckValidity(Money money)
         {
-            if (money.Amount < 6.50M || money.Amount > 40.00M)
+            if (money.Amount < 6.50M || money.Amount > 200.00M)
                 throw new ArgumentException("Invalid pay rate, must be between $6.50 and $40.00");
         }
     }

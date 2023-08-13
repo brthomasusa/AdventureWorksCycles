@@ -1,3 +1,4 @@
+using System.Linq;
 using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
@@ -19,18 +20,21 @@ namespace AWC.IntegrationTests.Repositories
                 );
 
         [Fact]
-        public async Task GetById_EmployeeAggregateRepo_ShouldSucceed()
+        public async Task GetById_EmployeeWriteRepo_ShouldSucceed()
         {
             Result<Employee> result = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(2);
 
             Assert.True(result.IsSuccess);
 
-            Address address = result.Value.Addresses.ToList()[0];
-            Assert.Equal("7559 Worth Ct.", address.Location.AddressLine1);
+            Assert.True(result.Value.Addresses.Any());
+            Assert.True(result.Value.EmailAddresses.Any());
+            Assert.True(result.Value.Telephones.Any());
+            Assert.True(result.Value.DepartmentHistories.Any());
+            Assert.True(result.Value.PayHistories.Any());
         }
 
         [Fact]
-        public async Task InsertAsync_EmployeeAggregateRepo_ShouldSucceed()
+        public async Task InsertAsync_EmployeeWriteRepo_ShouldSucceed()
         {
             Employee employee = GetEmployeeForCreate_ValidData();
 
@@ -40,7 +44,7 @@ namespace AWC.IntegrationTests.Repositories
         }
 
         [Fact]
-        public async Task Update_EmployeeAggregateRepo_ShouldSucceed()
+        public async Task Update_EmployeeWriteRepo_ShouldSucceed()
         {
             Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
 
@@ -62,7 +66,7 @@ namespace AWC.IntegrationTests.Repositories
         }
 
         [Fact]
-        public async Task Delete_Employee_EmployeeAggregateRepo_ShouldSucceed()
+        public async Task Delete_Employee_EmployeeWriteRepo_ShouldSucceed()
         {
             Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
 
