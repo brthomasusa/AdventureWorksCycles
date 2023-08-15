@@ -1,3 +1,4 @@
+using System.Linq;
 using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
@@ -89,6 +90,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
 
         public static void MapToPersonDataModelForUpdate(this Employee employee, ref PersonDataModel person)
         {
+            // Person
             person.PersonType = employee.PersonType;
             person.NameStyle = employee.NameStyle != NameStyleEnum.Western;
             person.Title = employee.Title;
@@ -98,6 +100,17 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             person.Suffix = employee.Suffix;
             person.EmailPromotion = (int)employee.EmailPromotions;
 
+            // Address. This works because a person who is an employee is restricted to one address
+            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.AddressLine1 = employee.Addresses.FirstOrDefault()!.Location.AddressLine1;
+            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.AddressLine2 = employee.Addresses.FirstOrDefault()!.Location.AddressLine2;
+            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.City = employee.Addresses.FirstOrDefault()!.Location.City;
+            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.StateProvinceID = employee.Addresses.FirstOrDefault()!.Location.StateProvinceID;
+            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.PostalCode = employee.Addresses.FirstOrDefault()!.Location.Zipcode;
+
+            // Email Address. This works because a person who is an employee is restricted to one email address
+            person.EmailAddresses.FirstOrDefault()!.MailAddress = employee.EmailAddresses.FirstOrDefault()!.EmailAddress;
+
+            // Employee
             person.Employee!.NationalIDNumber = employee.NationalIDNumber;
             person.Employee!.LoginID = employee.LoginID;
             person.Employee!.JobTitle = employee.JobTitle;

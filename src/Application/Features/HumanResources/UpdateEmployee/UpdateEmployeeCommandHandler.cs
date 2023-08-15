@@ -1,8 +1,10 @@
+using AWC.Application.Features.HumanResources.Common;
 using AWC.Application.Interfaces.Messaging;
 using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.SharedKernel.Utilities;
+
 
 namespace AWC.Application.Features.HumanResources.UpdateEmployee
 {
@@ -14,42 +16,49 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         public UpdateEmployeeCommandHandler(IWriteRepositoryManager repo)
             => _repo = repo;
 
-        public async Task<Result<int>> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
+        public async Task<Result<int>> Handle(UpdateEmployeeCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                Result<Employee> getEmployee = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.BusinessEntityID, true);
-
-                if (getEmployee.IsFailure)
-                    return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", getEmployee.Error.Message));
-
-                Result<Employee> updateEmployee = getEmployee.Value.Update
+                Result<Employee> employeeDomainObject = EmployeeDomainObjectBuilder.Build
                 (
+                    command.BusinessEntityID,
                     "EM",
-                    request.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
-                    request.Title!,
-                    request.FirstName,
-                    request.LastName,
-                    request.MiddleName!,
-                    request.Suffix!,
-                    (EmailPromotionEnum)request.EmailPromotion,
-                    request.NationalIDNumber,
-                    request.LoginID,
-                    request.JobTitle,
-                    DateOnly.FromDateTime(request.BirthDate),
-                    request.MaritalStatus,
-                    request.Gender,
-                    DateOnly.FromDateTime(request.HireDate),
-                    request.Salaried,
-                    request.VacationHours,
-                    request.SickLeaveHours,
-                    request.Active
+                    command.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
+                    command.Title,
+                    command.FirstName,
+                    command.MiddleName!,
+                    command.LastName,
+                    command.Suffix,
+                    command.ManagerID,
+                    command.JobTitle,
+                    command.PhoneNumber,
+                    PhoneNumberTypeEnum.Home,
+                    command.EmailAddress,
+                    command.EmailPromotion,
+                    command.NationalIDNumber,
+                    command.LoginID,
+                    command.AddressLine1,
+                    command.AddressLine2!,
+                    command.City,
+                    command.StateProvinceID,
+                    command.PostalCode,
+                    command.BirthDate,
+                    command.MaritalStatus,
+                    command.Gender,
+                    command.HireDate,
+                    command.Salaried,
+                    command.VacationHours,
+                    command.SickLeaveHours,
+                    command.Active,
+                    command.DepartmentHistories,
+                    command.PayHistories
                 );
 
-                if (updateEmployee.IsFailure)
-                    return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", updateEmployee.Error.Message));
+                if (employeeDomainObject.IsFailure)
+                    return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", employeeDomainObject.Error.Message));
 
-                Result<int> updateDbResult = await _repo.EmployeeAggregateRepository.Update(updateEmployee.Value);
+                Result<int> updateDbResult = await _repo.EmployeeAggregateRepository.Update(employeeDomainObject.Value);
 
                 if (updateDbResult.IsFailure)
                     return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", updateDbResult.Error.Message));

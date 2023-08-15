@@ -28,15 +28,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 );
 
                 if (result.IsFailure)
-                {
-                    return Result<Employee>.Failure<Employee>
-                    (
-                        new Error(
-                            "FromDataModelToDomainModel.MapToEmployeeDomainObject",
-                            result.Error.Message
-                        )
-                    );
-                }
+                    return Result<Employee>.Failure<Employee>(GetError(result.Error.Message));
             }
 
             // Add pay histories to employee from person data model
@@ -50,15 +42,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 );
 
                 if (result.IsFailure)
-                {
-                    return Result<Employee>.Failure<Employee>
-                    (
-                        new Error(
-                            "FromDataModelToDomainModel.MapToEmployeeDomainObject",
-                            result.Error.Message
-                        )
-                    );
-                }
+                    return Result<Employee>.Failure<Employee>(GetError(result.Error.Message));
             }
 
             // Add addresses to employee from person data model
@@ -80,62 +64,50 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                         );
 
                     if (result.IsFailure)
-                    {
-                        return Result<Employee>.Failure<Employee>
-                        (
-                            new Error(
-                                "FromDataModelToDomainModel.MapToEmployeeDomainObject",
-                                result.Error.Message
-                            )
-                        );
-                    }
-                }
-
-                // Add email addresses to employee from person data model
-                if (person.EmailAddresses.ToList().Any())
-                {
-                    foreach (EmailAddress email in person.EmailAddresses)
-                    {
-                        Result<PersonEmailAddress> result =
-                            employeeDomainObject.Value.AddEmailAddress
-                            (
-                                email.BusinessEntityID,
-                                email.EmailAddressID,
-                                email.MailAddress!
-                            );
-
-                        if (result.IsFailure)
-                        {
-                            return Result<Employee>.Failure<Employee>
-                            (
-                                new Error(
-                                    "FromDataModelToDomainModel.MapToEmployeeDomainObject",
-                                    result.Error.Message
-                                )
-                            );
-                        }
-                    }
-
-                }
-
-                // Add telephones to employee from person data model
-                if (person!.Telephones.ToList().Any())
-                {
-                    foreach (DataModels.Person.PersonPhone phone in person!.Telephones)
-                    {
-                        Result<Core.Shared.PersonPhone> result = employeeDomainObject.Value.AddPhoneNumber
-                        (
-                                phone.BusinessEntityID,
-                                (PhoneNumberTypeEnum)phone.PhoneNumberTypeID,
-                                phone.PhoneNumber!
-                        );
-                    }
+                        return Result<Employee>.Failure<Employee>(GetError(result.Error.Message));
                 }
             }
 
+            // Add email addresses to employee from person data model
+            if (person.EmailAddresses.ToList().Any())
+            {
+                foreach (EmailAddress email in person.EmailAddresses)
+                {
+                    Result<PersonEmailAddress> result =
+                        employeeDomainObject.Value.AddEmailAddress
+                        (
+                            email.BusinessEntityID,
+                            email.EmailAddressID,
+                            email.MailAddress!
+                        );
+
+                    if (result.IsFailure)
+                        return Result<Employee>.Failure<Employee>(GetError(result.Error.Message));
+                }
+            }
+
+            // Add telephones to employee from person data model
+            if (person!.Telephones.ToList().Any())
+            {
+                foreach (DataModels.Person.PersonPhone phone in person!.Telephones)
+                {
+                    Result<Core.Shared.PersonPhone> result = employeeDomainObject.Value.AddPhoneNumber
+                    (
+                            phone.BusinessEntityID,
+                            (PhoneNumberTypeEnum)phone.PhoneNumberTypeID,
+                            phone.PhoneNumber!
+                    );
+
+                    if (result.IsFailure)
+                        return Result<Employee>.Failure<Employee>(GetError(result.Error.Message));
+                }
+            }
 
             return employeeDomainObject;
         }
+
+        private static Error GetError(string errMsg)
+            => new Error("FromDataModelToDomainModel.MapToEmployeeDomainObject", errMsg);
 
         private static Result<Employee> MapToEmployee(PersonDataModel person)
             => Employee.Create

@@ -33,7 +33,9 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
 
             RuleFor(employee => employee.NationalIDNumber)
                                         .NotEmpty().WithMessage("National ID; this is required.")
-                                        .MaximumLength(50).WithMessage("National ID cannot be longer than 15 characters");
+                                        .Matches(@"^[0-9]+$").WithMessage("Valid national ID has between 5 and 9 digits, numbers only - no dashes.")
+                                        .MinimumLength(5).WithMessage("National ID cannot be longer than 15 characters")
+                                        .MaximumLength(9).WithMessage("National ID cannot be longer than 9 characters");
 
             RuleFor(employee => employee.LoginID)
                                         .NotEmpty().WithMessage("Employee login; this is required.")
@@ -50,7 +52,7 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
 
             RuleFor(employee => employee.MaritalStatus)
                                         .NotEmpty().WithMessage("Employee marital status is required.")
-                                        .Must(status => string.Equals(status, "S", StringComparison.OrdinalIgnoreCase) ||
+                                        .Must(status => string.Equals(status, "S", StringComparison.CurrentCultureIgnoreCase) ||
                                                         string.Equals(status, "M", StringComparison.OrdinalIgnoreCase))
                                         .WithMessage("Marital status must be S for single or M for married.");
 
@@ -72,6 +74,41 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
             RuleFor(employee => employee.SickLeaveHours)
                                         .Must(sickleave => sickleave >= 0 && sickleave <= 120)
                                         .WithMessage("Valid sick leave hours are between 0 and 120.");
+
+            RuleFor(employee => employee.Active)
+                                        .Must(status => status == true)
+                                        .WithMessage("The status of a new employee must be active.");
+
+            RuleFor(employee => employee.ManagerID)
+                                        .GreaterThan(0)
+                                        .WithMessage("A manager ID is required.");
+
+            RuleFor(employee => employee.AddressLine1)
+                                        .NotEmpty().WithMessage("Address line 1; this is required.")
+                                        .MaximumLength(60).WithMessage("Address line cannot be longer than 60 characters");
+
+            RuleFor(employee => employee.AddressLine2)
+                                        .MaximumLength(60).WithMessage("Address line cannot be longer than 60 characters");
+
+            RuleFor(employee => employee.City)
+                                        .NotEmpty().WithMessage("City name; this is required.")
+                                        .MaximumLength(30).WithMessage("City name cannot be longer than 30 characters");
+
+            RuleFor(employee => employee.StateProvinceID)
+                                        .GreaterThan(0)
+                                        .WithMessage("Missing state province code.");
+
+            RuleFor(employee => employee.PostalCode)
+                                        .NotEmpty().WithMessage("Postal code; this is required.")
+                                        .MaximumLength(15).WithMessage("Post code cannot be longer than 15 characters");
+
+            RuleFor(employee => employee.EmailAddress).EmailAddress();
+
+            RuleFor(employee => employee.PhoneNumber).Matches("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$");
+
+            RuleFor(employee => employee.PhoneNumberTypeID)
+                                        .Must(phType => phType >= 1 && phType <= 3)
+                                        .WithMessage("Valid phone number types are 1, 2, and 3 (cell, home, work).");
         }
     }
 }

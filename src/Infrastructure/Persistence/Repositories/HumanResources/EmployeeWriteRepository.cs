@@ -152,8 +152,8 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 var person = await
                     SpecificationEvaluator.Default.GetQuery
                     (
-                        _context.Set<PersonDataModel>(),
-                        new PersonByIDWithEmployeeOnlySpec(employee.Id)
+                        _context.Set<PersonDataModel>().AsTracking(),
+                        new PersonByIDWithEmployeeSpec(employee.Id)
                     ).FirstOrDefaultAsync(cancellationToken);
 
                 if (person is not null)
