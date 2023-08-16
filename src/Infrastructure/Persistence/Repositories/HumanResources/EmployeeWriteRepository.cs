@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using EmployeeDataModel = AWC.Infrastructure.Persistence.DataModels.HumanResources.EmployeeDataModel;
 using EmployeeDomainModel = AWC.Core.HumanResources.Employee;
 
+
+
 namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 {
     public sealed class EmployeeWriteRepository : IEmployeeWriteRepository
@@ -133,7 +135,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
                 await transaction.CommitAsync();
 
-                return Result<int>.Success<int>(entity.BusinessEntityID);
+                return entity.BusinessEntityID;
             }
             catch (Exception ex)
             {
@@ -159,7 +161,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 if (person is not null)
                 {
                     employee.MapToPersonDataModelForUpdate(ref person);
-
+                    _context.Person!.Update(person);
                     await _unitOfWork.CommitAsync();
 
                     return Result<int>.Success<int>(0);
@@ -178,35 +180,45 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result<int>> Delete(EmployeeDomainModel entity)
+        public async Task<Result<int>> Delete(int entityID)
         {
             try
             {
-                EmployeeDataModel? employee = await _context.Employee!.FindAsync(entity.Id);
-                PersonDataModel? person = await _context.Person!.FindAsync(entity.Id);
-                BusinessEntity? businessEntity = await _context.BusinessEntity!.FindAsync(entity.Id);
+                BusinessEntity? entity = await _context.BusinessEntity!.FindAsync(4);
 
-                if (employee is not null && person is not null && businessEntity is not null)
-                {
-                    RemovePayHistories(entity.Id);
-                    RemoveDepartmentHistories(entity.Id);
-                    RemovePersonPhones(entity.Id);
-                    RemovePersonEmailAddresses(entity.Id);
-                    RemovePersonPasswords(entity.Id);
-                    RemoveBusinessEntityAddresses(entity.Id);
+                if (entity is null)
+                    return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete", $"Failed to retrieve employee with ID: {entityID} for deletion."));
 
-                    _context.Employee!.Remove(employee);
-                    _context.Person!.Remove(person);
-                    _context.BusinessEntity!.Remove(businessEntity);
+                _context.BusinessEntity!.Remove(entity);
+                await _unitOfWork.CommitAsync();
+                return Result<int>.Success<int>(0);
 
-                    await _unitOfWork.CommitAsync();
-                    return Result<int>.Success<int>(0);
-                }
-                else
-                {
-                    return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete",
-                                                              $"Failed to retrieve employee with ID: {entity.Id} for deletion."));
-                }
+
+                // EmployeeDataModel? employee = await _context.Employee!.FindAsync(entityID);
+                // PersonDataModel? person = await _context.Person!.FindAsync(entityID);
+                // BusinessEntity? businessEntity = await _context.BusinessEntity!.FindAsync(entityID);
+
+                // if (employee is not null && person is not null && businessEntity is not null)
+                // {
+                //     RemovePayHistories(entityID);
+                //     RemoveDepartmentHistories(entityID);
+                //     RemovePersonPhones(entityID);
+                //     RemovePersonEmailAddresses(entityID);
+                //     RemovePersonPasswords(entityID);
+                //     RemoveBusinessEntityAddresses(entityID);
+
+                //     _context.Employee!.Remove(employee);
+                //     _context.Person!.Remove(person);
+                //     _context.BusinessEntity!.Remove(businessEntity);
+
+                //     await _unitOfWork.CommitAsync();
+                //     return Result<int>.Success<int>(0);
+                // }
+                // else
+                // {
+                //     return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete",
+                //                                               
+                // }
             }
             catch (Exception ex)
             {

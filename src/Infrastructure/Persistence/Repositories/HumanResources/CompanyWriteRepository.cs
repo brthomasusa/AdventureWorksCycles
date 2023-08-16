@@ -129,6 +129,6 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public Task<Result<int>> Delete(CompanyDomainModel entity) => throw new NotImplementedException();
+        public Task<Result<int>> Delete(int entityID) => throw new NotImplementedException();
     }
 }

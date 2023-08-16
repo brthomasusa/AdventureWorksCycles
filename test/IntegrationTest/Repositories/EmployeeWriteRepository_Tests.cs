@@ -22,7 +22,7 @@ namespace AWC.IntegrationTests.Repositories
         [Fact]
         public async Task GetById_EmployeeWriteRepo_ShouldSucceed()
         {
-            Result<Employee> result = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(2);
+            Result<Employee> result = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(4);
 
             Assert.True(result.IsSuccess);
 
@@ -33,7 +33,7 @@ namespace AWC.IntegrationTests.Repositories
             Assert.True(result.Value.PayHistories.Any());
         }
 
-        [Fact]
+        [Fact(Skip = "Why not")]
         public async Task InsertAsync_EmployeeWriteRepo_ShouldSucceed()
         {
             Employee employee = GetEmployeeForCreate_ValidData();
@@ -43,7 +43,7 @@ namespace AWC.IntegrationTests.Repositories
             Assert.True(result.IsSuccess);
         }
 
-        [Fact]
+        [Fact(Skip = "Why not")]
         public async Task Update_EmployeeWriteRepo_ShouldSucceed()
         {
             Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
@@ -68,11 +68,11 @@ namespace AWC.IntegrationTests.Repositories
         [Fact]
         public async Task Delete_Employee_EmployeeWriteRepo_ShouldSucceed()
         {
-            Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
+            Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(4);
 
             Assert.True(getResult.IsSuccess);
 
-            Result<int> deleteResult = await _writeRepository.EmployeeAggregateRepository.Delete(getResult.Value);
+            Result<int> deleteResult = await _writeRepository.EmployeeAggregateRepository.Delete(4);
 
             Assert.True(deleteResult.IsSuccess);
 

@@ -18,21 +18,12 @@ namespace AWC.Application.Features.HumanResources.DeleteEmployee
         {
             try
             {
-                Result<Employee> getResult = await _repo.EmployeeAggregateRepository.GetByIdAsync(request.BusinessEntityID);
+                Result<int> deleteDbResult = await _repo.EmployeeAggregateRepository.Delete(request.BusinessEntityID);
 
-                if (getResult.IsSuccess)
-                {
-                    Result<int> deleteDbResult = await _repo.EmployeeAggregateRepository.Delete(getResult.Value);
-
-                    if (deleteDbResult.IsSuccess)
-                        return RETURN_VALUE;
-
+                if (deleteDbResult.IsFailure)
                     return Result<int>.Failure<int>(new Error("DeleteEmployeeCommandHandler.Handle", deleteDbResult.Error.Message));
-                }
-                else
-                {
-                    return Result<int>.Failure<int>(new Error("DeleteEmployeeCommandHandler.Handle", getResult.Error.Message));
-                }
+
+                return RETURN_VALUE;
             }
             catch (Exception ex)
             {

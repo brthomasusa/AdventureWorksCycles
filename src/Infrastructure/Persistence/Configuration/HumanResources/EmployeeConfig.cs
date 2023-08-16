@@ -14,11 +14,13 @@ namespace AWC.Infrastructure.Persistence.Configurations.HumanResources
             entity.HasMany(employee => employee.DepartmentHistories)
                   .WithOne()
                   .HasForeignKey(employee => employee.BusinessEntityID)
-                  .IsRequired();
+                  .IsRequired()
+                  .OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(employee => employee.PayHistories)
                   .WithOne()
                   .HasForeignKey(employee => employee.BusinessEntityID)
-                  .IsRequired();
+                  .IsRequired()
+                  .OnDelete(DeleteBehavior.Cascade);
 
             entity.Property(e => e.BusinessEntityID)
                 .HasColumnName("BusinessEntityID")

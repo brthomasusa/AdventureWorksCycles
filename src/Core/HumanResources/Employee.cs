@@ -195,7 +195,7 @@ namespace AWC.Core.HumanResources
         {
             try
             {
-                DepartmentHistory? search = _deptHistories.Find(hist => hist.Id == id && hist.ShiftID == shiftId);
+                DepartmentHistory? search = _deptHistories.Find(dept => dept.DepartmentID == id && dept.ShiftID == shiftId && dept.StartDate == startDate);
 
                 if (search is null)
                 {
@@ -233,7 +233,7 @@ namespace AWC.Core.HumanResources
         {
             try
             {
-                PayHistory? search = _payHistories.Find(hist => hist.Id == id && hist.RateChangeDate == rateChangeDate);
+                PayHistory? search = _payHistories.Find(pay => pay.Id == id && pay.RateChangeDate == rateChangeDate && pay.PayRate.Value.Amount == rate);
 
                 if (search is null)
                 {

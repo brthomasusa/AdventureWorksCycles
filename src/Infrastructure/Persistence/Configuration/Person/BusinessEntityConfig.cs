@@ -14,7 +14,8 @@ namespace AWC.Infrastructure.Persistence.Configurations.Person
             entity.HasOne(p => p.PersonModel)
                 .WithOne()
                 .HasForeignKey<PersonDataModel>(p => p.BusinessEntityID)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
 
             entity.Property(e => e.BusinessEntityID)
                 .HasColumnName("BusinessEntityID")
