@@ -38,12 +38,8 @@ namespace AWC.UnitTest.Data
                         Salaried: true,
                         VacationHours: 5,
                         SickLeaveHours: 1,
-                        PayRate: 20.00M,
-                        PayFrequency: 2,
                         Active: true,
                         ManagerID: 1,
-                        DepartmentID: 16,
-                        ShiftID: 1,
                         DepartmentHistories: new List<DepartmentHistoryCommand>()
                         {
                             new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
@@ -83,12 +79,8 @@ namespace AWC.UnitTest.Data
                 Salaried: true,
                 VacationHours: 5,
                 SickLeaveHours: 1,
-                PayRate: 20.00M,
-                PayFrequency: 2,
                 Active: true,
                 ManagerID: 1,
-                DepartmentID: 16,
-                ShiftID: 1,
                 DepartmentHistories: new List<DepartmentHistoryCommand>()
                 {
                     new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28), EndDate = new DateTime(2020, 1, 27) },
@@ -128,12 +120,8 @@ namespace AWC.UnitTest.Data
                 Salaried: true,
                 VacationHours: 5,
                 SickLeaveHours: 1,
-                PayRate: 20.00M,
-                PayFrequency: 2,
                 Active: true,
                 ManagerID: 1,
-                DepartmentID: 16,
-                ShiftID: 1,
                 DepartmentHistories: new List<DepartmentHistoryCommand>() { },
                 PayHistories: new List<PayHistoryCommand>()
                 {
@@ -169,12 +157,8 @@ namespace AWC.UnitTest.Data
                 Salaried: true,
                 VacationHours: 5,
                 SickLeaveHours: 1,
-                PayRate: 20.00M,
-                PayFrequency: 2,
                 Active: true,
                 ManagerID: 1,
-                DepartmentID: 16,
-                ShiftID: 1,
                 DepartmentHistories: new List<DepartmentHistoryCommand>()
                 {
                     new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 15, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
@@ -211,12 +195,8 @@ namespace AWC.UnitTest.Data
                 Salaried: true,
                 VacationHours: 5,
                 SickLeaveHours: 1,
-                PayRate: 20.00M,
-                PayFrequency: 2,
                 Active: true,
                 ManagerID: 1,
-                DepartmentID: 16,
-                ShiftID: 1,
                 DepartmentHistories: new List<DepartmentHistoryCommand>()
                 {
                     new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
@@ -256,12 +236,8 @@ namespace AWC.UnitTest.Data
                 Salaried: true,
                 VacationHours: 5,
                 SickLeaveHours: 1,
-                PayRate: 20.00M,
-                PayFrequency: 2,
                 Active: true,
                 ManagerID: 1,
-                DepartmentID: 16,
-                ShiftID: 1,
                 DepartmentHistories: new List<DepartmentHistoryCommand>()
                 {
                     new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 2, 28) }
@@ -300,12 +276,8 @@ namespace AWC.UnitTest.Data
                 Salaried: true,
                 VacationHours: 5,
                 SickLeaveHours: 1,
-                PayRate: 20.00M,
-                PayFrequency: 2,
                 Active: true,
                 ManagerID: 1,
-                DepartmentID: 16,
-                ShiftID: 1,
                 DepartmentHistories: new List<DepartmentHistoryCommand>()
                 {
                     new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
@@ -344,12 +316,8 @@ namespace AWC.UnitTest.Data
                 Salaried: true,
                 VacationHours: 5,
                 SickLeaveHours: 1,
-                PayRate: 20.00M,
-                PayFrequency: 2,
                 Active: true,
                 ManagerID: 1,
-                DepartmentID: 16,
-                ShiftID: 1,
                 DepartmentHistories: new List<DepartmentHistoryCommand>()
                 {
                     new DepartmentHistoryCommand(){ BusinessEntityID = 273, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }

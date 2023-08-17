@@ -40,14 +40,10 @@ message grpc_EmployeeGenericCommand {
     bool salaried = 24;
     int32 vacation_hours = 25;
     int32 sick_leave_hours = 26;
-    double pay_rate = 27;
-    int32 pay_frequency = 28;
-    bool active = 29;
-    int32 manager_id = 30;
-    int32 department_id = 31;
-    int32 shift_id = 32;
-    repeated grpc_DepartmentHistoryCommand department_histories = 33;
-    repeated grpc_PayHistoryCommand pay_histories = 34;   
+    bool active = 27;
+    int32 manager_id = 28;
+    repeated grpc_DepartmentHistoryCommand department_histories = 29;
+    repeated grpc_PayHistoryCommand pay_histories = 30;   
 }
 
 message grpc_EmployeeForDisplay {
@@ -76,16 +72,12 @@ message grpc_EmployeeForDisplay {
     google.protobuf.Timestamp hire_date = 23;
     bool salaried = 24;
     int32 vacation_hours = 25;
-    int32 sick_leave_hours = 26;
-    double pay_rate = 27;
-    string pay_frequency = 28;    
-    bool active = 29;
-    string manager_name = 30;
-    string department = 31;   
-    string shift = 32;
-    string address = 33;
-    repeated grpc_DepartmentHistory department_histories = 34;
-    repeated grpc_PayHistory pay_histories = 35;     
+    int32 sick_leave_hours = 26;    
+    bool active = 27;
+    string manager_name = 28;
+    string address = 29;
+    repeated grpc_DepartmentHistory department_histories = 30;
+    repeated grpc_PayHistory pay_histories = 31;     
 }
 
 message grpc_EmployeeListItem {

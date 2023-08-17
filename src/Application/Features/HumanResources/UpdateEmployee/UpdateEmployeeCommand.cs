@@ -31,12 +31,8 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         bool Salaried,
         int VacationHours,
         int SickLeaveHours,
-        decimal PayRate,
-        int PayFrequency,
         bool Active,
         int ManagerID,
-        int DepartmentID,
-        int ShiftID,
         List<DepartmentHistoryCommand>? DepartmentHistories,
         List<PayHistoryCommand>? PayHistories
     ) : ICommand<int>;

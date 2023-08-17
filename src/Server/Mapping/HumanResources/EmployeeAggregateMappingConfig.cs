@@ -21,8 +21,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.Suffix, src => string.IsNullOrEmpty(src.Suffix) ? string.Empty : src.Suffix)
                 .Map(dest => dest.AddressLine2, src => string.IsNullOrEmpty(src.AddressLine2) ? string.Empty : src.AddressLine2)
                 .Map(dest => dest.BirthDate, src => GoogleDateTime.FromDateTimeOffset(src.BirthDate))
-                .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate))
-                .Map(dest => dest.PayRate, src => Decimal.ToDouble(src.PayRate));
+                .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate));
 
             // To the UI, used to populate employee update page
             config.NewConfig<EmployeeGenericCommand, grpc_EmployeeGenericCommand>()
@@ -31,8 +30,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.Suffix, src => string.IsNullOrEmpty(src.Suffix) ? string.Empty : src.Suffix)
                 .Map(dest => dest.AddressLine2, src => string.IsNullOrEmpty(src.AddressLine2) ? string.Empty : src.AddressLine2)
                 .Map(dest => dest.BirthDate, src => GoogleDateTime.FromDateTimeOffset(src.BirthDate))
-                .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate))
-                .Map(dest => dest.PayRate, src => Decimal.ToDouble(src.PayRate));
+                .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate));
 
             // To the UI, used to populate employee list page
             config.NewConfig<EmployeeListItem, grpc_EmployeeListItem>()
@@ -46,8 +44,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.Suffix, src => string.IsNullOrEmpty(src.Suffix) ? null : src.Suffix)
                 .Map(dest => dest.AddressLine2, src => string.IsNullOrEmpty(src.AddressLine2) ? null : src.AddressLine2)
                 .Map(dest => dest.BirthDate, src => src.BirthDate.ToDateTime().ToLocalTime())
-                .Map(dest => dest.HireDate, src => src.HireDate.ToDateTime().ToLocalTime())
-                .Map(dest => dest.PayRate, src => (decimal)src.PayRate);
+                .Map(dest => dest.HireDate, src => src.HireDate.ToDateTime().ToLocalTime());
 
             // From the UI
             config.NewConfig<grpc_DepartmentHistoryCommand, AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand>()

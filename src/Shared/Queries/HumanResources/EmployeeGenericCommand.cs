@@ -29,12 +29,8 @@ namespace AWC.Shared.Queries.HumanResources
         public bool Salaried { get; set; }
         public int VacationHours { get; set; }
         public int SickLeaveHours { get; set; }
-        public decimal PayRate { get; set; }
-        public int PayFrequency { get; set; }
         public bool Active { get; set; }
         public int ManagerID { get; set; }
-        public int DepartmentID { get; set; }
-        public int ShiftID { get; set; }
         public List<DepartmentHistoryCommand>? DepartmentHistories { get; set; }
         public List<PayHistoryCommand>? PayHistories { get; set; }
     }

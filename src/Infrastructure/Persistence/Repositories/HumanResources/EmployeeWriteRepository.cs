@@ -184,16 +184,18 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         {
             try
             {
-                //TODO This is a hack. Fix it!
-                Result<AWC.Core.HumanResources.Employee> getResult = await GetByIdAsync(entityID);
-
-                BusinessEntity? entity = await _context.BusinessEntity!.FindAsync(entityID);
+                var entity = await
+                    SpecificationEvaluator.Default.GetQuery
+                    (
+                        _context.Set<BusinessEntity>().AsTracking(),
+                        new BusinessEntityWithPersonSpec(entityID)
+                    ).FirstOrDefaultAsync();
 
                 if (entity is null)
                     return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete", $"Failed to retrieve employee with ID: {entityID} for deletion."));
 
-                var address = _context.BusinessEntityAddress!.Where(bea => bea.BusinessEntityID == entityID)
-                                                             .Include(p => p.Address).FirstOrDefault();
+                var address = await _context.BusinessEntityAddress!.Where(bea => bea.BusinessEntityID == entityID)
+                                                                   .Include(p => p.Address).FirstOrDefaultAsync();
 
                 using var transaction = _context.Database.BeginTransaction();
 
