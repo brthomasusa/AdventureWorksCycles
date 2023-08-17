@@ -41,7 +41,7 @@ namespace AWC.IntegrationTests.HumanResources.CommandHandlers
         [Fact]
         public async Task Handle_DeleteEmployeeCommandHandler_ShouldSucceed()
         {
-            DeleteEmployeeCommand command = new(BusinessEntityID: 273);
+            DeleteEmployeeCommand command = new(BusinessEntityID: 4);
             DeleteEmployeeCommandHandler handler = new(_writeRepository);
 
             Result<int> result = await handler.Handle(command, new CancellationToken());

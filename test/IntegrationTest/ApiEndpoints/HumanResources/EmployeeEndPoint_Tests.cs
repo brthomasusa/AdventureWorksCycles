@@ -161,7 +161,7 @@ namespace AWC.IntegrationTests.ApiEndPoint_Tests
         public async Task Employee_DeleteEmployeeInfo_Valid_ShouldSucceed()
         {
             string uri = $"{_urlRoot}employees/delete";
-            DeleteEmployeeCommand command = new(BusinessEntityID: 2);
+            DeleteEmployeeCommand command = new(BusinessEntityID: 4);
 
             var memStream = new MemoryStream();
             await JsonSerializer.SerializeAsync(memStream, command);

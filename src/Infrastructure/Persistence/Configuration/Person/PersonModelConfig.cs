@@ -3,6 +3,7 @@ using AWC.Infrastructure.Persistence.DataModels.Person;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
+
 namespace AWC.Infrastructure.Persistence.Configurations.Person
 {
     internal class PersonModelConfig : IEntityTypeConfiguration<PersonDataModel>
@@ -16,6 +17,10 @@ namespace AWC.Infrastructure.Persistence.Configurations.Person
                 .WithOne()
                 .HasForeignKey<EmployeeDataModel>(p => p.BusinessEntityID)
                 .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(p => p.Password)
+                .WithOne()
+                .HasForeignKey<Password>(p => p.BusinessEntityID)
                 .OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(p => p.EmailAddresses)
                 .WithOne()

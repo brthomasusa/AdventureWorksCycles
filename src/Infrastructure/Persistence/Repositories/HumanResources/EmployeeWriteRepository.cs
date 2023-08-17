@@ -184,41 +184,27 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         {
             try
             {
-                BusinessEntity? entity = await _context.BusinessEntity!.FindAsync(4);
+                //TODO This is a hack. Fix it!
+                Result<AWC.Core.HumanResources.Employee> getResult = await GetByIdAsync(entityID);
+
+                BusinessEntity? entity = await _context.BusinessEntity!.FindAsync(entityID);
 
                 if (entity is null)
                     return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete", $"Failed to retrieve employee with ID: {entityID} for deletion."));
 
+                var address = _context.BusinessEntityAddress!.Where(bea => bea.BusinessEntityID == entityID)
+                                                             .Include(p => p.Address).FirstOrDefault();
+
+                using var transaction = _context.Database.BeginTransaction();
+
                 _context.BusinessEntity!.Remove(entity);
-                await _unitOfWork.CommitAsync();
+                await _context.SaveChangesAsync(); ;
+                await _context.Address!.Where(a => a.AddressID == address!.AddressID).ExecuteDeleteAsync();
+                await _context.SaveChangesAsync(); ;
+
+                await transaction.CommitAsync();
+
                 return Result<int>.Success<int>(0);
-
-
-                // EmployeeDataModel? employee = await _context.Employee!.FindAsync(entityID);
-                // PersonDataModel? person = await _context.Person!.FindAsync(entityID);
-                // BusinessEntity? businessEntity = await _context.BusinessEntity!.FindAsync(entityID);
-
-                // if (employee is not null && person is not null && businessEntity is not null)
-                // {
-                //     RemovePayHistories(entityID);
-                //     RemoveDepartmentHistories(entityID);
-                //     RemovePersonPhones(entityID);
-                //     RemovePersonEmailAddresses(entityID);
-                //     RemovePersonPasswords(entityID);
-                //     RemoveBusinessEntityAddresses(entityID);
-
-                //     _context.Employee!.Remove(employee);
-                //     _context.Person!.Remove(person);
-                //     _context.BusinessEntity!.Remove(businessEntity);
-
-                //     await _unitOfWork.CommitAsync();
-                //     return Result<int>.Success<int>(0);
-                // }
-                // else
-                // {
-                //     return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete",
-                //                                               
-                // }
             }
             catch (Exception ex)
             {
@@ -228,50 +214,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        private void RemovePayHistories(int employeeID)
-        {
-            if (_context.EmployeePayHistory!.Where(hist => hist.BusinessEntityID == employeeID).Any())
-            {
-                var histories = _context.EmployeePayHistory!.Where(hist => hist.BusinessEntityID == employeeID).ToList();
-                _context.EmployeePayHistory!.RemoveRange(histories);
-            }
-        }
-
-        private void RemoveDepartmentHistories(int employeeID)
-        {
-            if (_context.EmployeeDepartmentHistory!.Where(hist => hist.BusinessEntityID == employeeID).Any())
-            {
-                var histories = _context.EmployeeDepartmentHistory!.Where(hist => hist.BusinessEntityID == employeeID).ToList();
-                _context.EmployeeDepartmentHistory!.RemoveRange(histories);
-            }
-        }
-
-        private void RemovePersonPhones(int employeeID)
-        {
-            if (_context.PersonPhone!.Where(ph => ph.BusinessEntityID == employeeID).Any())
-            {
-                var phones = _context.PersonPhone!.Where(ph => ph.BusinessEntityID == employeeID).ToList();
-                _context.PersonPhone!.RemoveRange(phones);
-            }
-        }
-
-        private void RemovePersonPasswords(int employeeID)
-        {
-            if (_context.Password!.Where(pw => pw.BusinessEntityID == employeeID).Any())
-            {
-                var passwords = _context.Password!.Where(pw => pw.BusinessEntityID == employeeID).ToList();
-                _context.Password!.RemoveRange(passwords);
-            }
-        }
-
-        private void RemovePersonEmailAddresses(int employeeID)
-        {
-            if (_context.EmailAddress!.Where(addr => addr.BusinessEntityID == employeeID).Any())
-            {
-                var addresses = _context.EmailAddress!.Where(addr => addr.BusinessEntityID == employeeID).ToList();
-                _context.EmailAddress!.RemoveRange(addresses);
-            }
-        }
+        /*  Left as good linq code examples  */
 
         private void RemoveBusinessEntityAddresses(int employeeID)
         {
@@ -297,26 +240,6 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             if (addresses.Any())
                 _context.Address!.RemoveRange(addresses);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

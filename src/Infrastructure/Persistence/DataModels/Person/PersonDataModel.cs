@@ -17,6 +17,7 @@ namespace AWC.Infrastructure.Persistence.DataModels.Person
         public DateTime ModifiedDate { get; set; }
 
         public virtual EmployeeDataModel? Employee { get; set; }
+        public virtual Password? Password { get; set; }
         public virtual List<EmailAddress> EmailAddresses { get; set; } = new();
         public virtual List<PersonPhone> Telephones { get; set; } = new();
         public virtual List<BusinessEntityAddress> BusinessEntityAddresses { get; set; } = new();

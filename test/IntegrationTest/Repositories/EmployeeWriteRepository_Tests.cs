@@ -68,15 +68,11 @@ namespace AWC.IntegrationTests.Repositories
         [Fact]
         public async Task Delete_Employee_EmployeeWriteRepo_ShouldSucceed()
         {
-            Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(4);
-
-            Assert.True(getResult.IsSuccess);
-
             Result<int> deleteResult = await _writeRepository.EmployeeAggregateRepository.Delete(4);
 
             Assert.True(deleteResult.IsSuccess);
 
-            Result<Employee> test = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
+            Result<Employee> test = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(4);
             Assert.True(test.IsFailure);
         }
 

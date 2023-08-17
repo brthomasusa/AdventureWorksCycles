@@ -14,6 +14,7 @@ namespace AWC.Infrastructure.Persistence.Specifications.Person
                  .Include(person => person.Employee!.PayHistories)
                  .Include(person => person.EmailAddresses!)
                  .Include(person => person.Telephones!)
+                 .Include(person => person.Password)
                  .Include(person => person.BusinessEntityAddresses!)
                     .ThenInclude(addr => addr.Address!);
         }
