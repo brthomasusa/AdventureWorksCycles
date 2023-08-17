@@ -1,0 +1,116 @@
+@page "/Features/HumanResources/ViewCompanyDetail/Pages/ViewCompanyDetailPage"
+@inherits FluxorComponent
+
+<PageTitle>Company Details</PageTitle>
+<div class="row">
+
+</div>
+
+<RadzenRow class="rz-mb-3">
+    <RadzenColumn Size="6" SizeMD="6" JustifyContent="JustifyContent">
+        <RadzenText Text="Viewing company details" TextStyle="TextStyle.H6" TextAlign="TextAlign.Start"
+            class="rz-my-0" />
+    </RadzenColumn>
+    <RadzenColumn Size="6" SizeMD="6" JustifyContent="JustifyContent.Center">
+        <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+            JustifyContent="JustifyContent.End">
+            <RadzenButton Icon="mode_edit" Click="@EditButtonClicked" Variant="Variant.Flat" />
+        </RadzenStack>
+    </RadzenColumn>
+</RadzenRow>
+
+@if (Loading)
+{
+    <LoadingComponent />
+}
+else
+{
+
+    <RadzenTabs TabPosition="TabPosition.Top" RenderMode="TabRenderMode.Client">
+    <Tabs>
+        <RadzenTabsItem Text="General Information">
+            <RadzenRow Gap="0">
+                <RadzenColumn Size="12" SizeSM="6">
+                    <RadzenStack>
+                        <RadzenFormField Text="Company Name" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.CompanyName" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Legal Name" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.LegalName" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Employer Identification Number" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.EIN" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Company Website" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.CompanyWebSite" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Telephone" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.Telephone" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Fax" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.Fax" />
+                        </RadzenFormField>
+                    </RadzenStack>
+                </RadzenColumn>
+            </RadzenRow>
+        </RadzenTabsItem>
+        <RadzenTabsItem Text="Addresses">
+            <RadzenRow Gap="0">
+                <RadzenColumn Size="12" SizeSM="6">
+                    <RadzenStack>
+                        <RadzenText Text="Postal Address" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start"
+                            class="rz-mb-2">
+                        </RadzenText>
+                        <RadzenFormField Text="Address Line 1" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.MailAddressLine1" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Address Line2" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.MailAddressLine2" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="City" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.MailCity" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="State" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.MailStateProvinceCode" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Zipcode" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.MailPostalCode" />
+                        </RadzenFormField>
+                    </RadzenStack>
+                </RadzenColumn>
+                <RadzenColumn Size="12" SizeSM="6">
+                    <RadzenStack>
+                        <RadzenText Text="Delivery Address" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start"
+                            class="rz-mb-2">
+                        </RadzenText>
+                        <RadzenFormField Text="Address Line 1" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.DeliveryAddressLine1" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Address Line2" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.DeliveryAddressLine2" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="City" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.DeliveryCity" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="State" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.DeliveryStateProvinceCode" />
+                        </RadzenFormField>
+                        <RadzenFormField Text="Zipcode" Variant="Variant.Filled">
+                            <RadzenTextBox Disabled="true" @bind-Value="@DetailsModel!.DeliveryPostalCode" />
+                        </RadzenFormField>
+                    </RadzenStack>
+                </RadzenColumn>
+            </RadzenRow>
+        </RadzenTabsItem>
+    </Tabs>
+</RadzenTabs>
+}
+
+
+
+
+
+
+
+
+

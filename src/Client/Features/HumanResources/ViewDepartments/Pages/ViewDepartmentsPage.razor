@@ -1,0 +1,35 @@
+@page "/Features/HumanResources/ViewDepartments/Pages/ViewDepartmentsPage"
+@inherits FluxorComponent
+@using Radzen
+@using Radzen.Blazor
+@using AWC.Client.Utilities;
+@using AWC.Shared.Queries.HumanResources;
+@using AWC.Shared.Queries.Shared;
+
+<PageTitle>Departments</PageTitle>
+
+<div class="row mb-3">
+    <div class="col">
+        <RadzenText Text="Viewing department list" TextStyle="TextStyle.H6" TextAlign="TextAlign.Start" class="rz-my-0">
+        </RadzenText>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <RadzenDataGrid AllowFiltering="true" FilterMode="FilterMode.Simple" AllowPaging="true"
+            PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" AllowSorting="true"
+            Data="@departmentDetails" Count="@count" TItem="DepartmentDetails" LoadData="@LoadDepartmentData"
+            IsLoading="@isLoading" PageSizeOptions="@pageSizeOptions" PageSizeText="Rows per page">
+            <Columns>
+                <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="DepartmentID" Title="ID">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DepartmentDetails" Sortable="true" Property="Name" Title="Name">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="GroupName"
+                    Title="Group Name">
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+</div>

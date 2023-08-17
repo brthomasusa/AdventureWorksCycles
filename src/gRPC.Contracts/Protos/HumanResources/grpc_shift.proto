@@ -1,0 +1,18 @@
+syntax = "proto3";
+package contracts.humanresources;
+option csharp_namespace = "gRPC.Contracts.HumanResources";
+import "google/protobuf/timestamp.proto";
+
+message grpc_Shift{
+    int32 shift_id = 1;
+    string name = 2;
+    string group_name = 3;
+    string start_time = 4;
+    string end_time = 5;
+    google.protobuf.Timestamp modified_date = 6;    
+}
+
+message grpc_GetCompanyShifts {
+    repeated grpc_Shift grpc_shifts = 1; 
+    map<string, int32> grpc_meta_data = 2;   
+}

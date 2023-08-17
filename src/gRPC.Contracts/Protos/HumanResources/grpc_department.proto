@@ -1,0 +1,16 @@
+syntax = "proto3";
+package contracts.humanresources;
+option csharp_namespace = "gRPC.Contracts.HumanResources";
+import "google/protobuf/timestamp.proto";
+
+message grpc_Department {
+    int32 department_id = 1;
+    string name = 2;
+    string group_name = 3;
+    google.protobuf.Timestamp modified_date = 4;
+}
+
+message grpc_GetCompanyDepartments {
+    repeated grpc_Department grpc_departments = 1; 
+    map<string, int32> grpc_meta_data = 2;   
+}

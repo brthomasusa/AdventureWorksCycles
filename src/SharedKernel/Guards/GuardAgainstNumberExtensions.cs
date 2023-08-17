@@ -31,20 +31,29 @@ namespace AWC.SharedKernel.Guards
             return guardClause.LessThan(input, 0, parameterName, message);
         }
 
-        public static decimal GreaterThan(this IGuardClause guardClause, decimal input, int maxValue, string parameterName = "Amount", string message = null!)
+        public static decimal GreaterThan(this IGuardClause guardClause, decimal input, decimal minValue, string parameterName = "Amount", string message = null!)
         {
-            if (input > maxValue)
+            if (input < minValue)
             {
-                Error(message ?? $"'{parameterName}' must be less than or equal to {maxValue}.");
+                Error(message ?? $"'{parameterName}' must be greater than or equal to {minValue}.");
             }
             return input;
         }
 
-        public static decimal GreaterThan(this IGuardClause guardClause, decimal input, decimal maxValue, string parameterName = "Amount", string message = null!)
+        public static int GreaterThan(this IGuardClause guardClause, int input, int minValue, string parameterName = "Amount", string message = null!)
         {
-            if (input > maxValue)
+            if (input < minValue)
             {
-                Error(message ?? $"'{parameterName}' must be less than or equal to {maxValue}.");
+                Error(message ?? $"'{parameterName}' must be greater than or equal to {minValue}.");
+            }
+            return input;
+        }
+
+        public static decimal GreaterThanTwoDecimalPlaces(this IGuardClause guardClause, decimal input, string parameterName = "Amount", string message = null!)
+        {
+            if (input % 0.01M != 0)
+            {
+                Error(message ?? $"'{parameterName}' is limited to two decimal places.");
             }
             return input;
         }

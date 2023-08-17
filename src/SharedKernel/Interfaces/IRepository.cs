@@ -7,6 +7,6 @@ namespace AWC.SharedKernel.Interfaces
         Task<Result<T>> GetByIdAsync(int id, bool asNoTracking = false);
         Task<Result<int>> InsertAsync(T entity);
         Task<Result<int>> Update(T entity);
-        Task<Result<int>> Delete(T entity);
+        Task<Result<int>> Delete(int entityID);
     }
 }

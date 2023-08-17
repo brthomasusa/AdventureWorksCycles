@@ -1,0 +1,54 @@
+syntax = "proto3";
+package contracts.humanresources;
+option csharp_namespace = "gRPC.Contracts.HumanResources";
+import "Protos/Shared/shared.proto";
+import "Protos/HumanResources/grpc_department.proto";
+import "Protos/HumanResources/grpc_shift.proto";
+
+service CompanyContract {
+	rpc Update(grpc_CompanyGenericCommand) returns (contracts.shared.GenericResponse);
+	rpc GetCompanyForEdit(contracts.shared.ItemRequest) returns (grpc_CompanyGenericCommand);
+    rpc GetCompanyForDisplay(contracts.shared.ItemRequest) returns (grpc_CompanyForDisplay);
+    rpc GetDepartmentsSearchByName(contracts.shared.grpc_StringSearchCriteria) returns (grpc_GetCompanyDepartments);
+    rpc GetShifts(contracts.shared.grpc_PagingParameters) returns (grpc_GetCompanyShifts);
+}
+
+message grpc_CompanyGenericCommand {
+    int32 company_id = 1;
+    string company_name = 2;
+    string legal_name = 3;
+    string ein = 4;
+    string company_web_site = 5;
+    string mail_address_line1 = 6;
+    string mail_address_line2 = 7;
+    string mail_city = 8;
+    int32 mail_state_province_id = 9;
+    string mail_postal_code = 10;
+    string delivery_address_line1 = 11;
+    string delivery_address_line2 = 12;
+    string delivery_city = 13;
+    int32 delivery_state_province_id = 14;
+    string delivery_postal_code = 15;
+    string telephone = 16;
+    string fax = 17;   
+}
+
+message grpc_CompanyForDisplay {
+    int32 company_id = 1;
+    string company_name = 2;
+    string legal_name = 3;
+    string ein = 4;
+    string company_web_site = 5;
+    string mail_address_line1 = 6;
+    string mail_address_line2 = 7;
+    string mail_city = 8;
+    string mail_state_province_code = 9;
+    string mail_postal_code = 10;
+    string delivery_address_line1 = 11;
+    string delivery_address_line2 = 12;
+    string delivery_city = 13;
+    string delivery_state_province_code = 14;
+    string delivery_postal_code = 15;
+    string telephone = 16;
+    string fax = 17;   
+}

@@ -1,0 +1,133 @@
+syntax = "proto3";
+package contracts.humanresources;
+option csharp_namespace = "gRPC.Contracts.HumanResources";
+import "Protos/Shared/shared.proto";
+import "google/protobuf/timestamp.proto";
+
+service EmployeeContract {
+	rpc GetEmployeeForDisplay(contracts.shared.ItemRequest) returns (grpc_EmployeeForDisplay);
+    rpc GetEmployeeForEdit(contracts.shared.ItemRequest) returns (grpc_EmployeeGenericCommand);
+    rpc GetEmployeesSearchByName(contracts.shared.grpc_StringSearchCriteria) returns (grpc_EmployeeListItems);
+    rpc Create(grpc_EmployeeGenericCommand) returns (contracts.shared.CreateResponse);
+    rpc Update(grpc_EmployeeGenericCommand) returns (contracts.shared.GenericResponse);
+    rpc Delete(contracts.shared.ItemRequest) returns (contracts.shared.GenericResponse);
+}
+
+message grpc_EmployeeGenericCommand {
+    int32 business_entity_id = 1;
+    int32 name_style = 2;
+    string title = 3;
+    string first_name = 4;
+    string middle_name = 5;
+    string last_name = 6;
+    string suffix = 7;
+    string job_title = 8;
+    string phone_number = 9;
+    int32 phone_number_type_id = 10;
+    string email_address = 11;
+    int32 email_promotion = 12;
+    string national_id_number = 13;
+    string login_id = 14;
+    string address_line1 = 15;
+    string address_line2 = 16;
+    string city = 17;
+    int32 state_province_id = 18;
+    string postal_code = 19;
+    google.protobuf.Timestamp birth_date = 20;
+    string marital_status = 21;
+    string gender = 22;
+    google.protobuf.Timestamp hire_date = 23;
+    bool salaried = 24;
+    int32 vacation_hours = 25;
+    int32 sick_leave_hours = 26;
+    bool active = 27;
+    int32 manager_id = 28;
+    repeated grpc_DepartmentHistoryCommand department_histories = 29;
+    repeated grpc_PayHistoryCommand pay_histories = 30;   
+}
+
+message grpc_EmployeeForDisplay {
+    int32 business_entity_id = 1;
+    string name_style = 2;
+    string title = 3;
+    string first_name = 4;
+    string middle_name = 5;
+    string last_name = 6;
+    string suffix = 7;
+    string job_title = 8;
+    string phone_number = 9;
+    string phone_number_type = 10;
+    string email_address = 11;
+    int32 email_promotion = 12;
+    string national_id_number = 13;
+    string login_id = 14;
+    string address_line1 = 15;
+    string address_line2 = 16;
+    string city = 17;
+    string state_province_name = 18;
+    string postal_code = 19;
+    google.protobuf.Timestamp birth_date = 20;
+    string marital_status = 21;
+    string gender = 22;
+    google.protobuf.Timestamp hire_date = 23;
+    bool salaried = 24;
+    int32 vacation_hours = 25;
+    int32 sick_leave_hours = 26;    
+    bool active = 27;
+    string manager_name = 28;
+    string address = 29;
+    repeated grpc_DepartmentHistory department_histories = 30;
+    repeated grpc_PayHistory pay_histories = 31;     
+}
+
+message grpc_EmployeeListItem {
+    int32 business_Entity_Id = 1;
+    string last_Name = 2;
+    string first_Name = 3;
+    string middle_Name = 4;    
+    string job_Title = 5;
+    string department = 6;
+    string shift = 7;
+    string phone_Number = 8;
+    string email_Address = 9;
+    bool active = 10;
+    string full_Name = 11;
+    int32 manager_Id = 12;
+    int32 employees_Managed = 13;
+    string manager_Name = 14;       
+}
+
+message grpc_EmployeeListItems {
+    repeated grpc_EmployeeListItem grpc_employees = 1; 
+    map<string, int32> grpc_meta_data = 2;
+}
+
+message grpc_DepartmentHistory {
+    int32 business_entity_id = 1;
+    int32 department = 2;
+    int32 shift = 3;
+    google.protobuf.Timestamp start_date = 4;
+    google.protobuf.Timestamp end_date = 5;  
+}
+
+message grpc_DepartmentHistoryCommand {
+    int32 business_entity_id = 1;
+    int32 department_id = 2;
+    int32 shift_id = 3;
+    google.protobuf.Timestamp start_date = 4;
+    google.protobuf.Timestamp end_date = 5;  
+}
+
+message grpc_PayHistory {
+    int32 business_entity_id = 1;
+    google.protobuf.Timestamp rate_change_date = 2;
+    double rate = 3;
+    string pay_frequency = 4;  
+}
+
+message grpc_PayHistoryCommand {
+    int32 business_entity_id = 1;
+    google.protobuf.Timestamp rate_change_date = 2;
+    double rate = 3;
+    int32 pay_frequency = 4;  
+}
