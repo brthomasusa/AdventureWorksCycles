@@ -1,0 +1,223 @@
+@page "/Features/HumanResources/ViewWorkerDetails/Pages/ViewEmployeeDialog/{BusinessEntityID}"
+@using Radzen
+@using Radzen.Blazor
+@using AWC.Client.Components
+@using AWC.Shared.Queries.HumanResources
+
+<PageTitle>Worker Details</PageTitle>
+
+<ErrorBoundary>
+    @if (isLoading)
+    {
+        <LoadingComponent />
+    }
+    else
+    {
+        <RadzenTabs TabPosition="TabPosition.Top" RenderMode="TabRenderMode.Client" class="rz-mb-3">
+            <Tabs>
+                <RadzenTabsItem Text="General">
+                    <RadzenRow class="rz-mb-3" Gap="0">
+                        <RadzenColumn Size="12" SizeSM="6">
+                            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+                                JustifyContent="JustifyContent.Start">
+                                <RadzenFormField Text="Name Style" Variant="Variant.Filled">
+                                    <RadzenTextBox ReadOnly Value="@employee!.NameStyle" />
+                                 </RadzenFormField>
+                                 @if (!string.IsNullOrEmpty(employee!.Title))
+                                {
+                                    <RadzenFormField Text="Title" Variant="Variant.Filled">
+                                        <RadzenTextBox ReadOnly Value="@employee!.Title" />
+                                     </RadzenFormField>
+                                }
+                                <RadzenFormField Text="First Name" Variant="Variant.Filled">
+                                    <RadzenTextBox ReadOnly Value="@employee!.FirstName" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="M.I." Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.MiddleName" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Last Name" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.LastName" />
+                                 </RadzenFormField>
+                                 @if (!string.IsNullOrEmpty(employee!.Title))
+                                {
+                                    <RadzenFormField Text="Suffix" Variant="Variant.Filled">
+                                        <RadzenTextBox ReadOnly Value="@employee!.Suffix" />
+                                     </RadzenFormField>
+                                }
+                            </RadzenStack>
+                        </RadzenColumn>
+                    </RadzenRow>
+                    <RadzenRow class="rz-mb-3" Gap="0">
+                        <RadzenColumn Size="12" SizeSM="6">
+                            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+                                JustifyContent="JustifyContent.Start">
+                                <RadzenFormField Text="Job Title" Variant="Variant.Filled">
+                                    <RadzenTextBox ReadOnly style="width: 250px" Value="@employee!.JobTitle" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Marital Status" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly
+                                         Value="@(employee!.MaritalStatus == "M" ? "Married" : "Single")" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Gender" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@(employee!.Gender == "M" ? "Male" : "Female")" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Birthday" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@(employee!.BirthDate.ToShortDateString())" />
+                                 </RadzenFormField>
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                     <RadzenRow class="rz-mb-3" Gap="0">
+                         <RadzenColumn Size="12" SizeSM="6">
+                             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+                                 JustifyContent="JustifyContent.Start">
+                                 <RadzenFormField Text="Login Id" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.LoginID" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Manager's Name" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.ManagerName" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Employment Status" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@(employee!.Active ? "Active" : "Inactive")" />
+                                 </RadzenFormField>
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                     <RadzenRow class="rz-mb-3" Gap="0">
+                         <RadzenColumn Size="12" SizeSM="6">
+                             <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Start"
+                                 JustifyContent="JustifyContent.Start">
+                                 <RadzenText Text="Department History" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start"
+                                     class="rz-mb-2">
+                                 </RadzenText>
+                                 <RadzenDataGrid AllowColumnResize="true" AllowAlternatingRows="true"
+                                     Data="@employee!.DepartmentHistories" TItem="DepartmentHistory">
+                                     <Columns>
+                                         <RadzenDataGridColumn TItem="DepartmentHistory"
+                                             Property="Department" Title="Department" />
+                                         <RadzenDataGridColumn TItem="DepartmentHistory"
+                                             Property="Shift" Title="Shift" />                                                                                  
+                                         <RadzenDataGridColumn TItem="DepartmentHistory"
+                                             Property="StartDate" Title="Start Date" FormatString="{0:d}"
+                                             TextAlign="TextAlign.Center" />
+                                         <RadzenDataGridColumn TItem="DepartmentHistory"
+                                             Property="EndDate" Title="End Date" FormatString="{0:d}"
+                                             TextAlign="TextAlign.Center" />
+                                     </Columns>
+                                 </RadzenDataGrid>
+
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                 </RadzenTabsItem>
+                 <RadzenTabsItem Text="Address & Contact Info">
+                     <RadzenRow class="rz-mb-3" Gap="0">
+                         <RadzenColumn Size="12" SizeSM="6">
+                             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+                                 JustifyContent="JustifyContent.Start">
+                                 <RadzenFormField Text="Address Line 1" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly style="width: 300px" Value="@employee!.AddressLine1" />
+                                 </RadzenFormField>
+                                 @if (!string.IsNullOrEmpty(employee!.AddressLine2))
+                                {
+                                    <RadzenFormField Text="Address Line 2" Variant="Variant.Filled">
+                                        <RadzenTextBox ReadOnly Value="@employee!.AddressLine2" />
+                                     </RadzenFormField>
+                                }
+                                <RadzenFormField Text="City" Variant="Variant.Filled">
+                                    <RadzenTextBox ReadOnly Value="@employee!.City" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="State" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.StateProvinceName" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Postal Code" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.PostalCode" />
+                                 </RadzenFormField>
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                     <RadzenRow class="rz-mb-3" Gap="0">
+                         <RadzenColumn Size="12" SizeSM="6">
+                             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+                                 JustifyContent="JustifyContent.Start">
+                                 <RadzenFormField Text="Phone Number" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.PhoneNumber" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Phone Number Type" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.PhoneNumberType" />
+                                 </RadzenFormField>
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                     <RadzenRow class="rz-mb-3" Gap="0">
+                         <RadzenColumn Size="12" SizeSM="6">
+                             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+                                 JustifyContent="JustifyContent.Start">
+                                 <RadzenFormField Text="Email Address" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly style="width: 250px" Value="@employee!.EmailAddress" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Email Promotion Preference" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly style="width: 300px" Value="@employee!.EmailPromotion" />
+                                 </RadzenFormField>
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                 </RadzenTabsItem>
+                 <RadzenTabsItem Text="Payroll-related">
+                     <RadzenRow class="rz-mb-3" Gap="0">
+                         <RadzenColumn Size="12" SizeSM="6">
+                             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
+                                 JustifyContent="JustifyContent.Start">
+                                 <RadzenFormField Text="National ID Number" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@employee!.NationalIDNumber" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Hire Date" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@(employee!.HireDate.ToShortDateString())" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Pay Type" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@(employee!.Salaried ? "Salaried" : "Hourly")" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Sick Leave" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@(employee!.SickLeaveHours.ToString())" />
+                                 </RadzenFormField>
+                                 <RadzenFormField Text="Vacation" Variant="Variant.Filled">
+                                     <RadzenTextBox ReadOnly Value="@(employee!.VacationHours.ToString())" />
+                                 </RadzenFormField>
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                     <RadzenRow class="rz-mb-3" Gap="0">
+                         <RadzenColumn Size="12" SizeSM="6">
+                             <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Start"
+                                 JustifyContent="JustifyContent.Start">
+                                 <RadzenText Text="Pay History" TextStyle="TextStyle.Body1" TextAlign="TextAlign.Start"
+                                     class="rz-mb-2">
+                                 </RadzenText>
+                                 <RadzenDataGrid AllowColumnResize="true" AllowAlternatingRows="true"
+                                     Data="@employee!.PayHistories" TItem="PayHistory">
+                                     <Columns>
+                                         <RadzenDataGridColumn TItem="PayHistory"
+                                             Property="RateChangeDate" Title="Rate Change Date" FormatString="{0:d}"
+                                             TextAlign="TextAlign.Center" />
+                                         <RadzenDataGridColumn TItem="PayHistory"
+                                             Property="Rate" Title="Pay Rate" FormatString="{0:c2}" />
+                                         <RadzenDataGridColumn TItem="PayHistory"
+                                             Property="PayFrequency" Title="Pay Frequency" />
+                                     </Columns>
+                                 </RadzenDataGrid>
+
+                             </RadzenStack>
+                         </RadzenColumn>
+                     </RadzenRow>
+                 </RadzenTabsItem>
+             </Tabs>
+         </RadzenTabs>
+        <div class="row">
+            <div class="col offset-sm-1">
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel"
+                    Click="@CloseEmployeeDetailsDialog">
+                </RadzenButton>
+            </div>
+        </div>
+    }
+    </ErrorBoundary>

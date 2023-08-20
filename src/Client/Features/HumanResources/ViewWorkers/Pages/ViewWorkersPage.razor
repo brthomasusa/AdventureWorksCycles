@@ -1,10 +1,59 @@
 @page "/Features/HumanResources/ViewWorkers/Pages/ViewWorkersPage"
+@using Radzen
+@using Radzen.Blazor
+@using AWC.Shared.Queries.HumanResources
+@using AWC.Shared.Queries.Shared
 
-<PageTitle>Company Details</PageTitle>
+<PageTitle>Workers</PageTitle>
 
 <RadzenRow>
     <RadzenColumn Size="12" JustifyContent="JustifyContent.Center">
-        <RadzenText Text="Viewing worker list" TextStyle="TextStyle.H6" TextAlign="TextAlign.Start" class="rz-my-0">
+        <RadzenText Text="Viewing worker list" TextStyle="TextStyle.H6" TextAlign="TextAlign.Start"
+            class="rz-mt-0 rz-mb-2">
         </RadzenText>
     </RadzenColumn>
 </RadzenRow>
+
+<ErrorBoundary>
+    <div class="row">
+        <div class="col-md-12">
+            <RadzenDataGrid @ref="employeeListItemGrid" Data="@employeeListItems" Count="@count"
+                TItem="EmployeeListItem" LoadData="@LoadEmployeeListData" IsLoading="@isLoading" AllowFiltering="true"
+                FilterMode="FilterMode.Simple" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left"
+                ShowPagingSummary="true" AllowSorting="true" PageSizeOptions="@pageSizeOptions"
+                PageSizeText="Rows per page">
+                <Columns>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Filterable="false" Property="BusinessEntityID"
+                        Title="ID" Width="40px">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Sortable="false" Property="FirstName"
+                        Title="First Name" Width="125px">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Sortable="false" Property="MiddleName" Title="MI"
+                        Width="40px">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Sortable="true" Property="LastName" Title="Last Name"
+                        Width="140px">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Sortable="false" Property="JobTitle"
+                        Title="Job Title">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Sortable="false" Property="Department"
+                        Title="Department">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Sortable="false" Property="ManagerName"
+                        Title="Manager's Name" Width="200px">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="EmployeeListItem" Filterable="false" Sortable="false" Width="40px"
+                        TextAlign="TextAlign.Center">
+                        <Template Context="employeeListItem">
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Icon="more_horiz" Size="ButtonSize.Small"
+                                ContextMenu=@(args => ShowContextMenu(args, employeeListItem))>
+                            </RadzenButton>
+                        </Template>
+                    </RadzenDataGridColumn>
+                </Columns>
+            </RadzenDataGrid>
+        </div>
+    </div>
+</ErrorBoundary>
