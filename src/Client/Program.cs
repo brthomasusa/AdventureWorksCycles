@@ -1,4 +1,5 @@
 using AWC.Client;
+using AWC.Client.Services.HumanResources;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
 using Microsoft.AspNetCore.Components;
@@ -18,6 +19,7 @@ builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
+builder.Services.AddScoped<EmployeeRepositoryService>();
 
 builder.Services.AddSingleton(services =>
 {

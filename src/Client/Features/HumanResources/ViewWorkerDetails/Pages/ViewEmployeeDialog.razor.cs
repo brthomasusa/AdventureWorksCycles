@@ -1,4 +1,5 @@
 using AWC.Client.Services;
+using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;
 using gRPC.Contracts.HumanResources;
@@ -9,7 +10,6 @@ using MapsterMapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
-using Radzen.Blazor;
 
 namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
 {
@@ -17,19 +17,16 @@ namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
     {
         private bool isLoading;
         private EmployeeDetails? employee;
-        // private IEnumerable<AWC.Shared.Queries.HumanResources.PayHistory>? payHistories;
 
         [Parameter(CaptureUnmatchedValues = true)]
         public IReadOnlyDictionary<string, dynamic>? Attributes { get; set; }
         [Parameter] public dynamic? BusinessEntityID { get; set; }
         [Inject] private DialogService? DialogService { get; set; }
         [Inject] private NotificationService? NotificationService { get; set; }
-        [Inject] private GrpcChannel? GrpcChannel { get; set; }
-        [Inject] private IMapper? Mapper { get; set; }
+        [Inject] private EmployeeRepositoryService? EmployeeRepository { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            Console.WriteLine("OnInitializedAsync()");
             await Load();
             await base.OnInitializedAsync();
         }
@@ -37,12 +34,26 @@ namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
         private async Task Load()
         {
             isLoading = true;
-            var client = new EmployeeContract.EmployeeContractClient(GrpcChannel);
-            ItemRequest request = new() { Id = BusinessEntityID };
 
-            grpc_EmployeeForDisplay grpcResponse = await client.GetEmployeeForDisplayAsync(request);
+            Result<EmployeeDetails> result = await EmployeeRepository!.GetEmployeeDetails(BusinessEntityID);
 
-            employee = Mapper!.Map<EmployeeDetails>(grpcResponse);
+            if (result.IsFailure)
+            {
+                NotificationService!.Notify(
+                    new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Error,
+                        Style = "position: relative; left: -500px; top: 490px; width: 100%",
+                        Detail = $"{result.Error.Message}",
+                        Duration = 2500
+                    }
+                );
+            }
+            else
+            {
+                employee = result.Value;
+            }
+
             isLoading = false;
         }
 

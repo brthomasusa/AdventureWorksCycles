@@ -1,4 +1,5 @@
 using AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages;
+using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Shared;
@@ -29,6 +30,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
         [Inject] protected NotificationService? NotificationService { get; set; }
         [Inject] protected DialogService? DialogService { get; set; }
         [Inject] protected ContextMenuService? ContextMenuService { get; set; }
+        [Inject] private EmployeeRepositoryService? EmployeeRepository { get; set; }
         [Inject] private GrpcChannel? GrpcChannel { get; set; }
         [Inject] private IMapper? Mapper { get; set; }
 
@@ -88,16 +90,25 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
         private async Task GetEmployeeListItems(StringSearchCriteria criteria)
         {
-            var client = new EmployeeContract.EmployeeContractClient(GrpcChannel);
-            grpc_EmployeeListItems grpcResponse =
-                await client.GetEmployeesSearchByNameAsync(Mapper!.Map<grpc_StringSearchCriteria>(criteria));
+            Result<List<EmployeeListItem>> result = await EmployeeRepository!.GetEmployeeListItems(criteria);
 
-            List<EmployeeListItem> employees = new();
-            grpcResponse.GrpcEmployees.ToList()
-                                      .ForEach(grpcDept => employees.Add(Mapper.Map<EmployeeListItem>(grpcDept)));
-
-            employeeListItems = employees;
-            count = grpcResponse.GrpcMetaData["TotalCount"];
+            if (result.IsFailure)
+            {
+                NotificationService!.Notify(
+                    new NotificationMessage
+                    {
+                        Severity = NotificationSeverity.Error,
+                        Style = "position: relative; left: -500px; top: 490px; width: 100%",
+                        Detail = $"{result.Error.Message}",
+                        Duration = 2500
+                    }
+                );
+            }
+            else
+            {
+                employeeListItems = result.Value;
+                count = employeeListItems.Count();
+            }
         }
 
         private void ShowContextMenu(MouseEventArgs args, dynamic data)
