@@ -52,7 +52,7 @@
                             <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
                                 JustifyContent="JustifyContent.Start">
                                 <RadzenFormField Text="Job Title" Variant="Variant.Filled">
-                                    <RadzenTextBox ReadOnly style="width: 250px" Value="@employee!.JobTitle" />
+                                    <RadzenTextBox ReadOnly style="width: 300px" Value="@employee!.JobTitle" />
                                  </RadzenFormField>
                                  <RadzenFormField Text="Marital Status" Variant="Variant.Filled">
                                      <RadzenTextBox ReadOnly
@@ -94,7 +94,7 @@
                                      Data="@employee!.DepartmentHistories" TItem="DepartmentHistory">
                                      <Columns>
                                          <RadzenDataGridColumn TItem="DepartmentHistory"
-                                             Property="Department" Title="Department" />
+                                             Property="Department" Title="Department" Width="200px" />
                                          <RadzenDataGridColumn TItem="DepartmentHistory"
                                              Property="Shift" Title="Shift" />                                                                                  
                                          <RadzenDataGridColumn TItem="DepartmentHistory"
@@ -214,7 +214,7 @@
          </RadzenTabs>
         <div class="row">
             <div class="col offset-sm-1">
-                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Cancel"
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Close"
                     Click="@CloseEmployeeDetailsDialog">
                 </RadzenButton>
             </div>

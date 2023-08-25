@@ -1,3 +1,4 @@
+using AWC.Client.Interfaces.HumanResources;
 using AWC.Client.Services;
 using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
@@ -13,7 +14,7 @@ using Radzen;
 
 namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
 {
-    public partial class ViewEmployeeDialog
+    public partial class ViewEmployeeDialog : ComponentBase
     {
         private bool isLoading;
         private EmployeeDetails? employee;
@@ -23,7 +24,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
         [Parameter] public dynamic? BusinessEntityID { get; set; }
         [Inject] private DialogService? DialogService { get; set; }
         [Inject] private NotificationService? NotificationService { get; set; }
-        [Inject] private EmployeeRepositoryService? EmployeeRepository { get; set; }
+        [Inject] private IEmployeeRepositoryService? EmployeeRepository { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -39,14 +40,9 @@ namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
 
             if (result.IsFailure)
             {
-                NotificationService!.Notify(
-                    new NotificationMessage
-                    {
-                        Severity = NotificationSeverity.Error,
-                        Style = "position: relative; left: -500px; top: 490px; width: 100%",
-                        Detail = $"{result.Error.Message}",
-                        Duration = 2500
-                    }
+                ShowErrorNotification.ShowError(
+                    NotificationService!,
+                    result.Error.Message
                 );
             }
             else

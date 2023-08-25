@@ -1,4 +1,8 @@
+using System.Runtime.CompilerServices;
+using AWC.Client.Features.HumanResources.CreateWorker.Pages;
 using AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages;
+using AWC.Client.Interfaces.HumanResources;
+using AWC.Client.Interfaces.Shared;
 using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;
@@ -17,8 +21,9 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
     public partial class ViewWorkersPage : ComponentBase
     {
         private const int VIEW_EMPLOYEE = 1;
-        private const int EDIT_EMPLOYEE = 2;
-        private const int DELETE_EMPLOYEE = 3;
+        private const int CREATE_EMPLOYEE = 2;
+        private const int EDIT_EMPLOYEE = 3;
+        private const int DELETE_EMPLOYEE = 4;
 
         private bool isLoading;
         private int count;
@@ -30,9 +35,8 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
         [Inject] protected NotificationService? NotificationService { get; set; }
         [Inject] protected DialogService? DialogService { get; set; }
         [Inject] protected ContextMenuService? ContextMenuService { get; set; }
-        [Inject] private EmployeeRepositoryService? EmployeeRepository { get; set; }
-        [Inject] private GrpcChannel? GrpcChannel { get; set; }
-        [Inject] private IMapper? Mapper { get; set; }
+        [Inject] private IEmployeeRepositoryService? EmployeeRepository { get; set; }
+        [Inject] private IHumanResourcesMetaDataService? MetaDataService { get; set; }
 
         protected async Task LoadEmployeeListData(LoadDataArgs args)
         {
@@ -76,14 +80,9 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
             }
             catch (Exception ex)
             {
-                NotificationService!.Notify(
-                    new NotificationMessage
-                    {
-                        Severity = NotificationSeverity.Error,
-                        Style = "position: relative; left: -500px; top: 490px; width: 100%",
-                        Detail = Helpers.GetExceptionMessage(ex),
-                        Duration = 2500
-                    }
+                ShowErrorNotification.ShowError(
+                    NotificationService!,
+                    Helpers.GetExceptionMessage(ex)
                 );
             }
         }
@@ -94,20 +93,25 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
             if (result.IsFailure)
             {
-                NotificationService!.Notify(
-                    new NotificationMessage
-                    {
-                        Severity = NotificationSeverity.Error,
-                        Style = "position: relative; left: -500px; top: 490px; width: 100%",
-                        Detail = $"{result.Error.Message}",
-                        Duration = 2500
-                    }
+                ShowErrorNotification.ShowError(
+                    NotificationService!,
+                    result.Error.Message
                 );
             }
             else
             {
                 employeeListItems = result.Value;
-                count = employeeListItems.Count();
+                Result<MetaData> countResult = MetaDataService!.GetMetaData("EmployeeListItem");
+
+                if (countResult.IsFailure)
+                {
+                    ShowErrorNotification.ShowError(
+                        NotificationService!,
+                        countResult.Error.Message
+                    );
+                }
+
+                count = countResult.Value.TotalCount;
             }
         }
 
@@ -131,7 +135,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
                     await ShowViewEmployeeDialog();
                     break;
                 case EDIT_EMPLOYEE:
-                    Console.WriteLine($"Menu item edit clicked with employee id {selectedEmployeeID}");
+                    // await ShowCreateWorkerDialog();
                     break;
                 case DELETE_EMPLOYEE:
                     Console.WriteLine($"Menu item delete clicked with employee id {selectedEmployeeID}");
@@ -159,8 +163,21 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
                     (
                         "Viewing employee details",
                         new Dictionary<string, object>() { { "BusinessEntityID", selectedEmployeeID } },
-                        new DialogOptions() { Width = "1000px", Height = "600px", Resizable = true, Draggable = true }
+                        new DialogOptions() { Width = "1100px", Height = "700px", Resizable = true, Draggable = true }
                     );
+
+            await employeeListItemGrid!.Reload();
+
+            await InvokeAsync(() => { StateHasChanged(); });
+        }
+
+        protected async Task ShowCreateWorkerDialog()
+        {
+            var dialogResult = await DialogService!.OpenAsync<CreateWorkerDialog>(
+                "Create Worker",
+                null,
+                new DialogOptions() { Width = "1100px", Height = "700px", Resizable = true, Draggable = true }
+            );
 
             await employeeListItemGrid!.Reload();
 

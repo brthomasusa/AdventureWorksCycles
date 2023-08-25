@@ -1,4 +1,5 @@
 using AWC.Shared.Commands.HumanResources;
+using AWC.Shared.Queries.Lookups.Shared;
 using Fluxor;
 
 namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store

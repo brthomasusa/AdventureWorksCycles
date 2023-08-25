@@ -1,4 +1,6 @@
 using AWC.Client;
+using AWC.Client.Interfaces.HumanResources;
+using AWC.Client.Interfaces.Shared;
 using AWC.Client.Services.HumanResources;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
@@ -19,7 +21,8 @@ builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
-builder.Services.AddScoped<EmployeeRepositoryService>();
+builder.Services.AddScoped<IEmployeeRepositoryService, EmployeeRepositoryService>();
+builder.Services.AddScoped<IHumanResourcesMetaDataService, HumanResourcesMetaDataService>();
 
 builder.Services.AddSingleton(services =>
 {
