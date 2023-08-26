@@ -4,16 +4,11 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>AWC.Client</RootNamespace>
-    <VersionSuffix>0.0.$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
-    <AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
-    <AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
-    <Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
-    <Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
+    <RootNamespace>AWC.Client</RootNamespace> 
     <Company>BTechnical Consulting</Company>
     <Authors>BTechnical Consulting</Authors>
     <Copyright>Copyright © BTechnical Consulting 2023</Copyright>
-    <Product>Adventure Works Cycles 1.0</Product>    
+    <Product>Adventure Works Cycles 1.0</Product>              
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,8 +19,8 @@
     <PackageReference Include="Fluxor" Version="5.7.0" />
     <PackageReference Include="Fluxor.Blazor.Web" Version="5.7.0" />
     <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="5.7.0" />
-    <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
-    <PackageReference Include="Grpc.Net.Client.Web" Version="2.53.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.56.0" />
+    <PackageReference Include="Grpc.Net.Client.Web" Version="2.56.0" />
     <PackageReference Include="Mapster" Version="7.3.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="Radzen.Blazor" Version="4.15.6" />                     
