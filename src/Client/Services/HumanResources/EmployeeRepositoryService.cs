@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using AWC.Client.Interfaces.HumanResources;
 using AWC.Client.Interfaces.Shared;
 using AWC.Client.Services.HumanResources.Store;
@@ -95,24 +96,18 @@ namespace AWC.Client.Services.HumanResources
         {
             try
             {
-                if (!_employeeRepoState!.Value.Initialized)
+                if (!_employeeRepoState!.Value.StateCodes!.Any())
                 {
                     _dispatcher!.Dispatch(new LoadStateCodesAction());
+
+                    while (_employeeRepoState.Value.Loading)
+                    {
+                        await Task.Delay(5);
+                    }
                 }
 
                 List<StateCode> stateCodes = _employeeRepoState.Value.StateCodes!;
 
-                // var client = new LookupsContract.LookupsContractClient(_channel);
-                // var stream = client.GetStateCodesUsa(new Empty()).ResponseStream;
-
-                // List<StateCode> stateCodes = new();
-                // while (await stream.MoveNext(default))
-                // {
-                //     grpc_StateProvinceCode code = (grpc_StateProvinceCode)stream.Current;
-                //     stateCodes.Add(_mapper.Map<StateCode>(code));
-                // }
-                await Task.CompletedTask;
-                Console.WriteLine($"EmployeeRepositoryService.GetStateCodes: {stateCodes.Count} StateCodes were returned.");
                 return stateCodes;
             }
             catch (Exception ex)
@@ -128,18 +123,17 @@ namespace AWC.Client.Services.HumanResources
         {
             try
             {
-                var client = new LookupsContract.LookupsContractClient(_channel);
-                var stream = client.GetManagerIds(new Empty()).ResponseStream;
-
-                List<ManagerId> mgrs = new();
-
-                while (await stream.MoveNext(default))
+                if (!_employeeRepoState!.Value.ManagerIDs!.Any())
                 {
-                    grpc_ManagerId mgr = (grpc_ManagerId)stream.Current;
-                    mgrs.Add(_mapper.Map<ManagerId>(mgr));
+                    TaskCompletionSource<List<ManagerId>> tcs = new();
+                    _dispatcher!.Dispatch(new LoadManagerIdAsyncAction(tcs));
+                    await tcs.Task;
+                    return tcs.Task.Result;
                 }
-
-                return mgrs;
+                else
+                {
+                    return _employeeRepoState.Value.ManagerIDs!;
+                }
             }
             catch (Exception ex)
             {

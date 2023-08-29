@@ -31,5 +31,7 @@ namespace AWC.Shared.Commands.HumanResources
         public int SickLeaveHours { get; set; }
         public bool Active { get; set; }
         public int ManagerID { get; set; }
+        public List<DepartmentHistoryCommand>? DepartmentHistories { get; set; }
+        public List<PayHistoryCommand>? PayHistories { get; set; }
     }
 }

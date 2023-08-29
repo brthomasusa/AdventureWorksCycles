@@ -13,13 +13,13 @@ using Empty = Google.Protobuf.WellKnownTypes.Empty;
 
 namespace AWC.Client.Services.HumanResources.Store
 {
-    public sealed class EmployeeRepositoryEffects
+    public sealed class LoadStateCodesEffects
     {
         private readonly GrpcChannel _channel;
         private readonly IMapper _mapper;
         private readonly NotificationService _notificationService;
 
-        public EmployeeRepositoryEffects
+        public LoadStateCodesEffects
         (
             GrpcChannel channel,
             IMapper mapper,
@@ -36,6 +36,8 @@ namespace AWC.Client.Services.HumanResources.Store
         {
             try
             {
+                dispatcher.Dispatch(new SetStateCodesLoadingFlagAction());
+
                 var client = new LookupsContract.LookupsContractClient(_channel);
                 var stream = client.GetStateCodesUsa(new Empty()).ResponseStream;
 
@@ -46,7 +48,7 @@ namespace AWC.Client.Services.HumanResources.Store
                     grpc_StateProvinceCode code = (grpc_StateProvinceCode)stream.Current;
                     stateCodes.Add(_mapper.Map<StateCode>(code));
                 }
-                Console.WriteLine($"EmployeeRepositoryEffects.LoadStateCodes(IDispatcher: {stateCodes.Count} StateCodes returned.");
+
                 dispatcher.Dispatch(new LoadStateCodesSuccessAction(stateCodes));
             }
             catch (Exception ex)

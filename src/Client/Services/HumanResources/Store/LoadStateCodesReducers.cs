@@ -2,8 +2,20 @@ using Fluxor;
 
 namespace AWC.Client.Services.HumanResources.Store
 {
-    public static class EmployeeRepositoryReducers
+    public static class LoadStateCodesReducers
     {
+        [ReducerMethod(typeof(SetStateCodesLoadingFlagAction))]
+        public static EmployeeRepositoryState OnLoadingStateCodesAction
+        (
+            EmployeeRepositoryState state
+        )
+        {
+            return state with
+            {
+                Loading = true
+            };
+        }
+
         [ReducerMethod]
         public static EmployeeRepositoryState OnLoadingStateCodesSuccessAction
         (
@@ -11,10 +23,10 @@ namespace AWC.Client.Services.HumanResources.Store
             LoadStateCodesSuccessAction action
         )
         {
-            Console.WriteLine($"EmployeeRepositoryReducers.OnLoadingStateCodesSuccessAction: {action.StateCodes!.Count} StateCodes returned.");
             return state with
             {
                 Initialized = true,
+                Loading = false,
                 StateCodes = action.StateCodes
             };
         }
@@ -28,6 +40,8 @@ namespace AWC.Client.Services.HumanResources.Store
         {
             return state with
             {
+                Initialized = false,
+                Loading = false,
                 ErrorMessage = action.ErrorMessage
             };
         }

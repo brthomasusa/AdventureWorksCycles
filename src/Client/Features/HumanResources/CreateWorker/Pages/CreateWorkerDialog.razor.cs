@@ -3,6 +3,7 @@ using AWC.Client.Services;
 using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Commands.HumanResources;
+using AWC.Shared.Queries.Lookups.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;
 using gRPC.Contracts.HumanResources;
 using gRPC.Contracts.Shared;
@@ -17,12 +18,22 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
 {
     public partial class CreateWorkerDialog : ComponentBase
     {
-        private IEnumerable<MaritalStatuses>? maritalStatuses;
-        private IEnumerable<Gender>? genders;
-        private IEnumerable<NameStyle>? nameStyles;
-        private bool isLoading;
-        private EmployeeGenericCommand? employee = new();
+        private readonly IEnumerable<MaritalStatuses> maritalStatuses = new MaritalStatuses[] {
+                new MaritalStatuses() { Id = "M" , Status = "Married"},
+                new MaritalStatuses() { Id = "S" , Status = "Single"}};
+
+        private readonly IEnumerable<Gender> genders = new Gender[] {
+                new Gender() { Id = "M" , Name = "Male"},
+                new Gender() { Id = "F" , Name = "Female"}};
+
+        private readonly IEnumerable<NameStyle> nameStyles = new NameStyle[]
+            {
+                new NameStyle() { Id = 0, Name = "Western"},
+                new NameStyle() { Id = 1, Name = "Eastern"}};
+
+        private EmployeeGenericCommand employee = new();
         private List<StateCode>? stateCodes;
+        private List<ManagerId>? managers;
 
         [Inject] private DialogService? DialogService { get; set; }
         [Inject] private NotificationService? NotificationService { get; set; }
@@ -31,44 +42,34 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
         protected override async Task OnInitializedAsync()
         {
             await Load();
+            await base.OnInitializedAsync();
         }
 
         protected async Task Load()
         {
-            isLoading = true;
-
-            maritalStatuses = new MaritalStatuses[] {
-                new MaritalStatuses(){ Id = "M" , Status = "Married"},
-                new MaritalStatuses() { Id = "S" , Status = "Single"}
-            };
-
-            genders = new Gender[] {
-                new Gender(){ Id = "M" , Name = "Male"},
-                new Gender() { Id = "F" , Name = "Female"}
-            };
-
-            nameStyles = new NameStyle[]
-            {
-                new NameStyle() {Id = 0, Name = "Western"},
-                new NameStyle() {Id = 1, Name = "Eastern"}
-            };
-
-            employee = employee = new();
-
-            Result<List<StateCode>> result = await EmployeeRepository!.GetStateCodes();
-            if (result.IsFailure)
+            Result<List<StateCode>> stateCodeResult = await EmployeeRepository!.GetStateCodes();
+            if (stateCodeResult.IsFailure)
             {
                 ShowErrorNotification.ShowError(
                     NotificationService!,
-                    result.Error.Message
+                    stateCodeResult.Error.Message
                 );
             }
 
-            stateCodes = result.Value;
-            Console.WriteLine($"{stateCodes.Count} StateCodes were returned.");
+            stateCodes = stateCodeResult.Value;
 
-            isLoading = false;
-            await Task.CompletedTask;
+            Result<List<ManagerId>> managerResult = await EmployeeRepository!.GetManagerIDs();
+            if (managerResult.IsFailure)
+            {
+                ShowErrorNotification.ShowError(
+                    NotificationService!,
+                    managerResult.Error.Message
+                );
+            }
+
+            managers = managerResult.Value;
+
+            employee.Active = true;
         }
 
         protected async Task FormSubmit(EmployeeGenericCommand args)
@@ -90,6 +91,7 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
 
         protected void CloseCreateWorkerDialog(MouseEventArgs args)
             => DialogService!.Close(null);
+
     }
 
     public class NameStyle

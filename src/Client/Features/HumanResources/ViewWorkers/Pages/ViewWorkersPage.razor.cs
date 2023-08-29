@@ -146,8 +146,8 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
                         new NotificationMessage()
                         {
                             Severity = NotificationSeverity.Error,
-                            Summary = $"Error",
-                            Detail = $"Invalid menu selection."
+                            Summary = "Error",
+                            Detail = "Invalid menu selection."
                         }
                     );
                     break;
@@ -168,7 +168,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
             await employeeListItemGrid!.Reload();
 
-            await InvokeAsync(() => { StateHasChanged(); });
+            await InvokeAsync(() => StateHasChanged());
         }
 
         protected async Task ShowCreateWorkerDialog()
@@ -181,7 +181,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
             await employeeListItemGrid!.Reload();
 
-            await InvokeAsync(() => { StateHasChanged(); });
+            await InvokeAsync(() => StateHasChanged());
         }
     }
 }

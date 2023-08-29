@@ -86,7 +86,13 @@ namespace AWC.Server.Contracts
             if (result.IsSuccess)
             {
                 result.Value.ToList().ForEach(mgr => responseStream.WriteAsync(
-                    new grpc_ManagerId { BusinessEntityId = mgr.BusinessEntityID, ManagerFullName = mgr.ManagerFullName }
+                    new grpc_ManagerId
+                    {
+                        BusinessEntityId = mgr.BusinessEntityID,
+                        ManagerFullName = mgr.ManagerFullName,
+                        JobTitle = mgr.JobTitle,
+                        DepartmentName = mgr.DepartmentName
+                    }
                 ));
             }
             else

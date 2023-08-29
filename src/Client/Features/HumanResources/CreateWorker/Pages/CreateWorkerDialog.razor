@@ -19,7 +19,7 @@
                                     <RadzenFieldset Text="Personal information">
                                         @* Row One *@
                                         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
-                                            JustifyContent="JustifyContent.Start" class="rz-mb-3">
+                                            JustifyContent="JustifyContent.Start" class="rz-mb-5">
                                             <RadzenColumn>
                                                 <RadzenFormField Text="* Name Style" Variant="Variant.Filled" style="width: 120px">
                                                     <ChildContent>
@@ -87,7 +87,7 @@
                                         </RadzenStack>
                                         @* Row Two *@
                                         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
-                                            JustifyContent="JustifyContent.Start" class="rz-mb-3"> 
+                                            JustifyContent="JustifyContent.Start" class="rz-mb-5"> 
                                             <RadzenColumn>
                                                 <RadzenFormField Text="* Job Title" Variant="Variant.Filled" style="width: 250px">
                                                     <ChildContent>
@@ -109,7 +109,8 @@
                                                             @bind-Value="@employee!.MaritalStatus" 
                                                             TValue="string" 
                                                             Name="maritalStatus"
-                                                            class="rz-mb-4 rz-mt-7" />                               
+                                                            class="rz-mt-7" 
+                                                            style="font-size: smaller;" />                               
                                                     </ChildContent>
                                                     <Helper>
                                                         <RadzenRequiredValidator Component="maritalStatus" Text="Marital status is required"
@@ -126,7 +127,8 @@
                                                             @bind-Value="@employee!.Gender" 
                                                             TValue="string" 
                                                             Name="gender"
-                                                            class="rz-m-4 rz-mt-7" />                               
+                                                            class="rz-mt-7" 
+                                                            style="font-size: smaller;" />                               
                                                     </ChildContent>
                                                     <Helper>
                                                         <RadzenRequiredValidator Component="gender" Text="Gender is required"
@@ -149,7 +151,7 @@
                                         </RadzenStack>
                                         @* Row Three *@
                                         <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center"
-                                            JustifyContent="JustifyContent.Start" class="rz-mb-3"> 
+                                            JustifyContent="JustifyContent.Start" class="rz-mb-6\5"> 
                                             <RadzenColumn>
                                                 <RadzenFormField Text="* Birthday" Variant="Variant.Filled">
                                                     <ChildContent>
@@ -165,16 +167,38 @@
                                             <RadzenColumn>
                                                 <RadzenFormField Text="* Manager" Variant="Variant.Filled" style="width: 250px">
                                                     <ChildContent>
-                                                        <RadzenTextBox Name="firstName" Placeholder="First Name" MaxLength="50"
-                                                        @bind-Value="@employee!.FirstName" />                                
+                                                        <RadzenDropDownDataGrid @bind-Value="@employee!.ManagerID" Data=@managers TextProperty="ManagerFullName" ValueProperty="BusinessEntityID"
+                                                                                Name="managerId" AllowColumnResize="true" AllowFilteringByAllStringColumns="true">
+                                                            <Columns>
+                                                                <RadzenDropDownDataGridColumn Property="BusinessEntityID" Title="Id" Width="50px" />
+                                                                <RadzenDropDownDataGridColumn Property="ManagerFullName" Title="Manager Name" Width="175px" />
+                                                                <RadzenDropDownDataGridColumn Property="JobTitle" Title="Job Title" Width="200px" />
+                                                                <RadzenDropDownDataGridColumn Property="DepartmentName" Title="Department" Width="100px" />
+                                                            </Columns>
+                                                        </RadzenDropDownDataGrid>                               
                                                     </ChildContent>
                                                     <Helper>
-                                                        <RadzenRequiredValidator Component="firstName" Text="The first name is required"
+                                                        <RadzenRequiredValidator Component="managerId" Text="Manager required"
                                                             Popup=true style="position: absolute" />
                                                     </Helper>
                                                 </RadzenFormField>
                                             </RadzenColumn>
-
+                                            <RadzenColumn>
+                                                <RadzenFormField Text="* Employment Status" Variant="Variant.Filled">
+                                                    <ChildContent>
+                                                        <RadzenSelectBar Name="employmentStatus" @bind-Value="@employee!.Active" TValue="bool" class="rz-mt-7">
+                                                            <Items>
+                                                                <RadzenSelectBarItem Text="Active" Value="true" />
+                                                                <RadzenSelectBarItem Text="Inactive" Value="false" />
+                                                            </Items>
+                                                        </RadzenSelectBar>                               
+                                                    </ChildContent>
+                                                    <Helper>
+                                                        <RadzenRequiredValidator Component="employmentStatus" Text="Employment status is required"
+                                                            Popup=true style="position: absolute" />
+                                                    </Helper>
+                                                </RadzenFormField>
+                                            </RadzenColumn>
 
 
 
