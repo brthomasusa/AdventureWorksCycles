@@ -1,4 +1,4 @@
-namespace AWC.Client.Services.HumanResources.Store
+namespace AWC.Client.Services.HumanResources.Store.StateCodes
 {
     public sealed record LoadStateCodesFailureAction(string ErrorMessage);
 }

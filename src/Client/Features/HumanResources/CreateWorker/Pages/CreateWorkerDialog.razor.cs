@@ -1,14 +1,8 @@
 using AWC.Client.Interfaces.HumanResources;
-using AWC.Client.Services;
-using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Commands.HumanResources;
 using AWC.Shared.Queries.Lookups.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;
-using gRPC.Contracts.HumanResources;
-using gRPC.Contracts.Shared;
-using Grpc.Net.Client;
-using MapsterMapper;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -32,12 +26,16 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
                 new NameStyle() { Id = 1, Name = "Eastern"}};
 
         private EmployeeGenericCommand employee = new();
-        private List<StateCode>? stateCodes;
+        private List<DepartmentId>? departments;
         private List<ManagerId>? managers;
+        private List<ShiftId>? shifts;
+        private List<StateCode>? stateCodes;
+
 
         [Inject] private DialogService? DialogService { get; set; }
         [Inject] private NotificationService? NotificationService { get; set; }
         [Inject] private IEmployeeRepositoryService? EmployeeRepository { get; set; }
+        [Inject] private ICompanyRepositoryService? CompanyRepository { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -47,16 +45,16 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
 
         protected async Task Load()
         {
-            Result<List<StateCode>> stateCodeResult = await EmployeeRepository!.GetStateCodes();
-            if (stateCodeResult.IsFailure)
+            Result<List<DepartmentId>> departmentResult = await CompanyRepository!.GetDepartmentIDs();
+            if (departmentResult.IsFailure)
             {
                 ShowErrorNotification.ShowError(
                     NotificationService!,
-                    stateCodeResult.Error.Message
+                    departmentResult.Error.Message
                 );
             }
 
-            stateCodes = stateCodeResult.Value;
+            departments = departmentResult.Value;
 
             Result<List<ManagerId>> managerResult = await EmployeeRepository!.GetManagerIDs();
             if (managerResult.IsFailure)
@@ -68,6 +66,17 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
             }
 
             managers = managerResult.Value;
+
+            Result<List<StateCode>> stateCodeResult = await EmployeeRepository!.GetStateCodes();
+            if (stateCodeResult.IsFailure)
+            {
+                ShowErrorNotification.ShowError(
+                    NotificationService!,
+                    stateCodeResult.Error.Message
+                );
+            }
+
+            stateCodes = stateCodeResult.Value;
 
             employee.Active = true;
         }

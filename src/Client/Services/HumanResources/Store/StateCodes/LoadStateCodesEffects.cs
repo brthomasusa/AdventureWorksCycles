@@ -11,7 +11,7 @@ using MapsterMapper;
 using Radzen;
 using Empty = Google.Protobuf.WellKnownTypes.Empty;
 
-namespace AWC.Client.Services.HumanResources.Store
+namespace AWC.Client.Services.HumanResources.Store.StateCodes
 {
     public sealed class LoadStateCodesEffects
     {

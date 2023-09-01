@@ -10,7 +10,7 @@ namespace AWC.Client.Interfaces.HumanResources
     public interface IEmployeeRepositoryService
     {
         Task<Result<EmployeeDetails>> GetEmployeeDetails(int businessEntityID);
-        Task<Result<List<EmployeeListItem>>> GetEmployeeListItems(StringSearchCriteria criteria);
+        Task<Result<PagedList<EmployeeListItem>>> GetEmployeeListItems(StringSearchCriteria criteria);
         Task<Result<List<StateCode>>> GetStateCodes();
         Task<Result<List<ManagerId>>> GetManagerIDs();
     }

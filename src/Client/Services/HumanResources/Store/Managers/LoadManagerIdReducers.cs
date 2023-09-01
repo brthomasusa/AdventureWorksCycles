@@ -1,14 +1,13 @@
 ﻿using Fluxor;
-using AWC.Client.Utilities;
 
-namespace AWC.Client.Services.HumanResources.Store;
+namespace AWC.Client.Services.HumanResources.Store.Managers;
 
 public static class LoadManagerIdReducers
 {
     [ReducerMethod(typeof(SetManagerIDsLoadingFlagAction))]
-    public static EmployeeRepositoryState OnLoadingStateCodesAction
+    public static ManagerIdLookupState OnLoadingSManagerIdsAction
     (
-        EmployeeRepositoryState state
+        ManagerIdLookupState state
     )
     {
         return state with
@@ -18,23 +17,23 @@ public static class LoadManagerIdReducers
     }
 
     [ReducerMethod]
-    public static EmployeeRepositoryState OnLoadManagerIDsSuccessAction
+    public static ManagerIdLookupState OnLoadManagerIdsSuccessAction
     (
-        EmployeeRepositoryState state,
+        ManagerIdLookupState state,
         LoadManagerIdAsyncSuccessAction action
     )
     {
         return state with
         {
             Loading = false,
-            ManagerIDs = action.Managers
+            ManagerIds = action.Managers
         };
     }
 
     [ReducerMethod]
-    public static EmployeeRepositoryState OnLoadManagerIDsFailureAction
+    public static ManagerIdLookupState OnLoadManagerIdsFailureAction
     (
-        EmployeeRepositoryState state,
+        ManagerIdLookupState state,
         LoadManagerIdAsyncFailureAction action
     )
     {

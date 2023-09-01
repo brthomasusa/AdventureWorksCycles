@@ -1,20 +1,17 @@
-using System.Threading.Tasks;
 using AWC.Client.Interfaces.HumanResources;
-using AWC.Client.Interfaces.Shared;
 using AWC.Client.Services.HumanResources.Store;
+using AWC.Client.Services.HumanResources.Store.Managers;
+using AWC.Client.Services.HumanResources.Store.StateCodes;
 using AWC.Client.Utilities;
-using AWC.Shared.Commands.HumanResources;
 using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Lookups.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;
 using AWC.Shared.Queries.Shared;
 using Fluxor;
 using gRPC.Contracts.HumanResources;
-using gRPC.Contracts.Lookups;
 using gRPC.Contracts.Shared;
 using Grpc.Net.Client;
 using MapsterMapper;
-using Empty = Google.Protobuf.WellKnownTypes.Empty;
 
 namespace AWC.Client.Services.HumanResources
 {
@@ -22,25 +19,25 @@ namespace AWC.Client.Services.HumanResources
     {
         private readonly GrpcChannel? _channel;
         private readonly IMapper _mapper;
-        private IHumanResourcesMetaDataService _metaDataService;
         private readonly IDispatcher? _dispatcher;
-        private IState<EmployeeRepositoryState>? _employeeRepoState;
+        private readonly IState<ManagerIdLookupState>? _managerLookupState;
+        private readonly IState<StateCodesLookupState>? _stateCodeLookupState;
 
         public EmployeeRepositoryService
         (
             GrpcChannel channel,
             IMapper mapper,
-            IHumanResourcesMetaDataService metaDataService,
             IDispatcher dispatcher,
-            IState<EmployeeRepositoryState> employeeRepoState
+            IState<ManagerIdLookupState> managerLookupState,
+            IState<StateCodesLookupState> stateCodeLookupState
         )
         {
             // => (_channel, _mapper, _metaDataService, _dispatcher) = (channel, mapper, metaDataService, dispatcher);
             _channel = channel;
             _mapper = mapper;
-            _metaDataService = metaDataService;
             _dispatcher = dispatcher;
-            _employeeRepoState = employeeRepoState;
+            _managerLookupState = managerLookupState;
+            _stateCodeLookupState = stateCodeLookupState;
         }
 
 
@@ -66,7 +63,7 @@ namespace AWC.Client.Services.HumanResources
             }
         }
 
-        public async Task<Result<List<EmployeeListItem>>> GetEmployeeListItems(StringSearchCriteria criteria)
+        public async Task<Result<PagedList<EmployeeListItem>>> GetEmployeeListItems(StringSearchCriteria criteria)
         {
             try
             {
@@ -74,18 +71,18 @@ namespace AWC.Client.Services.HumanResources
                 grpc_EmployeeListItems grpcResponse =
                     await client.GetEmployeesSearchByNameAsync(_mapper!.Map<grpc_StringSearchCriteria>(criteria));
 
-                List<EmployeeListItem> employeeListItems = new();
+                PagedList<EmployeeListItem> employeeListItems = new() { Items = new() };
 
                 grpcResponse.GrpcEmployees.ToList()
-                                          .ForEach(grpcItem => employeeListItems.Add(_mapper.Map<EmployeeListItem>(grpcItem)));
+                                          .ForEach(grpcItem => employeeListItems.Items.Add(_mapper.Map<EmployeeListItem>(grpcItem)));
 
-                _metaDataService.AddMetaData("EmployeeListItem", _mapper.Map<MetaData>(grpcResponse.GrpcMetaData));
+                employeeListItems.MetaData = _mapper.Map<MetaData>(grpcResponse.GrpcMetaData);
 
                 return employeeListItems;
             }
             catch (Exception ex)
             {
-                return Result<List<EmployeeListItem>>.Failure<List<EmployeeListItem>>(new Error(
+                return Result<PagedList<EmployeeListItem>>.Failure<PagedList<EmployeeListItem>>(new Error(
                     "EmployeeRepositoryService.GetEmployeeListItems",
                     Helpers.GetExceptionMessage(ex))
                 );
@@ -96,17 +93,17 @@ namespace AWC.Client.Services.HumanResources
         {
             try
             {
-                if (!_employeeRepoState!.Value.StateCodes!.Any())
+                if (!_stateCodeLookupState!.Value.StateCodes!.Any())
                 {
                     _dispatcher!.Dispatch(new LoadStateCodesAction());
 
-                    while (_employeeRepoState.Value.Loading)
+                    while (_stateCodeLookupState.Value.Loading)
                     {
                         await Task.Delay(5);
                     }
                 }
 
-                List<StateCode> stateCodes = _employeeRepoState.Value.StateCodes!;
+                List<StateCode> stateCodes = _stateCodeLookupState.Value.StateCodes!;
 
                 return stateCodes;
             }
@@ -123,7 +120,7 @@ namespace AWC.Client.Services.HumanResources
         {
             try
             {
-                if (!_employeeRepoState!.Value.ManagerIDs!.Any())
+                if (!_managerLookupState!.Value.ManagerIds!.Any())
                 {
                     TaskCompletionSource<List<ManagerId>> tcs = new();
                     _dispatcher!.Dispatch(new LoadManagerIdAsyncAction(tcs));
@@ -132,7 +129,7 @@ namespace AWC.Client.Services.HumanResources
                 }
                 else
                 {
-                    return _employeeRepoState.Value.ManagerIDs!;
+                    return _managerLookupState.Value.ManagerIds!;
                 }
             }
             catch (Exception ex)

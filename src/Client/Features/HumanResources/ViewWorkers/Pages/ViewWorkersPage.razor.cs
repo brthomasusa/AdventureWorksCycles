@@ -1,16 +1,9 @@
-using System.Runtime.CompilerServices;
 using AWC.Client.Features.HumanResources.CreateWorker.Pages;
 using AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages;
 using AWC.Client.Interfaces.HumanResources;
-using AWC.Client.Interfaces.Shared;
-using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Shared;
-using gRPC.Contracts.HumanResources;
-using gRPC.Contracts.Shared;
-using Grpc.Net.Client;
-using MapsterMapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
@@ -36,7 +29,6 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
         [Inject] protected DialogService? DialogService { get; set; }
         [Inject] protected ContextMenuService? ContextMenuService { get; set; }
         [Inject] private IEmployeeRepositoryService? EmployeeRepository { get; set; }
-        [Inject] private IHumanResourcesMetaDataService? MetaDataService { get; set; }
 
         protected async Task LoadEmployeeListData(LoadDataArgs args)
         {
@@ -89,7 +81,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
         private async Task GetEmployeeListItems(StringSearchCriteria criteria)
         {
-            Result<List<EmployeeListItem>> result = await EmployeeRepository!.GetEmployeeListItems(criteria);
+            Result<PagedList<EmployeeListItem>> result = await EmployeeRepository!.GetEmployeeListItems(criteria);
 
             if (result.IsFailure)
             {
@@ -100,18 +92,8 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
             }
             else
             {
-                employeeListItems = result.Value;
-                Result<MetaData> countResult = MetaDataService!.GetMetaData("EmployeeListItem");
-
-                if (countResult.IsFailure)
-                {
-                    ShowErrorNotification.ShowError(
-                        NotificationService!,
-                        countResult.Error.Message
-                    );
-                }
-
-                count = countResult.Value.TotalCount;
+                employeeListItems = result.Value.Items;
+                count = result.Value.MetaData!.TotalCount;
             }
         }
 

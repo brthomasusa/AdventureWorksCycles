@@ -1,13 +1,13 @@
 using Fluxor;
 
-namespace AWC.Client.Services.HumanResources.Store
+namespace AWC.Client.Services.HumanResources.Store.StateCodes
 {
     public static class LoadStateCodesReducers
     {
         [ReducerMethod(typeof(SetStateCodesLoadingFlagAction))]
-        public static EmployeeRepositoryState OnLoadingStateCodesAction
+        public static StateCodesLookupState OnLoadingStateCodesAction
         (
-            EmployeeRepositoryState state
+            StateCodesLookupState state
         )
         {
             return state with
@@ -17,9 +17,9 @@ namespace AWC.Client.Services.HumanResources.Store
         }
 
         [ReducerMethod]
-        public static EmployeeRepositoryState OnLoadingStateCodesSuccessAction
+        public static StateCodesLookupState OnLoadingStateCodesSuccessAction
         (
-            EmployeeRepositoryState state,
+            StateCodesLookupState state,
             LoadStateCodesSuccessAction action
         )
         {
@@ -32,9 +32,9 @@ namespace AWC.Client.Services.HumanResources.Store
         }
 
         [ReducerMethod]
-        public static EmployeeRepositoryState OnLoadingStateCodesFailureAction
+        public static StateCodesLookupState OnLoadingStateCodesFailureAction
         (
-            EmployeeRepositoryState state,
+            StateCodesLookupState state,
             LoadStateCodesFailureAction action
         )
         {
