@@ -67,6 +67,17 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
 
             managers = managerResult.Value;
 
+            Result<List<ShiftId>> shiftResult = await CompanyRepository!.GetShiftIDs();
+            if (shiftResult.IsFailure)
+            {
+                ShowErrorNotification.ShowError(
+                    NotificationService!,
+                    shiftResult.Error.Message
+                );
+            }
+
+            shifts = shiftResult.Value;
+
             Result<List<StateCode>> stateCodeResult = await EmployeeRepository!.GetStateCodes();
             if (stateCodeResult.IsFailure)
             {

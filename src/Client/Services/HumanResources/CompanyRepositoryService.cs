@@ -63,13 +63,31 @@ namespace AWC.Client.Services.HumanResources
                     Helpers.GetExceptionMessage(ex))
                 );
             }
-
-            throw new NotImplementedException();
         }
 
-        public Task<Result<List<ShiftId>>> GetShiftIDs()
+        public async Task<Result<List<ShiftId>>> GetShiftIDs()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (!_shiftLookupState!.Value.ShiftIds!.Any())
+                {
+                    TaskCompletionSource<List<ShiftId>> tcs = new();
+                    _dispatcher!.Dispatch(new LoadShiftIdAsyncAction(tcs));
+                    await tcs.Task;
+                    return tcs.Task.Result;
+                }
+                else
+                {
+                    return _shiftLookupState!.Value.ShiftIds!;
+                }
+            }
+            catch (Exception ex)
+            {
+                return Result<List<ShiftId>>.Failure<List<ShiftId>>(new Error(
+                    "CompanyRepositoryService.GetShiftIDs",
+                    Helpers.GetExceptionMessage(ex))
+                );
+            }
         }
     }
 }
