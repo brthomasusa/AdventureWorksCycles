@@ -13,7 +13,8 @@ service LookupsContract {
 
 message grpc_StateProvinceCode {
     int32 id = 1;
-    string stateCode = 2;   
+    string stateCode = 2;
+    string state_province_name = 3;   
 }
 
 message grpc_DepartmentId {

@@ -4,14 +4,18 @@ namespace AWC.Infrastructure.Persistence.Queries.Lookups
     {
         public const string GetStateCodeIdForUSA =
         @"SELECT 
-            StateProvinceID, LTRIM(RTRIM(StateProvinceCode)) AS StateProvinceCode
+            StateProvinceID
+            ,LTRIM(RTRIM(StateProvinceCode)) AS StateProvinceCode
+            ,Name as StateProvinceName 
         FROM Person.StateProvince 
         WHERE CountryRegionCode = 'US' 
         ORDER BY StateProvinceCode";
 
         public const string GetStateCodeIdForAll =
         @"SELECT 
-            StateProvinceID, LTRIM(RTRIM(StateProvinceCode)) AS StateProvinceCode 
+            StateProvinceID
+            ,LTRIM(RTRIM(StateProvinceCode)) AS StateProvinceCode
+            ,Name as StateProvinceName 
         FROM Person.StateProvince 
         ORDER BY StateProvinceCode";
 

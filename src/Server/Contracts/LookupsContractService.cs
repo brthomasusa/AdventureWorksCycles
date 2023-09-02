@@ -8,6 +8,7 @@ using AWC.Shared.Queries.Lookups.Shared;
 using AWC.SharedKernel.Utilities;
 using gRPC.Contracts.Lookups;
 using Grpc.Core;
+using MapsterMapper;
 using MediatR;
 using Empty = Google.Protobuf.WellKnownTypes.Empty;
 
@@ -16,9 +17,10 @@ namespace AWC.Server.Contracts
     public sealed class LookupsContractService : LookupsContract.LookupsContractBase
     {
         private readonly ISender _sender;
+        private readonly IMapper _mapper;
 
-        public LookupsContractService(ISender sender)
-            => _sender = sender;
+        public LookupsContractService(ISender sender, IMapper mapper)
+            => (_sender, _mapper) = (sender, mapper);
 
         public async override Task GetStateCodesAll
         (
@@ -32,14 +34,13 @@ namespace AWC.Server.Contracts
             if (stateCodes.IsSuccess)
             {
                 stateCodes.Value.ToList().ForEach(stateCode => responseStream.WriteAsync(
-                    new grpc_StateProvinceCode { Id = stateCode.StateProvinceID, StateCode = stateCode.StateProvinceCode }
+                    _mapper.Map<grpc_StateProvinceCode>(stateCode)
                 ));
             }
             else
             {
                 throw new RpcException(new(StatusCode.Internal, stateCodes.Error.Message));
             }
-
         }
 
         public async override Task GetStateCodesUsa
@@ -54,7 +55,7 @@ namespace AWC.Server.Contracts
             if (stateCodes.IsSuccess)
             {
                 stateCodes.Value.ToList().ForEach(stateCode => responseStream.WriteAsync(
-                    new grpc_StateProvinceCode { Id = stateCode.StateProvinceID, StateCode = stateCode.StateProvinceCode }
+                    _mapper.Map<grpc_StateProvinceCode>(stateCode)
                 ));
             }
             else
@@ -70,7 +71,7 @@ namespace AWC.Server.Contracts
             if (result.IsSuccess)
             {
                 result.Value.ToList().ForEach(dept => responseStream.WriteAsync(
-                    new grpc_DepartmentId { DepartmentId = dept.DepartmentID, Name = dept.DepartmentName }
+                    _mapper.Map<grpc_DepartmentId>(dept)
                 ));
             }
             else
@@ -86,13 +87,7 @@ namespace AWC.Server.Contracts
             if (result.IsSuccess)
             {
                 result.Value.ToList().ForEach(mgr => responseStream.WriteAsync(
-                    new grpc_ManagerId
-                    {
-                        BusinessEntityId = mgr.BusinessEntityID,
-                        ManagerFullName = mgr.ManagerFullName,
-                        JobTitle = mgr.JobTitle,
-                        DepartmentName = mgr.DepartmentName
-                    }
+                    _mapper.Map<grpc_ManagerId>(mgr)
                 ));
             }
             else
@@ -108,7 +103,7 @@ namespace AWC.Server.Contracts
             if (result.IsSuccess)
             {
                 result.Value.ToList().ForEach(shift => responseStream.WriteAsync(
-                    new grpc_ShiftId { ShiftId = shift.ShiftID, Name = shift.ShiftName }
+                    _mapper.Map<grpc_ShiftId>(shift)
                 ));
             }
             else

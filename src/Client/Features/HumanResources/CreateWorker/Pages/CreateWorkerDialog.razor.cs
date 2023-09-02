@@ -12,19 +12,14 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
 {
     public partial class CreateWorkerDialog : ComponentBase
     {
-        private readonly IEnumerable<MaritalStatuses> maritalStatuses = new MaritalStatuses[] {
-                new MaritalStatuses() { Id = "M" , Status = "Married"},
-                new MaritalStatuses() { Id = "S" , Status = "Single"}};
 
-        private readonly IEnumerable<Gender> genders = new Gender[] {
-                new Gender() { Id = "M" , Name = "Male"},
-                new Gender() { Id = "F" , Name = "Female"}};
+        // SimpleLookups
+        private static IEnumerable<MaritalStatuses> MaritalStatuses => SimpleLookups.GetMaritalStatuses();
+        private static IEnumerable<Gender> Genders => SimpleLookups.GetGenders();
+        private static IEnumerable<NameStyle> NameStyles => SimpleLookups.GetNameStyles();
 
-        private readonly IEnumerable<NameStyle> nameStyles = new NameStyle[]
-            {
-                new NameStyle() { Id = 0, Name = "Western"},
-                new NameStyle() { Id = 1, Name = "Eastern"}};
-
+        private int shiftId;
+        private int departmentId;
         private EmployeeGenericCommand employee = new();
         private List<DepartmentId>? departments;
         private List<ManagerId>? managers;
@@ -88,6 +83,7 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
             }
 
             stateCodes = stateCodeResult.Value;
+            Console.WriteLine($"State codes: {stateCodes.ToJson()}");
 
             employee.Active = true;
         }
@@ -109,26 +105,13 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
             }
         }
 
-        protected void CloseCreateWorkerDialog(MouseEventArgs args)
+        protected void CloseCreateWorkerDialog()
             => DialogService!.Close(null);
 
-    }
+        private void OnShiftChanged(object value)
+        {
+            Console.WriteLine($"Value changed to: {value.ToJson()}, shiftId: {shiftId}");
+        }
 
-    public class NameStyle
-    {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-    }
-
-    public class MaritalStatuses
-    {
-        public string? Id { get; set; }
-        public string? Status { get; set; }
-    }
-
-    public class Gender
-    {
-        public string? Id { get; set; }
-        public string? Name { get; set; }
     }
 }
