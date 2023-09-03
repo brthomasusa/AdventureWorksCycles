@@ -11,7 +11,7 @@ namespace AWC.Shared.Commands.HumanResources
         public string? Suffix { get; set; }
         public string? JobTitle { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? PhoneNumberType { get; set; }
+        public int PhoneNumberType { get; set; }
         public string? EmailAddress { get; set; }
         public int EmailPromotion { get; set; }
         public string? NationalIDNumber { get; set; }

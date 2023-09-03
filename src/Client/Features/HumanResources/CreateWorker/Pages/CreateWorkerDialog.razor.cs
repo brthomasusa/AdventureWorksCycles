@@ -17,7 +17,13 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
         private static IEnumerable<MaritalStatuses> MaritalStatuses => SimpleLookups.GetMaritalStatuses();
         private static IEnumerable<Gender> Genders => SimpleLookups.GetGenders();
         private static IEnumerable<NameStyle> NameStyles => SimpleLookups.GetNameStyles();
+        private static IEnumerable<EmailPromotionPreference> EmailPromotionPreferences => SimpleLookups.GetEmailPromotionPreference();
+        private static IEnumerable<PhoneNumberType> PhoneNumberTypes => SimpleLookups.GetPhoneNumberTypes();
+        private static IEnumerable<PayFrequency> PayFrequencies => SimpleLookups.GetPayFrequencies();
+        private static IEnumerable<SalariedFlag> SalariedFlags => SimpleLookups.GetSalariedFlags();
 
+        private double payRate;
+        private int payFrequency;
         private int shiftId;
         private int departmentId;
         private EmployeeGenericCommand employee = new();
@@ -83,7 +89,6 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
             }
 
             stateCodes = stateCodeResult.Value;
-            Console.WriteLine($"State codes: {stateCodes.ToJson()}");
 
             employee.Active = true;
         }
