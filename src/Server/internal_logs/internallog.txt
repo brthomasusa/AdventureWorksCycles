@@ -2117,3 +2117,117 @@
 2023-09-03 01:45:52.7543 Info Logger has been closed down.
 2023-09-03 01:45:52.7543 Info Shutdown() called. Logger closing...
 2023-09-03 01:45:52.7543 Info Logger has been closed down.
+2023-09-03 08:02:17.5072 Info Message Template Auto Format enabled
+2023-09-03 08:02:17.5147 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 08:02:17.5351 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 08:02:17.5351 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 08:02:17.5351 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 08:02:17.5453 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:02:17.7491 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:19:57.8361 Info Message Template Auto Format enabled
+2023-09-03 08:19:57.8476 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 08:19:57.8780 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 08:19:57.8780 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 08:19:57.8780 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 08:19:57.8940 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:19:58.1517 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:20:24.0399 Info Shutdown() called. Logger closing...
+2023-09-03 08:20:24.0399 Info Closing old configuration.
+2023-09-03 08:20:24.0492 Info Logger has been closed down.
+2023-09-03 08:20:24.0496 Info Shutdown() called. Logger closing...
+2023-09-03 08:20:24.0496 Info Logger has been closed down.
+2023-09-03 08:20:30.2833 Info Message Template Auto Format enabled
+2023-09-03 08:20:30.2909 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 08:20:30.3109 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 08:20:30.3109 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 08:20:30.3109 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 08:20:30.3209 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:20:30.5175 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:27:40.1614 Info Message Template Auto Format enabled
+2023-09-03 08:27:40.1693 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 08:27:40.1902 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 08:27:40.1902 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 08:27:40.1902 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 08:27:40.2010 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:27:40.3765 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:31:44.9442 Info Message Template Auto Format enabled
+2023-09-03 08:31:44.9521 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 08:31:44.9726 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 08:31:44.9738 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 08:31:44.9738 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 08:31:44.9829 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:31:45.1611 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:34:24.8582 Info Shutdown() called. Logger closing...
+2023-09-03 08:34:24.8582 Info Closing old configuration.
+2023-09-03 08:34:24.8671 Info Logger has been closed down.
+2023-09-03 08:34:24.8671 Info Shutdown() called. Logger closing...
+2023-09-03 08:34:24.8671 Info Logger has been closed down.
+2023-09-03 08:57:09.4003 Info Message Template Auto Format enabled
+2023-09-03 08:57:09.4077 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 08:57:09.4276 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 08:57:09.4276 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 08:57:09.4276 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 08:57:09.4377 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 08:57:09.6324 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 09:18:31.8954 Info Shutdown() called. Logger closing...
+2023-09-03 09:18:31.8954 Info Closing old configuration.
+2023-09-03 09:18:31.9035 Info Logger has been closed down.
+2023-09-03 09:18:31.9035 Info Shutdown() called. Logger closing...
+2023-09-03 09:18:31.9035 Info Logger has been closed down.
+2023-09-03 09:18:50.5333 Info Message Template Auto Format enabled
+2023-09-03 09:18:50.5408 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 09:18:50.5606 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 09:18:50.5618 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 09:18:50.5618 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 09:18:50.5706 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 09:18:50.7645 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 11:59:42.0907 Info Shutdown() called. Logger closing...
+2023-09-03 11:59:42.0907 Info Closing old configuration.
+2023-09-03 11:59:42.1036 Info Logger has been closed down.
+2023-09-03 11:59:42.1036 Info Shutdown() called. Logger closing...
+2023-09-03 11:59:42.1036 Info Logger has been closed down.
+2023-09-03 16:45:02.1759 Info Message Template Auto Format enabled
+2023-09-03 16:45:02.1839 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 16:45:02.2039 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 16:45:02.2039 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 16:45:02.2039 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 16:45:02.2141 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 16:45:02.4242 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 16:57:01.6665 Info Message Template Auto Format enabled
+2023-09-03 16:57:01.6742 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 16:57:01.6941 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 16:57:01.6941 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 16:57:01.6941 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 16:57:01.7043 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 16:57:01.8693 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 17:06:08.1818 Info Message Template Auto Format enabled
+2023-09-03 17:06:08.1895 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 17:06:08.2099 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 17:06:08.2099 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 17:06:08.2099 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 17:06:08.2203 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 17:06:08.3958 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 17:06:38.4218 Info Shutdown() called. Logger closing...
+2023-09-03 17:06:38.4256 Info Closing old configuration.
+2023-09-03 17:06:38.4342 Info Logger has been closed down.
+2023-09-03 17:06:38.4342 Info Shutdown() called. Logger closing...
+2023-09-03 17:06:38.4342 Info Logger has been closed down.
+2023-09-03 17:06:44.3278 Info Message Template Auto Format enabled
+2023-09-03 17:06:44.3402 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 17:06:44.3635 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 17:06:44.3635 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 17:06:44.3635 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 17:06:44.3736 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 17:06:44.5817 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 18:13:39.5761 Info Message Template Auto Format enabled
+2023-09-03 18:13:39.5875 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-03 18:13:39.6176 Info Adding target AsyncTargetWrapper(Name=allfile)
+2023-09-03 18:13:39.6176 Info Adding target AsyncTargetWrapper(Name=ownFile-web)
+2023-09-03 18:13:39.6176 Info Adding target AsyncTargetWrapper(Name=lifetimeConsole)
+2023-09-03 18:13:39.6331 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 18:13:39.8899 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=59, FilePath=/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/bin/Debug/net7.0/nlog.config
+2023-09-03 18:16:39.8096 Info Shutdown() called. Logger closing...
+2023-09-03 18:16:39.8096 Info Closing old configuration.
+2023-09-03 18:16:39.8215 Info Logger has been closed down.
+2023-09-03 18:16:39.8215 Info Shutdown() called. Logger closing...
+2023-09-03 18:16:39.8215 Info Logger has been closed down.
