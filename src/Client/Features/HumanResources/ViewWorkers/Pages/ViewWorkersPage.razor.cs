@@ -158,7 +158,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
             var dialogResult = await DialogService!.OpenAsync<CreateWorkerDialog>(
                 "Create Worker",
                 null,
-                new DialogOptions() { Width = "1100px", Height = "700px", Resizable = true, Draggable = true }
+                new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true }
             );
 
             await employeeListItemGrid!.Reload();
