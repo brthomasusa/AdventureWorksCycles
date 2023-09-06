@@ -23,10 +23,11 @@ namespace AWC.Client.Utilities.Mapping
                 .Map(dest => dest.DepartmentHistories, src => src.DepartmentHistories)
                 .Map(dest => dest.PayHistories, src => src.PayHistories);
 
-            config.NewConfig<EmployeeGenericCommand, grpc_EmployeeGenericCommand>()
+            config.NewConfig<AWC.Shared.Commands.HumanResources.EmployeeGenericCommand, grpc_EmployeeGenericCommand>()
                 .Map(dest => dest.Title, src => string.IsNullOrEmpty(src.Title) ? string.Empty : src.Title)
                 .Map(dest => dest.MiddleName, src => string.IsNullOrEmpty(src.MiddleName) ? string.Empty : src.MiddleName)
                 .Map(dest => dest.Suffix, src => string.IsNullOrEmpty(src.Suffix) ? string.Empty : src.Suffix)
+                .Map(dest => dest.PhoneNumberTypeId, src => src.PhoneNumberTypeID)
                 .Map(dest => dest.AddressLine2, src => string.IsNullOrEmpty(src.AddressLine2) ? string.Empty : src.AddressLine2)
                 .Map(dest => dest.BirthDate, src => GoogleDateTime.FromDateTimeOffset(src.BirthDate))
                 .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate));
@@ -51,11 +52,24 @@ namespace AWC.Client.Utilities.Mapping
                 .Map(dest => dest.StartDate, src => src.StartDate.ToDateTime().ToLocalTime())
                 .Map(dest => dest.EndDate, src => src.EndDate.ToDateTime().ToLocalTime());
 
+            config.NewConfig<AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand, grpc_DepartmentHistoryCommand>()
+                .Map(dest => dest.BusinessEntityId, src => src.BusinessEntityID)
+                .Map(dest => dest.DepartmentId, src => src.DepartmentID)
+                .Map(dest => dest.ShiftId, src => src.ShiftID)
+                .Map(dest => dest.StartDate, src => GoogleDateTime.FromDateTimeOffset(src.StartDate))
+                .Map(dest => dest.EndDate, src => src.EndDate != null ? GoogleDateTime.FromDateTimeOffset(src.EndDate.Value) : GoogleDateTime.FromDateTimeOffset(new DateTimeOffset()));
+
             // Commands
             config.NewConfig<grpc_PayHistoryCommand, AWC.Shared.Commands.HumanResources.PayHistoryCommand>()
                 .Map(dest => dest.BusinessEntityID, src => src.BusinessEntityId)
                 .Map(dest => dest.RateChangeDate, src => src.RateChangeDate.ToDateTime().ToLocalTime())
                 .Map(dest => dest.Rate, src => (decimal)src.Rate)
+                .Map(dest => dest.PayFrequency, src => src.PayFrequency);
+
+            config.NewConfig<AWC.Shared.Commands.HumanResources.PayHistoryCommand, grpc_PayHistoryCommand>()
+                .Map(dest => dest.BusinessEntityId, src => src.BusinessEntityID)
+                .Map(dest => dest.RateChangeDate, src => GoogleDateTime.FromDateTimeOffset(src.RateChangeDate))
+                .Map(dest => dest.Rate, src => (double)src.Rate)
                 .Map(dest => dest.PayFrequency, src => src.PayFrequency);
 
             // Query

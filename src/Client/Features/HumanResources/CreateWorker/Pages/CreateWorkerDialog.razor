@@ -148,7 +148,10 @@
                                                         @bind-Value="@employee!.BirthDate" />                                
                                                     </ChildContent>
                                                     <Helper>
-                                                        <RadzenRequiredValidator Component="birthday" Text="Required" />                                                            
+                                                        <RadzenRequiredValidator Component="birthday" Text="Required" />
+                                                        <RadzenCustomValidator Component="birthday" 
+                                                                               Validator="@(() => ValidateBirthday(employee!.BirthDate))" 
+                                                                               Text="Birth date must be between 1930-1-1 and 18 years ago today." />                                                                                                                    
                                                     </Helper>
                                                 </RadzenFormField>
                                             </RadzenColumn>
@@ -304,7 +307,7 @@
                                             <RadzenColumn>
                                                 <RadzenFormField Text="* Phone Number Type" Variant="Variant.Filled">
                                                     <ChildContent>
-                                                        <RadzenSelectBar Name="phoneNumberType" Data="@PhoneNumberTypes" @bind-Value="@employee!.PhoneNumberType" 
+                                                        <RadzenSelectBar Name="phoneNumberType" Data="@PhoneNumberTypes" @bind-Value="@employee!.PhoneNumberTypeID" 
                                                             TValue="int" TextProperty="Name" ValueProperty="Id" class="rz-mt-6">
                                                         </RadzenSelectBar>                               
                                                     </ChildContent>
@@ -352,7 +355,7 @@
                                                     <Helper>
                                                         <RadzenRequiredValidator Component="nationalId" Text="Required" /> 
                                                         <RadzenCustomValidator Component="nationalId" 
-                                                                               Validator="@(() => validateNationalIdNumber(employee!.NationalIDNumber!))" 
+                                                                               Validator="@(() => ValidateNationalIdNumber(employee!.NationalIDNumber!))" 
                                                                                Text="National id number should be 5 - 9 digits." />                                                                                                                    
                                                     </Helper>
                                                 </RadzenFormField>
@@ -363,7 +366,10 @@
                                                         <RadzenDatePicker Name="hireDate" ShowTime="false" HourFormat="12" DateFormat="MM/dd/yyyy" @bind-Value="@employee!.HireDate" />                                                                                        
                                                     </ChildContent>
                                                     <Helper>
-                                                        <RadzenRequiredValidator Component="hireDate" Text="Required" />                                                            
+                                                        <RadzenRequiredValidator Component="hireDate" Text="Required" />
+                                                        <RadzenCustomValidator Component="hireDate" 
+                                                                               Validator="@(() => ValidateHireDate(employee!.HireDate))" 
+                                                                               Text="Hire date must be on or after 1996-7-1." />                                                                                                                    
                                                     </Helper>
                                                 </RadzenFormField>
                                             </RadzenColumn>

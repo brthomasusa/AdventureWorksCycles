@@ -13,5 +13,8 @@ namespace AWC.Client.Interfaces.HumanResources
         Task<Result<PagedList<EmployeeListItem>>> GetEmployeeListItems(StringSearchCriteria criteria);
         Task<Result<List<StateCode>>> GetStateCodes();
         Task<Result<List<ManagerId>>> GetManagerIDs();
+        Task<Result<int>> CreateEmployee(AWC.Shared.Commands.HumanResources.EmployeeGenericCommand employee);
+        Task<Result> UpdateEmployee(AWC.Shared.Commands.HumanResources.EmployeeGenericCommand employee);
+        Task<Result> DeleteEmployee(int businessEntityId);
     }
 }

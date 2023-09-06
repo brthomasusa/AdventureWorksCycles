@@ -1,9 +1,9 @@
+using AWC.Application.Features.HumanResources.CreateEmployee;
+using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Shared.Queries.HumanResources;
 using gRPC.Contracts.HumanResources;
 using Mapster;
 using GoogleDateTime = Google.Protobuf.WellKnownTypes.Timestamp;
-using AWC.Application.Features.HumanResources.CreateEmployee;
-using AWC.Application.Features.HumanResources.UpdateEmployee;
 
 namespace AWC.Server.Mapping.HumanResources
 {
@@ -33,7 +33,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.AddressLine2, src => string.IsNullOrEmpty(src.AddressLine2) ? string.Empty : src.AddressLine2)
                 .Map(dest => dest.BirthDate, src => GoogleDateTime.FromDateTimeOffset(src.BirthDate))
                 .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate))
-                .Map(dest => dest.DepartmentHistories, src => src.DepartmentHistories!.Adapt<List<grpc_DepartmentHistoryCommand>>()); ;
+                .Map(dest => dest.DepartmentHistories, src => src.DepartmentHistories!.Adapt<List<grpc_DepartmentHistoryCommand>>());
 
             // To the UI, used to populate employee list page
             config.NewConfig<EmployeeListItem, grpc_EmployeeListItem>()
@@ -63,7 +63,8 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.DepartmentID, src => src.DepartmentId)
                 .Map(dest => dest.ShiftID, src => src.ShiftId)
                 .Map(dest => dest.StartDate, src => src.StartDate.ToDateTime().ToLocalTime())
-                .Map(dest => dest.EndDate, src => src.StartDate.ToDateTime().ToLocalTime());
+                .Map(dest => dest.EndDate, src => src.EndDate.ToDateTime().ToLocalTime(), srcCond => srcCond.EndDate.Seconds <= 0)
+                .Map(dest => dest.EndDate, src => src.EndDate.ToDateTime().ToLocalTime());
 
             // From the UI
             config.NewConfig<grpc_PayHistoryCommand, AWC.Shared.Commands.HumanResources.PayHistoryCommand>()

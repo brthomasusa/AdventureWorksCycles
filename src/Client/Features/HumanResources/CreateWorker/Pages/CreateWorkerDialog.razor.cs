@@ -94,20 +94,34 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
         private void LoadEmployeeDefaults()
         {
             employee.NameStyle = UNSELECTED;
-            employee.PhoneNumberType = UNSELECTED;
+            employee.PhoneNumberTypeID = UNSELECTED;
             employee.EmailPromotion = UNSELECTED;
             employee.VacationHours = -41;
             employee.SickLeaveHours = UNSELECTED;
             employee.Active = true;
         }
 
-        protected async Task FormSubmit(EmployeeGenericCommand args)
+        protected async Task FormSubmit()
         {
             try
             {
-                Console.WriteLine($"FormSubmit called: {args.ToJson()}");
-                DialogService!.Close(employee);
-                await Task.CompletedTask;
+                AddDepartmentHistory();
+                AddPayHistory();
+
+                Result<int> result = await EmployeeRepository!.CreateEmployee(employee);
+
+                if (result.IsSuccess)
+                {
+                    DialogService!.Close(employee);
+                }
+                else
+                {
+                    ShowErrorNotification.ShowError(
+                        NotificationService!,
+                        result.Error.Message
+                    );
+                }
+
             }
             catch (System.Exception ex)
             {
@@ -124,6 +138,19 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
         private void OnShiftChanged(object value)
         {
             Console.WriteLine($"Value changed to: {value.ToJson()}, shiftId: {shiftId}");
+        }
+
+        private bool ValidateBirthday(DateTime birthdate)
+        {
+            return birthdate >= new DateTime(1930, 1, 1) &&
+                   birthdate <= DateTime.Today.AddYears(-18);
+
+        }
+
+        private bool ValidateHireDate(DateTime hireDate)
+        {
+            return hireDate >= new DateTime(1996, 7, 1) &&
+                   hireDate <= DateTime.Today.AddDays(1);
         }
 
         private bool ValidateSelectedManager(int managerId)
@@ -162,10 +189,8 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
             return stateCode is not null;
         }
 
-        private bool validateNationalIdNumber(string nationalId)
+        private bool ValidateNationalIdNumber(string nationalId)
         {
-
-
             Regex regex = nationalIdRegex();
             Match match = regex.Match(nationalId ?? string.Empty);
 
@@ -174,5 +199,33 @@ namespace AWC.Client.Features.HumanResources.CreateWorker.Pages
 
         [GeneratedRegex("^\\d{5,9}$")]
         private static partial Regex nationalIdRegex();
+
+        private void AddDepartmentHistory()
+        {
+            employee.DepartmentHistories = new()
+            {
+                new DepartmentHistoryCommand()
+                {
+                    BusinessEntityID = 0,
+                    DepartmentID = departmentId,
+                    ShiftID = shiftId,
+                    StartDate = employee.HireDate
+                }
+            };
+        }
+
+        private void AddPayHistory()
+        {
+            employee.PayHistories = new()
+            {
+                new PayHistoryCommand()
+                {
+                    BusinessEntityID = 0,
+                    RateChangeDate = employee.HireDate,
+                    Rate = (decimal)payRate,
+                    PayFrequency = payFrequency
+                }
+            };
+        }
     }
 }
