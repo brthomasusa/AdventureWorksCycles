@@ -1,5 +1,4 @@
 @page "/Features/HumanResources/ViewDepartments/Pages/ViewDepartmentsPage"
-@inherits FluxorComponent
 @using Radzen
 @using Radzen.Blazor
 @using AWC.Client.Utilities;
@@ -15,21 +14,24 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <RadzenDataGrid AllowFiltering="true" FilterMode="FilterMode.Simple" AllowPaging="true"
-            PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" AllowSorting="true"
-            Data="@departmentDetails" Count="@count" TItem="DepartmentDetails" LoadData="@LoadDepartmentData"
-            IsLoading="@isLoading" PageSizeOptions="@pageSizeOptions" PageSizeText="Rows per page">
-            <Columns>
-                <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="DepartmentID" Title="ID">
-                </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="DepartmentDetails" Sortable="true" Property="Name" Title="Name">
-                </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="GroupName"
-                    Title="Group Name">
-                </RadzenDataGridColumn>
-            </Columns>
-        </RadzenDataGrid>
+<ErrorBoundary>
+    <div class="row">
+        <div class="col-md-12">
+            <RadzenDataGrid AllowFiltering="true" FilterMode="FilterMode.Simple" AllowPaging="true"
+                PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" AllowSorting="true"
+                Data="@departmentDetails" Count="@count" TItem="DepartmentDetails" LoadData="@LoadDepartmentData"
+                IsLoading="@isLoading" PageSizeOptions="@pageSizeOptions" PageSizeText="Rows per page">
+                <Columns>
+                    <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="DepartmentID"
+                        Title="ID">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DepartmentDetails" Sortable="true" Property="Name" Title="Name">
+                    </RadzenDataGridColumn>
+                    <RadzenDataGridColumn TItem="DepartmentDetails" Filterable="false" Property="GroupName"
+                        Title="Group Name">
+                    </RadzenDataGridColumn>
+                </Columns>
+            </RadzenDataGrid>
+        </div>
     </div>
-</div>
+</ErrorBoundary>

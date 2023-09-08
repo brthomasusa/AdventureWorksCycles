@@ -58,7 +58,7 @@ message grpc_EmployeeForDisplay {
     string phone_number = 9;
     string phone_number_type = 10;
     string email_address = 11;
-    int32 email_promotion = 12;
+    string email_promotion = 12;
     string national_id_number = 13;
     string login_id = 14;
     string address_line1 = 15;
@@ -104,8 +104,8 @@ message grpc_EmployeeListItems {
 
 message grpc_DepartmentHistory {
     int32 business_entity_id = 1;
-    int32 department = 2;
-    int32 shift = 3;
+    string department = 2;
+    string shift = 3;
     google.protobuf.Timestamp start_date = 4;
     google.protobuf.Timestamp end_date = 5;  
 }

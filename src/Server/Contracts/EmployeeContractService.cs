@@ -62,8 +62,7 @@ namespace AWC.Server.Contracts
 
         public async override Task<GenericResponse> Update(grpc_EmployeeGenericCommand request, ServerCallContext context)
         {
-            EmployeeGenericCommand genericCommand = _mapper.Map<EmployeeGenericCommand>(request);
-            UpdateEmployeeCommand updateEmployeeCommand = _mapper.Map<UpdateEmployeeCommand>(genericCommand);
+            UpdateEmployeeCommand updateEmployeeCommand = _mapper.Map<UpdateEmployeeCommand>(request);
 
             Result<int> result = await _sender.Send(updateEmployeeCommand);
 
@@ -81,7 +80,23 @@ namespace AWC.Server.Contracts
             if (result.IsFailure)
                 throw new RpcException(new(StatusCode.Internal, result.Error.Message));
 
-            return _mapper.Map<grpc_EmployeeForDisplay>(result.Value);
+            grpc_EmployeeForDisplay grpcResponse = _mapper.Map<grpc_EmployeeForDisplay>(result.Value);
+
+            List<grpc_DepartmentHistory> grpcDeptHist = new();
+            List<grpc_PayHistory> grpcPayHist = new();
+
+            result.Value.DepartmentHistories!.ToList().ForEach(d =>
+                grpcDeptHist.Add(_mapper.Map<grpc_DepartmentHistory>(d))
+            );
+
+            result.Value.PayHistories!.ToList().ForEach(p =>
+                grpcPayHist.Add(_mapper.Map<grpc_PayHistory>(p))
+            );
+
+            grpcResponse.DepartmentHistories.AddRange(grpcDeptHist);
+            grpcResponse.PayHistories.AddRange(grpcPayHist);
+
+            return grpcResponse;
         }
 
         public async override Task<grpc_EmployeeGenericCommand> GetEmployeeForEdit(ItemRequest request, ServerCallContext context)
@@ -92,7 +107,23 @@ namespace AWC.Server.Contracts
             if (result.IsFailure)
                 throw new RpcException(new(StatusCode.Internal, result.Error.Message));
 
-            return _mapper.Map<grpc_EmployeeGenericCommand>(result.Value);
+            grpc_EmployeeGenericCommand grpcResponse = _mapper.Map<grpc_EmployeeGenericCommand>(result.Value);
+
+            List<grpc_DepartmentHistoryCommand> grpcDeptHist = new();
+            List<grpc_PayHistoryCommand> grpcPayHist = new();
+
+            result.Value.DepartmentHistories!.ToList().ForEach(d =>
+                grpcDeptHist.Add(_mapper.Map<grpc_DepartmentHistoryCommand>(d))
+            );
+
+            result.Value.PayHistories!.ToList().ForEach(p =>
+                grpcPayHist.Add(_mapper.Map<grpc_PayHistoryCommand>(p))
+            );
+
+            grpcResponse.DepartmentHistories.AddRange(grpcDeptHist);
+            grpcResponse.PayHistories.AddRange(grpcPayHist);
+
+            return grpcResponse;
         }
 
         public async override Task<grpc_EmployeeListItems> GetEmployeesSearchByName(grpc_StringSearchCriteria request, ServerCallContext context)

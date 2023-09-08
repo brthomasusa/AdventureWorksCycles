@@ -1,3 +1,5 @@
+#pragma warning disable CS8795
+
 using System.Text.RegularExpressions;
 using AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store;
 using AWC.Shared.Commands.HumanResources;

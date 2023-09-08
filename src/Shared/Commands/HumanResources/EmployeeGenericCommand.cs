@@ -11,7 +11,7 @@ namespace AWC.Shared.Commands.HumanResources
         public string? Suffix { get; set; }
         public string? JobTitle { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? PhoneNumberType { get; set; }
+        public int PhoneNumberTypeID { get; set; }
         public string? EmailAddress { get; set; }
         public int EmailPromotion { get; set; }
         public string? NationalIDNumber { get; set; }
@@ -31,5 +31,7 @@ namespace AWC.Shared.Commands.HumanResources
         public int SickLeaveHours { get; set; }
         public bool Active { get; set; }
         public int ManagerID { get; set; }
+        public List<DepartmentHistoryCommand>? DepartmentHistories { get; set; }
+        public List<PayHistoryCommand>? PayHistories { get; set; }
     }
 }

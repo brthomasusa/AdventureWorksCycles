@@ -21,9 +21,6 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
 
             RuleFor(departHistory => departHistory.StartDate)
                                                   .NotEmpty().WithMessage("Start date (employee hire date) is required.");
-
-            RuleFor(departHistory => departHistory.EndDate)
-                                                  .Null().WithMessage("A new employee should not have a department end date.");
         }
     }
 }
