@@ -32,8 +32,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.Suffix, src => string.IsNullOrEmpty(src.Suffix) ? string.Empty : src.Suffix)
                 .Map(dest => dest.AddressLine2, src => string.IsNullOrEmpty(src.AddressLine2) ? string.Empty : src.AddressLine2)
                 .Map(dest => dest.BirthDate, src => GoogleDateTime.FromDateTimeOffset(src.BirthDate))
-                .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate))
-                .Map(dest => dest.DepartmentHistories, src => src.DepartmentHistories!.Adapt<List<grpc_DepartmentHistoryCommand>>());
+                .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate));
 
             // To the UI, used to populate employee list page
             config.NewConfig<EmployeeListItem, grpc_EmployeeListItem>()
@@ -89,7 +88,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.PayFrequency, src => src.PayFrequency);
 
             // Command to the UI
-            config.NewConfig<AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand, grpc_DepartmentHistoryCommand>()
+            config.NewConfig<AWC.Shared.Queries.HumanResources.DepartmentHistoryCommand, grpc_DepartmentHistoryCommand>()
                 .Map(dest => dest.BusinessEntityId, src => src.BusinessEntityID)
                 .Map(dest => dest.DepartmentId, src => src.DepartmentID)
                 .Map(dest => dest.ShiftId, src => src.ShiftID)
@@ -97,7 +96,7 @@ namespace AWC.Server.Mapping.HumanResources
                 .Map(dest => dest.EndDate, src => src.EndDate != null ? GoogleDateTime.FromDateTimeOffset(src.EndDate.Value) : GoogleDateTime.FromDateTimeOffset(new DateTimeOffset()));
 
             // Command to the UI
-            config.NewConfig<AWC.Shared.Commands.HumanResources.PayHistoryCommand, grpc_PayHistoryCommand>()
+            config.NewConfig<AWC.Shared.Queries.HumanResources.PayHistoryCommand, grpc_PayHistoryCommand>()
                 .Map(dest => dest.BusinessEntityId, src => src.BusinessEntityID)
                 .Map(dest => dest.RateChangeDate, src => GoogleDateTime.FromDateTimeOffset(src.RateChangeDate))
                 .Map(dest => dest.Rate, src => (double)src.Rate)

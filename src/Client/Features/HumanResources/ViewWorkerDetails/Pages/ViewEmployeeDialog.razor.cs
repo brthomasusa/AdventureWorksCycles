@@ -1,15 +1,8 @@
 using AWC.Client.Interfaces.HumanResources;
-using AWC.Client.Services;
-using AWC.Client.Services.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;
-using gRPC.Contracts.HumanResources;
-using gRPC.Contracts.Shared;
-using Grpc.Net.Client;
-using MapsterMapper;
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 
 namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
@@ -53,34 +46,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages
             isLoading = false;
         }
 
-        protected EmployeeDetails? Employee
-        {
-            get
-            {
-                return employee;
-            }
-            set
-            {
-                if (!object.Equals(employee, value))
-                {
-                    var args = new PropertyChangedEventArgs() { Name = "employee", NewValue = value, OldValue = employee };
-                    employee = value;
-                    OnPropertyChanged(args);
-                    Reload();
-                }
-            }
-        }
-
-        public void Reload()
-        {
-            InvokeAsync(StateHasChanged);
-        }
-
-        public void OnPropertyChanged(PropertyChangedEventArgs args)
-        {
-        }
-
-        protected void CloseEmployeeDetailsDialog(MouseEventArgs args)
+        protected void CloseEmployeeDetailsDialog()
         {
             DialogService!.Close(null);
         }

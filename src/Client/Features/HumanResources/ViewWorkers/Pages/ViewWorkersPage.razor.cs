@@ -1,4 +1,5 @@
 using AWC.Client.Features.HumanResources.CreateWorker.Pages;
+using AWC.Client.Features.HumanResources.UpdateWorker.Pages;
 using AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages;
 using AWC.Client.Interfaces.HumanResources;
 using AWC.Client.Utilities;
@@ -14,9 +15,8 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
     public partial class ViewWorkersPage : ComponentBase
     {
         private const int VIEW_EMPLOYEE = 1;
-        private const int CREATE_EMPLOYEE = 2;
-        private const int EDIT_EMPLOYEE = 3;
-        private const int DELETE_EMPLOYEE = 4;
+        private const int EDIT_EMPLOYEE = 2;
+        private const int DELETE_EMPLOYEE = 3;
 
         private bool isLoading;
         private int count;
@@ -117,7 +117,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
                     await ShowViewEmployeeDialog();
                     break;
                 case EDIT_EMPLOYEE:
-                    // await ShowCreateWorkerDialog();
+                    await ShowUpdateWorkerDialog();
                     break;
                 case DELETE_EMPLOYEE:
                     Console.WriteLine($"Menu item delete clicked with employee id {selectedEmployeeID}");
@@ -160,6 +160,21 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
                 null,
                 new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true }
             );
+
+            await employeeListItemGrid!.Reload();
+
+            await InvokeAsync(() => StateHasChanged());
+        }
+
+        protected async Task ShowUpdateWorkerDialog()
+        {
+            var dialogResult =
+                await DialogService!.OpenAsync<UpdateWorkerDialog>
+                    (
+                        "Update Worker",
+                        new Dictionary<string, object>() { { "BusinessEntityID", selectedEmployeeID } },
+                        new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true }
+                    );
 
             await employeeListItemGrid!.Reload();
 

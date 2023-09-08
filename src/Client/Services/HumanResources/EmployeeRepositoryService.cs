@@ -40,6 +40,39 @@ namespace AWC.Client.Services.HumanResources
             _stateCodeLookupState = stateCodeLookupState;
         }
 
+        public async Task<Result<AWC.Shared.Commands.HumanResources.EmployeeGenericCommand>> GetEmployeeForUpdate(int businessEntityID)
+        {
+            try
+            {
+                var client = new EmployeeContract.EmployeeContractClient(_channel);
+                ItemRequest request = new() { Id = businessEntityID };
+                grpc_EmployeeGenericCommand grpcResponse = await client.GetEmployeeForEditAsync(request);
+
+                List<AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand> departments = new();
+                List<AWC.Shared.Commands.HumanResources.PayHistoryCommand> payHistories = new();
+
+                grpcResponse.DepartmentHistories.ToList().ForEach(dept =>
+                    departments.Add(_mapper.Map<AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand>(dept))
+                );
+
+                grpcResponse.PayHistories.ToList().ForEach(pay =>
+                    payHistories.Add(_mapper.Map<AWC.Shared.Commands.HumanResources.PayHistoryCommand>(pay))
+                );
+
+                var employee = _mapper.Map<AWC.Shared.Commands.HumanResources.EmployeeGenericCommand>(grpcResponse);
+                employee.DepartmentHistories!.AddRange(departments);
+                employee.PayHistories!.AddRange(payHistories);
+
+                return employee;
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure<AWC.Shared.Commands.HumanResources.EmployeeGenericCommand>(new Error(
+                    "EmployeeRepositoryService.GetEmployeeForUpdate",
+                    Helpers.GetExceptionMessage(ex))
+                );
+            }
+        }
 
         public async Task<Result<EmployeeDetails>> GetEmployeeDetails(int businessEntityID)
         {
@@ -161,16 +194,12 @@ namespace AWC.Client.Services.HumanResources
                 command.DepartmentHistories.AddRange(grpcDeptHist);
                 command.PayHistories.AddRange(grpcPayHist);
 
-                Console.WriteLine($"EmployeeGenericCommand: {employee.ToJson()}");
-                Console.WriteLine($"grpc_EmployeeGenericCommand: {command.ToJson()}");
                 CreateResponse grpcResponse = await client.CreateAsync(command);
 
-                Console.WriteLine($"CreateEmployee: New employee number is {grpcResponse.Id}");
                 return grpcResponse.Id;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"CreateEmployee: failed with message {Helpers.GetExceptionMessage(ex)}");
                 return Result<int>.Failure<int>(new Error(
                     "EmployeeRepositoryService.CreateEmployee",
                     Helpers.GetExceptionMessage(ex))
@@ -184,6 +213,20 @@ namespace AWC.Client.Services.HumanResources
             {
                 var client = new EmployeeContract.EmployeeContractClient(_channel);
                 grpc_EmployeeGenericCommand command = _mapper.Map<grpc_EmployeeGenericCommand>(employee);
+
+                List<grpc_DepartmentHistoryCommand> grpcDeptHist = new();
+                employee.DepartmentHistories!.ToList().ForEach(d =>
+                    grpcDeptHist.Add(_mapper.Map<grpc_DepartmentHistoryCommand>(d))
+                );
+
+                List<grpc_PayHistoryCommand> grpcPayHist = new();
+                employee.PayHistories!.ToList().ForEach(p =>
+                    grpcPayHist.Add(_mapper.Map<grpc_PayHistoryCommand>(p))
+                );
+
+                command.DepartmentHistories.AddRange(grpcDeptHist);
+                command.PayHistories.AddRange(grpcPayHist);
+
                 GenericResponse response = await client.UpdateAsync(command);
 
                 return Result.Success();

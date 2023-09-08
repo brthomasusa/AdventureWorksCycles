@@ -35,3 +35,10 @@ builder.Services.AddSingleton(services =>
 
 await builder.Build().RunAsync();
 
+namespace AWC.Client
+{
+    public partial class Program
+    {
+
+    }
+}

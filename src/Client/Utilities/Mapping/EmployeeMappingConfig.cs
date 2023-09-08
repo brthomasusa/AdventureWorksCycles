@@ -32,11 +32,12 @@ namespace AWC.Client.Utilities.Mapping
                 .Map(dest => dest.BirthDate, src => GoogleDateTime.FromDateTimeOffset(src.BirthDate))
                 .Map(dest => dest.HireDate, src => GoogleDateTime.FromDateTimeOffset(src.HireDate));
 
-            config.NewConfig<grpc_EmployeeGenericCommand, EmployeeGenericCommand>()
+            config.NewConfig<grpc_EmployeeGenericCommand, AWC.Shared.Commands.HumanResources.EmployeeGenericCommand>()
                 .Map(dest => dest.Title, src => string.IsNullOrEmpty(src.Title) ? null : src.Title)
                 .Map(dest => dest.MiddleName, src => string.IsNullOrEmpty(src.MiddleName) ? null : src.MiddleName)
                 .Map(dest => dest.Suffix, src => string.IsNullOrEmpty(src.Suffix) ? null : src.Suffix)
                 .Map(dest => dest.AddressLine2, src => string.IsNullOrEmpty(src.AddressLine2) ? null : src.AddressLine2)
+                .Map(dest => dest.PhoneNumberTypeID, src => src.PhoneNumberTypeId)
                 .Map(dest => dest.BirthDate, src => src.BirthDate.ToDateTime().ToLocalTime())
                 .Map(dest => dest.HireDate, src => src.HireDate.ToDateTime().ToLocalTime());
 
@@ -50,6 +51,7 @@ namespace AWC.Client.Utilities.Mapping
                 .Map(dest => dest.DepartmentID, src => src.DepartmentId)
                 .Map(dest => dest.ShiftID, src => src.ShiftId)
                 .Map(dest => dest.StartDate, src => src.StartDate.ToDateTime().ToLocalTime())
+                .Map(dest => dest.EndDate, src => src.EndDate.ToDateTime().ToLocalTime(), srcCond => srcCond.EndDate.Seconds <= 0)
                 .Map(dest => dest.EndDate, src => src.EndDate.ToDateTime().ToLocalTime());
 
             config.NewConfig<AWC.Shared.Commands.HumanResources.DepartmentHistoryCommand, grpc_DepartmentHistoryCommand>()
