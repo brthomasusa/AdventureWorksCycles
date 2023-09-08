@@ -120,7 +120,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
                     await ShowUpdateWorkerDialog();
                     break;
                 case DELETE_EMPLOYEE:
-                    Console.WriteLine($"Menu item delete clicked with employee id {selectedEmployeeID}");
+                    await ConfirmEmployeeDelete();
                     break;
                 default:
                     NotificationService!.Notify
@@ -138,7 +138,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
             ContextMenuService!.Close();
         }
 
-        protected async Task ShowViewEmployeeDialog()
+        private async Task ShowViewEmployeeDialog()
         {
             var dialogResult =
                 await DialogService!.OpenAsync<ViewEmployeeDialog>
@@ -153,12 +153,12 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
             await InvokeAsync(() => StateHasChanged());
         }
 
-        protected async Task ShowCreateWorkerDialog()
+        private async Task ShowCreateWorkerDialog()
         {
             var dialogResult = await DialogService!.OpenAsync<CreateWorkerDialog>(
                 "Create Worker",
                 null,
-                new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true }
+                new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true, CloseDialogOnEsc = false }
             );
 
             await employeeListItemGrid!.Reload();
@@ -166,19 +166,49 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
             await InvokeAsync(() => StateHasChanged());
         }
 
-        protected async Task ShowUpdateWorkerDialog()
+        private async Task ShowUpdateWorkerDialog()
         {
             var dialogResult =
                 await DialogService!.OpenAsync<UpdateWorkerDialog>
                     (
                         "Update Worker",
                         new Dictionary<string, object>() { { "BusinessEntityID", selectedEmployeeID } },
-                        new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true }
+                        new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true, CloseDialogOnEsc = false }
                     );
 
             await employeeListItemGrid!.Reload();
 
             await InvokeAsync(() => StateHasChanged());
+        }
+
+        private async Task ConfirmEmployeeDelete()
+        {
+            try
+            {
+
+                if (await DialogService!.Confirm("Are you sure you want to delete this record?", "Delete Confirmation") == true)
+                {
+                    Result result = await EmployeeRepository!.DeleteEmployee(selectedEmployeeID);
+
+                    if (result.IsFailure)
+                    {
+                        ShowErrorNotification.ShowError(
+                            NotificationService!,
+                            result.Error.Message);
+                    }
+                    else
+                    {
+                        await employeeListItemGrid!.Reload();
+                        await InvokeAsync(() => StateHasChanged());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorNotification.ShowError(
+                    NotificationService!,
+                    Helpers.GetExceptionMessage(ex));
+            }
         }
     }
 }

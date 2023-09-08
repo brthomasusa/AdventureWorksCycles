@@ -213,20 +213,6 @@ namespace AWC.Client.Services.HumanResources
             {
                 var client = new EmployeeContract.EmployeeContractClient(_channel);
                 grpc_EmployeeGenericCommand command = _mapper.Map<grpc_EmployeeGenericCommand>(employee);
-
-                List<grpc_DepartmentHistoryCommand> grpcDeptHist = new();
-                employee.DepartmentHistories!.ToList().ForEach(d =>
-                    grpcDeptHist.Add(_mapper.Map<grpc_DepartmentHistoryCommand>(d))
-                );
-
-                List<grpc_PayHistoryCommand> grpcPayHist = new();
-                employee.PayHistories!.ToList().ForEach(p =>
-                    grpcPayHist.Add(_mapper.Map<grpc_PayHistoryCommand>(p))
-                );
-
-                command.DepartmentHistories.AddRange(grpcDeptHist);
-                command.PayHistories.AddRange(grpcPayHist);
-
                 GenericResponse response = await client.UpdateAsync(command);
 
                 return Result.Success();
@@ -240,9 +226,23 @@ namespace AWC.Client.Services.HumanResources
             }
         }
 
-        public Task<Result> DeleteEmployee(int businessEntityId)
+        public async Task<Result> DeleteEmployee(int businessEntityId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var client = new EmployeeContract.EmployeeContractClient(_channel);
+                ItemRequest request = new() { Id = businessEntityId };
+                GenericResponse response = await client.DeleteAsync(request);
+
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure(new Error(
+                    "EmployeeRepositoryService.UpdateEmployee",
+                    Helpers.GetExceptionMessage(ex))
+                );
+            }
         }
     }
 }
