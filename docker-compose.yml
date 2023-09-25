@@ -1,0 +1,43 @@
+version: "3.7" # optional since v1.27.0
+services:
+    awc-app:
+        image: adventureworks-app
+        container_name: awc-app
+        environment:
+            - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/07825064B85CD5006D2C4527317FF6BE248212D8.pfx
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=https://0.0.0.0:443;http://0.0.0.0:80
+        volumes:
+            - /home/bthomas/.dotnet/corefx/cryptography/x509stores/my/:/https/:ro
+        ports:
+            - "8000:80"
+            - "8001:443"
+        networks:
+            awc-net:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+            - awc-db
+    awc-db:
+        image: "mcr.microsoft.com/mssql/server:2022-latest"
+        container_name: awc-db
+        environment:
+            - ACCEPT_EULA=y
+            - SA_PASSWORD=Info99Gum
+            - shm-size=2g
+        ports:
+            - 1433:1433
+        volumes:
+            - awc-data:/var/opt/mssql/
+        networks:
+            awc-net:
+
+
+networks:
+    awc-net:
+
+
+volumes:
+    awc-data:
+        external: true
