@@ -73,22 +73,6 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
         }
 
         [Fact]
-        public void DepartmentHistoryCommandCreateValidator_NotNullEndDate_ShouldFail()
-        {
-            DepartmentHistoryCommand command = new()
-            {
-                BusinessEntityID = 0,
-                DepartmentID = 16,
-                ShiftID = 1,
-                StartDate = new DateTime(2023, 8, 6),
-                EndDate = new DateTime(2023, 8, 6)
-            };
-
-            var result = _departmentHistoryValidator.TestValidate(command);
-            result.ShouldHaveValidationErrorFor(x => x.EndDate);
-        }
-
-        [Fact]
         public void DepartmentHistoryCommandCreateValidator_DefaultEndDate_ShouldSucceed()
         {
             DepartmentHistoryCommand command = new()

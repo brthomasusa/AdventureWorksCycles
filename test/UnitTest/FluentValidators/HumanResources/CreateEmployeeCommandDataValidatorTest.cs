@@ -191,7 +191,7 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
             command = command with { PostalCode = string.Empty };
 
             var result = _employeeCreateValidator.TestValidate(command);
-            result.ShouldHaveValidationErrorFor(x => x.City);
+            result.ShouldHaveValidationErrorFor(x => x.PostalCode);
         }
 
         [Theory]
