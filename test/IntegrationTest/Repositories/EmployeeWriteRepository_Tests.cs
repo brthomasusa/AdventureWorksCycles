@@ -7,6 +7,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.Repositories
 {
+    [Collection("Database Test")]
     public class EmployeeWriteRepository_Tests : TestBase
     {
         private readonly IWriteRepositoryManager _writeRepository;

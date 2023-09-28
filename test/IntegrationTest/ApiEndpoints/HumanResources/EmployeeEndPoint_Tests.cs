@@ -9,8 +9,9 @@ using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Shared.Queries.HumanResources;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace AWC.IntegrationTests.ApiEndPoint_Tests
+namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
 {
+    [Collection("Database Test")]
     public class EmployeeEndPoint_Tests : IntegrationTestBase
     {
         public EmployeeEndPoint_Tests(ApiWebApplicationFactory fixture) : base(fixture)

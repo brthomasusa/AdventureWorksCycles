@@ -6,6 +6,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTest.Repositories
 {
+    [Collection("Database Test")]
     public class EmployeeValidationRepository_Tests : TestBase
     {
         private readonly IValidationRepositoryManager _validationRepository;

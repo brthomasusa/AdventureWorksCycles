@@ -5,6 +5,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.Repositories
 {
+    [Collection("Database Test")]
     public class EmployeeReadRepository_Tests : TestBase
     {
         [Fact]

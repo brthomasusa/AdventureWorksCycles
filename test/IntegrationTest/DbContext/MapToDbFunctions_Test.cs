@@ -2,6 +2,7 @@ using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 
 namespace AWC.IntegrationTests.DbContext
 {
+    [Collection("Database Test")]
     public class MapToDbFunctions_Test : TestBase
     {
         [Fact]

@@ -11,10 +11,12 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
 {
+    [Collection("Database Test")]
     public class CompanyEndPoint_Tests : IntegrationTestBase
     {
         public CompanyEndPoint_Tests(ApiWebApplicationFactory fixture) : base(fixture)
         { }
+
 
         [Fact]
         public async Task Company_GetCompanyDetailsByIdQuery_ShouldSucceed()

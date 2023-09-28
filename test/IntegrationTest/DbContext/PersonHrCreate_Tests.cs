@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AWC.IntegrationTests.DbContext
 {
+    [Collection("Database Test")]
     public class PersonHrCreate_Tests : TestBase
     {
         [Fact]

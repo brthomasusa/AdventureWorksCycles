@@ -8,6 +8,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.HumanResources.CommandHandlers
 {
+    [Collection("Database Test")]
     public class HrCommandHandler_Tests : TestBase
     {
         private readonly IWriteRepositoryManager _writeRepository;
