@@ -1,10 +1,10 @@
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests.CompanyEndPoint_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests.EmployeeEndPoint_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Lookups.ApiEndPoint_Tests.LookupsEndPoint_Tests
+
+
+// Passing
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.CommandHandlers.HrCommandHandler_Tests
-
-
-
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DapperQueries.CompanyQuery_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DapperQueries.EmployeeQuery_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DapperQueries.LookupsQuery_Tests

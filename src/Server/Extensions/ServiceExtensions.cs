@@ -29,7 +29,7 @@ namespace AWC.Server.Extensions
         {
             services.AddDbContext<AwcContext>(options =>
                 options.UseSqlServer(
-                    configuration["ConnectionStrings:AWC-Db"],
+                    configuration["ConnectionStrings:mssql-server"],
                     msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(AwcContext).Assembly.FullName)
                 )
                 .EnableSensitiveDataLogging()
@@ -39,7 +39,7 @@ namespace AWC.Server.Extensions
 
         public static void ConfigureDapper(this IServiceCollection services, IConfiguration configuration)
         {
-            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(configuration!["ConnectionStrings:AWC-Db"]));
+            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(configuration!["ConnectionStrings:mssql-server"]));
         }
 
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
