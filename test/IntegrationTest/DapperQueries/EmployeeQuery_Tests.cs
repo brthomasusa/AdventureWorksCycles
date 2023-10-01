@@ -7,6 +7,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.DapperQueries
 {
+    [Collection("Database Test")]
     public class EmployeeQuery_Tests : TestBase
     {
         [Fact]
