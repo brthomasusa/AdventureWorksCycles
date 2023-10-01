@@ -54,7 +54,7 @@ namespace AWC.IntegrationTests.Lookups.ApiEndPoint_Tests
             var countryCodes = await JsonSerializer.DeserializeAsync<List<CountryCode>>(jsonResponse, _options);
 
             Assert.True(countryCodes!.Any());
-            Assert.Equal(53, countryCodes.Count);
+            Assert.Equal(238, countryCodes.Count);
         }
 
         [Fact]

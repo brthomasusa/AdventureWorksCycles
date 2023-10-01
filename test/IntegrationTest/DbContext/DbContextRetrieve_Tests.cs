@@ -1,5 +1,6 @@
 namespace AWC.IntegrationTests.DbContext
 {
+    [Collection("Database Test")]
     public class DbContextRetrieve_Tests : TestBase
     {
         [Fact]

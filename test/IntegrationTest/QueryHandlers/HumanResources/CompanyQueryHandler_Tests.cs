@@ -9,6 +9,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.HumanResources.QueryHandlers
 {
+    [Collection("Database Test")]
     public class CompanyQueryHandler_Tests : TestBase
     {
         private readonly IReadRepositoryManager _repository;

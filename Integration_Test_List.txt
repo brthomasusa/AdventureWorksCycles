@@ -1,10 +1,22 @@
+
+// Passing
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests.CompanyEndPoint_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests.EmployeeEndPoint_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Lookups.ApiEndPoint_Tests.LookupsEndPoint_Tests
-
-
-// Passing
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.CommandHandlers.HrCommandHandler_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DapperQueries.CompanyQuery_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DapperQueries.EmployeeQuery_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DapperQueries.LookupsQuery_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DbContext.DbContextRetrieve_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DbContext.MapToDbFunctions_Test
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DbContext.PersonAndHrSpecification_Test
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.DbContext.PersonHrCreate_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.QueryHandlers.HumanResources.CompanyQueryHandler_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.QueryHandlers.HumanResources.EmployeeQueryHandler_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.QueryHandlers.HumanResources.LookupsQueryHandler_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.CompanyReadRepository_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.CompanyWriteRepository_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.EmployeeReadRepository_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.EmployeeValidationRepository_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.EmployeeWriteRepository_Tests
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.LookupsRepository_Tests

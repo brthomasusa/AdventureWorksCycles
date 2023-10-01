@@ -12,6 +12,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.QueryHandlers.HumanResources
 {
+    [Collection("Database Test")]
     public class LookupsQueryHandler_Tests : TestBase
     {
         private readonly ILookupsRepositoryManager _repository;
