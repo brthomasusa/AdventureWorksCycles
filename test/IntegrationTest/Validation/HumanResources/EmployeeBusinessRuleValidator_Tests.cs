@@ -9,6 +9,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTest.Validation.HumanResources
 {
+    [Collection("Database Test")]
     public class EmployeeBusinessRuleValidator_Tests : TestBase
     {
         private readonly IValidationRepositoryManager _validationRepository;

@@ -8,6 +8,7 @@ using AWC.SharedKernel.Base;
 
 namespace AWC.IntegrationTest.Validation.HumanResources
 {
+    [Collection("Database Test")]
     public class EmployeeBusinessRule_Tests : TestBase
     {
         private readonly IValidationRepositoryManager _validationRepository;
@@ -80,8 +81,5 @@ namespace AWC.IntegrationTest.Validation.HumanResources
 
             Assert.False(validationResult.IsValid);
         }
-
-
-
     }
 }
