@@ -27,6 +27,11 @@ pipeline {
                     dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests
                     '''    
             }
+        stage('Code Analysis') {
+            steps {
+                withSonarqubeEnv(installationName: 'sonarqube')
+            }
+        } 
         }
     }
 }
