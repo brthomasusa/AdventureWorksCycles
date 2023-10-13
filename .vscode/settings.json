@@ -1,3 +1,7 @@
 {
-    "dotnet.defaultSolution": "AdventureWorksCycles.sln"
+    "dotnet.defaultSolution": "AdventureWorksCycles.sln",
+    "sonarlint.connectedMode.project": {
+        "connectionId": "sonarqube-dell-svr",
+        "projectKey": "AdventureWorks"
+    }
 }

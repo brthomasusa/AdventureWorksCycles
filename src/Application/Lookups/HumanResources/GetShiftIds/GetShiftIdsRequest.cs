@@ -3,5 +3,5 @@ using AWC.Shared.Queries.Lookups.HumanResources;
 
 namespace AWC.Application.Lookups.HumanResources.GetShiftIds
 {
-    public sealed record GetShiftIdsRequest() : IQuery<List<ShiftId>>;
+    public sealed record GetShiftIdsRequest(int SuppressSonarqubeWarning = 0) : IQuery<List<ShiftId>>;
 }

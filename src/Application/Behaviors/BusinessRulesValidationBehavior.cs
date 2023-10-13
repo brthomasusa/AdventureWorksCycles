@@ -22,9 +22,6 @@ namespace AWC.Application.Behaviors
             RequestHandlerDelegate<TResponse> next
         )
         {
-            var isCommand = typeof(TRequest).GetInterfaces()
-                                            .Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ICommand<>));
-
             Result result = await _businessRulesValidator.Validate(request);
 
             if (result.IsSuccess)

@@ -43,7 +43,7 @@ namespace AWC.Application.Behaviors
                 typeof(TRequest).Name,
                 DateTime.UtcNow);
 
-            return (TResponse)result;
+            return result;
         }
     }
 }

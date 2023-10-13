@@ -15,15 +15,8 @@ namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Pages
         [Inject] private IState<UpdateCompanyDetailsState>? UpdateCompanyDetailsState { get; set; }
         [Inject] private IDispatcher? Dispatcher { get; set; }
         [Inject] private NavigationManager? NavManager { get; set; }
-        [Inject] protected DialogService? DialogService { get; set; }
-
-        [Inject] protected TooltipService? TooltipService { get; set; }
-
-        [Inject] protected ContextMenuService? ContextMenuService { get; set; }
-
         [Inject] protected NotificationService? NotificationService { get; set; }
-        private const string ReturnUri = "/Features/HumanResources/ViewCompanyDetail/Pages/ViewCompanyDetailPage";
-        private CompanyGenericCommand? CommandModel => UpdateCompanyDetailsState!.Value.CommandModel;
+
         private bool Loading => UpdateCompanyDetailsState!.Value.Loading;
         private readonly Variant variant = Variant.Filled;
 
@@ -67,7 +60,7 @@ namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Pages
             NavManager!.NavigateTo("/Features/HumanResources/ViewCompanyDetail/Pages/ViewCompanyDetailPage");
         }
 
-        private bool ValidateEIN(string ein)
+        private static bool ValidateEIN(string ein)
         {
             return EinRegex().IsMatch(ein);
         }

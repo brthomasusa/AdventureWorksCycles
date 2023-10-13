@@ -43,7 +43,7 @@ namespace AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store
 
                 while (await stream.MoveNext(default))
                 {
-                    grpc_StateProvinceCode code = (grpc_StateProvinceCode)stream.Current;
+                    grpc_StateProvinceCode code = stream.Current;
                     stateCodes.Add(_mapper.Map<StateCode>(code));
                 }
                 dispatcher.Dispatch(new LoadStateCodesSuccessAction(stateCodes));

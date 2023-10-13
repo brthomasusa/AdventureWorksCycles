@@ -4,7 +4,8 @@ using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.SharedKernel.Utilities;
-
+using Mapster;
+using MapsterMapper;
 
 namespace AWC.Application.Features.HumanResources.UpdateEmployee
 {
@@ -12,48 +13,16 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
     {
         private const int RETURN_VALUE = 0;
         private readonly IWriteRepositoryManager _repo;
+        private readonly IMapper _mapper;
 
-        public UpdateEmployeeCommandHandler(IWriteRepositoryManager repo)
-            => _repo = repo;
+        public UpdateEmployeeCommandHandler(IWriteRepositoryManager repo, IMapper mapper)
+            => (_repo, _mapper) = (repo, mapper);
 
         public async Task<Result<int>> Handle(UpdateEmployeeCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                Result<Employee> employeeDomainObject = EmployeeDomainObjectBuilder.Build
-                (
-                    command.BusinessEntityID,
-                    "EM",
-                    command.NameStyle == 0 ? NameStyleEnum.Western : NameStyleEnum.Eastern,
-                    command.Title,
-                    command.FirstName,
-                    command.MiddleName!,
-                    command.LastName,
-                    command.Suffix,
-                    command.ManagerID,
-                    command.JobTitle,
-                    command.PhoneNumber,
-                    PhoneNumberTypeEnum.Home,
-                    command.EmailAddress,
-                    command.EmailPromotion,
-                    command.NationalIDNumber,
-                    command.LoginID,
-                    command.AddressLine1,
-                    command.AddressLine2!,
-                    command.City,
-                    command.StateProvinceID,
-                    command.PostalCode,
-                    command.BirthDate,
-                    command.MaritalStatus,
-                    command.Gender,
-                    command.HireDate,
-                    command.Salaried,
-                    command.VacationHours,
-                    command.SickLeaveHours,
-                    command.Active,
-                    command.DepartmentHistories,
-                    command.PayHistories
-                );
+                Result<Employee> employeeDomainObject = BuildEmployeeDomainObject.Build(command, _mapper);
 
                 if (employeeDomainObject.IsFailure)
                     return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", employeeDomainObject.Error.Message));

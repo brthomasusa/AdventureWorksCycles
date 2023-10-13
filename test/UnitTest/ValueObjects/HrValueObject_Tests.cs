@@ -27,5 +27,4 @@ public class HrValueObject_Tests
         var exception = Record.Exception(() => DateOfBirth.Create(birthDate));
         Assert.NotNull(exception);
     }
-
 }

@@ -12,43 +12,295 @@ namespace AWC.UnitTest.Data
         public static CreateEmployeeCommand GetValidCreateEmployeeCommand()
         {
             return new(
-                        BusinessEntityID: 0,
-                        NameStyle: 0,
-                        Title: "Mr.",
-                        FirstName: "Johnny",
-                        LastName: "Doe",
-                        MiddleName: "J",
-                        Suffix: null!,
-                        JobTitle: "The Man",
-                        PhoneNumber: "555-555-5555",
-                        PhoneNumberTypeID: 2,
-                        EmailAddress: "johnny@adventure-works.com",
-                        EmailPromotion: 2,
-                        NationalIDNumber: "13232145",
-                        LoginID: @"adventure-works\johnny0",
-                        AddressLine1: "123 street",
-                        AddressLine2: "Apt 123",
-                        City: "Somewhere",
-                        StateProvinceID: 73,
-                        PostalCode: "12345",
-                        BirthDate: new DateTime(2003, 1, 17),
-                        MaritalStatus: "M",
-                        Gender: "M",
-                        HireDate: new DateTime(2020, 1, 28),
-                        Salaried: true,
-                        VacationHours: 5,
-                        SickLeaveHours: 1,
-                        Active: true,
-                        ManagerID: 1,
-                        DepartmentHistories: new List<DepartmentHistoryCommand>()
-                        {
-                            new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
-                        },
-                        PayHistories: new List<PayHistoryCommand>()
-                        {
-                            new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
-                        }
-                    );
+                    BusinessEntityID: 0,
+                    NameStyle: 0,
+                    Title: "Mr.",
+                    FirstName: "Johnny",
+                    LastName: "Doe",
+                    MiddleName: "J",
+                    Suffix: null!,
+                    JobTitle: "The Man",
+                    PhoneNumber: "555-555-5555",
+                    PhoneNumberTypeID: 2,
+                    EmailAddress: "johnny@adventure-works.com",
+                    EmailPromotion: 2,
+                    NationalIDNumber: "13232145",
+                    LoginID: @"adventure-works\johnny0",
+                    AddressLine1: "123 street",
+                    AddressLine2: "Apt 123",
+                    City: "Somewhere",
+                    StateProvinceID: 73,
+                    PostalCode: "12345",
+                    BirthDate: new DateTime(2003, 1, 17),
+                    MaritalStatus: "M",
+                    Gender: "M",
+                    HireDate: new DateTime(2020, 1, 28),
+                    Salaried: true,
+                    VacationHours: 5,
+                    SickLeaveHours: 1,
+                    Active: true,
+                    ManagerID: 1,
+                    DepartmentHistories: new List<DepartmentHistoryCommand>()
+                    {
+                        new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
+                    },
+                    PayHistories: new List<PayHistoryCommand>()
+                    {
+                        new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
+                    }
+                );
+        }
+
+        public static CreateEmployeeCommand GetInvalidCreateEmployeeCommand_EmptyNationalID()
+        {
+            return new(
+                    BusinessEntityID: 0,
+                    NameStyle: 0,
+                    Title: "Mr.",
+                    FirstName: "Johnny",
+                    LastName: "Doe",
+                    MiddleName: "J",
+                    Suffix: null!,
+                    JobTitle: "The Man",
+                    PhoneNumber: "555-555-5555",
+                    PhoneNumberTypeID: 2,
+                    EmailAddress: "johnny@adventure-works.com",
+                    EmailPromotion: 2,
+                    NationalIDNumber: "",
+                    LoginID: @"adventure-works\johnny0",
+                    AddressLine1: "123 street",
+                    AddressLine2: "Apt 123",
+                    City: "Somewhere",
+                    StateProvinceID: 73,
+                    PostalCode: "12345",
+                    BirthDate: new DateTime(2003, 1, 17),
+                    MaritalStatus: "M",
+                    Gender: "M",
+                    HireDate: new DateTime(2020, 1, 28),
+                    Salaried: true,
+                    VacationHours: 5,
+                    SickLeaveHours: 1,
+                    Active: true,
+                    ManagerID: 1,
+                    DepartmentHistories: new List<DepartmentHistoryCommand>()
+                    {
+                        new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
+                    },
+                    PayHistories: new List<PayHistoryCommand>()
+                    {
+                        new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
+                    }
+                );
+        }
+
+        public static CreateEmployeeCommand GetInvalidCreateEmployeeCommand_DefaultDeptHistoryStartDate()
+        {
+            return new(
+                    BusinessEntityID: 0,
+                    NameStyle: 0,
+                    Title: "Mr.",
+                    FirstName: "Johnny",
+                    LastName: "Doe",
+                    MiddleName: "J",
+                    Suffix: null!,
+                    JobTitle: "The Man",
+                    PhoneNumber: "555-555-5555",
+                    PhoneNumberTypeID: 2,
+                    EmailAddress: "johnny@adventure-works.com",
+                    EmailPromotion: 2,
+                    NationalIDNumber: "13232145",
+                    LoginID: @"adventure-works\johnny0",
+                    AddressLine1: "123 street",
+                    AddressLine2: "Apt 123",
+                    City: "Somewhere",
+                    StateProvinceID: 73,
+                    PostalCode: "12345",
+                    BirthDate: new DateTime(2003, 1, 17),
+                    MaritalStatus: "M",
+                    Gender: "M",
+                    HireDate: new DateTime(2020, 1, 28),
+                    Salaried: true,
+                    VacationHours: 5,
+                    SickLeaveHours: 1,
+                    Active: true,
+                    ManagerID: 1,
+                    DepartmentHistories: new List<DepartmentHistoryCommand>()
+                    {
+                        new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime() }
+                    },
+                    PayHistories: new List<PayHistoryCommand>()
+                    {
+                        new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
+                    }
+                );
+        }
+
+        public static CreateEmployeeCommand GetInvalidCreateEmployeeCommand_DefaultPayHistoryRateChangeDate()
+        {
+            return new(
+                    BusinessEntityID: 0,
+                    NameStyle: 0,
+                    Title: "Mr.",
+                    FirstName: "Johnny",
+                    LastName: "Doe",
+                    MiddleName: "J",
+                    Suffix: null!,
+                    JobTitle: "The Man",
+                    PhoneNumber: "555-555-5555",
+                    PhoneNumberTypeID: 2,
+                    EmailAddress: "johnny@adventure-works.com",
+                    EmailPromotion: 2,
+                    NationalIDNumber: "13232145",
+                    LoginID: @"adventure-works\johnny0",
+                    AddressLine1: "123 street",
+                    AddressLine2: "Apt 123",
+                    City: "Somewhere",
+                    StateProvinceID: 73,
+                    PostalCode: "12345",
+                    BirthDate: new DateTime(2003, 1, 17),
+                    MaritalStatus: "M",
+                    Gender: "M",
+                    HireDate: new DateTime(2020, 1, 28),
+                    Salaried: true,
+                    VacationHours: 5,
+                    SickLeaveHours: 1,
+                    Active: true,
+                    ManagerID: 1,
+                    DepartmentHistories: new List<DepartmentHistoryCommand>()
+                    {
+                        new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
+                    },
+                    PayHistories: new List<PayHistoryCommand>()
+                    {
+                        new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(), Rate = 20M, PayFrequency = 2}
+                    }
+                );
+        }
+
+        public static CreateEmployeeCommand GetInvalidCreateEmployeeCommand_EmptyEmailAddress()
+        {
+            return new(
+                    BusinessEntityID: 0,
+                    NameStyle: 0,
+                    Title: "Mr.",
+                    FirstName: "Johnny",
+                    LastName: "Doe",
+                    MiddleName: "J",
+                    Suffix: null!,
+                    JobTitle: "The Man",
+                    PhoneNumber: "555-555-5555",
+                    PhoneNumberTypeID: 2,
+                    EmailAddress: "",
+                    EmailPromotion: 2,
+                    NationalIDNumber: "13232145",
+                    LoginID: @"adventure-works\johnny0",
+                    AddressLine1: "123 street",
+                    AddressLine2: "Apt 123",
+                    City: "Somewhere",
+                    StateProvinceID: 73,
+                    PostalCode: "12345",
+                    BirthDate: new DateTime(2003, 1, 17),
+                    MaritalStatus: "M",
+                    Gender: "M",
+                    HireDate: new DateTime(2020, 1, 28),
+                    Salaried: true,
+                    VacationHours: 5,
+                    SickLeaveHours: 1,
+                    Active: true,
+                    ManagerID: 1,
+                    DepartmentHistories: new List<DepartmentHistoryCommand>()
+                    {
+                        new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
+                    },
+                    PayHistories: new List<PayHistoryCommand>()
+                    {
+                        new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
+                    }
+                );
+        }
+
+        public static CreateEmployeeCommand GetInvalidCreateEmployeeCommand_EmptyPhoneNumber()
+        {
+            return new(
+                    BusinessEntityID: 0,
+                    NameStyle: 0,
+                    Title: "Mr.",
+                    FirstName: "Johnny",
+                    LastName: "Doe",
+                    MiddleName: "J",
+                    Suffix: null!,
+                    JobTitle: "The Man",
+                    PhoneNumber: "",
+                    PhoneNumberTypeID: 2,
+                    EmailAddress: "johnny@adventure-works.com",
+                    EmailPromotion: 2,
+                    NationalIDNumber: "13232145",
+                    LoginID: @"adventure-works\johnny0",
+                    AddressLine1: "123 street",
+                    AddressLine2: "Apt 123",
+                    City: "Somewhere",
+                    StateProvinceID: 73,
+                    PostalCode: "12345",
+                    BirthDate: new DateTime(2003, 1, 17),
+                    MaritalStatus: "M",
+                    Gender: "M",
+                    HireDate: new DateTime(2020, 1, 28),
+                    Salaried: true,
+                    VacationHours: 5,
+                    SickLeaveHours: 1,
+                    Active: true,
+                    ManagerID: 1,
+                    DepartmentHistories: new List<DepartmentHistoryCommand>()
+                    {
+                        new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
+                    },
+                    PayHistories: new List<PayHistoryCommand>()
+                    {
+                        new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
+                    }
+                );
+        }
+
+        public static CreateEmployeeCommand GetInvalidCreateEmployeeCommand_EmptyAddressLine1()
+        {
+            return new(
+                    BusinessEntityID: 0,
+                    NameStyle: 0,
+                    Title: "Mr.",
+                    FirstName: "Johnny",
+                    LastName: "Doe",
+                    MiddleName: "J",
+                    Suffix: null!,
+                    JobTitle: "The Man",
+                    PhoneNumber: "555-555-5555",
+                    PhoneNumberTypeID: 2,
+                    EmailAddress: "johnny@adventure-works.com",
+                    EmailPromotion: 2,
+                    NationalIDNumber: "13232145",
+                    LoginID: @"adventure-works\johnny0",
+                    AddressLine1: "",
+                    AddressLine2: "Apt 123",
+                    City: "Somewhere",
+                    StateProvinceID: 73,
+                    PostalCode: "12345",
+                    BirthDate: new DateTime(2003, 1, 17),
+                    MaritalStatus: "M",
+                    Gender: "M",
+                    HireDate: new DateTime(2020, 1, 28),
+                    Salaried: true,
+                    VacationHours: 5,
+                    SickLeaveHours: 1,
+                    Active: true,
+                    ManagerID: 1,
+                    DepartmentHistories: new List<DepartmentHistoryCommand>()
+                    {
+                        new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
+                    },
+                    PayHistories: new List<PayHistoryCommand>()
+                    {
+                        new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
+                    }
+                );
         }
 
         public static CreateEmployeeCommand GetInvalidCreateEmployeeCommand_MultipleDepartmentHistories()

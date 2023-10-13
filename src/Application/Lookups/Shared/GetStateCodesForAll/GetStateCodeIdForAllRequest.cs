@@ -3,5 +3,5 @@ using AWC.Shared.Queries.Lookups.Shared;
 
 namespace AWC.Application.Lookups.Shared.GetStateCodesForAll
 {
-    public sealed record GetStateCodeIdForAllRequest() : IQuery<List<StateCode>>;
+    public sealed record GetStateCodeIdForAllRequest(int SuppressSonarqubeWarning = 0) : IQuery<List<StateCode>>;
 }

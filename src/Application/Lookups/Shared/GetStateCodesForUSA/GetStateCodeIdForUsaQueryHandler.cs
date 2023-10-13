@@ -5,16 +5,16 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Lookups.Shared.GetStateCodesForUSA
 {
-    public sealed class GetStateCodeIdForUSAQueryHandler : IQueryHandler<GetStateCodeIdForUSARequest, List<StateCode>>
+    public sealed class GetStateCodeIdForUsaQueryHandler : IQueryHandler<GetStateCodeIdForUsaRequest, List<StateCode>>
     {
         private readonly ILookupsRepositoryManager _repoMgr;
 
-        public GetStateCodeIdForUSAQueryHandler(ILookupsRepositoryManager repo)
+        public GetStateCodeIdForUsaQueryHandler(ILookupsRepositoryManager repo)
             => _repoMgr = repo;
 
         public async Task<Result<List<StateCode>>> Handle
         (
-            GetStateCodeIdForUSARequest request,
+            GetStateCodeIdForUsaRequest request,
             CancellationToken cancellationToken
         )
         {

@@ -50,7 +50,7 @@ namespace AWC.Server.Contracts
             ServerCallContext context
         )
         {
-            Result<List<StateCode>> stateCodes = await _sender.Send(new GetStateCodeIdForUSARequest());
+            Result<List<StateCode>> stateCodes = await _sender.Send(new GetStateCodeIdForUsaRequest());
 
             if (stateCodes.IsSuccess)
             {

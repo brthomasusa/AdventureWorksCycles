@@ -21,9 +21,13 @@ dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositorie
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.EmployeeWriteRepository_Tests
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositories.LookupsRepository_Tests
 
-// Only the Application project
-dotnet test --no-restore --nologo -v q /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Include=\"[*Application*]*\"
 
-// Only run test coverage on the AWC.Core project
+// Only run test coverage on the AWC.Core project using exclude
 dotnet test --no-restore --nologo -v q /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=\"[*Application*]*,[*Client*]*,[*gRPC.Contracts*]*,[*Infrastructure*]*,[*Presentation*]*,[*Shared*]*,[*Server*]*\"
 reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:TestResults/core.html" -reporttypes:HTML;
+
+// Only the Application project using include
+dotnet test --no-restore --nologo -v q --filter AWC.UnitTest  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Include=\"[*Application*]*\"
+reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:TestResults/core.html" -reporttypes:HTML;
+
+dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.CommandHandlers.HrCommandHandler_Tests

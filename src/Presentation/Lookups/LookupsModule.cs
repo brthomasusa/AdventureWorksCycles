@@ -31,7 +31,7 @@ namespace REA.Accounting.Presentation.Lookups
 
             app.MapGet("api/lookups/statecodes/usa", async (ISender sender) =>
             {
-                Result<List<StateCode>> result = await sender.Send(new GetStateCodeIdForUSARequest());
+                Result<List<StateCode>> result = await sender.Send(new GetStateCodeIdForUsaRequest());
 
                 if (result.IsSuccess)
                     return Results.Ok(result.Value);

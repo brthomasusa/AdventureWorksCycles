@@ -23,8 +23,8 @@ namespace AWC.IntegrationTests.QueryHandlers.HumanResources
         [Fact]
         public async Task Handle_GetStateCodeIdForUSAQueryHandler_ShouldSucceed()
         {
-            GetStateCodeIdForUSARequest request = new();
-            GetStateCodeIdForUSAQueryHandler handler = new(_repository);
+            GetStateCodeIdForUsaRequest request = new();
+            GetStateCodeIdForUsaQueryHandler handler = new(_repository);
 
             Result<List<StateCode>> response = await handler.Handle(request, new CancellationToken());
 

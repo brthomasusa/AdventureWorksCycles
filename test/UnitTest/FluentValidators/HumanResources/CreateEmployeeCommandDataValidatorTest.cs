@@ -145,7 +145,17 @@ namespace AWC.UnitTest.FluentValidators.HumanResources
         }
 
         [Fact]
-        public void CreateEmployeeCommandDataValidator_EmployeeStatusInactive_ShouldFail()
+        public void CreateEmployeeCommandDataValidator_NewEmployeeStatusActive_ShouldSucceed()
+        {
+            CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();
+            command = command with { Active = true };
+
+            var result = _employeeCreateValidator.TestValidate(command);
+            result.ShouldNotHaveValidationErrorFor(x => x.Active);
+        }
+
+        [Fact]
+        public void CreateEmployeeCommandDataValidator_NewEmployeeStatusInactive_ShouldFail()
         {
             CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();
             command = command with { Active = false };
