@@ -42,7 +42,7 @@ namespace AWC.Client.Services.HumanResources.Store.Departments
 
                 while (await stream.MoveNext(default))
                 {
-                    grpc_DepartmentId dept = (grpc_DepartmentId)stream.Current;
+                    grpc_DepartmentId dept = stream.Current;
                     departments.Add(_mapper.Map<DepartmentId>(dept));
                 }
 

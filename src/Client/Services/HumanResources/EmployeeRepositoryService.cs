@@ -213,7 +213,7 @@ namespace AWC.Client.Services.HumanResources
             {
                 var client = new EmployeeContract.EmployeeContractClient(_channel);
                 grpc_EmployeeGenericCommand command = _mapper.Map<grpc_EmployeeGenericCommand>(employee);
-                GenericResponse response = await client.UpdateAsync(command);
+                await client.UpdateAsync(command);
 
                 return Result.Success();
             }
@@ -232,7 +232,7 @@ namespace AWC.Client.Services.HumanResources
             {
                 var client = new EmployeeContract.EmployeeContractClient(_channel);
                 ItemRequest request = new() { Id = businessEntityId };
-                GenericResponse response = await client.DeleteAsync(request);
+                await client.DeleteAsync(request);
 
                 return Result.Success();
             }

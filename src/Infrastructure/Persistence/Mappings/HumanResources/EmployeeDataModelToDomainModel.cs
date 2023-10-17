@@ -38,7 +38,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                     pay.BusinessEntityID,
                     pay.RateChangeDate,
                     pay.Rate,
-                    (PayFrequencyEnum)pay.PayFrequency
+                    (PayFrequency)pay.PayFrequency
                 );
 
                 if (result.IsFailure)
@@ -55,7 +55,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                         (
                             bea.AddressID,
                             bea.BusinessEntityID,
-                            (AddressTypeEnum)bea.AddressTypeID,
+                            (Core.Shared.AddressType)bea.AddressTypeID,
                             bea.Address!.AddressLine1!,
                             bea.Address.AddressLine2,
                             bea.Address!.City!,
@@ -94,7 +94,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                     Result<Core.Shared.PersonPhone> result = employeeDomainObject.Value.AddPhoneNumber
                     (
                             phone.BusinessEntityID,
-                            (PhoneNumberTypeEnum)phone.PhoneNumberTypeID,
+                            (Core.Shared.PhoneNumberType)phone.PhoneNumberTypeID,
                             phone.PhoneNumber!
                     );
 
@@ -114,7 +114,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 (
                     person!.BusinessEntityID,
                     person!.PersonType!,
-                    person!.NameStyle ? NameStyleEnum.Eastern : NameStyleEnum.Western,
+                    person!.NameStyle ? NameStyle.Eastern : NameStyle.Western,
                     person!.Title,
                     person!.FirstName!,
                     person!.LastName!,

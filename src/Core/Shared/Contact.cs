@@ -10,14 +10,14 @@ namespace AWC.Core.Shared
         private Contact
         (
             int businessEntityID,
-            ContactTypeEnum contactType,
+            ContactType contactType,
             int personID,
             PersonType personType,
-            NameStyleEnum nameStyle,
+            NameStyle nameStyle,
             Title title,
             PersonName name,
             Suffix suffix,
-            EmailPromotionEnum emailPromotionEnum
+            EmailPromotion emailPromotionEnum
         ) : base(personID, personType, nameStyle, title, name, suffix, emailPromotionEnum)
         {
             BusinessEntityID = businessEntityID;
@@ -27,42 +27,42 @@ namespace AWC.Core.Shared
         public static Contact Create
         (
             int businessEntityID,
-            ContactTypeEnum contactType,
+            ContactType contactType,
             int personID,
             string personType,
-            NameStyleEnum nameStyle,
+            NameStyle nameStyle,
             string title,
             string firstName,
             string? middleName,
             string lastName,
             string? suffix,
-            EmailPromotionEnum emailPromotionEnum
+            EmailPromotion emailPromotionEnum
         )
             => new
                 (
                     businessEntityID,
-                    Enum.IsDefined(typeof(ContactTypeEnum), contactType) ? contactType : throw new ArgumentException("Invalid contact type."),
+                    Enum.IsDefined(typeof(ContactType), contactType) ? contactType : throw new ArgumentException("Invalid contact type."),
                     personID,
                     PersonType.Create(personType),
-                    Enum.IsDefined(typeof(NameStyleEnum), nameStyle) ? nameStyle : throw new ArgumentException("Invalid names style"),
+                    Enum.IsDefined(typeof(NameStyle), nameStyle) ? nameStyle : throw new ArgumentException("Invalid names style"),
                     Title.Create(title),
                     PersonName.Create(lastName, firstName, middleName!),
                     Suffix.Create(suffix!),
-                    Enum.IsDefined(typeof(EmailPromotionEnum), emailPromotionEnum) ? emailPromotionEnum : throw new ArgumentException("Invalid email promotion flag")
+                    Enum.IsDefined(typeof(EmailPromotion), emailPromotionEnum) ? emailPromotionEnum : throw new ArgumentException("Invalid email promotion flag")
                 );
 
         public int BusinessEntityID { get; }
 
-        public ContactTypeEnum ContactType { get; private set; }
+        public ContactType ContactType { get; private set; }
 
-        public void UpdateContactType(ContactTypeEnum value)
+        public void UpdateContactType(ContactType value)
         {
-            ContactType = Enum.IsDefined(typeof(ContactTypeEnum), value) ? value : throw new ArgumentException("Invalid contact type.");
+            ContactType = Enum.IsDefined(typeof(ContactType), value) ? value : throw new ArgumentException("Invalid contact type.");
             UpdateModifiedDate();
         }
     }
 
-    public enum ContactTypeEnum : int
+    public enum ContactType
     {
         AccountingManager = 1,
         AssistantSalesAgent = 2,

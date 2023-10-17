@@ -49,7 +49,7 @@ namespace AWC.Application.Features.HumanResources.Common
             (
                 command.BusinessEntityID,
                 "EM",
-                (NameStyleEnum)command.NameStyle,
+                (NameStyle)command.NameStyle,
                 command.Title,
                 command.FirstName!,
                 command.LastName!,
@@ -117,7 +117,7 @@ namespace AWC.Application.Features.HumanResources.Common
                 return Result.Failure(new Error("EmployeeDomainObjectBuilder.BuildAggregateEntities", emailAddressResult.Error.Message));
 
             // 6. Create a PersonPhone (domain obj) from fields in the CreateEmployeeCommand
-            Result personPhoneResult = AddPersonPhone(ref employee, (PhoneNumberTypeEnum)command.PhoneNumberTypeID, command.PhoneNumber!);
+            Result personPhoneResult = AddPersonPhone(ref employee, (PhoneNumberType)command.PhoneNumberTypeID, command.PhoneNumber!);
 
             if (personPhoneResult.IsFailure)
                 return Result.Failure(new Error("EmployeeDomainObjectBuilder.BuildAggregateEntities", personPhoneResult.Error.Message));
@@ -154,7 +154,7 @@ namespace AWC.Application.Features.HumanResources.Common
                     pay.BusinessEntityID,
                     pay.RateChangeDate,
                     pay.Rate,
-                    (PayFrequencyEnum)pay.PayFrequency
+                    (PayFrequency)pay.PayFrequency
                 );
 
                 if (result.IsFailure)
@@ -176,9 +176,9 @@ namespace AWC.Application.Features.HumanResources.Common
         {
             Result result = employee.AddAddress
             (
-                0,
+                addressID,
                 employee.Id,
-                AddressTypeEnum.Home,
+                AddressType.Home,
                 line1,
                 line2,
                 city,
@@ -202,7 +202,7 @@ namespace AWC.Application.Features.HumanResources.Common
                 return Result.Success();
         }
 
-        private static Result AddPersonPhone(ref Employee employee, PhoneNumberTypeEnum phoneNumberType, string phoneNumber)
+        private static Result AddPersonPhone(ref Employee employee, PhoneNumberType phoneNumberType, string phoneNumber)
         {
             Result result = employee.AddPhoneNumber(employee.Id, phoneNumberType, phoneNumber);
 

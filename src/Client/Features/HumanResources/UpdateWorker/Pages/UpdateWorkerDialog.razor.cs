@@ -117,15 +117,15 @@ namespace AWC.Client.Features.HumanResources.UpdateWorker.Pages
         protected void CloseUpdateWorkerDialog()
             => DialogService!.Close(null);
 
-        private bool ValidateBirthday(DateTime birthdate)
+        private static bool ValidateBirthday(DateTime birthdate)
         {
-            return birthdate >= new DateTime(1930, 1, 1) &&
+            return birthdate >= new DateTime(1930, 1, 1, 0, 0, 0, DateTimeKind.Local) &&
                    birthdate <= DateTime.Today.AddYears(-18);
         }
 
-        private bool ValidateHireDate(DateTime hireDate)
+        private static bool ValidateHireDate(DateTime hireDate)
         {
-            return hireDate >= new DateTime(1996, 7, 1) &&
+            return hireDate >= new DateTime(1996, 7, 1, 0, 0, 0, DateTimeKind.Local) &&
                    hireDate <= DateTime.Today.AddDays(1);
         }
 
@@ -136,7 +136,7 @@ namespace AWC.Client.Features.HumanResources.UpdateWorker.Pages
             return stateCode is not null;
         }
 
-        private bool ValidateNationalIdNumber(string nationalId)
+        private static bool ValidateNationalIdNumber(string nationalId)
         {
             Regex regex = nationalIdRegex();
             Match match = regex.Match(nationalId ?? string.Empty);

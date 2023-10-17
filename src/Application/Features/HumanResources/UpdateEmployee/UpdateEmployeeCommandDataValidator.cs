@@ -47,7 +47,7 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
 
             RuleFor(employee => employee.BirthDate)
                                         .NotEmpty().WithMessage("Employee birth date is required.")
-                                        .GreaterThanOrEqualTo(new DateTime(1930, 1, 1)).WithMessage("Birth date must be on or after 1-1-1930.")
+                                        .GreaterThanOrEqualTo(new DateTime(1930, 1, 1, 0, 0, 0, DateTimeKind.Local)).WithMessage("Birth date must be on or after 1-1-1930.")
                                         .LessThanOrEqualTo(DateTime.Now.AddYears(-18)).WithMessage("Employee must be at least 18 years old.");
 
             RuleFor(employee => employee.MaritalStatus)
@@ -64,7 +64,7 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
 
             RuleFor(employee => employee.HireDate)
                                         .NotEmpty().WithMessage("Employee hire date is required.")
-                                        .Must(hireDate => hireDate >= new DateTime(1996, 7, 1))
+                                        .Must(hireDate => hireDate >= new DateTime(1996, 7, 1, 0, 0, 0, DateTimeKind.Local))
                                         .WithMessage("Hire date must be on or after July 1, 1996.");
 
             RuleFor(employee => employee.VacationHours)
@@ -76,7 +76,7 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
                                         .WithMessage("Valid sick leave hours are between 0 and 120.");
 
             RuleFor(employee => employee.Active)
-                                        .Must(status => status == true)
+                                        .Must(status => status)
                                         .WithMessage("The status of a new employee must be active.");
 
             RuleFor(employee => employee.ManagerID)

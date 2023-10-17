@@ -23,13 +23,6 @@ namespace AWC.Infrastructure.Persistence.Configurations.Person
                 .HasColumnName("ModifiedDate")
                 .IsRequired()
                 .HasDefaultValue(DateTime.Now);
-
-            entity.HasData
-            (
-                new PhoneNumberType { PhoneNumberTypeID = 1, Name = "Cell", ModifiedDate = new DateTime(2008, 4, 30) },
-                new PhoneNumberType { PhoneNumberTypeID = 2, Name = "Home", ModifiedDate = new DateTime(2008, 4, 30) },
-                new PhoneNumberType { PhoneNumberTypeID = 3, Name = "Work", ModifiedDate = new DateTime(2008, 4, 30) }
-            );
         }
     }
 }

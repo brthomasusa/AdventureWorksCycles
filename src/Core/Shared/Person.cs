@@ -14,11 +14,11 @@ namespace AWC.Core.Shared
         (
             int personID,
             PersonType personType,
-            NameStyleEnum nameStyle,
+            NameStyle nameStyle,
             Title title,
             PersonName name,
             Suffix suffix,
-            EmailPromotionEnum emailPromotionEnum
+            EmailPromotion emailPromotionEnum
         )
         {
             Id = personID;
@@ -33,23 +33,23 @@ namespace AWC.Core.Shared
         protected Result<Person> UpdatePerson
         (
             string personType,
-            NameStyleEnum nameStyle,
+            NameStyle nameStyle,
             string title,
             string firstName,
             string lastName,
             string middleName,
             string suffix,
-            EmailPromotionEnum emailPromotionEnum
+            EmailPromotion emailPromotionEnum
         )
         {
             try
             {
                 PersonType = PersonType.Create(personType);
-                NameStyle = Enum.IsDefined(typeof(NameStyleEnum), nameStyle) ? nameStyle : throw new ArgumentException("Invalid names style");
+                NameStyle = Enum.IsDefined(typeof(NameStyle), nameStyle) ? nameStyle : throw new ArgumentException("Invalid names style");
                 Title = Title.Create(title);
                 Name = PersonName.Create(lastName, firstName, middleName);
                 Suffix = Suffix.Create(suffix);
-                if (Enum.IsDefined(typeof(EmailPromotionEnum), emailPromotionEnum))
+                if (Enum.IsDefined(typeof(EmailPromotion), emailPromotionEnum))
                 {
                     EmailPromotions = emailPromotionEnum;
                 }
@@ -69,7 +69,7 @@ namespace AWC.Core.Shared
 
         public PersonType PersonType { get; private set; }
 
-        public NameStyleEnum NameStyle { get; private set; }
+        public NameStyle NameStyle { get; private set; }
 
         public Title Title { get; private set; }
 
@@ -77,7 +77,7 @@ namespace AWC.Core.Shared
 
         public Suffix Suffix { get; private set; }
 
-        public EmailPromotionEnum EmailPromotions { get; private set; }
+        public EmailPromotion EmailPromotions { get; private set; }
 
         public virtual IReadOnlyCollection<Address> Addresses => _addresses.AsReadOnly();
 
@@ -85,7 +85,7 @@ namespace AWC.Core.Shared
         (
             int addressID,
             int businessEntityID,
-            AddressTypeEnum addressType,
+            AddressType addressType,
             string line1,
             string? line2,
             string city,
@@ -121,7 +121,7 @@ namespace AWC.Core.Shared
         (
             int addressID,
             int businessEntityID,
-            AddressTypeEnum addressType,
+            AddressType addressType,
             string line1,
             string? line2,
             string city,
@@ -180,7 +180,7 @@ namespace AWC.Core.Shared
 
         public virtual IReadOnlyCollection<PersonPhone> Telephones => _telephones.AsReadOnly();
 
-        public Result<PersonPhone> AddPhoneNumber(int id, PhoneNumberTypeEnum phoneType, string phoneNumber)
+        public Result<PersonPhone> AddPhoneNumber(int id, PhoneNumberType phoneType, string phoneNumber)
         {
             try
             {
@@ -207,13 +207,13 @@ namespace AWC.Core.Shared
         }
     }
 
-    public enum NameStyleEnum : int
+    public enum NameStyle
     {
         Western = 0,
         Eastern = 1
     }
 
-    public enum EmailPromotionEnum : int
+    public enum EmailPromotion
     {
         None = 0,
         FromAdventureWorksOnly = 1,

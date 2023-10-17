@@ -42,7 +42,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 {
                     BusinessEntityID = phone.Id,
                     PhoneNumber = phone.Telephone,
-                    PhoneNumberTypeID = ((int)PhoneNumberTypeEnum.Home)
+                    PhoneNumberTypeID = ((int)Core.Shared.PhoneNumberType.Home)
                 })
             );
 
@@ -58,7 +58,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             PersonDataModel person = new()
             {
                 PersonType = employee.PersonType,
-                NameStyle = employee.NameStyle != NameStyleEnum.Western,
+                NameStyle = employee.NameStyle != NameStyle.Western,
                 Title = employee.Title,
                 FirstName = employee.Name.FirstName,
                 MiddleName = employee.Name.MiddleName,
@@ -92,7 +92,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
         {
             // Person
             person.PersonType = employee.PersonType;
-            person.NameStyle = employee.NameStyle != NameStyleEnum.Western;
+            person.NameStyle = employee.NameStyle != NameStyle.Western;
             person.Title = employee.Title;
             person.FirstName = employee.Name.FirstName;
             person.MiddleName = employee.Name.MiddleName!;
@@ -134,7 +134,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             => employee.AddAddress(
                 businessEntityAddress.AddressID,
                     businessEntityAddress.BusinessEntityID,
-                    (AddressTypeEnum)businessEntityAddress.AddressTypeID,
+                    (Core.Shared.AddressType)businessEntityAddress.AddressTypeID,
                     businessEntityAddress.Address!.AddressLine1!,
                     businessEntityAddress.Address.AddressLine2,
                     businessEntityAddress.Address!.City!,

@@ -13,7 +13,7 @@ namespace AWC.Core.Shared
         (
             int addressID,
             int businessEntityID,
-            AddressTypeEnum addressType,
+            AddressType addressType,
             AddressVO address
         )
         {
@@ -27,7 +27,7 @@ namespace AWC.Core.Shared
         (
             int addressID,
             int businessEntityID,
-            AddressTypeEnum addressType,
+            AddressType addressType,
             string line1,
             string? line2,
             string city,
@@ -41,7 +41,7 @@ namespace AWC.Core.Shared
                 (
                     Guard.Against.LessThanZero(addressID, "Id", "Address Id can not be negative."),
                     Guard.Against.LessThanZero(businessEntityID, "Id", "BusinessEntity Id can not be negative."),
-                    Enum.IsDefined(typeof(AddressTypeEnum), addressType) ? addressType : throw new ArgumentException("Invalid address type."),
+                    Enum.IsDefined(typeof(AddressType), addressType) ? addressType : throw new ArgumentException("Invalid address type."),
                     AddressVO.Create(line1, line2, city, stateProvinceID, postalCode)
                 );
 
@@ -55,7 +55,7 @@ namespace AWC.Core.Shared
 
         internal Result<Address> Update
         (
-            AddressTypeEnum addressType,
+            AddressType addressType,
             string line1,
             string? line2,
             string city,
@@ -65,7 +65,7 @@ namespace AWC.Core.Shared
         {
             try
             {
-                AddressType = Enum.IsDefined(typeof(AddressTypeEnum), addressType) ? addressType : throw new ArgumentException("Invalid address type.");
+                AddressType = Enum.IsDefined(typeof(AddressType), addressType) ? addressType : throw new ArgumentException("Invalid address type.");
                 Location = AddressVO.Create(line1, line2, city, stateProvinceID, postalCode);
 
                 UpdateModifiedDate();
@@ -79,11 +79,11 @@ namespace AWC.Core.Shared
         }
 
         public int BusinessEntityID { get; }
-        public AddressTypeEnum AddressType { get; private set; }
+        public AddressType AddressType { get; private set; }
         public AddressVO Location { get; private set; }
     }
 
-    public enum AddressTypeEnum : int
+    public enum AddressType
     {
         Billing = 1,
         Home = 2,

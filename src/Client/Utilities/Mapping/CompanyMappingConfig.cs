@@ -10,6 +10,8 @@ namespace AWC.Client.Utilities.Mapping
         {
             // TypeAdapterConfig<TSource, TDestination>
 
+            // On the server, null strings were converted to string.Empty. Here are converting them back to null
+
             // Used when receiving a grpc_CompanyForDisplay to populate the ViewCompanyDetailPage
             config.NewConfig<grpc_CompanyForDisplay, CompanyDetails>()
                 .Map(dest => dest.LegalName, src => string.IsNullOrEmpty(src.LegalName) ? null : src.LegalName)

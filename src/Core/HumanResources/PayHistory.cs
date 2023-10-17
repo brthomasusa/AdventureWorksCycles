@@ -12,7 +12,7 @@ namespace AWC.Core.HumanResources
             int id,
             DateOfRateChange rateChangeDate,
             RateOfPay rate,
-            PayFrequencyEnum payFrequency
+            PayFrequency payFrequency
         )
         {
             Id = id;
@@ -26,7 +26,7 @@ namespace AWC.Core.HumanResources
             int id,
             DateTime rateChangeDate,
             decimal rate,
-            PayFrequencyEnum payFrequency
+            PayFrequency payFrequency
         )
         {
             try
@@ -36,7 +36,7 @@ namespace AWC.Core.HumanResources
                         id,
                         DateOfRateChange.Create(rateChangeDate),
                         RateOfPay.Create(Money.Create(Currency.Create("USD", "US Dollar"), Math.Round(rate, 2))),
-                        Enum.IsDefined(typeof(PayFrequencyEnum), payFrequency) ? payFrequency :
+                        Enum.IsDefined(typeof(PayFrequency), payFrequency) ? payFrequency :
                                                                                  throw new ArgumentException("Invalid pay frequency.")
                     );
                 return history;
@@ -49,10 +49,10 @@ namespace AWC.Core.HumanResources
 
         public DateOfRateChange RateChangeDate { get; }
         public RateOfPay PayRate { get; }
-        public PayFrequencyEnum PayFrequency { get; }
+        public PayFrequency PayFrequency { get; }
     }
 
-    public enum PayFrequencyEnum : int
+    public enum PayFrequency
     {
         Monthly = 1,
         BiWeekly = 2

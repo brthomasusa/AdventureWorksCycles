@@ -52,8 +52,8 @@ namespace AWC.IntegrationTests.Repositories
             Assert.True(getResult.IsSuccess);
 
             Result<Employee> updateResult =
-                getResult.Value.Update("EM", NameStyleEnum.Western, "Mr.", "Jabu", "Jabi", "J", "Sr.",
-                                        EmailPromotionEnum.None, "98765432", @"adventure-works\jabi", "Big Dog",
+                getResult.Value.Update("EM", NameStyle.Western, "Mr.", "Jabu", "Jabi", "J", "Sr.",
+                                        EmailPromotion.None, "98765432", @"adventure-works\jabi", "Big Dog",
                                         new DateOnly(2000, 1, 31), "M", "M", new DateOnly(2018, 5, 4), true, 5, 1, true);
 
             Assert.True(updateResult.IsSuccess);
@@ -83,7 +83,7 @@ namespace AWC.IntegrationTests.Repositories
                 (
                     0,
                     "EM",
-                    NameStyleEnum.Western,
+                    NameStyle.Western,
                     "Mr",
                     "John",
                     "Doe",

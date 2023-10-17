@@ -1,18 +1,16 @@
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
 using AWC.Core.Interfaces;
-using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.Person;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using EmployeeDataModel = AWC.Infrastructure.Persistence.DataModels.HumanResources.EmployeeDataModel;
+
 using EmployeeDomainModel = AWC.Core.HumanResources.Employee;
-
-
+using MapsterMapper;
 
 namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 {
@@ -21,12 +19,14 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         private readonly ILogger<WriteRepositoryManager> _logger;
         private readonly AwcContext _context;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public EmployeeWriteRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger)
+        public EmployeeWriteRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger, IMapper mapper)
         {
             _context = ctx;
             _unitOfWork = new UnitOfWork(_context);
             _logger = logger;
+            _mapper = mapper;
         }
 
         public async Task<Result<EmployeeDomainModel>> GetByIdAsync(int employeeID, bool asNoTracking = false)

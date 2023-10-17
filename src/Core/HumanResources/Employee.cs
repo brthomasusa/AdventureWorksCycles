@@ -14,11 +14,11 @@ namespace AWC.Core.HumanResources
         (
             int employeeID,
             PersonType personType,
-            NameStyleEnum nameStyle,
+            NameStyle nameStyle,
             Title? title,
             PersonName name,
             Suffix? suffix,
-            EmailPromotionEnum emailPromotionEnum,
+            EmailPromotion emailPromotionEnum,
             ManagerId managerID,
             NationalID nationalID,
             Login login,
@@ -54,7 +54,7 @@ namespace AWC.Core.HumanResources
         (
             int employeeID,
             string personType,
-            NameStyleEnum nameStyle,
+            NameStyle nameStyle,
             string? title,
             string firstName,
             string lastName,
@@ -83,7 +83,7 @@ namespace AWC.Core.HumanResources
                     Title.Create(title!),
                     PersonName.Create(lastName, firstName, middleName),
                     Suffix.Create(suffix!),
-                    EmailPromotionEnum.None,
+                    EmailPromotion.None,
                     ManagerId.Create(managerID),
                     NationalID.Create(nationalID),
                     Login.Create(login),
@@ -109,13 +109,13 @@ namespace AWC.Core.HumanResources
         public Result<Employee> Update
         (
             string personType,
-            NameStyleEnum nameStyle,
+            NameStyle nameStyle,
             string title,
             string firstName,
             string lastName,
             string middleName,
             string suffix,
-            EmailPromotionEnum emailPromotionEnum,
+            EmailPromotion emailPromotionEnum,
             string nationalID,
             string login,
             string jobTitle,
@@ -228,7 +228,7 @@ namespace AWC.Core.HumanResources
             int id,
             DateTime rateChangeDate,
             decimal rate,
-            PayFrequencyEnum payFrequency
+            PayFrequency payFrequency
         )
         {
             try

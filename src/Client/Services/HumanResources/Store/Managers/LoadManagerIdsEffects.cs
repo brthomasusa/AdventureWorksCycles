@@ -44,7 +44,7 @@ namespace AWC.Client.Services.HumanResources.Store.Managers
 
                 while (await stream.MoveNext(default))
                 {
-                    grpc_ManagerId mgr = (grpc_ManagerId)stream.Current;
+                    grpc_ManagerId mgr = stream.Current;
                     managers.Add(_mapper.Map<ManagerId>(mgr));
                 }
 

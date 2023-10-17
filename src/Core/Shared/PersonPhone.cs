@@ -11,7 +11,7 @@ namespace AWC.Core.Shared
         private PersonPhone
         (
             int id,
-            PhoneNumberTypeEnum phoneType,
+            PhoneNumberType phoneType,
             PhoneNumber phoneNumber
         )
         {
@@ -23,7 +23,7 @@ namespace AWC.Core.Shared
         internal static Result<PersonPhone> Create
         (
             int id,
-            PhoneNumberTypeEnum phoneNumberType,
+            PhoneNumberType phoneNumberType,
             string telephone
         )
         {
@@ -32,7 +32,7 @@ namespace AWC.Core.Shared
                 PersonPhone phone = new
                 (
                     id,
-                    Enum.IsDefined(typeof(PhoneNumberTypeEnum), phoneNumberType) ? phoneNumberType : throw new ArgumentException("Invalid phone number type."),
+                    Enum.IsDefined(typeof(PhoneNumberType), phoneNumberType) ? phoneNumberType : throw new ArgumentException("Invalid phone number type."),
                     PhoneNumber.Create(telephone)
                 );
 
@@ -44,12 +44,12 @@ namespace AWC.Core.Shared
             }
         }
 
-        public PhoneNumberTypeEnum PhoneNumberType { get; }
+        public PhoneNumberType PhoneNumberType { get; }
 
         public PhoneNumber Telephone { get; }
     }
 
-    public enum PhoneNumberTypeEnum : int
+    public enum PhoneNumberType
     {
         Cell = 1,
         Home = 2,

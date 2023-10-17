@@ -27,6 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="**/CompanyMappingConfig.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Update="**/EmployeeMappingConfig.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>    
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\gRPC.Contracts\gRPC.Contracts.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>

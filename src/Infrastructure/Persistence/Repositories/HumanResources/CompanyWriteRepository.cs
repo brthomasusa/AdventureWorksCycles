@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using CompanyDataModel = AWC.Infrastructure.Persistence.DataModels.HumanResources.Company;
 using CompanyDomainModel = AWC.Core.HumanResources.Company;
+using MapsterMapper;
 
 namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 {
@@ -17,12 +18,14 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         private readonly ILogger<WriteRepositoryManager> _logger;
         private readonly AwcContext _context;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public CompanyWriteRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger)
+        public CompanyWriteRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger, IMapper mapper)
         {
             _context = ctx;
             _unitOfWork = new UnitOfWork(_context);
             _logger = logger;
+            _mapper = mapper;
         }
 
         public async Task<Result<CompanyDomainModel>> GetByIdAsync(int companyId, bool asNoTracking = false)
@@ -45,7 +48,26 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                     return Result<CompanyDomainModel>.Failure<CompanyDomainModel>(new Error("CompanyAggregateRepository.GetByIdAsync", errMsg));
                 }
 
-                Result<CompanyDomainModel> result = companyDataModel.MapToCompanyDomainObject();
+                Result<AWC.Core.HumanResources.Company> result = AWC.Core.HumanResources.Company.Create(
+                    companyDataModel.CompanyID,
+                    companyDataModel.CompanyName!,
+                    companyDataModel.LegalName!,
+                    companyDataModel.EIN!,
+                    companyDataModel.WebsiteUrl!,
+                    companyDataModel.MailAddressLine1!,
+                    companyDataModel.DeliveryAddressLine2,
+                    companyDataModel.MailCity!,
+                    companyDataModel.MailStateProvinceID,
+                    companyDataModel.MailPostalCode!,
+                    companyDataModel.DeliveryAddressLine1!,
+                    companyDataModel.DeliveryAddressLine2,
+                    companyDataModel.DeliveryCity!,
+                    companyDataModel.DeliveryStateProvinceID,
+                    companyDataModel.DeliveryPostalCode!,
+                    companyDataModel.Telephone!,
+                    companyDataModel.Fax!
+                );
+
                 if (result.IsFailure)
                 {
                     _logger.LogWarning($"Code Path: {result.Error.Code} - Message: {result.Error.Message}");
@@ -72,13 +94,14 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"CompanyAggregateRepository.GetByIdAsync - {Helpers.GetExceptionMessage(ex)}");
-                return Result<CompanyDomainModel>.Failure<CompanyDomainModel>(new Error("EmployeeAggregateRepository.GetByIdAsync",
+                _logger.LogError(ex, $"CompanyWriteRepository.GetByIdAsync - {Helpers.GetExceptionMessage(ex)}");
+                return Result<CompanyDomainModel>.Failure<CompanyDomainModel>(new Error("EmployeeWriteRepository.GetByIdAsync",
                                                                                          Helpers.GetExceptionMessage(ex)));
             }
         }
 
-        public Task<Result<int>> InsertAsync(CompanyDomainModel entity) => throw new NotImplementedException();
+        public Task<Result<int>> InsertAsync(CompanyDomainModel entity)
+            => throw new NotImplementedException();
 
         public async Task<Result<int>> Update(CompanyDomainModel entity)
         {
@@ -96,10 +119,12 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 if (companyDataModel is null)
                 {
                     string errMsg = $"Update failed. Unable to retrieve company with ID: {entity.Id}";
-                    _logger.LogWarning($"Code Path: CompanyAggregateRepository.Update - Message: {errMsg}");
-                    return Result<int>.Failure<int>(new Error("CompanyAggregateRepository.Update", errMsg));
+                    _logger.LogWarning($"Code Path: CompanyWriteRepository.Update - Message: {errMsg}");
+                    return Result<int>.Failure<int>(new Error("CompanyWriteRepository.Update", errMsg));
                 }
 
+                // Can't use Mapster here because a EmployeeDataModel created by Mapster
+                // does not have change tracking turned on.
                 companyDataModel.CompanyName = entity.CompanyName;
                 companyDataModel.LegalName = entity.LegalName!;
                 companyDataModel.EIN = entity.EIN;
@@ -123,12 +148,13 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"CompanyAggregateRepository.Update - {Helpers.GetExceptionMessage(ex)}");
-                return Result<int>.Failure<int>(new Error("CompanyAggregateRepository.Update",
+                _logger.LogError(ex, $"CompanyWriteRepository.Update - {Helpers.GetExceptionMessage(ex)}");
+                return Result<int>.Failure<int>(new Error("CompanyWriteRepository.Update",
                                                            Helpers.GetExceptionMessage(ex)));
             }
         }
 
-        public Task<Result<int>> Delete(int entityID) => throw new NotImplementedException();
+        public Task<Result<int>> Delete(int entityID)
+            => throw new NotImplementedException();
     }
 }

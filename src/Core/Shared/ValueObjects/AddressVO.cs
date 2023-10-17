@@ -52,13 +52,11 @@ namespace AWC.Core.Shared.ValueObjects
                 throw new ArgumentOutOfRangeException(nameof(city), "City name can not be longer than 30 characters.");
             }
 
-            //TODO Validate state codes against Person.StateProvince table
             if (stateCode <= 0)
             {
                 throw new ArgumentNullException(nameof(stateCode), "A state/province code is required.");
             }
 
-            //TODO Validate postal codes against a yet to be built postal code lookup service/table
             if (string.IsNullOrEmpty(zipcode))
             {
                 throw new ArgumentNullException(nameof(zipcode), "A zip code is required.");

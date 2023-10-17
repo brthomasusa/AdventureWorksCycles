@@ -17,6 +17,7 @@ namespace AWC.UnitTest
                 typeof(ApplicationAssembly).Assembly,
                 typeof(ServerAssembly).Assembly
             );
+            config.Default.NameMatchingStrategy(NameMatchingStrategy.IgnoreCase);
 
             return new Mapper(config);
         }

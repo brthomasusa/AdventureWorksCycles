@@ -140,13 +140,12 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
         private async Task ShowViewEmployeeDialog()
         {
-            var dialogResult =
-                await DialogService!.OpenAsync<ViewEmployeeDialog>
-                    (
-                        "Viewing employee details",
-                        new Dictionary<string, object>() { { "BusinessEntityID", selectedEmployeeID } },
-                        new DialogOptions() { Width = "1100px", Height = "700px", Resizable = true, Draggable = true }
-                    );
+            await DialogService!.OpenAsync<ViewEmployeeDialog>
+                (
+                    "Viewing employee details",
+                    new Dictionary<string, object>() { { "BusinessEntityID", selectedEmployeeID } },
+                    new DialogOptions() { Width = "1100px", Height = "700px", Resizable = true, Draggable = true }
+                );
 
             await employeeListItemGrid!.Reload();
 
@@ -155,7 +154,7 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
         private async Task ShowCreateWorkerDialog()
         {
-            var dialogResult = await DialogService!.OpenAsync<CreateWorkerDialog>(
+            await DialogService!.OpenAsync<CreateWorkerDialog>(
                 "Create Worker",
                 null,
                 new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true, CloseDialogOnEsc = false }
@@ -168,13 +167,12 @@ namespace AWC.Client.Features.HumanResources.ViewWorkers.Pages
 
         private async Task ShowUpdateWorkerDialog()
         {
-            var dialogResult =
-                await DialogService!.OpenAsync<UpdateWorkerDialog>
-                    (
-                        "Update Worker",
-                        new Dictionary<string, object>() { { "BusinessEntityID", selectedEmployeeID } },
-                        new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true, CloseDialogOnEsc = false }
-                    );
+            await DialogService!.OpenAsync<UpdateWorkerDialog>
+                (
+                    "Update Worker",
+                    new Dictionary<string, object>() { { "BusinessEntityID", selectedEmployeeID } },
+                    new DialogOptions() { Width = "1200px", Height = "700px", Resizable = true, Draggable = true, CloseDialogOnEsc = false }
+                );
 
             await employeeListItemGrid!.Reload();
 

@@ -17,24 +17,17 @@ namespace AWC.Client.Services.HumanResources
 {
     public sealed class CompanyRepositoryService : ICompanyRepositoryService
     {
-        private readonly GrpcChannel? _channel;
-        private readonly IMapper _mapper;
         private readonly IDispatcher? _dispatcher;
         private readonly IState<DepartmentIdLookupState>? _departmentLookupState;
         private readonly IState<ShiftIdLookupState>? _shiftLookupState;
 
         public CompanyRepositoryService
         (
-            GrpcChannel channel,
-            IMapper mapper,
             IDispatcher dispatcher,
             IState<DepartmentIdLookupState> departmentLookupState,
             IState<ShiftIdLookupState> shiftLookupState
         )
         {
-            // => (_channel, _mapper, _metaDataService, _dispatcher) = (channel, mapper, metaDataService, dispatcher);
-            _channel = channel;
-            _mapper = mapper;
             _dispatcher = dispatcher;
             _departmentLookupState = departmentLookupState;
             _shiftLookupState = shiftLookupState;

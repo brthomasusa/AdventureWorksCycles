@@ -42,7 +42,7 @@ namespace AWC.Client.Services.HumanResources.Store.Shifts
 
                 while (await stream.MoveNext(default))
                 {
-                    grpc_ShiftId shift = (grpc_ShiftId)stream.Current;
+                    grpc_ShiftId shift = stream.Current;
                     shifts.Add(_mapper.Map<ShiftId>(shift));
                 }
 

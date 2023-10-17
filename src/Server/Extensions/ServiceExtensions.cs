@@ -1,6 +1,7 @@
 #pragma warning disable CS8604
 
 using System.Reflection;
+using AWC.Application;
 using AWC.Infrastructure;
 using AWC.Infrastructure.Persistence;
 using AWC.Infrastructure.Persistence.Interfaces;
@@ -60,9 +61,13 @@ namespace AWC.Server.Extensions
         public static IServiceCollection AddMappings(this IServiceCollection services)
         {
             var config = TypeAdapterConfig.GlobalSettings;
-            config.Scan(Assembly.GetExecutingAssembly(), InfrastructureAssembly.Instance);
-            // config.Apply(new CompanyMapsterConfig());
+            config.Scan(
+                ServerAssembly.Instance,
+                InfrastructureAssembly.Instance,
+                ApplicationAssembly.Instance
+            );
             config.Default.NameMatchingStrategy(NameMatchingStrategy.IgnoreCase);
+
             services.AddSingleton(config);
             services.AddScoped<IMapper, ServiceMapper>();
 
