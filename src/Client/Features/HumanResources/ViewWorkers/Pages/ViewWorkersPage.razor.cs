@@ -1,3 +1,5 @@
+#pragma warning disable CS0414, CS0649
+
 using AWC.Client.Features.HumanResources.CreateWorker.Pages;
 using AWC.Client.Features.HumanResources.UpdateWorker.Pages;
 using AWC.Client.Features.HumanResources.ViewWorkerDetails.Pages;

@@ -1,11 +1,7 @@
-using AWC.Client.Features.HumanResources.ViewCompanyDetails.Store;
 using AWC.Client.Utilities;
-using AWC.Shared.Commands.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;
 using Fluxor;
-using gRPC.Contracts.HumanResources;
 using gRPC.Contracts.Lookups;
-using gRPC.Contracts.Shared;
 using Grpc.Net.Client;
 using MapsterMapper;
 using Radzen;

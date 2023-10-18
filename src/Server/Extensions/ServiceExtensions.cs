@@ -1,6 +1,5 @@
 #pragma warning disable CS8604
 
-using System.Reflection;
 using AWC.Application;
 using AWC.Infrastructure;
 using AWC.Infrastructure.Persistence;

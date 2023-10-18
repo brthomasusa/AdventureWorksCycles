@@ -1,3 +1,5 @@
+#pragma warning disable CS0649
+
 using System.Text.RegularExpressions;
 using AWC.Client.Interfaces.HumanResources;
 using AWC.Client.Utilities;

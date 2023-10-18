@@ -1,3 +1,5 @@
+#pragma warning disable CS0414
+
 using AWC.Client.Interfaces.HumanResources;
 using AWC.Client.Utilities;
 using AWC.Shared.Queries.HumanResources;

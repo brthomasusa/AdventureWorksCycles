@@ -49,7 +49,7 @@ namespace AWC.IntegrationTests.Repositories
             Assert.True(result.IsSuccess);
         }
 
-        [Fact(Skip = "Why not")]
+        [Fact]
         public async Task Update_EmployeeWriteRepo_ShouldSucceed()
         {
             Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);

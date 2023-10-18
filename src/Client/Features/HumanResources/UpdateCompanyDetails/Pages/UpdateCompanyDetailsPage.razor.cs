@@ -1,4 +1,4 @@
-#pragma warning disable CS8795
+#pragma warning disable CS0414
 
 using System.Text.RegularExpressions;
 using AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store;
