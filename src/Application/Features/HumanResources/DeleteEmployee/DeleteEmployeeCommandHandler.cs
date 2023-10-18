@@ -1,8 +1,6 @@
 using AWC.Application.Interfaces.Messaging;
-using AWC.Core.HumanResources;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.SharedKernel.Utilities;
-using MediatR;
 
 namespace AWC.Application.Features.HumanResources.DeleteEmployee
 {

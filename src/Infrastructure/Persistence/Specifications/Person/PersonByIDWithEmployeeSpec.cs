@@ -1,5 +1,4 @@
 using Ardalis.Specification;
-using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 
 namespace AWC.Infrastructure.Persistence.Specifications.Person

@@ -1,6 +1,4 @@
-using AWC.Infrastructure.Persistence;
 using AWC.SharedKernel.Interfaces;
-using MediatR;
 
 namespace AWC.Infrastructure.Persistence.Repositories
 {

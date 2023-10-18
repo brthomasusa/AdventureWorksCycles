@@ -1,5 +1,3 @@
-using AWC.Core.HumanResources;
-using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.SharedKernel.Utilities;

@@ -1,9 +1,11 @@
-using System.Linq;
+using AWC.Application.Features.HumanResources.Common;
+using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.SharedKernel.Utilities;
+using MapsterMapper;
 
 namespace AWC.IntegrationTests.Repositories
 {
@@ -11,13 +13,15 @@ namespace AWC.IntegrationTests.Repositories
     public class EmployeeWriteRepository_Tests : TestBase
     {
         private readonly IWriteRepositoryManager _writeRepository;
+        private readonly IMapper _mapper = AWC.IntegrationTest.AddMapsterForUnitTests.GetMapper();
 
         public EmployeeWriteRepository_Tests()
             => _writeRepository =
                 new WriteRepositoryManager
                 (
                     _dbContext,
-                    new NullLogger<WriteRepositoryManager>()
+                    new NullLogger<WriteRepositoryManager>(),
+                    _mapper
                 );
 
         [Fact]
@@ -34,12 +38,13 @@ namespace AWC.IntegrationTests.Repositories
             Assert.True(result.Value.PayHistories.Any());
         }
 
-        [Fact(Skip = "Why not")]
+        [Fact]
         public async Task InsertAsync_EmployeeWriteRepo_ShouldSucceed()
         {
-            Employee employee = GetEmployeeForCreate_ValidData();
+            CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();
+            Result<Employee> employeeResult = BuildEmployeeDomainObject.Build(command, _mapper);
 
-            Result<int> result = await _writeRepository.EmployeeAggregateRepository.InsertAsync(employee);
+            Result<int> result = await _writeRepository.EmployeeAggregateRepository.InsertAsync(employeeResult.Value);
 
             Assert.True(result.IsSuccess);
         }

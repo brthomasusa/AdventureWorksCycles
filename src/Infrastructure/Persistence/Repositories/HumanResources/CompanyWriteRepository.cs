@@ -1,6 +1,5 @@
 using Ardalis.Specification.EntityFrameworkCore;
 using AWC.Core.Interfaces;
-using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;

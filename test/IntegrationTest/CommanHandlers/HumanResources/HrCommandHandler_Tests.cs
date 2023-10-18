@@ -14,12 +14,11 @@ namespace AWC.IntegrationTests.HumanResources.CommandHandlers
     public class HrCommandHandler_Tests : TestBase
     {
         private readonly IWriteRepositoryManager _writeRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper = AddMapsterForUnitTests.GetMapper();
 
         public HrCommandHandler_Tests()
         {
-            _writeRepository = new WriteRepositoryManager(_dbContext, new NullLogger<WriteRepositoryManager>());
-            _mapper = AddMapsterForUnitTests.GetMapper();
+            _writeRepository = new WriteRepositoryManager(_dbContext, new NullLogger<WriteRepositoryManager>(), _mapper);
         }
 
         [Fact]

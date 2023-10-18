@@ -1,5 +1,3 @@
-using System.Net.Mail;
-
 namespace AWC.Infrastructure.Persistence.DataModels.Person
 {
     public sealed class EmailAddress

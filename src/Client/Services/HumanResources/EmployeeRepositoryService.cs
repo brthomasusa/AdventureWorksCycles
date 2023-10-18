@@ -3,7 +3,6 @@ using AWC.Client.Services.HumanResources.Store;
 using AWC.Client.Services.HumanResources.Store.Managers;
 using AWC.Client.Services.HumanResources.Store.StateCodes;
 using AWC.Client.Utilities;
-using AWC.Shared.Commands.HumanResources;
 using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Lookups.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;

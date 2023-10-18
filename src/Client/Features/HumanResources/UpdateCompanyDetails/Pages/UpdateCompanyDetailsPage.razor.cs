@@ -2,7 +2,6 @@
 
 using System.Text.RegularExpressions;
 using AWC.Client.Features.HumanResources.UpdateCompanyDetails.Store;
-using AWC.Shared.Commands.HumanResources;
 using Fluxor;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;

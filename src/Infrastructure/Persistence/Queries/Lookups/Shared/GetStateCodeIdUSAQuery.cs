@@ -1,5 +1,4 @@
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.Infrastructure.Persistence.Repositories.Lookups;
 using AWC.Shared.Queries.Lookups.Shared;
 using AWC.SharedKernel.Utilities;
 using Dapper;

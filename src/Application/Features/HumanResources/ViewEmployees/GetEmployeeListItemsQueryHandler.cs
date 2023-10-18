@@ -1,7 +1,6 @@
 using AWC.Application.Interfaces.Messaging;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Shared.Queries.HumanResources;
-using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployees

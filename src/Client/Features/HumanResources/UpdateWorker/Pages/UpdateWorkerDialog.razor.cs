@@ -53,7 +53,6 @@ namespace AWC.Client.Features.HumanResources.UpdateWorker.Pages
             else
             {
                 employee = result.Value;
-                Console.WriteLine($"employee: {employee.ToJson()}");
             }
 
             await LoadLookups();

@@ -4,9 +4,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using AWC.Application.Features.HumanResources.UpdateCompany;
-using AWC.IntegrationTests.Base;
 using AWC.Shared.Queries.HumanResources;
-using AWC.Shared.Queries.Shared;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests

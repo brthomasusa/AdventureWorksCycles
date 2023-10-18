@@ -1,16 +1,19 @@
 using AWC.Core.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.SharedKernel.Utilities;
+using MapsterMapper;
 
 namespace AWC.IntegrationTests.Repositories
 {
     [Collection("Database Test")]
     public class CompanyWriteRepository_Tests : TestBase
     {
+        private readonly IMapper _mapper = AWC.IntegrationTest.AddMapsterForUnitTests.GetMapper();
+
         [Fact]
         public async Task GetByIdAsync_CompnayAggregateRepo_ShouldSucceed()
         {
-            WriteRepositoryManager writeRepository = new(_dbContext, new NullLogger<WriteRepositoryManager>());
+            WriteRepositoryManager writeRepository = new(_dbContext, new NullLogger<WriteRepositoryManager>(), _mapper);
 
             Result<Company> result = await writeRepository.CompanyAggregateRepository.GetByIdAsync(1);
 
@@ -24,7 +27,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<WriteRepositoryManager>();
-            WriteRepositoryManager writeRepository = new(_dbContext, logger);
+            WriteRepositoryManager writeRepository = new(_dbContext, logger, _mapper);
 
             Result<Company> result = await writeRepository.CompanyAggregateRepository.GetByIdAsync(11);
 
@@ -34,7 +37,7 @@ namespace AWC.IntegrationTests.Repositories
         [Fact]
         public async Task Update_CompnayAggregateRepo_ValidData_ShouldSucceed()
         {
-            WriteRepositoryManager writeRepository = new(_dbContext, new NullLogger<WriteRepositoryManager>());
+            WriteRepositoryManager writeRepository = new(_dbContext, new NullLogger<WriteRepositoryManager>(), _mapper);
             Company company = CompanyTestData.GetCompanyForUpdateWithValidData();
 
             Result<int> result = await writeRepository.CompanyAggregateRepository.Update(company);
@@ -47,7 +50,7 @@ namespace AWC.IntegrationTests.Repositories
         {
             using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
             var logger = loggerFactory.CreateLogger<WriteRepositoryManager>();
-            WriteRepositoryManager writeRepository = new(_dbContext, logger);
+            WriteRepositoryManager writeRepository = new(_dbContext, logger, _mapper);
 
             Company company = CompanyTestData.GetCompanyForUpdateWithInvalidCompanyID();
 

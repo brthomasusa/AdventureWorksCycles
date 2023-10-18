@@ -1,7 +1,5 @@
 #pragma warning disable RCS1194
 
-using ApplicationException = AWC.Server.Middleware.Exceptions.ApplicationException;
-
 namespace AWC.Server.Middleware.Exceptions
 {
     public sealed class ValidationException : ApplicationException

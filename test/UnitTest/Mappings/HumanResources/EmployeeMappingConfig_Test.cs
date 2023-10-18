@@ -110,12 +110,44 @@ namespace AWC.UnitTest.Mappings.HumanResources
                             StateProvinceID = addr.Location.StateProvinceID,
                             PostalCode = addr.Location.Zipcode
                         },
+                        AddressTypeID = (int)addr.AddressType
                     }
                 )
             );
 
             AWC.Core.Shared.Address domainAddress = _employee.Addresses.FirstOrDefault()!;
             AWC.Infrastructure.Persistence.DataModels.Person.Address dataAddress = personDataModel.BusinessEntityAddresses.FirstOrDefault()!.Address!;
+
+            Assert.Equal(domainAddress.Location.AddressLine1, dataAddress.AddressLine1);
+            Assert.Equal(domainAddress.Location.AddressLine2, dataAddress.AddressLine2);
+            Assert.Equal(domainAddress.Location.City, dataAddress.City);
+            Assert.Equal(domainAddress.Location.StateProvinceID, dataAddress.StateProvinceID);
+            Assert.Equal(domainAddress.Location.Zipcode, dataAddress.PostalCode);
+        }
+
+        [Fact]
+        public void EmployeeMappingConfig_EmployeeDomainObj_PersonDataObj_CreateListOfDataModelAddresses_ShouldSucceed()
+        {
+            // This tests Mapster mapping from domain model EmailAddress to data model EmailAddress 
+            PersonDataModel personDataModel = _mapper.Map<PersonDataModel>(_employee);
+            List<AWC.Infrastructure.Persistence.DataModels.Person.Address> addresses = new();
+
+            _employee.Addresses.ToList().ForEach(addr =>
+                addresses.Add(
+                    new()
+                    {
+                        AddressID = addr.Id,
+                        AddressLine1 = addr.Location.AddressLine1,
+                        AddressLine2 = addr.Location.AddressLine2,
+                        City = addr.Location.City,
+                        StateProvinceID = addr.Location.StateProvinceID,
+                        PostalCode = addr.Location.Zipcode
+                    }
+                )
+            );
+
+            AWC.Core.Shared.Address domainAddress = _employee.Addresses.FirstOrDefault()!;
+            AWC.Infrastructure.Persistence.DataModels.Person.Address dataAddress = addresses.FirstOrDefault()!;
 
             Assert.Equal(domainAddress.Location.AddressLine1, dataAddress.AddressLine1);
             Assert.Equal(domainAddress.Location.AddressLine2, dataAddress.AddressLine2);

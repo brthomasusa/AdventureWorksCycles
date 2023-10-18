@@ -1,6 +1,5 @@
 using AWC.Application.Features.HumanResources.UpdateCompany;
 using AWC.Core.HumanResources;
-using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTests.Base

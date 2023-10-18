@@ -1,7 +1,5 @@
 #pragma warning disable CS8618
 
-using AWC.SharedKernel.Interfaces;
-
 namespace AWC.SharedKernel.Base
 {
     public abstract class Entity<T>

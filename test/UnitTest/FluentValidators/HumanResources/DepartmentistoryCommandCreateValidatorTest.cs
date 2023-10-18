@@ -1,6 +1,5 @@
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Shared.Commands.HumanResources;
-using FluentValidation;
 using FluentValidation.TestHelper;
 
 namespace AWC.UnitTest.FluentValidators.HumanResources

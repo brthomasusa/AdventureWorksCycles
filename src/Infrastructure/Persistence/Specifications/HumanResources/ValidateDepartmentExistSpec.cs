@@ -1,4 +1,3 @@
-using System;
 using Ardalis.Specification;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 

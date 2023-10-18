@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
 using AWC.Core.Interfaces;
+using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.Person;
@@ -45,12 +46,11 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 if (person is null)
                 {
                     string errMsg = $"An employee with ID: {employeeID} could not be found.";
-                    return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeAggregateRepository.GetByIdAsync", errMsg));
+                    return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeWriteRepository.GetByIdAsync", errMsg));
                 }
 
-                // Call a db udf that converts organization node of 
-                // employee's manager to an int BusinessEntityID. We then
-                // add that to the employee as ManagerID.
+                // Call a db udf that converts organization node of employee's manager to
+                // an int BusinessEntityID. We then add that to the employee as ManagerID.
                 var query = from emp in _context.Employee
                             where emp.BusinessEntityID == employeeID
                             select new
@@ -58,24 +58,37 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                                 ManagerID = _context.Get_Manager_ID(emp.BusinessEntityID)
                             };
 
-                var queryResult = query.FirstOrDefault();
-                person.Employee!.ManagerID = queryResult!.ManagerID;
+                var result = query.FirstOrDefault();
+                person.Employee!.ManagerID = result!.ManagerID;
 
-                Result<EmployeeDomainModel> result = person!.MapToEmployeeDomainObject();
+                Result<EmployeeDomainModel> employeeDomainResult = person.MapToEmployeeDomainModel();
 
-                if (result.IsFailure)
-                {
-                    return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeAggregateRepository.GetByIdAsync", result.Error.Message));
-                }
+                if (employeeDomainResult.IsFailure)
+                    return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeWriteRepository.GetByIdAsync", employeeDomainResult.Error.Message));
 
-                EmployeeDomainModel? employee = result.Value;
+                EmployeeDomainModel employee = employeeDomainResult.Value;
+
+                // Add department histories
+                person.MapDepartmentHistories(ref employee);
+
+                // Add pay histories
+                person.MapPayHistories(ref employee);
+
+                // Add addresses
+                person.MapAddresses(ref employee);
+
+                // Add email addresses
+                person.MapEmailAddresses(ref employee);
+
+                // Add person phones
+                person.MapPersonPhones(ref employee);
 
                 return employee;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"EmployeeAggregateRepository.GetByIdAsync - {Helpers.GetExceptionMessage(ex)}");
-                return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeAggregateRepository.GetByIdAsync",
+                return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeWriteRepository.GetByIdAsync",
                                                                                           Helpers.GetExceptionMessage(ex)));
             }
         }
@@ -84,47 +97,59 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         {
             try
             {
+                // Step 1: Get a list of data model addresses. These need to be inserted first.
+                List<AWC.Infrastructure.Persistence.DataModels.Person.Address> addresses = GetDataModelAddresses(employee);
+
+                PersonDataModel person = _mapper.Map<PersonDataModel>(employee);
+
+                // Step 2: Create a list of BusinessEntityAddresses and add it to PersonDataModel
+                CreateBusinessEntityAddresses(employee, ref person);
+
+                // Step 3: Add email addresses from employee domain obj to person data model
+                employee.EmailAddresses.ToList().ForEach(email =>
+                    person.EmailAddresses.Add(_mapper.Map<AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress>(email))
+                );
+
+                // Step 4: Add person phones to person data model
+                employee.Telephones.ToList().ForEach(tel =>
+                    person.Telephones.Add(_mapper.Map<AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>(tel))
+                );
+
+                // Step 5: Extract an EmployeeDataModel from the employee domain obj
+                EmployeeDataModel employeeDataModel = _mapper.Map<EmployeeDataModel>(employee);
+
+                // Step 6: Add department histories to employee data model
+                employee.DepartmentHistories.ToList().ForEach(dept =>
+                    employeeDataModel.DepartmentHistories.Add(_mapper.Map<EmployeeDepartmentHistory>(dept))
+                );
+
+                // Step 7: Add pay histories to employee data model
+                employee.PayHistories.ToList().ForEach(pay =>
+                    employeeDataModel.PayHistories.Add(_mapper.Map<EmployeePayHistory>(pay))
+                );
+
+                // Step 8: Add employee data model to person data model
+                person.Employee = employeeDataModel;
+
+                // Step 9: Start a transaction
                 using var transaction = _context.Database.BeginTransaction();
 
-                AWC.Core.Shared.Address? domainAddress = employee.Addresses.FirstOrDefault() ??
-                    throw new Exception("Unable to retrieve employee address from Employee domain object.");
-
-                AWC.Infrastructure.Persistence.DataModels.Person.Address dataModelAddress = new()
-                {
-                    AddressLine1 = domainAddress.Location.AddressLine1,
-                    AddressLine2 = domainAddress.Location.AddressLine2,
-                    City = domainAddress.Location.City,
-                    StateProvinceID = domainAddress.Location.StateProvinceID,
-                    PostalCode = domainAddress.Location.Zipcode
-                };
-
-                await _context.AddAsync(dataModelAddress);
+                // Step 10: Insert addresses into database
+                await _context.AddRangeAsync(addresses);
                 await _context.SaveChangesAsync();
 
-                PersonDataModel personDataModel = employee.MapToPersonDataModelForCreate();
+                // Step 10: Create a BusinessEntity instance and connect it to person data model
+                BusinessEntity businessEntity = new() { PersonModel = person };
+                await _context.SaveChangesAsync();
 
-                BusinessEntityAddress businessEntityAddress = new()
-                {
-                    BusinessEntityID = personDataModel.BusinessEntityID,
-                    AddressID = dataModelAddress.AddressID,
-                    Address = dataModelAddress,
-                    AddressTypeID = (int)domainAddress.AddressType
-                };
-
-                personDataModel.BusinessEntityAddresses.Add(businessEntityAddress);
-
-                BusinessEntity entity = new()
-                {
-                    PersonModel = personDataModel
-                };
-
-                await _context.AddAsync(entity);
+                // Step 11: Update db and commit changes
+                await _context.AddAsync(businessEntity);
                 await _context.SaveChangesAsync();
 
                 // Keep all of the hierarchy/orgnode stuff in the database
                 object[] parameters = new object[]
                 {
-                    new SqlParameter("@paramEmployeeID", entity.BusinessEntityID),
+                    new SqlParameter("@paramEmployeeID", businessEntity.BusinessEntityID),
                     new SqlParameter("@paramManagerID", employee.ManagerID.Value)
                 };
 
@@ -135,12 +160,12 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
                 await transaction.CommitAsync();
 
-                return entity.BusinessEntityID;
+                return businessEntity.BusinessEntityID;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"EmployeeAggregateRepository.InsertAsync - {Helpers.GetExceptionMessage(ex)}");
-                return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.InsertAsync",
+                _logger.LogError(ex, $"EmployeeWriteRepository.InsertAsync - {Helpers.GetExceptionMessage(ex)}");
+                return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.InsertAsync",
                                                            Helpers.GetExceptionMessage(ex)));
             }
         }
@@ -160,7 +185,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
                 if (person is not null)
                 {
-                    employee.MapToPersonDataModelForUpdate(ref person);
+                    employee.MapToPersonDataModel(ref person);
                     _context.Person!.Update(person);
                     await _unitOfWork.CommitAsync();
 
@@ -168,14 +193,14 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 }
                 else
                 {
-                    return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Update",
+                    return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.Update",
                                                               $"Failed to retrieve employee with ID: {employee.Id} for editing."));
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"EmployeeAggregateRepository.Update - {Helpers.GetExceptionMessage(ex)}");
-                return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Update",
+                _logger.LogError(ex, $"EmployeeWriteRepository.Update - {Helpers.GetExceptionMessage(ex)}");
+                return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.Update",
                                                            Helpers.GetExceptionMessage(ex)));
             }
         }
@@ -192,7 +217,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                     ).FirstOrDefaultAsync();
 
                 if (entity is null)
-                    return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete", $"Failed to retrieve employee with ID: {entityID} for deletion."));
+                    return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.Delete", $"Failed to retrieve employee with ID: {entityID} for deletion."));
 
                 var address = await _context.BusinessEntityAddress!.Where(bea => bea.BusinessEntityID == entityID)
                                                                    .Include(p => p.Address).FirstOrDefaultAsync();
@@ -210,8 +235,8 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"EmployeeAggregateRepository.Delete - {Helpers.GetExceptionMessage(ex)}");
-                return Result<int>.Failure<int>(new Error("EmployeeAggregateRepository.Delete",
+                _logger.LogError(ex, $"EmployeeWriteRepository.Delete - {Helpers.GetExceptionMessage(ex)}");
+                return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.Delete",
                                                            Helpers.GetExceptionMessage(ex)));
             }
         }
@@ -243,5 +268,55 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 _context.Address!.RemoveRange(addresses);
         }
 
+        private static List<AWC.Infrastructure.Persistence.DataModels.Person.Address> GetDataModelAddresses
+        (
+            AWC.Core.HumanResources.Employee employee
+        )
+        {
+            List<AWC.Infrastructure.Persistence.DataModels.Person.Address> addresses = new();
+            employee.Addresses.ToList().ForEach(addr =>
+                addresses.Add(
+                    new()
+                    {
+                        AddressID = addr.Id,
+                        AddressLine1 = addr.Location.AddressLine1,
+                        AddressLine2 = addr.Location.AddressLine2,
+                        City = addr.Location.City,
+                        StateProvinceID = addr.Location.StateProvinceID,
+                        PostalCode = addr.Location.Zipcode
+                    }
+                )
+            );
+
+            return addresses;
+        }
+
+        private static void CreateBusinessEntityAddresses
+        (
+            AWC.Core.HumanResources.Employee employee,
+            ref PersonDataModel person
+        )
+        {
+            foreach (AWC.Core.Shared.Address addr in employee.Addresses)
+            {
+                person.BusinessEntityAddresses.Add(
+                    new BusinessEntityAddress
+                    {
+                        BusinessEntityID = employee.Id,
+                        AddressID = addr.Id,
+                        Address = new Address
+                        {
+                            AddressID = addr.Id,
+                            AddressLine1 = addr.Location.AddressLine1,
+                            AddressLine2 = addr.Location.AddressLine2,
+                            City = addr.Location.City,
+                            StateProvinceID = addr.Location.StateProvinceID,
+                            PostalCode = addr.Location.Zipcode
+                        },
+                        AddressTypeID = (int)addr.AddressType
+                    }
+                );
+            };
+        }
     }
 }

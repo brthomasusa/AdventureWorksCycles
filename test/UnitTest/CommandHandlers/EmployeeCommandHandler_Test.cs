@@ -3,8 +3,6 @@ using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Core.HumanResources;
 using AWC.Core.Shared;
-using AWC.Shared.Commands.HumanResources;
-using AWC.SharedKernel.Utilities;
 using AWC.UnitTest.Data;
 using MapsterMapper;
 

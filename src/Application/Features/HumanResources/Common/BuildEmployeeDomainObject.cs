@@ -4,7 +4,6 @@ using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Shared.Commands.HumanResources;
 using AWC.SharedKernel.Utilities;
-using Mapster;
 using MapsterMapper;
 
 namespace AWC.Application.Features.HumanResources.Common

@@ -3,15 +3,8 @@ using AWC.Client.Services.HumanResources.Store;
 using AWC.Client.Services.HumanResources.Store.Departments;
 using AWC.Client.Services.HumanResources.Store.Shifts;
 using AWC.Client.Utilities;
-using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Lookups.HumanResources;
-using AWC.Shared.Queries.Lookups.Shared;
-using AWC.Shared.Queries.Shared;
 using Fluxor;
-using gRPC.Contracts.HumanResources;
-using gRPC.Contracts.Shared;
-using Grpc.Net.Client;
-using MapsterMapper;
 
 namespace AWC.Client.Services.HumanResources
 {

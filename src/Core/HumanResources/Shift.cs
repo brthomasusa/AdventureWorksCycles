@@ -1,7 +1,6 @@
 #pragma warning disable CS8618
 
 using AWC.Core.HumanResources.ValueObjects;
-using AWC.Core.Shared.ValueObjects;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 

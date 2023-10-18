@@ -1,7 +1,3 @@
-using AWC.Infrastructure.Persistence.DataModels.Person;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-
 namespace AWC.Infrastructure.Persistence.DataModels.HumanResources
 {
     public class EmployeeDataModel

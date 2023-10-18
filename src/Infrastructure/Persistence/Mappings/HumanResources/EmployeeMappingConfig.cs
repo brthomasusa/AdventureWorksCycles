@@ -4,6 +4,7 @@ using AWC.Core.HumanResources;
 using AWC.Core.Shared;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
+using AWC.SharedKernel.Utilities;
 using Mapster;
 
 namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
@@ -24,13 +25,13 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
 
             _ = config.NewConfig<AWC.Core.Shared.PersonPhone, AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
-            .Map(dest => dest.PhoneNumber, src => src.Telephone)
-            .Map(dest => dest.PhoneNumberTypeID, src => (decimal)src.PhoneNumberType);
+            .Map(dest => dest.PhoneNumber, src => src.Telephone.Value)
+            .Map(dest => dest.PhoneNumberTypeID, src => (int)src.PhoneNumberType);
 
             _ = config.NewConfig<AWC.Core.Shared.PersonEmailAddress, AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
             .Map(dest => dest.EmailAddressID, src => src.EmailAddressID)
-            .Map(dest => dest.MailAddress, src => src.EmailAddress);
+            .Map(dest => dest.MailAddress, src => src.EmailAddress.Value);
 
             _ = config.NewConfig<DepartmentHistory, EmployeeDepartmentHistory>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
@@ -42,19 +43,19 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
 
             _ = config.NewConfig<PayHistory, EmployeePayHistory>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
-            .Map(dest => dest.RateChangeDate, src => src.RateChangeDate)
+            .Map(dest => dest.RateChangeDate, src => src.RateChangeDate.Value)
             .Map(dest => dest.Rate, src => (decimal)src.PayRate.Value.Amount)
             .Map(dest => dest.PayFrequency, src => (byte)src.PayFrequency);
 
             _ = config.NewConfig<Employee, PersonDataModel>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
-            .Map(dest => dest.PersonType, src => src.PersonType)
+            .Map(dest => dest.PersonType, src => src.PersonType.Value)
             .Map(dest => dest.NameStyle, src => src.NameStyle != NameStyle.Western)
-            .Map(dest => dest.Title, src => src.Title)
+            .Map(dest => dest.Title, src => src.Title.Value)
             .Map(dest => dest.FirstName, src => src.Name.FirstName)
             .Map(dest => dest.MiddleName, src => src.Name.MiddleName)
             .Map(dest => dest.LastName, src => src.Name.LastName)
-            .Map(dest => dest.Suffix, src => src.Suffix)
+            .Map(dest => dest.Suffix, src => src.Suffix.Value)
             .Map(dest => dest.EmailPromotion, src => (int)src.EmailPromotions)
             .Ignore(dest => dest.Employee!)
             .Ignore(dest => dest.EmailAddresses)
@@ -64,13 +65,13 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             _ = config.NewConfig<Employee, EmployeeDataModel>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
             .Map(dest => dest.ManagerID, src => src.ManagerID)
-            .Map(dest => dest.NationalIDNumber, src => src.NationalIDNumber)
+            .Map(dest => dest.NationalIDNumber, src => src.NationalIDNumber.Value)
             .Map(dest => dest.BusinessEntityID, src => src.Id)
-            .Map(dest => dest.LoginID, src => src.LoginID)
-            .Map(dest => dest.JobTitle, src => src.JobTitle)
+            .Map(dest => dest.LoginID, src => src.LoginID.Value)
+            .Map(dest => dest.JobTitle, src => src.JobTitle.Value)
             .Map(dest => dest.BirthDate, src => ((DateOnly)src.BirthDate).ToDateTime(TimeOnly.MinValue))
-            .Map(dest => dest.MaritalStatus, src => src.MaritalStatus)
-            .Map(dest => dest.Gender, src => src.Gender)
+            .Map(dest => dest.MaritalStatus, src => src.MaritalStatus.Value)
+            .Map(dest => dest.Gender, src => src.Gender.Value)
             .Map(dest => dest.HireDate, src => ((DateOnly)src.HireDate).ToDateTime(TimeOnly.MinValue))
             .Map(dest => dest.SalariedFlag, src => src.IsSalaried)
             .Map(dest => dest.VacationHours, src => src.VacationHours)
@@ -80,6 +81,33 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             .Map(dest => dest.PayHistories, src => src.PayHistories)
             .Ignore(dest => dest.DepartmentHistories)
             .Ignore(dest => dest.PayHistories);
+
+            _ = TypeAdapterConfig<PersonDataModel, Result<Employee>>.NewConfig()
+                .ConstructUsing(src =>
+                    Employee.Create
+                    (
+                        src.BusinessEntityID,
+                        src.PersonType!,
+                        src.NameStyle ? NameStyle.Eastern : NameStyle.Western,
+                        src.Title,
+                        src.FirstName!,
+                        src.LastName!,
+                        src.MiddleName!,
+                        src.Suffix,
+                        src.Employee!.ManagerID,
+                        src.Employee!.NationalIDNumber!,
+                        src.Employee!.LoginID!,
+                        src.Employee!.JobTitle!,
+                        DateOnly.FromDateTime(src.Employee!.BirthDate),
+                        src.Employee!.MaritalStatus!,
+                        src.Employee!.Gender!,
+                        DateOnly.FromDateTime(src.Employee!.HireDate),
+                        src.Employee!.SalariedFlag,
+                        src.Employee!.VacationHours,
+                        src.Employee!.SickLeaveHours,
+                        src.Employee!.CurrentFlag
+                    )
+                );
         }
     }
 }

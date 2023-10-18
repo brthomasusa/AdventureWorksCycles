@@ -1,10 +1,6 @@
-using AWC.Application.BusinessRules.HumanResources;
 using AWC.Application.Features.HumanResources.CreateEmployee;
-using AWC.Application.Features.HumanResources.DeleteEmployee;
-using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
-using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTest.Validation.HumanResources

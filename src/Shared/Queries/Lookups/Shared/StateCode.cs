@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-
 namespace AWC.Shared.Queries.Lookups.Shared
 {
     public sealed class StateCode

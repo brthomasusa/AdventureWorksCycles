@@ -1,8 +1,5 @@
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using AWC.SharedKernel.Utilities;
-using Xunit;
 
 namespace AWC.IntegrationTests.Base
 {

@@ -1,4 +1,4 @@
-namespace AWC.IntegrationTests.DbContext
+namespace AWC.IntegrationTest.DbContext
 {
     [Collection("Database Test")]
     public class DbContextRetrieve_Tests : TestBase

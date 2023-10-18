@@ -4,7 +4,6 @@ using Fluxor;
 using gRPC.Contracts.HumanResources;
 using Grpc.Net.Client;
 using MapsterMapper;
-using Radzen;
 
 namespace AWC.Client.Features.HumanResources.ViewCompanyDetails.Store
 {

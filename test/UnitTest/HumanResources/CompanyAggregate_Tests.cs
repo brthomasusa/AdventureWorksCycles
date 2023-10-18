@@ -1,5 +1,4 @@
 using AWC.Core.HumanResources;
-using AWC.SharedKernel.Utilities;
 using AWC.UnitTest.Data;
 
 namespace AWC.UnitTest.HumanResources
