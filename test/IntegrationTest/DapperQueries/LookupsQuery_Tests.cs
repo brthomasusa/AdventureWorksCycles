@@ -13,7 +13,7 @@ namespace AWC.IntegrationTests.DapperQueries
         [Fact]
         public async Task Query_GetStateCodeIdForUSAQuery_ShouldSucceed()
         {
-            Result<List<StateCode>> result = await GetStateCodeIdUSAQuery.Query(_dapperCtx, new NullLogger<LookupsRepositoryManager>());
+            Result<List<StateCode>> result = await GetStateCodeIdUsaQuery.Query(_dapperCtx, new NullLogger<LookupsRepositoryManager>());
 
             Assert.True(result.IsSuccess);
         }

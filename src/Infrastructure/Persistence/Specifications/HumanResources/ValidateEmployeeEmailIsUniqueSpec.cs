@@ -8,6 +8,6 @@ namespace AWC.Infrastructure.Persistence.Specifications.HumanResources
         public ValidateEmployeeEmailIsUniqueSpec(string emailAddress)
             => Query
                     .Include(person => person.EmailAddresses!)
-                    .Where(e => e.EmailAddresses.All(addr => addr.MailAddress == emailAddress));
+                    .Where(e => e.EmailAddresses.TrueForAll(addr => addr.MailAddress == emailAddress));
     }
 }

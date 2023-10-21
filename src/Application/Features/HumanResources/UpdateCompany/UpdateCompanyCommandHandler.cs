@@ -17,13 +17,8 @@ namespace AWC.Application.Features.HumanResources.UpdateCompany
         {
             try
             {
-                Result<Company> getCompany = await _repo.CompanyAggregateRepository.GetByIdAsync(request.CompanyID);
-
-                if (getCompany.IsFailure)
-                    return Result<int>.Failure<int>(new Error("UpdateCompanyCommandHandler.Handle", getCompany.Error.Message));
-
-                Result<Company> updateDomainObj = getCompany.Value.Update
-                (
+                Result<Company> result = Company.Create(
+                    request.CompanyID,
                     request.CompanyName!,
                     request.LegalName!,
                     request.EIN!,
@@ -42,10 +37,10 @@ namespace AWC.Application.Features.HumanResources.UpdateCompany
                     request.Fax!
                 );
 
-                if (updateDomainObj.IsFailure)
-                    return Result<int>.Failure<int>(new Error("UpdateCompanyCommandHandler.Handle", updateDomainObj.Error.Message));
+                if (result.IsFailure)
+                    return Result<int>.Failure<int>(new Error("UpdateCompanyCommandHandler.Handle", result.Error.Message));
 
-                Result<int> updateDbResult = await _repo.CompanyAggregateRepository.Update(updateDomainObj.Value);
+                Result<int> updateDbResult = await _repo.CompanyAggregateRepository.Update(result.Value);
 
                 if (updateDbResult.IsFailure)
                     return Result<int>.Failure<int>(new Error("UpdateCompanyCommandHandler.Handle", updateDbResult.Error.Message));

@@ -14,8 +14,6 @@ namespace AWC.Infrastructure.Persistence.Specifications.Person
                  .Include(person => person.BusinessEntityAddresses!)
                  .Include(person => person.Employee!.DepartmentHistories)
                  .Include(person => person.Employee!.PayHistories);
-
-            // AddOrderBy(person => person.LastName!);
         }
     }
 }

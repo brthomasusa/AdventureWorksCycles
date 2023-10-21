@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AWC.Infrastructure.Persistence.Specifications.HumanResources
 {
-    public class ValidateEmployeeNameIsUniqueSpec : Specification<PersonDataModel>, ISingleResultSpecification
+    public sealed class ValidateEmployeeNameIsUniqueSpec : Specification<PersonDataModel>, ISingleResultSpecification
     {
         private const string CI = "SQL_Latin1_General_CP1_CI_AS";
 

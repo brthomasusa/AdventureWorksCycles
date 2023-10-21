@@ -1,3 +1,5 @@
+#pragma warning disable S3776
+
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Shared.Queries.HumanResources;
@@ -84,7 +86,7 @@ namespace AWC.Server.Mapping.HumanResources
             config.NewConfig<AWC.Shared.Queries.HumanResources.PayHistory, grpc_PayHistory>()
                 .Map(dest => dest.BusinessEntityId, src => src.BusinessEntityID)
                 .Map(dest => dest.RateChangeDate, src => GoogleDateTime.FromDateTimeOffset(src.RateChangeDate))
-                .Map(dest => dest.Rate, src => (decimal)src.Rate)
+                .Map(dest => dest.Rate, src => src.Rate)
                 .Map(dest => dest.PayFrequency, src => src.PayFrequency);
 
             // Command to the UI

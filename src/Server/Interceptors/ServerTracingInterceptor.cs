@@ -1,3 +1,5 @@
+#pragma warning disable CS0414
+
 using AWC.SharedKernel.Utilities;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
@@ -22,7 +24,7 @@ namespace AWC.Server.Interceptors
             catch (Exception ex)
             {
                 LogException(ex);
-                throw new Exception(Helpers.GetExceptionMessage(ex));
+                throw new ServerTracingInterceptorException(Helpers.GetExceptionMessage(ex));
             }
         }
 
@@ -37,7 +39,7 @@ namespace AWC.Server.Interceptors
             catch (Exception ex)
             {
                 LogException(ex);
-                throw new Exception(Helpers.GetExceptionMessage(ex));
+                throw new ServerTracingInterceptorException(Helpers.GetExceptionMessage(ex));
             }
         }
 
@@ -52,7 +54,7 @@ namespace AWC.Server.Interceptors
             catch (Exception ex)
             {
                 LogException(ex);
-                throw new Exception(Helpers.GetExceptionMessage(ex));
+                throw new ServerTracingInterceptorException(Helpers.GetExceptionMessage(ex));
             }
         }
 
@@ -67,7 +69,7 @@ namespace AWC.Server.Interceptors
             catch (Exception ex)
             {
                 LogException(ex);
-                throw new Exception(Helpers.GetExceptionMessage(ex));
+                throw new ServerTracingInterceptorException(Helpers.GetExceptionMessage(ex));
             }
         }
 
@@ -80,6 +82,10 @@ namespace AWC.Server.Interceptors
         {
             _logger.LogError(ex, Helpers.GetExceptionMessage(ex));
         }
+    }
 
+    public sealed class ServerTracingInterceptorException : Exception
+    {
+        public ServerTracingInterceptorException(string message) : base(message) { }
     }
 }

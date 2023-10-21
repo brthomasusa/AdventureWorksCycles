@@ -31,15 +31,6 @@ namespace AWC.SharedKernel.Guards
             return guardClause.LessThan(input, 0, parameterName, message);
         }
 
-        public static decimal GreaterThan(this IGuardClause guardClause, decimal input, decimal minValue, string parameterName = "Amount", string message = null!)
-        {
-            if (input < minValue)
-            {
-                Error(message ?? $"'{parameterName}' must be greater than or equal to {minValue}.");
-            }
-            return input;
-        }
-
         public static int GreaterThan(this IGuardClause guardClause, int input, int minValue, string parameterName = "Amount", string message = null!)
         {
             if (input < minValue)

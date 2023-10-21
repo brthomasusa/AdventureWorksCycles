@@ -2,7 +2,7 @@ using AWC.SharedKernel.Interfaces;
 
 namespace AWC.Infrastructure.Persistence.Repositories
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private bool _isDisposed;
         private readonly AwcContext _dbContext;

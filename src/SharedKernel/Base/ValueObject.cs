@@ -1,4 +1,4 @@
-#pragma warning disable CS8604, CS8618, CS8765, CS8767
+#pragma warning disable CS8604, CS8618, CS8765, CS8767, S4035
 
 using System.Reflection;
 

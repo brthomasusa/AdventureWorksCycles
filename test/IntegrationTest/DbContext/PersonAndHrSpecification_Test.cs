@@ -52,6 +52,46 @@ namespace AWC.IntegrationTests.DbContext
         }
 
         [Fact]
+        public async Task ValidateCompanyNameIsUniqueSpec_NameIsUnique_ShouldReturnNull()
+        {
+            //SETUP
+            CancellationToken cancellationToken = default;
+
+            //ATTEMPT
+            var company = await
+                SpecificationEvaluator.Default.GetQuery
+                (
+                    _dbContext.Set<Company>().AsNoTracking(),
+                    new ValidateCompanyNameIsUniqueSpec("Test Company")
+                )
+                .Select(c => new { c.CompanyID })
+                .FirstOrDefaultAsync(cancellationToken);
+
+            //VERIFY
+            Assert.Null(company);
+        }
+
+        [Fact]
+        public async Task ValidateCompanyNameIsUniqueSpec_NameIsUnique_ShouldReturnNotNull()
+        {
+            //SETUP
+            CancellationToken cancellationToken = default;
+
+            //ATTEMPT
+            var company = await
+                SpecificationEvaluator.Default.GetQuery
+                (
+                    _dbContext.Set<Company>().AsNoTracking(),
+                    new ValidateCompanyNameIsUniqueSpec("Adventure-Works Cycles")
+                )
+                .Select(c => new { c.CompanyID })
+                .FirstOrDefaultAsync(cancellationToken);
+
+            //VERIFY
+            Assert.NotNull(company);
+        }
+
+        [Fact]
         public async Task ValidateEmployeeNameIsUniqueSpec_NameIsUnique_ShouldReturnNull()
         {
             //SETUP

@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.DeleteEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
@@ -8,10 +12,6 @@ using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 using Carter;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 
 namespace AWC.Presentation.HumanResources.Employee
 {
@@ -54,8 +54,6 @@ namespace AWC.Presentation.HumanResources.Employee
                     parameters.Take
                 );
 
-
-                PagingParameters pagingParameters = new(parameters.PageNumber, parameters.PageSize);
                 GetEmployeeListItemsRequest request = new(SearchCriteria: criteria);
 
                 Result<PagedList<EmployeeListItem>> result = await sender.Send(request);

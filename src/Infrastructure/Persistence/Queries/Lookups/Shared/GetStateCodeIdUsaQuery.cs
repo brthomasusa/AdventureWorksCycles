@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AWC.Infrastructure.Persistence.Queries.Lookups
 {
-    public static class GetStateCodeIdUSAQuery
+    public static class GetStateCodeIdUsaQuery
     {
         public async static Task<Result<List<StateCode>>> Query
         (

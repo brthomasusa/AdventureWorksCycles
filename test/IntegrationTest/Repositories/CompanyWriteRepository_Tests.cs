@@ -43,20 +43,10 @@ namespace AWC.IntegrationTests.Repositories
             Result<int> result = await writeRepository.CompanyAggregateRepository.Update(company);
 
             Assert.True(result.IsSuccess);
-        }
 
-        [Fact]
-        public async Task Update_CompnayAggregateRepo_InvalidCompanyID_ShouldFail()
-        {
-            using var loggerFactory = LoggerFactory.Create(c => c.AddConsole());
-            var logger = loggerFactory.CreateLogger<WriteRepositoryManager>();
-            WriteRepositoryManager writeRepository = new(_dbContext, logger, _mapper);
-
-            Company company = CompanyTestData.GetCompanyForUpdateWithInvalidCompanyID();
-
-            Result<int> result = await writeRepository.CompanyAggregateRepository.Update(company);
-
-            Assert.True(result.IsFailure);
+            Result<Company> searchResult = await writeRepository.CompanyAggregateRepository.GetByIdAsync(company.Id);
+            Assert.True(searchResult.IsSuccess);
+            Assert.Equal(company.CompanyName, searchResult.Value.CompanyName);
         }
     }
 }

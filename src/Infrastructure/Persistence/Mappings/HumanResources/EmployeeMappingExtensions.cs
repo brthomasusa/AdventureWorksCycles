@@ -49,7 +49,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 );
 
                 if (result.IsFailure)
-                    throw new Exception(result.Error.Message);
+                    throw new EmployeeMappingException(result.Error.Message);
             }
 
             return employee;
@@ -67,7 +67,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 );
 
                 if (result.IsFailure)
-                    throw new Exception(result.Error.Message);
+                    throw new EmployeeMappingException(result.Error.Message);
             }
 
             return employee;
@@ -91,7 +91,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                     );
 
                 if (result.IsFailure)
-                    throw new Exception(result.Error.Message);
+                    throw new EmployeeMappingException(result.Error.Message);
             }
 
             return employee;
@@ -110,7 +110,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                     );
 
                 if (result.IsFailure)
-                    throw new Exception(result.Error.Message);
+                    throw new EmployeeMappingException(result.Error.Message);
             }
 
             return employee;
@@ -128,7 +128,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 );
 
                 if (result.IsFailure)
-                    throw new Exception(result.Error.Message);
+                    throw new EmployeeMappingException(result.Error.Message);
             }
 
             return employee;
@@ -169,5 +169,11 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             person.Employee!.SickLeaveHours = employee.SickLeaveHours;
             person.Employee!.CurrentFlag = employee.IsActive;
         }
+    }
+
+    public sealed class EmployeeMappingException : Exception
+    {
+        public EmployeeMappingException(string message)
+            : base(message) { }
     }
 }

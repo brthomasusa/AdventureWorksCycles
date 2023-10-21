@@ -66,7 +66,8 @@ namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
             requestContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             using var response = await _client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-            response.EnsureSuccessStatusCode();
+
+            Assert.True(response.IsSuccessStatusCode);
         }
 
         [Fact]

@@ -16,7 +16,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.Lookups
             => (_context, _logger) = (ctx, logger);
 
         public async Task<Result<List<StateCode>>> StateCodeIdUSA()
-            => await GetStateCodeIdUSAQuery.Query(_context, _logger);
+            => await GetStateCodeIdUsaQuery.Query(_context, _logger);
 
         public async Task<Result<List<CountryCode>>> CountryRegionCode()
             => await GetCountryCodesQuery.Query(_context, _logger);

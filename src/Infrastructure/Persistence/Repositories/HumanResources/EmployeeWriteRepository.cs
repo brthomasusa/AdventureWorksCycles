@@ -1,3 +1,5 @@
+#pragma warning disable S1116
+
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -30,7 +32,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             _mapper = mapper;
         }
 
-        public async Task<Result<EmployeeDomainModel>> GetByIdAsync(int employeeID, bool asNoTracking = false)
+        public async Task<Result<EmployeeDomainModel>> GetByIdAsync(int id, bool asNoTracking = false)
         {
             try
             {
@@ -40,19 +42,19 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                     SpecificationEvaluator.Default.GetQuery
                     (
                         asNoTracking ? _context.Set<PersonDataModel>().AsNoTracking() : _context.Set<PersonDataModel>(),
-                        new PersonByIDWithEmployeeSpec(employeeID)
+                        new PersonByIDWithEmployeeSpec(id)
                     ).FirstOrDefaultAsync(cancellationToken);
 
                 if (person is null)
                 {
-                    string errMsg = $"An employee with ID: {employeeID} could not be found.";
+                    string errMsg = $"An employee with ID: {id} could not be found.";
                     return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeWriteRepository.GetByIdAsync", errMsg));
                 }
 
                 // Call a db udf that converts organization node of employee's manager to
                 // an int BusinessEntityID. We then add that to the employee as ManagerID.
                 var query = from emp in _context.Employee
-                            where emp.BusinessEntityID == employeeID
+                            where emp.BusinessEntityID == id
                             select new
                             {
                                 ManagerID = _context.Get_Manager_ID(emp.BusinessEntityID)
@@ -224,9 +226,10 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
                 using var transaction = _context.Database.BeginTransaction();
 
-                _context.BusinessEntity!.Remove(entity);
-                await _context.SaveChangesAsync(); ;
                 await _context.Address!.Where(a => a.AddressID == address!.AddressID).ExecuteDeleteAsync();
+                await _context.SaveChangesAsync(); ;
+
+                _context.BusinessEntity!.Remove(entity);
                 await _context.SaveChangesAsync(); ;
 
                 await transaction.CommitAsync();
@@ -239,33 +242,6 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.Delete",
                                                            Helpers.GetExceptionMessage(ex)));
             }
-        }
-
-        /*  Left as good linq code examples  */
-
-        private void RemoveBusinessEntityAddresses(int employeeID)
-        {
-            if (_context.BusinessEntityAddress!.Where(addr => addr.BusinessEntityID == employeeID).Any())
-            {
-                var businessEntityAddresses = _context.BusinessEntityAddress!.Where(addr => addr.BusinessEntityID == employeeID).ToList();
-                _context.BusinessEntityAddress!.RemoveRange(businessEntityAddresses);
-
-                RemoveAddresses(employeeID);
-            }
-        }
-
-        private void RemoveAddresses(int employeeID)
-        {
-            int[] addressIDs = _context
-                .BusinessEntityAddress!
-                .Where(addr => addr.BusinessEntityID == employeeID)
-                .Select(addr => addr.AddressID)
-                .ToArray<int>();
-
-            var addresses = _context.Address!.Where(addr => addressIDs.Contains(addr.AddressID)).ToList();
-
-            if (addresses.Any())
-                _context.Address!.RemoveRange(addresses);
         }
 
         private static List<AWC.Infrastructure.Persistence.DataModels.Person.Address> GetDataModelAddresses

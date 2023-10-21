@@ -44,7 +44,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             _ = config.NewConfig<PayHistory, EmployeePayHistory>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
             .Map(dest => dest.RateChangeDate, src => src.RateChangeDate.Value)
-            .Map(dest => dest.Rate, src => (decimal)src.PayRate.Value.Amount)
+            .Map(dest => dest.Rate, src => src.PayRate.Value.Amount)
             .Map(dest => dest.PayFrequency, src => (byte)src.PayFrequency);
 
             _ = config.NewConfig<Employee, PersonDataModel>()
