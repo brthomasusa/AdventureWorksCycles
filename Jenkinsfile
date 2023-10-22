@@ -23,9 +23,7 @@ pipeline {
         }
         stage('Integration Test') {
             steps {
-                sh  '''
-                    dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests
-                    '''    
+                sh "dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests"
             } 
         }
     }
