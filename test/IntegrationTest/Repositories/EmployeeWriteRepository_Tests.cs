@@ -81,34 +81,5 @@ namespace AWC.IntegrationTests.Repositories
             Result<Employee> test = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(4);
             Assert.True(test.IsFailure);
         }
-
-        private static Employee GetEmployeeForCreate_ValidData()
-        {
-            Result<Employee> result = Employee.Create
-                (
-                    0,
-                    "EM",
-                    NameStyle.Western,
-                    "Mr",
-                    "John",
-                    "Doe",
-                    "D",
-                    "Senior",
-                    0,
-                    "358987145",
-                    "adventure-works\\john10",
-                    "Tool Designer",
-                    new DateOnly(1990, 2, 21),
-                    "M",
-                    "M",
-                    new DateOnly(2023, 1, 5),
-                    true,
-                    0,
-                    0,
-                    true
-                );
-
-            return result.Value;
-        }
     }
 }
