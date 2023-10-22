@@ -147,11 +147,13 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             person.EmailPromotion = (int)employee.EmailPromotions;
 
             // Address. This works because a person who is an employee is restricted to one address
-            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.AddressLine1 = employee.Addresses.FirstOrDefault()!.Location.AddressLine1;
-            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.AddressLine2 = employee.Addresses.FirstOrDefault()!.Location.AddressLine2;
-            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.City = employee.Addresses.FirstOrDefault()!.Location.City;
-            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.StateProvinceID = employee.Addresses.FirstOrDefault()!.Location.StateProvinceID;
-            person.BusinessEntityAddresses.FirstOrDefault()!.Address!.PostalCode = employee.Addresses.FirstOrDefault()!.Location.Zipcode;
+            BusinessEntityAddress bea = person.BusinessEntityAddresses.FirstOrDefault()!;
+
+            bea.Address!.AddressLine1 = employee.Addresses.FirstOrDefault()!.Location.AddressLine1;
+            bea.Address!.AddressLine2 = employee.Addresses.FirstOrDefault()!.Location.AddressLine2;
+            bea.Address!.City = employee.Addresses.FirstOrDefault()!.Location.City;
+            bea.Address!.StateProvinceID = employee.Addresses.FirstOrDefault()!.Location.StateProvinceID;
+            bea.Address!.PostalCode = employee.Addresses.FirstOrDefault()!.Location.Zipcode;
 
             // Email Address. This works because a person who is an employee is restricted to one email address
             person.EmailAddresses.FirstOrDefault()!.MailAddress = employee.EmailAddresses.FirstOrDefault()!.EmailAddress;

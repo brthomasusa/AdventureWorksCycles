@@ -211,26 +211,36 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         {
             try
             {
-                var entity = await
-                    SpecificationEvaluator.Default.GetQuery
-                    (
-                        _context.Set<BusinessEntity>().AsTracking(),
-                        new BusinessEntityWithPersonSpec(entityID)
-                    ).FirstOrDefaultAsync();
-
-                if (entity is null)
-                    return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.Delete", $"Failed to retrieve employee with ID: {entityID} for deletion."));
-
-                var address = await _context.BusinessEntityAddress!.Where(bea => bea.BusinessEntityID == entityID)
-                                                                   .Include(p => p.Address).FirstOrDefaultAsync();
+                BusinessEntityAddress? bea = await _context.BusinessEntityAddress!.Where(b => b.BusinessEntityID == entityID).FirstOrDefaultAsync();
+                int addressId = bea!.AddressID;
 
                 using var transaction = _context.Database.BeginTransaction();
 
-                await _context.Address!.Where(a => a.AddressID == address!.AddressID).ExecuteDeleteAsync();
-                await _context.SaveChangesAsync(); ;
+                // Delete PayHistories, DepartmentHistories and Employee
+                await _context.EmployeePayHistory!.Where(e => e.BusinessEntityID == entityID).ExecuteDeleteAsync();
+                await _context.EmployeeDepartmentHistory!.Where(e => e.BusinessEntityID == entityID).ExecuteDeleteAsync();
+                await _context.Employee!.Where(e => e.BusinessEntityID == entityID).ExecuteDeleteAsync();
 
-                _context.BusinessEntity!.Remove(entity);
-                await _context.SaveChangesAsync(); ;
+                // Delete Person.EmailAddress
+                await _context.EmailAddress!.Where(email => email.BusinessEntityID == entityID).ExecuteDeleteAsync();
+
+                // Delete Person.Phone
+                await _context.PersonPhone!.Where(ph => ph.BusinessEntityID == entityID).ExecuteDeleteAsync();
+
+                // Delete Person.PassWord
+                await _context.Password!.Where(ph => ph.BusinessEntityID == entityID).ExecuteDeleteAsync();
+
+                // Delete Person.BusinessEntityAddress
+                await _context.BusinessEntityAddress!.Where(bea => bea.BusinessEntityID == entityID).ExecuteDeleteAsync();
+
+                // Delete Person.Address                
+                await _context.Address!.Where(a => a.AddressID == addressId).ExecuteDeleteAsync();
+
+                // Delete Person.Person
+                await _context.Person!.Where(p => p.BusinessEntityID == entityID).ExecuteDeleteAsync();
+
+                // Finally, delete Person.BusinessEntity
+                await _context.BusinessEntity!.Where(bea => bea.BusinessEntityID == entityID).ExecuteDeleteAsync();
 
                 await transaction.CommitAsync();
 

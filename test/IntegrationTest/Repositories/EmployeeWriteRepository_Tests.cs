@@ -74,11 +74,12 @@ namespace AWC.IntegrationTests.Repositories
         [Fact]
         public async Task Delete_Employee_EmployeeWriteRepo_ShouldSucceed()
         {
-            Result<int> deleteResult = await _writeRepository.EmployeeAggregateRepository.Delete(4);
+            int businessEntityId = 4;
+            Result<int> deleteResult = await _writeRepository.EmployeeAggregateRepository.Delete(businessEntityId);
 
             Assert.True(deleteResult.IsSuccess);
 
-            Result<Employee> test = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(4);
+            Result<Employee> test = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(businessEntityId);
             Assert.True(test.IsFailure);
         }
     }
