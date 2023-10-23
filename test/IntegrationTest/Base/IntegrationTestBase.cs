@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace AWC.IntegrationTest.Base
 {
-    [Trait("Category", "Integration")]
+    [Collection("Database Test")]
     public abstract class IntegrationTestBase : IClassFixture<ApiWebApplicationFactory>
     {
         protected readonly ApiWebApplicationFactory _factory;
