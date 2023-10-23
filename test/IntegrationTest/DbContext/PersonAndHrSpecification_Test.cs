@@ -5,7 +5,7 @@ using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.Person;
 using Microsoft.EntityFrameworkCore;
 
-namespace AWC.IntegrationTests.DbContext
+namespace AWC.IntegrationTest.DbContext
 {
     [Collection("Database Test")]
     public class PersonAndHrSpecification_Test : TestBase

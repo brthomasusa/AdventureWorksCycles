@@ -4,7 +4,7 @@ using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Shared.Commands.HumanResources;
 
-namespace AWC.IntegrationTests.Base
+namespace AWC.IntegrationTest.Base
 {
     public static class EmployeeTestData
     {

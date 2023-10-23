@@ -30,35 +30,67 @@ reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:TestResults/core.h
 dotnet test --no-restore --nologo -v q --filter AWC.UnitTest  /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Include=\"[*Application*]*\"
 reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:TestResults/core.html" -reporttypes:HTML;
 
-dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.CommandHandlers.HrCommandHandler_Tests
 
-dotnet sonarscanner begin /k:"AdventureWorks"
-    /d:sonar.login=squ_194d635ac46b5c944ab5d9ffe408546bdf515b49
-    /d:sonar.host.url=http://dell-svr:9000
-    /d:sonar.cs.cobertura.reportsPaths=cobertura.xml
-dotnet build --no-incremental
-coverlet /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/bin/Debug/net7.0/UnitTest.dll
-    --target "dotnet" 
-    --targetargs "test --no-restore --no-build --nologo -v q --filter AWC.UnitTest"
-    -f=cobertura 
-    -o="cobertura.xml"
-dotnet sonarscanner end /d:sonar.login=squ_194d635ac46b5c944ab5d9ffe408546bdf515b49
+<Project>
+<!-- added -->
+ <PropertyGroup>
+  <CollectCoverage>true</CollectCoverage>
+  <CoverletOutput>../coverage/projects/$(MSBuildProjectName)/</CoverletOutput>
+  <CoverletOutputFormat>cobertura</CoverletOutputFormat>
+ </PropertyGroup>
+<!-- end   -->
+ <ItemGroup>
+  <PackageReference Include="coverlet.collector" Version="3.2.0">
+   <PrivateAssets>all</PrivateAssets>
+   <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+  </PackageReference>
+  <PackageReference Include="coverlet.msbuild" Version="3.2.0">
+   <PrivateAssets>all</PrivateAssets>
+   <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+  </PackageReference>
+ </ItemGroup>
+</Project>
 
-dotnet sonarscanner begin /k:"AdventureWorks"
-    /d:sonar.login="squ_194d635ac46b5c944ab5d9ffe408546bdf515b49"
-    /d:sonar.cs.opencover.reportsPaths=coverage.xml
-dotnet build --no-incremental
-coverlet ./home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/bin/Debug/net7.0/UnitTest.dll
-    --target "dotnet" 
-    --targetargs "test --no-restore --no-build --nologo -v q --filter AWC.UnitTest"
-    -f=opencover 
-    -o="coverage.xml"
-dotnet sonarscanner end /d:sonar.login="squ_194d635ac46b5c944ab5d9ffe408546bdf515b49"
 
-Useful links:
-  - Available properties for SonarQube: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-msbuild/
-  - Available properties for SonarCloud: https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-for-net/
-  - Full list of Analysis Properties that can be specified with '/d:' : https://docs.sonarqube.org/latest/analysis/analysis-parameters/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

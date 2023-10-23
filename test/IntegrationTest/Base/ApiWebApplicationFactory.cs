@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 
-namespace AWC.IntegrationTests.Base
+namespace AWC.IntegrationTest.Base
 {
     public class ApiWebApplicationFactory : WebApplicationFactory<Program>
     {

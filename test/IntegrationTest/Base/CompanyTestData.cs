@@ -2,7 +2,7 @@ using AWC.Application.Features.HumanResources.UpdateCompany;
 using AWC.Core.HumanResources;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.IntegrationTests.Base
+namespace AWC.IntegrationTest.Base
 {
     public static class CompanyTestData
     {

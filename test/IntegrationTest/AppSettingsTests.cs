@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 using TestSupport.Helpers;
 using Xunit.Extensions.AssertExtensions;
 
-namespace ReaAccountingSys.IntegrationTests
+namespace AWC.IntegrationTest
 {
     public class AppSettingsTests
     {

@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutput>../coverage/projects/$(MSBuildProjectName)/</CoverletOutput>
+    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
+  </PropertyGroup>
+</Project>

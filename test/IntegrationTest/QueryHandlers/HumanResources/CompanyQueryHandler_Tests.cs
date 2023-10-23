@@ -7,7 +7,7 @@ using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.IntegrationTests.HumanResources.QueryHandlers
+namespace AWC.IntegrationTest.HumanResources.QueryHandlers
 {
     [Collection("Database Test")]
     public class CompanyQueryHandler_Tests : TestBase

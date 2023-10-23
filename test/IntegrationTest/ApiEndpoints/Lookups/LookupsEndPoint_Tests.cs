@@ -4,7 +4,7 @@ using System.Text.Json;
 using AWC.Shared.Queries.Lookups.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;
 
-namespace AWC.IntegrationTests.Lookups.ApiEndPoint_Tests
+namespace AWC.IntegrationTest.Lookups.ApiEndPoint_Tests
 {
     [Collection("Database Test")]
     public class LookupsEndPoint_Tests : IntegrationTestBase

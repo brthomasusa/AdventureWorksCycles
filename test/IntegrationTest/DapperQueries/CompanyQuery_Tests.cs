@@ -4,7 +4,7 @@ using AWC.Shared.Queries.HumanResources;
 using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.IntegrationTests.DapperQueries
+namespace AWC.IntegrationTest.DapperQueries
 {
     [Collection("Database Test")]
     public class CompanyQuery_Tests : TestBase

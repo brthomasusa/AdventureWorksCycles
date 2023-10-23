@@ -5,7 +5,7 @@ using AWC.Shared.Queries.Lookups.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.IntegrationTests.DapperQueries
+namespace AWC.IntegrationTest.DapperQueries
 {
     [Collection("Database Test")]
     public class LookupsQuery_Tests : TestBase

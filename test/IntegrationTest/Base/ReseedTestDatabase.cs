@@ -1,7 +1,7 @@
 using System.Data.SqlClient;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.IntegrationTests.Base
+namespace AWC.IntegrationTest.Base
 {
     public static class ReseedTestDatabase
     {

@@ -1,7 +1,7 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace AWC.IntegrationTests.Base
+namespace AWC.IntegrationTest.Base
 {
     [Trait("Category", "Integration")]
     public abstract class IntegrationTestBase : IClassFixture<ApiWebApplicationFactory>

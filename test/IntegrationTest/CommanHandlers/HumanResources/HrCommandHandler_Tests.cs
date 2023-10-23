@@ -8,7 +8,7 @@ using AWC.IntegrationTest;
 using AWC.SharedKernel.Utilities;
 using MapsterMapper;
 
-namespace AWC.IntegrationTests.HumanResources.CommandHandlers
+namespace AWC.IntegrationTest.HumanResources.CommandHandlers
 {
     [Collection("Database Test")]
     public class HrCommandHandler_Tests : TestBase

@@ -7,7 +7,7 @@ using AWC.Application.Features.HumanResources.UpdateCompany;
 using AWC.Shared.Queries.HumanResources;
 using Microsoft.AspNetCore.WebUtilities;
 
-namespace AWC.IntegrationTests.HumanResources.ApiEndPoint_Tests
+namespace AWC.IntegrationTest.HumanResources.ApiEndPoint_Tests
 {
     [Collection("Database Test")]
     public class CompanyEndPoint_Tests : IntegrationTestBase

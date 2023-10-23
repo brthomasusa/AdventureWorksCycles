@@ -10,7 +10,7 @@ using AWC.Shared.Queries.Lookups.HumanResources;
 using AWC.Shared.Queries.Lookups.Shared;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.IntegrationTests.QueryHandlers.HumanResources
+namespace AWC.IntegrationTest.QueryHandlers.HumanResources
 {
     [Collection("Database Test")]
     public class LookupsQueryHandler_Tests : TestBase

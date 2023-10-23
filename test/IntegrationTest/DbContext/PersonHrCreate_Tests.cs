@@ -2,7 +2,7 @@ using AWC.Infrastructure.Persistence.DataModels.Person;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace AWC.IntegrationTests.DbContext
+namespace AWC.IntegrationTest.DbContext
 {
     [Collection("Database Test")]
     public class PersonHrCreate_Tests : TestBase
