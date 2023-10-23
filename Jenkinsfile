@@ -23,20 +23,7 @@ pipeline {
         }
         stage('Integration Test') {
             steps {
-                script {
-                    docker.image('mcr.microsoft.com/mssql/server:2022-latest').withRun(
-                        '--volume awc-data:/var/opt/mssql/ ' +
-                        '--name awc-db ' +
-                        '--publish 1433:1433 ' + 
-                        '--env ACCEPT_EULA=Y ' +
-                        '--env MSSQL_SA_PASSWORD=Info99Gum ') {
-
-                        sh '''
-                            sleep 100
-                            dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTest
-                        '''
-                    }
-                }
+                sh "dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTest"
             } 
         }
     }
