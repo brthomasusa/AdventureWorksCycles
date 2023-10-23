@@ -18,8 +18,13 @@ pipeline {
         }
         stage('Unit Test') {
             steps {
-                sh "dotnet test --no-restore --nologo -v q"
+                sh "dotnet test --no-restore --nologo -v q --filter AWC.UnitTest"
             }
+        }
+        stage('Integration Test') {
+            steps {
+                sh "dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests"
+            } 
         }
     }
 }
