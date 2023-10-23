@@ -1,0 +1,5 @@
+﻿/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Company/CompanyModule.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Company/QueryParameters.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Employee/EmployeeModule.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Employee/QueryParameters.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/Lookups/LookupsModule.cs

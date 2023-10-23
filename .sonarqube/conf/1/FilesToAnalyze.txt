@@ -1,0 +1,6 @@
+﻿/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/Protos/HumanResources/grpc_company.proto
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/Protos/HumanResources/grpc_department.proto
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/Protos/HumanResources/grpc_employee.proto
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/Protos/HumanResources/grpc_shift.proto
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/Protos/Lookups/grpc_lookups.proto
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/Protos/Shared/shared.proto

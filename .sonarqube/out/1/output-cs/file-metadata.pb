@@ -1,0 +1,16 @@
+É
+x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/gRPC.Contracts.GlobalUsings.g.csutf-8í
+Ü/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.csutf-8z
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/Shared/Shared.csutf-8|
+s/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/Shared/SharedGrpc.csutf-8Ä
+u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/Lookups/GrpcLookups.csutf-8Ñ
+y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/Lookups/GrpcLookupsGrpc.csutf-8á
+|/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcCompany.csutf-8å
+Ä/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcCompanyGrpc.csutf-8ä
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcDepartment.csutf-8ç
+É/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcDepartmentGrpc.csutf-8Ö
+z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcShift.csutf-8á
+~/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcShiftGrpc.csutf-8à
+}/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcEmployee.csutf-8ç
+Å/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/Protos/HumanResources/GrpcEmployeeGrpc.csutf-8Å
+v/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/obj/Debug/net7.0/gRPC.Contracts.AssemblyInfo.csutf-8

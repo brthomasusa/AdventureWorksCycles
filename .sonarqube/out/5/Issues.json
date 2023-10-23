@@ -1,0 +1,410 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# Compiler",
+        "version": "4.7.0.0",
+        "fileVersion": "4.7.0-3.23416.9 (43b0b05c)",
+        "semanticVersion": "4.7.0",
+        "language": "en-US"
+      },
+      "results": [
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 21,
+                  "endLine": 9,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 89,
+                  "endLine": 17,
+                  "endColumn": 90
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 99,
+                  "endLine": 18,
+                  "endColumn": 100
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 103,
+                  "endLine": 19,
+                  "endColumn": 104
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 111,
+                  "endLine": 20,
+                  "endColumn": 112
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 89,
+                  "endLine": 25,
+                  "endColumn": 90
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 99,
+                  "endLine": 26,
+                  "endColumn": 100
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 103,
+                  "endLine": 27,
+                  "endColumn": 104
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 111,
+                  "endLine": 28,
+                  "endColumn": 112
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 89,
+                  "endLine": 32,
+                  "endColumn": 90
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 99,
+                  "endLine": 33,
+                  "endColumn": 100
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 103,
+                  "endLine": 34,
+                  "endColumn": 104
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 111,
+                  "endLine": 35,
+                  "endColumn": 112
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+2 (incl 1 for nesting)",
+              "1": "+2 (incl 1 for nesting)",
+              "10": "+2 (incl 1 for nesting)",
+              "11": "+2 (incl 1 for nesting)",
+              "2": "+2 (incl 1 for nesting)",
+              "3": "+2 (incl 1 for nesting)",
+              "4": "+2 (incl 1 for nesting)",
+              "5": "+2 (incl 1 for nesting)",
+              "6": "+2 (incl 1 for nesting)",
+              "7": "+2 (incl 1 for nesting)",
+              "8": "+2 (incl 1 for nesting)",
+              "9": "+2 (incl 1 for nesting)"
+            }
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 24,
+                  "endLine": 10,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 81,
+                  "endLine": 17,
+                  "endColumn": 82
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 91,
+                  "endLine": 18,
+                  "endColumn": 92
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 83,
+                  "endLine": 19,
+                  "endColumn": 84
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 95,
+                  "endLine": 20,
+                  "endColumn": 96
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 81,
+                  "endLine": 27,
+                  "endColumn": 82
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 91,
+                  "endLine": 28,
+                  "endColumn": 92
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 83,
+                  "endLine": 29,
+                  "endColumn": 84
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 95,
+                  "endLine": 31,
+                  "endColumn": 96
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 81,
+                  "endLine": 36,
+                  "endColumn": 82
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 91,
+                  "endLine": 37,
+                  "endColumn": 92
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 83,
+                  "endLine": 38,
+                  "endColumn": 84
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 39,
+                  "startColumn": 95,
+                  "endLine": 39,
+                  "endColumn": 96
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 91,
+                  "endLine": 45,
+                  "endColumn": 92
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 93,
+                  "endLine": 46,
+                  "endColumn": 94
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 71,
+                  "endLine": 62,
+                  "endColumn": 72
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+2 (incl 1 for nesting)",
+              "1": "+2 (incl 1 for nesting)",
+              "10": "+2 (incl 1 for nesting)",
+              "11": "+2 (incl 1 for nesting)",
+              "12": "+2 (incl 1 for nesting)",
+              "13": "+2 (incl 1 for nesting)",
+              "14": "+2 (incl 1 for nesting)",
+              "2": "+2 (incl 1 for nesting)",
+              "3": "+2 (incl 1 for nesting)",
+              "4": "+2 (incl 1 for nesting)",
+              "5": "+2 (incl 1 for nesting)",
+              "6": "+2 (incl 1 for nesting)",
+              "7": "+2 (incl 1 for nesting)",
+              "8": "+2 (incl 1 for nesting)",
+              "9": "+2 (incl 1 for nesting)"
+            }
+          }
+        }
+      ],
+      "rules": {
+        "S3776": {
+          "id": "S3776",
+          "shortDescription": "Cognitive Complexity of methods should not be too high",
+          "fullDescription": "Cognitive Complexity Complexity is a measure of how hard the control flow of a method is to understand.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3776",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

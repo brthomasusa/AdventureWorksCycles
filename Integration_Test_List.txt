@@ -23,7 +23,7 @@ dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.Repositorie
 
 
 // Only run test coverage on the AWC.Core project using exclude
-dotnet test --no-restore --nologo -v q /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=\"[*Application*]*,[*Client*]*,[*gRPC.Contracts*]*,[*Infrastructure*]*,[*Presentation*]*,[*Shared*]*,[*Server*]*\"
+dotnet test --no-restore --nologo -v q /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude=\"[*Application*]*,[*Core*]*,[*Infrastructure*]*,[*Presentation*]*,[*Server*]*\"
 reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:TestResults/core.html" -reporttypes:HTML;
 
 // Only the Application project using include
@@ -31,3 +31,34 @@ dotnet test --no-restore --nologo -v q --filter AWC.UnitTest  /p:CollectCoverage
 reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:TestResults/core.html" -reporttypes:HTML;
 
 dotnet test --no-restore --nologo -v q --filter AWC.IntegrationTests.HumanResources.CommandHandlers.HrCommandHandler_Tests
+
+dotnet sonarscanner begin /k:"AdventureWorks"
+    /d:sonar.login=squ_194d635ac46b5c944ab5d9ffe408546bdf515b49
+    /d:sonar.host.url=http://dell-svr:9000
+    /d:sonar.cs.cobertura.reportsPaths=cobertura.xml
+dotnet build --no-incremental
+coverlet /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/bin/Debug/net7.0/UnitTest.dll
+    --target "dotnet" 
+    --targetargs "test --no-restore --no-build --nologo -v q --filter AWC.UnitTest"
+    -f=cobertura 
+    -o="cobertura.xml"
+dotnet sonarscanner end /d:sonar.login=squ_194d635ac46b5c944ab5d9ffe408546bdf515b49
+
+dotnet sonarscanner begin /k:"AdventureWorks"
+    /d:sonar.login="squ_194d635ac46b5c944ab5d9ffe408546bdf515b49"
+    /d:sonar.cs.opencover.reportsPaths=coverage.xml
+dotnet build --no-incremental
+coverlet ./home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/bin/Debug/net7.0/UnitTest.dll
+    --target "dotnet" 
+    --targetargs "test --no-restore --no-build --nologo -v q --filter AWC.UnitTest"
+    -f=opencover 
+    -o="coverage.xml"
+dotnet sonarscanner end /d:sonar.login="squ_194d635ac46b5c944ab5d9ffe408546bdf515b49"
+
+Useful links:
+  - Available properties for SonarQube: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-msbuild/
+  - Available properties for SonarCloud: https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-for-net/
+  - Full list of Analysis Properties that can be specified with '/d:' : https://docs.sonarqube.org/latest/analysis/analysis-parameters/
+
+
+

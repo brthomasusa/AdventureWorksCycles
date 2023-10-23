@@ -1,0 +1,9 @@
+u
+l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Company/CompanyModule.csutf-8w
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Company/QueryParameters.csutf-8w
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Employee/EmployeeModule.csutf-8x
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/HumanResources/Employee/QueryParameters.csutf-8f
+]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/Lookups/LookupsModule.csutf-8
+t/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/obj/Debug/net7.0/Presentation.GlobalUsings.g.csutf-8ê
+Ñ/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.csutf-8}
+r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/obj/Debug/net7.0/Presentation.AssemblyInfo.csutf-8

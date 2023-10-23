@@ -1,0 +1,17 @@
+c
+Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/AddMapsterForUnitTest.csutf-8y
+p/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/CommandHandlers/EmployeeCommandHandler_Test.csutf-8b
+Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/CampanyTestData.csutf-8c
+Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/EmployeeTestData.csutf-8ï
+ã/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/CreateEmployeeCommandDataValidatorTest.csutf-8ô
+è/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/DepartmentistoryCommandCreateValidatorTest.csutf-8ì
+â/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/PayHistoryCommandCreateValidatorTest.csutf-8s
+j/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/HumanResources/CompanyAggregate_Tests.csutf-8Ä
+w/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Mappings/HumanResources/EmployeeMappingConfig_Test.csutf-8T
+K/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Usings.csutf-8n
+e/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/ValueObjects/HrValueObject_Tests.csutf-8r
+i/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/ValueObjects/SharedValueObject_Tests.csutf-8|
+q/home/bthomas/.nuget/packages/microsoft.net.test.sdk/17.5.0/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.Program.csutf-8x
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/obj/Debug/net7.0/UnitTest.GlobalUsings.g.csutf-8ç
+Å/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.csutf-8v
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/obj/Debug/net7.0/UnitTest.AssemblyInfo.csutf-8
