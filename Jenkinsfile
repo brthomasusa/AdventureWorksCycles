@@ -16,15 +16,15 @@ pipeline {
                 sh "dotnet build -m ${workspace}/AdventureWorksCycles.sln"    
             }
         }
-        stage('Unit Test') {
-            steps {
-                sh "dotnet test --no-restore --no-build --nologo -v q --filter AWC.UnitTest"
-            }
-        }
         stage('Integration Test') {
             steps {
                 sh "dotnet test --no-restore --no-build --nologo -v q --filter AWC.IntegrationTest"
             } 
+        }        
+        stage('Unit Test') {
+            steps {
+                sh "dotnet test --no-restore --no-build --nologo -v q --filter AWC.UnitTest"
+            }
         }
     }
 }
