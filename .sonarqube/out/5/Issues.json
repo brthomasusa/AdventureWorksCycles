@@ -12,390 +12,157 @@
       },
       "results": [
         {
-          "ruleId": "S3776",
+          "ruleId": "CS8604",
           "level": "warning",
-          "message": "Refactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.",
+          "message": "Possible null reference argument for parameter 'methodInfo' in 'DbFunctionBuilder RelationalModelBuilderExtensions.HasDbFunction(ModelBuilder modelBuilder, MethodInfo methodInfo)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/EfCoreContext.cs",
                 "region": {
-                  "startLine": 9,
-                  "startColumn": 21,
-                  "endLine": 9,
-                  "endColumn": 29
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 17,
-                  "startColumn": 89,
-                  "endLine": 17,
-                  "endColumn": 90
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 18,
-                  "startColumn": 99,
-                  "endLine": 18,
-                  "endColumn": 100
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 19,
-                  "startColumn": 103,
-                  "endLine": 19,
-                  "endColumn": 104
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 20,
-                  "startColumn": 111,
-                  "endLine": 20,
-                  "endColumn": 112
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 25,
-                  "startColumn": 89,
-                  "endLine": 25,
-                  "endColumn": 90
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 26,
-                  "startColumn": 99,
-                  "endLine": 26,
-                  "endColumn": 100
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 27,
-                  "startColumn": 103,
-                  "endLine": 27,
-                  "endColumn": 104
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 28,
-                  "startColumn": 111,
-                  "endLine": 28,
-                  "endColumn": 112
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 32,
-                  "startColumn": 89,
-                  "endLine": 32,
-                  "endColumn": 90
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 33,
-                  "startColumn": 99,
-                  "endLine": 33,
-                  "endColumn": 100
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 34,
-                  "startColumn": 103,
-                  "endLine": 34,
-                  "endColumn": 104
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/CompanyMappingConfig.cs",
-                "region": {
-                  "startLine": 35,
-                  "startColumn": 111,
-                  "endLine": 35,
-                  "endColumn": 112
+                  "startLine": 43,
+                  "startColumn": 44,
+                  "endLine": 43,
+                  "endColumn": 119
                 }
               }
             }
           ],
           "properties": {
-            "warningLevel": 1,
-            "customProperties": {
-              "0": "+2 (incl 1 for nesting)",
-              "1": "+2 (incl 1 for nesting)",
-              "10": "+2 (incl 1 for nesting)",
-              "11": "+2 (incl 1 for nesting)",
-              "2": "+2 (incl 1 for nesting)",
-              "3": "+2 (incl 1 for nesting)",
-              "4": "+2 (incl 1 for nesting)",
-              "5": "+2 (incl 1 for nesting)",
-              "6": "+2 (incl 1 for nesting)",
-              "7": "+2 (incl 1 for nesting)",
-              "8": "+2 (incl 1 for nesting)",
-              "9": "+2 (incl 1 for nesting)"
-            }
+            "warningLevel": 1
           }
         },
         {
-          "ruleId": "S3776",
+          "ruleId": "S4487",
           "level": "warning",
-          "message": "Refactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.",
+          "message": "Remove this unread private field '_mapper' or refactor the code to use its value.",
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/CompanyWriteRepository.cs",
                 "region": {
-                  "startLine": 10,
-                  "startColumn": 24,
-                  "endLine": 10,
-                  "endColumn": 32
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 17,
-                  "startColumn": 81,
-                  "endLine": 17,
-                  "endColumn": 82
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 18,
-                  "startColumn": 91,
-                  "endLine": 18,
-                  "endColumn": 92
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 19,
-                  "startColumn": 83,
-                  "endLine": 19,
-                  "endColumn": 84
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 20,
-                  "startColumn": 95,
-                  "endLine": 20,
-                  "endColumn": 96
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 27,
-                  "startColumn": 81,
-                  "endLine": 27,
-                  "endColumn": 82
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 28,
-                  "startColumn": 91,
-                  "endLine": 28,
-                  "endColumn": 92
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 29,
-                  "startColumn": 83,
-                  "endLine": 29,
-                  "endColumn": 84
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 31,
-                  "startColumn": 95,
-                  "endLine": 31,
-                  "endColumn": 96
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 36,
-                  "startColumn": 81,
-                  "endLine": 36,
-                  "endColumn": 82
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 37,
-                  "startColumn": 91,
-                  "endLine": 37,
-                  "endColumn": 92
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 38,
-                  "startColumn": 83,
-                  "endLine": 38,
-                  "endColumn": 84
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 39,
-                  "startColumn": 95,
-                  "endLine": 39,
-                  "endColumn": 96
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 45,
-                  "startColumn": 91,
-                  "endLine": 45,
-                  "endColumn": 92
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 46,
-                  "startColumn": 93,
-                  "endLine": 46,
-                  "endColumn": 94
-                }
-              }
-            },
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Utilities/Mapping/EmployeeMappingConfig.cs",
-                "region": {
-                  "startLine": 62,
-                  "startColumn": 71,
-                  "endLine": 62,
-                  "endColumn": 72
+                  "startLine": 23,
+                  "startColumn": 34,
+                  "endLine": 23,
+                  "endColumn": 41
                 }
               }
             }
           ],
           "properties": {
-            "warningLevel": 1,
-            "customProperties": {
-              "0": "+2 (incl 1 for nesting)",
-              "1": "+2 (incl 1 for nesting)",
-              "10": "+2 (incl 1 for nesting)",
-              "11": "+2 (incl 1 for nesting)",
-              "12": "+2 (incl 1 for nesting)",
-              "13": "+2 (incl 1 for nesting)",
-              "14": "+2 (incl 1 for nesting)",
-              "2": "+2 (incl 1 for nesting)",
-              "3": "+2 (incl 1 for nesting)",
-              "4": "+2 (incl 1 for nesting)",
-              "5": "+2 (incl 1 for nesting)",
-              "6": "+2 (incl 1 for nesting)",
-              "7": "+2 (incl 1 for nesting)",
-              "8": "+2 (incl 1 for nesting)",
-              "9": "+2 (incl 1 for nesting)"
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S6603",
+          "level": "warning",
+          "message": "The collection-specific \"TrueForAll\" method should be used instead of the \"All\" extension",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Specifications/HumanResources/ValidateEmployeeEmailIsUniqueSpec.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 50,
+                  "endLine": 13,
+                  "endColumn": 53
+                }
+              }
             }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1116",
+          "level": "warning",
+          "message": "Remove this empty statement.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/EmployeeWriteRepository.cs",
+                "region": {
+                  "startLine": 305,
+                  "startColumn": 14,
+                  "endLine": 305,
+                  "endColumn": 15
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
           }
         }
       ],
       "rules": {
-        "S3776": {
-          "id": "S3776",
-          "shortDescription": "Cognitive Complexity of methods should not be too high",
-          "fullDescription": "Cognitive Complexity Complexity is a measure of how hard the control flow of a method is to understand.",
+        "CS8604": {
+          "id": "CS8604",
+          "shortDescription": "Possible null reference argument.",
           "defaultLevel": "warning",
-          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3776",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8604)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "S1116": {
+          "id": "S1116",
+          "shortDescription": "Empty statements should be removed",
+          "fullDescription": "Empty statements, i.e. ;, are usually introduced by mistake, for example because:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1116",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S4487": {
+          "id": "S4487",
+          "shortDescription": "Unread \"private\" fields should be removed",
+          "fullDescription": "Private fields which are written but never read are a case of \"dead store\". Changing the value of such a field is useless and most probably indicates an error in the code.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-4487",
           "properties": {
             "category": "Critical Code Smell",
-            "isEnabledByDefault": false,
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S6603": {
+          "id": "S6603",
+          "shortDescription": "The collection-specific \"TrueForAll\" method should be used instead of the \"All\" extension",
+          "fullDescription": "Both the List.TrueForAll method and the IEnumerable.All method can be used to check if all list elements satisfy a given condition in a collection. However, List.TrueForAll can be faster than IEnumerable.All for List objects. The performance difference may be minor for small collections, but for large collections, it can be noticeable.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-6603",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
             "tags": [
               "C#",
               "MainSourceScope",

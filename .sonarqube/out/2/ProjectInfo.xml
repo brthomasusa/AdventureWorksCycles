@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-  <ProjectName>Shared</ProjectName>
+  <ProjectName>gRPC.Contracts</ProjectName>
   <ProjectLanguage>C#</ProjectLanguage>
   <ProjectType>Product</ProjectType>
-  <ProjectGuid>4ecd0efd-2707-4d8d-bc6b-fccf68ce33cd</ProjectGuid>
-  <FullPath>/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Shared.csproj</FullPath>
+  <ProjectGuid>ca0b12a9-5709-4cdb-b784-7dad79b19fc6</ProjectGuid>
+  <FullPath>/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/gRPC.Contracts.csproj</FullPath>
   <IsExcluded>false</IsExcluded>
   <AnalysisResults>
     <AnalysisResult Id="FilesToAnalyze" Location="/home/bthomas/Projects/NetCore/AdventureWorksCycles/.sonarqube/conf/2/FilesToAnalyze.txt" />

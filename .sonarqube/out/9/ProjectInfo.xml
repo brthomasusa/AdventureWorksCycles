@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-  <ProjectName>IntegrationTest</ProjectName>
+  <ProjectName>UnitTest</ProjectName>
   <ProjectLanguage>C#</ProjectLanguage>
   <ProjectType>Test</ProjectType>
-  <ProjectGuid>3518ff0f-68ce-48bf-be56-7f5620758e57</ProjectGuid>
-  <FullPath>/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/IntegrationTest.csproj</FullPath>
+  <ProjectGuid>be2588d0-f85e-4975-9ead-df0ea070d587</ProjectGuid>
+  <FullPath>/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/UnitTest.csproj</FullPath>
   <IsExcluded>false</IsExcluded>
   <AnalysisResults>
     <AnalysisResult Id="FilesToAnalyze" Location="/home/bthomas/Projects/NetCore/AdventureWorksCycles/.sonarqube/conf/9/FilesToAnalyze.txt" />

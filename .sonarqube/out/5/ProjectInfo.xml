@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-  <ProjectName>Client</ProjectName>
+  <ProjectName>Infrastructure</ProjectName>
   <ProjectLanguage>C#</ProjectLanguage>
   <ProjectType>Product</ProjectType>
-  <ProjectGuid>de508496-5210-4458-b6ff-b4e8d865489b</ProjectGuid>
-  <FullPath>/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Client.csproj</FullPath>
+  <ProjectGuid>fdfea9a2-9f35-4d4b-9c92-9747f2077ae1</ProjectGuid>
+  <FullPath>/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Infrastructure.csproj</FullPath>
   <IsExcluded>false</IsExcluded>
   <AnalysisResults>
     <AnalysisResult Id="FilesToAnalyze" Location="/home/bthomas/Projects/NetCore/AdventureWorksCycles/.sonarqube/conf/5/FilesToAnalyze.txt" />
