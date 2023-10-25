@@ -21,12 +21,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Behaviors/BusinessRulesValidationBehavior.cs",
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Behaviors/FluentValidationBehavior.cs",
                 "region": {
-                  "startLine": 34,
-                  "startColumn": 24,
-                  "endLine": 34,
-                  "endColumn": 45
+                  "startLine": 39,
+                  "startColumn": 28,
+                  "endLine": 39,
+                  "endColumn": 128
                 }
               }
             }
@@ -45,12 +45,12 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Behaviors/FluentValidationBehavior.cs",
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Behaviors/BusinessRulesValidationBehavior.cs",
                 "region": {
-                  "startLine": 39,
-                  "startColumn": 28,
-                  "endLine": 39,
-                  "endColumn": 128
+                  "startLine": 34,
+                  "startColumn": 24,
+                  "endLine": 34,
+                  "endColumn": 45
                 }
               }
             }
