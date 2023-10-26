@@ -6,7 +6,7 @@
       "tool": {
         "name": "Microsoft (R) Visual C# Compiler",
         "version": "4.7.0.0",
-        "fileVersion": "4.7.0-3.23416.9 (43b0b05c)",
+        "fileVersion": "4.7.0-3.23465.3 (b5c9211b)",
         "semanticVersion": "4.7.0",
         "language": "en-US"
       },
@@ -267,31 +267,21 @@
           }
         },
         {
-          "ruleId": "S4144",
+          "ruleId": "S4035",
           "level": "warning",
-          "message": "Update this method so that its implementation is not identical to 'LessThan'.",
+          "message": "Seal class 'ValueObject' or implement 'IEqualityComparer<T>' instead.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstNumberExtensions.cs",
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.cs",
                 "region": {
-                  "startLine": 34,
+                  "startLine": 7,
                   "startColumn": 27,
-                  "endLine": 34,
+                  "endLine": 7,
                   "endColumn": 38
-                }
-              }
-            }
-          ],
-          "relatedLocations": [
-            {
-              "physicalLocation": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstNumberExtensions.cs",
-                "region": {
-                  "startLine": 6,
-                  "startColumn": 27,
-                  "endLine": 6,
-                  "endColumn": 35
                 }
               }
             }
@@ -316,30 +306,6 @@
                   "startColumn": 28,
                   "endLine": 7,
                   "endColumn": 39
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "S4035",
-          "level": "warning",
-          "message": "Seal class 'ValueObject' or implement 'IEqualityComparer<T>' instead.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.cs",
-                "region": {
-                  "startLine": 7,
-                  "startColumn": 27,
-                  "endLine": 7,
-                  "endColumn": 38
                 }
               }
             }
@@ -429,23 +395,6 @@
           "fullDescription": "When a class implements the IEquatable<T> interface, it enters a contract that, in effect, states \"I know how to compare two instances of type T or any type derived from T for equality.\". However if that class is derived, it is very unlikely that the base class will know how to make a meaningful comparison. Therefore that implicit contract is now broken.",
           "defaultLevel": "warning",
           "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-4035",
-          "properties": {
-            "category": "Major Code Smell",
-            "isEnabledByDefault": true,
-            "tags": [
-              "C#",
-              "MainSourceScope",
-              "TestSourceScope",
-              "SonarWay"
-            ]
-          }
-        },
-        "S4144": {
-          "id": "S4144",
-          "shortDescription": "Methods should not have identical implementations",
-          "fullDescription": "Two methods having the same implementation are suspicious. It might be that something else was intended. Or the duplication is intentional, which becomes a maintenance burden.",
-          "defaultLevel": "warning",
-          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-4144",
           "properties": {
             "category": "Major Code Smell",
             "isEnabledByDefault": true,

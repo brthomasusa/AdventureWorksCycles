@@ -1,4 +1,4 @@
-#pragma warning disable S1854
+#pragma warning disable S1854, S4487
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

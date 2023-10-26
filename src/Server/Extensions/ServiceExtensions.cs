@@ -24,11 +24,13 @@ namespace AWC.Server.Extensions
                 .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding", "validation-errors-text"));
             });
 
-        public static void ConfigureEfCoreDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureEfCoreDbContext(this IServiceCollection services)
         {
+            string? _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
+
             services.AddDbContext<AwcContext>(options =>
                 options.UseSqlServer(
-                    configuration["ConnectionStrings:mssql-server"],
+                    _connectionString,
                     msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(AwcContext).Assembly.FullName)
                 )
                 .EnableSensitiveDataLogging()
@@ -36,9 +38,10 @@ namespace AWC.Server.Extensions
             );
         }
 
-        public static void ConfigureDapper(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureDapper(this IServiceCollection services)
         {
-            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(configuration!["ConnectionStrings:mssql-server"]));
+            string? _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
+            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(_connectionString));
         }
 
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)

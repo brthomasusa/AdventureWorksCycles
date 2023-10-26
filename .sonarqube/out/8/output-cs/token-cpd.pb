@@ -2535,7 +2535,7 @@ Extensions 
 ;v w
 } 	
 } 
-} €/
+} Å0
 ^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs
 	namespace 	
 AWC
@@ -2619,238 +2619,247 @@ Extensions 
 this4 8
 IServiceCollection9 K
 servicesL T
-,T U
-IConfigurationV d
-configuratione r
-)r s
-{ 	
-services 
-. 
-AddDbContext !
-<! "
+)T U
+{ 	
+string 
+? 
+_connectionString %
+=& '
+Environment( 3
+.3 4"
+GetEnvironmentVariable4 J
+(J K
+$strK n
+)n o
+;o p
+services 
+. 
+AddDbContext !
+<! "
 
-AwcContext" ,
->, -
-(- .
-options. 5
-=>6 8
-options 
-. 
-UseSqlServer $
-($ %
-configuration !
-[! "
-$str" B
-]B C
-,C D
-msSqlOptions    
-=>  ! #
-msSqlOptions  $ 0
-.  0 1
-MigrationsAssembly  1 C
-(  C D
-typeof  D J
-(  J K
+AwcContext" ,
+>, -
+(- .
+options. 5
+=>6 8
+options   
+.   
+UseSqlServer   $
+(  $ %
+_connectionString!! %
+,!!% &
+msSqlOptions""  
+=>""! #
+msSqlOptions""$ 0
+.""0 1
+MigrationsAssembly""1 C
+(""C D
+typeof""D J
+(""J K
 
-AwcContext  K U
-)  U V
-.  V W
-Assembly  W _
-.  _ `
-FullName  ` h
-)  h i
-)!! 
-."" &
-EnableSensitiveDataLogging"" +
-(""+ ,
-)"", -
-.##  
-EnableDetailedErrors## %
-(##% &
-)##& '
-)$$ 
-;$$ 
-}%% 	
-public'' 
-static'' 
-void'' 
-ConfigureDapper'' *
-(''* +
-this''+ /
-IServiceCollection''0 B
-services''C K
-,''K L
-IConfiguration''M [
-configuration''\ i
-)''i j
-{(( 	
-_)) 
-=)) 
-services)) 
-.)) 
-AddSingleton)) %
-<))% &
-DapperContext))& 3
->))3 4
-())4 5
-_))5 6
-=>))7 9
-new)): =
-DapperContext))> K
-())K L
-configuration))L Y
-!))Y Z
-[))Z [
-$str))[ {
-])){ |
-)))| }
-)))} ~
-;))~ 
-}** 	
-public,, 
-static,, 
-IServiceCollection,, (%
-AddInfrastructureServices,,) B
-(,,B C
-this,,C G
-IServiceCollection,,H Z
-services,,[ c
-),,c d
-{-- 	
-return.. 
-services.. 
-.// 
-	AddScoped// 
-<// 
-IUnitOfWork// &
-,//& '
+AwcContext""K U
+)""U V
+.""V W
+Assembly""W _
+.""_ `
+FullName""` h
+)""h i
+)## 
+.$$ &
+EnableSensitiveDataLogging$$ +
+($$+ ,
+)$$, -
+.%%  
+EnableDetailedErrors%% %
+(%%% &
+)%%& '
+)&& 
+;&& 
+}'' 	
+public)) 
+static)) 
+void)) 
+ConfigureDapper)) *
+())* +
+this))+ /
+IServiceCollection))0 B
+services))C K
+)))K L
+{** 	
+string++ 
+?++ 
+_connectionString++ %
+=++& '
+Environment++( 3
+.++3 4"
+GetEnvironmentVariable++4 J
+(++J K
+$str++K n
+)++n o
+;++o p
+_,, 
+=,, 
+services,, 
+.,, 
+AddSingleton,, %
+<,,% &
+DapperContext,,& 3
+>,,3 4
+(,,4 5
+_,,5 6
+=>,,7 9
+new,,: =
+DapperContext,,> K
+(,,K L
+_connectionString,,L ]
+),,] ^
+),,^ _
+;,,_ `
+}-- 	
+public// 
+static// 
+IServiceCollection// (%
+AddInfrastructureServices//) B
+(//B C
+this//C G
+IServiceCollection//H Z
+services//[ c
+)//c d
+{00 	
+return11 
+services11 
+.22 
+	AddScoped22 
+<22 
+IUnitOfWork22 &
+,22& '
 
-UnitOfWork//( 2
->//2 3
-(//3 4
-)//4 5
-;//5 6
-}00 	
-public22 
-static22 
-IServiceCollection22 (!
-AddRepositoryServices22) >
-(22> ?
-this22? C
-IServiceCollection22D V
-services22W _
-)22_ `
-{33 	
-return44 
-services44 
-.55 
-	AddScoped55 
-<55 #
-IWriteRepositoryManager55 2
-,552 3"
-WriteRepositoryManager554 J
->55J K
-(55K L
-)55L M
-.66 
-	AddScoped66 
-<66 "
-IReadRepositoryManager66 1
-,661 2!
-ReadRepositoryManager663 H
->66H I
-(66I J
-)66J K
-.77 
-	AddScoped77 
-<77 (
-IValidationRepositoryManager77 7
-,777 8'
-ValidationRepositoryManager779 T
->77T U
-(77U V
-)77V W
+UnitOfWork22( 2
+>222 3
+(223 4
+)224 5
+;225 6
+}33 	
+public55 
+static55 
+IServiceCollection55 (!
+AddRepositoryServices55) >
+(55> ?
+this55? C
+IServiceCollection55D V
+services55W _
+)55_ `
+{66 	
+return77 
+services77 
 .88 
 	AddScoped88 
-<88 %
-ILookupsRepositoryManager88 4
-,884 5$
-LookupsRepositoryManager886 N
->88N O
-(88O P
-)88P Q
-;88Q R
-}99 	
-public;; 
-static;; 
-IServiceCollection;; (
-AddMappings;;) 4
-(;;4 5
-this;;5 9
-IServiceCollection;;: L
-services;;M U
-);;U V
-{<< 	
-var== 
-config== 
-=== 
-TypeAdapterConfig== *
-.==* +
-GlobalSettings==+ 9
-;==9 :
-config>> 
-.>> 
-Scan>> 
-(>> 
-ServerAssembly?? 
-.?? 
-Instance?? '
-,??' ("
-InfrastructureAssembly@@ &
-.@@& '
-Instance@@' /
-,@@/ 0
-ApplicationAssemblyAA #
-.AA# $
-InstanceAA$ ,
-)BB 
-;BB 
-configCC 
-.CC 
-DefaultCC 
-.CC  
-NameMatchingStrategyCC /
-(CC/ 0 
-NameMatchingStrategyCC0 D
-.CCD E
+<88 #
+IWriteRepositoryManager88 2
+,882 3"
+WriteRepositoryManager884 J
+>88J K
+(88K L
+)88L M
+.99 
+	AddScoped99 
+<99 "
+IReadRepositoryManager99 1
+,991 2!
+ReadRepositoryManager993 H
+>99H I
+(99I J
+)99J K
+.:: 
+	AddScoped:: 
+<:: (
+IValidationRepositoryManager:: 7
+,::7 8'
+ValidationRepositoryManager::9 T
+>::T U
+(::U V
+)::V W
+.;; 
+	AddScoped;; 
+<;; %
+ILookupsRepositoryManager;; 4
+,;;4 5$
+LookupsRepositoryManager;;6 N
+>;;N O
+(;;O P
+);;P Q
+;;;Q R
+}<< 	
+public>> 
+static>> 
+IServiceCollection>> (
+AddMappings>>) 4
+(>>4 5
+this>>5 9
+IServiceCollection>>: L
+services>>M U
+)>>U V
+{?? 	
+var@@ 
+config@@ 
+=@@ 
+TypeAdapterConfig@@ *
+.@@* +
+GlobalSettings@@+ 9
+;@@9 :
+configAA 
+.AA 
+ScanAA 
+(AA 
+ServerAssemblyBB 
+.BB 
+InstanceBB '
+,BB' ("
+InfrastructureAssemblyCC &
+.CC& '
+InstanceCC' /
+,CC/ 0
+ApplicationAssemblyDD #
+.DD# $
+InstanceDD$ ,
+)EE 
+;EE 
+configFF 
+.FF 
+DefaultFF 
+.FF  
+NameMatchingStrategyFF /
+(FF/ 0 
+NameMatchingStrategyFF0 D
+.FFD E
 
-IgnoreCaseCCE O
-)CCO P
-;CCP Q
-servicesEE 
-.EE 
-AddSingletonEE !
-(EE! "
-configEE" (
-)EE( )
-;EE) *
-servicesFF 
-.FF 
-	AddScopedFF 
-<FF 
-IMapperFF &
-,FF& '
-ServiceMapperFF( 5
->FF5 6
-(FF6 7
-)FF7 8
-;FF8 9
-returnHH 
-servicesHH 
-;HH 
-}II 	
-}JJ 
-}KK Š?
+IgnoreCaseFFE O
+)FFO P
+;FFP Q
+servicesHH 
+.HH 
+AddSingletonHH !
+(HH! "
+configHH" (
+)HH( )
+;HH) *
+servicesII 
+.II 
+	AddScopedII 
+<II 
+IMapperII &
+,II& '
+ServiceMapperII( 5
+>II5 6
+(II6 7
+)II7 8
+;II8 9
+returnKK 
+servicesKK 
+;KK 
+}LL 	
+}MM 
+}NN Š?
 g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Interceptors/ServerTracingInterceptor.cs
 	namespace 	
 AWC
@@ -5954,133 +5963,156 @@ ErrorModel		 
 TraceIdentifier8 G
 ;G H
 } 
-} •K
+} —J
 I/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Program.cs
-var 
-logger 
+var 
+logger 
 
-= 
-NLog 
-. 
+= 
+NLog 
+. 
 
-LogManager 
-. 
-Setup "
-(" #
-)# $
-.$ %,
- LoadConfigurationFromAppSettings% E
-(E F
-)F G
-.G H!
-GetCurrentClassLoggerH ]
-(] ^
-)^ _
-;_ `"
-GlobalDiagnosticsContext 
-. 
-Set 
-( 
-$str +
-,+ ,
-	Directory- 6
-.6 7
-GetCurrentDirectory7 J
-(J K
-)K L
-)L M
-;M N
-logger 
-. 
-Debug 
-( 
-$str 
-) 
-; 
-try 
-{ 
-var 
-builder 
-= 
-WebApplication  
-.  !
-CreateBuilder! .
-(. /
-args/ 3
-)3 4
-;4 5
+LogManager 
+. 
+Setup "
+(" #
+)# $
+.$ %,
+ LoadConfigurationFromAppSettings% E
+(E F
+)F G
+.G H!
+GetCurrentClassLoggerH ]
+(] ^
+)^ _
+;_ `"
+GlobalDiagnosticsContext 
+. 
+Set 
+( 
+$str +
+,+ ,
+	Directory- 6
+.6 7
+GetCurrentDirectory7 J
+(J K
+)K L
+)L M
+;M N
+logger 
+. 
+Debug 
+( 
+$str 
+) 
+; 
+try 
+{ 
+var 
+builder 
+= 
+WebApplication  
+.  !
+CreateBuilder! .
+(. /
+args/ 3
+)3 4
+;4 5
+builder 
+. 
+Logging 
+. 
+ClearProviders "
+(" #
+)# $
+;$ %
 builder 
 . 
 Logging 
-. 
-ClearProviders "
-(" #
-)# $
-;$ %
-builder 
-. 
-Logging 
-. 
+. 
 
-AddConsole 
-( 
-)  
-;  !
-builder 
-. 
-Host 
-. 
-UseNLog 
-( 
-) 
-; 
+AddConsole 
+( 
+)  
+;  !
+builder 
+. 
+Host 
+. 
+UseNLog 
+( 
+) 
+; 
+builder 
+. 
+Services 
+. #
+AddControllersWithViews ,
+(, -
+)- .
+;. /
 builder 
 . 
 Services 
-. #
-AddControllersWithViews ,
-(, -
-)- .
-;. /
+. 
+AddRazorPages "
+(" #
+)# $
+;$ %
 builder 
 . 
 Services 
-. 
-AddRazorPages "
-(" #
-)# $
-;$ %
+. 
+	AddCarter 
+( 
+)  
+;  !
 builder 
 . 
 Services 
-. 
-	AddCarter 
-( 
-)  
-;  !
+. 
+
+AddMediatR 
+(  
+ApplicationAssembly  3
+.3 4
+Instance4 <
+)< =
+;= >
 builder 
 . 
 Services 
-. 
-
-AddMediatR 
-(  
-ApplicationAssembly  3
-.3 4
-Instance4 <
-)< =
-;= >
+. /
+#AddValidatorsFromAssemblyContaining 8
+<8 9'
+CreateEmployeeDataValidator9 T
+>T U
+(U V
+)V W
+;W X
 builder   
 .   
 Services   
-.   /
-#AddValidatorsFromAssemblyContaining   8
-<  8 9'
-CreateEmployeeDataValidator  9 T
->  T U
-(  U V
+.   
+	AddScoped   
+(   
+typeof   %
+(  % &
+IPipelineBehavior  & 7
+<  7 8
+,  8 9
+>  9 :
+)  : ;
+,  ; <
+typeof  = C
+(  C D
+LoggingBehavior  D S
+<  S T
+,  T U
+>  U V
 )  V W
-;  W X
+)  W X
+;  X Y
 builder!! 
 .!! 
 Services!! 
@@ -6096,14 +6128,14 @@ AddMediatR 
 )!!: ;
 ,!!; <
 typeof!!= C
-(!!C D
-LoggingBehavior!!D S
-<!!S T
-,!!T U
->!!U V
-)!!V W
-)!!W X
-;!!X Y
+(!!C D$
+FluentValidationBehavior!!D \
+<!!\ ]
+,!!] ^
+>!!^ _
+)!!_ `
+)!!` a
+;!!a b
 builder"" 
 ."" 
 Services"" 
@@ -6119,263 +6151,248 @@ AddMediatR 
 )"": ;
 ,""; <
 typeof""= C
-(""C D$
-FluentValidationBehavior""D \
-<""\ ]
-,""] ^
->""^ _
-)""_ `
-)""` a
-;""a b
+(""C D+
+BusinessRulesValidationBehavior""D c
+<""c d
+,""d e
+>""e f
+)""f g
+)""g h
+;""h i
 builder## 
 .## 
 Services## 
-.## 
-	AddScoped## 
-(## 
-typeof## %
-(##% &
-IPipelineBehavior##& 7
-<##7 8
-,##8 9
->##9 :
-)##: ;
-,##; <
-typeof##= C
-(##C D+
-BusinessRulesValidationBehavior##D c
-<##c d
-,##d e
->##e f
-)##f g
-)##g h
-;##h i
-builder$$ 
-.$$ 
-Services$$ 
-.$$ '
-AddPipelineBehaviorServices$$ 0
-($$0 1
-)$$1 2
-;$$2 3
+.## '
+AddPipelineBehaviorServices## 0
+(##0 1
+)##1 2
+;##2 3
+builder&& 
+.&& 
+Services&& 
+.&& 
+ConfigureCors&& "
+(&&" #
+)&&# $
+;&&$ %
 builder'' 
 .'' 
 Services'' 
-.'' 
-ConfigureCors'' "
-(''" #
-)''# $
-;''$ %
+.'' %
+AddInfrastructureServices'' .
+(''. /
+)''/ 0
+;''0 1
 builder(( 
 .(( 
 Services(( 
-.(( %
-AddInfrastructureServices(( .
-(((. /
-)((/ 0
-;((0 1
+.(( $
+ConfigureEfCoreDbContext(( -
+(((- .
+)((. /
+;((/ 0
 builder)) 
 .)) 
 Services)) 
-.)) $
-ConfigureEfCoreDbContext)) -
-())- .
-builder)). 5
-.))5 6
-Configuration))6 C
-)))C D
-;))D E
+.)) 
+ConfigureDapper)) $
+())$ %
+)))% &
+;))& '
 builder** 
 .** 
 Services** 
-.** 
-ConfigureDapper** $
-(**$ %
-builder**% ,
-.**, -
-Configuration**- :
-)**: ;
-;**; <
+.** 
+AddMappings**  
+(**  !
+)**! "
+;**" #
 builder++ 
 .++ 
 Services++ 
-.++ 
-AddMappings++  
-(++  !
-)++! "
-;++" #
+.++ !
+AddRepositoryServices++ *
+(++* +
+)+++ ,
+;++, -
 builder,, 
 .,, 
 Services,, 
-.,, !
-AddRepositoryServices,, *
-(,,* +
-),,+ ,
-;,,, -
-builder-- 
-.-- 
-Services-- 
-.-- 
-AddTransient-- !
-<--! "'
-ExceptionHandlingMiddleware--" =
->--= >
-(--> ?
-)--? @
-;--@ A
-builder// 
-.// 
-Services// 
-.// 
-AddGrpc// 
-(// 
-options// $
-=>//% '
-{00 
+.,, 
+AddTransient,, !
+<,,! "'
+ExceptionHandlingMiddleware,," =
+>,,= >
+(,,> ?
+),,? @
+;,,@ A
+builder.. 
+... 
+Services.. 
+... 
+AddGrpc.. 
+(.. 
+options.. $
+=>..% '
+{// 
+options00 
+.00  
+EnableDetailedErrors00 $
+=00% &
+Environment00' 2
+.002 3"
+GetEnvironmentVariable003 I
+(00I J
+$str00J b
+)00b c
+==00d f
+$str00g t
+;00t u
 options11 
-.11  
-EnableDetailedErrors11 $
-=11% &
-Environment11' 2
-.112 3"
-GetEnvironmentVariable113 I
-(11I J
-$str11J b
-)11b c
-==11d f
-$str11g t
-;11t u
-options22 
-.22 
-Interceptors22 
-.22 
-Add22  
-<22  !$
-ServerTracingInterceptor22! 9
->229 :
-(22: ;
-)22; <
-;22< =
-}33 
-)33 
-;33 
-builder55 
-.55 
-Services55 
-.55 
-AddGrpcReflection55 &
-(55& '
-)55' (
-;55( )
-var77 
-app77 
-=77 
-builder77 
-.77 
-Build77 
-(77 
-)77 
-;77 
-if:: 
-(:: 
-app:: 
-.:: 
-Environment:: 
-.:: 
-IsDevelopment:: %
-(::% &
-)::& '
-)::' (
-{;; 
-app<< 
-.<< #
-UseWebAssemblyDebugging<< #
-(<<# $
-)<<$ %
-;<<% &
-}== 
-else>> 
-{?? 
-app@@ 
-.@@ 
-UseExceptionHandler@@ 
-(@@  
-$str@@  (
-)@@( )
-;@@) *
-appBB 
-.BB 
-UseHstsBB 
-(BB 
-)BB 
-;BB 
-}CC 
+.11 
+Interceptors11 
+.11 
+Add11  
+<11  !$
+ServerTracingInterceptor11! 9
+>119 :
+(11: ;
+)11; <
+;11< =
+}22 
+)22 
+;22 
+builder44 
+.44 
+Services44 
+.44 
+AddGrpcReflection44 &
+(44& '
+)44' (
+;44( )
+var66 
+app66 
+=66 
+builder66 
+.66 
+Build66 
+(66 
+)66 
+;66 
+if99 
+(99 
+app99 
+.99 
+Environment99 
+.99 
+IsDevelopment99 %
+(99% &
+)99& '
+)99' (
+{:: 
+app;; 
+.;; #
+UseWebAssemblyDebugging;; #
+(;;# $
+);;$ %
+;;;% &
+}<< 
+else== 
+{>> 
+app?? 
+.?? 
+UseExceptionHandler?? 
+(??  
+$str??  (
+)??( )
+;??) *
+appAA 
+.AA 
+UseHstsAA 
+(AA 
+)AA 
+;AA 
+}BB 
+appDD 
+.DD 
+UseHttpsRedirectionDD 
+(DD 
+)DD 
+;DD 
 appEE 
-.EE 
-UseHttpsRedirectionEE 
-(EE 
-)EE 
-;EE 
+.EE 
+UseMiddlewareEE 
+<EE '
+ExceptionHandlingMiddlewareEE 1
+>EE1 2
+(EE2 3
+)EE3 4
+;EE4 5
 appFF 
-.FF 
-UseMiddlewareFF 
-<FF '
-ExceptionHandlingMiddlewareFF 1
->FF1 2
-(FF2 3
-)FF3 4
-;FF4 5
+.FF #
+UseBlazorFrameworkFilesFF 
+(FF  
+)FF  !
+;FF! "
 appGG 
-.GG #
-UseBlazorFrameworkFilesGG 
-(GG  
-)GG  !
-;GG! "
-appHH 
-.HH 
-UseStaticFilesHH 
-(HH 
-)HH 
-;HH 
+.GG 
+UseStaticFilesGG 
+(GG 
+)GG 
+;GG 
+appII 
+.II 
+
+UseRoutingII 
+(II 
+)II 
+;II 
 appJJ 
-.JJ 
-
-UseRoutingJJ 
-(JJ 
-)JJ 
-;JJ 
+.JJ 
+UseCorsJJ 
+(JJ 
+$strJJ 
+)JJ 
+;JJ 
 appKK 
-.KK 
-UseCorsKK 
-(KK 
-$strKK 
-)KK 
-;KK 
-appLL 
-.LL 
+.KK 
 
-UseGrpcWebLL 
-(LL 
-newLL 
-GrpcWebOptionsLL %
-{LL& '
-DefaultEnabledLL( 6
-=LL7 8
-trueLL9 =
-}LL> ?
-)LL? @
-;LL@ A
+UseGrpcWebKK 
+(KK 
+newKK 
+GrpcWebOptionsKK %
+{KK& '
+DefaultEnabledKK( 6
+=KK7 8
+trueKK9 =
+}KK> ?
+)KK? @
+;KK@ A
+appLL 
+.LL $
+MapGrpcReflectionServiceLL  
+(LL  !
+)LL! "
+;LL" #
 appMM 
-.MM $
-MapGrpcReflectionServiceMM  
-(MM  !
-)MM! "
-;MM" #
+.MM 
+MapGrpcServiceMM 
+<MM "
+CompanyContractServiceMM -
+>MM- .
+(MM. /
+)MM/ 0
+.MM0 1
+RequireCorsMM1 <
+(MM< =
+$strMM= G
+)MMG H
+;MMH I
 appNN 
 .NN 
 MapGrpcServiceNN 
 <NN "
-CompanyContractServiceNN -
+LookupsContractServiceNN -
 >NN- .
 (NN. /
 )NN/ 0
@@ -6388,110 +6405,96 @@ UseGrpcWebLL 
 appOO 
 .OO 
 MapGrpcServiceOO 
-<OO "
-LookupsContractServiceOO -
->OO- .
-(OO. /
-)OO/ 0
-.OO0 1
-RequireCorsOO1 <
-(OO< =
-$strOO= G
-)OOG H
-;OOH I
-appPP 
-.PP 
-MapGrpcServicePP 
-<PP #
-EmployeeContractServicePP .
->PP. /
-(PP/ 0
-)PP0 1
-.PP1 2
-RequireCorsPP2 =
-(PP= >
-$strPP> H
-)PPH I
-;PPI J
+<OO #
+EmployeeContractServiceOO .
+>OO. /
+(OO/ 0
+)OO0 1
+.OO1 2
+RequireCorsOO2 =
+(OO= >
+$strOO> H
+)OOH I
+;OOI J
+appRR 
+.RR 
+MapRazorPagesRR 
+(RR 
+)RR 
+;RR 
 appSS 
-.SS 
-MapRazorPagesSS 
-(SS 
-)SS 
-;SS 
+.SS 
+MapControllersSS 
+(SS 
+)SS 
+;SS 
 appTT 
-.TT 
-MapControllersTT 
-(TT 
-)TT 
-;TT 
+.TT 
+MapFallbackToFileTT 
+(TT 
+$strTT &
+)TT& '
+;TT' (
 appUU 
-.UU 
-MapFallbackToFileUU 
-(UU 
-$strUU &
-)UU& '
-;UU' (
-appVV 
-.VV 
-	MapCarterVV 
-(VV 
-)VV 
-;VV 
-appXX 
-.XX 
-RunXX 
-(XX 
-)XX 
-;XX 
-}YY 
-catchZZ 
-(ZZ 
-	ExceptionZZ 
-	exceptionZZ 
-)ZZ 
-{[[ 
-logger\\ 
+.UU 
+	MapCarterUU 
+(UU 
+)UU 
+;UU 
+appWW 
+.WW 
+RunWW 
+(WW 
+)WW 
+;WW 
+}XX 
+catchYY 
+(YY 
+	ExceptionYY 
+	exceptionYY 
+)YY 
+{ZZ 
+logger[[ 
 
-.\\
+.[[
  
-Error\\ 
-(\\ 
-	exception\\ 
-,\\ 
-$str\\ B
-)\\B C
-;\\C D
-throw]] 	
-;]]	 
+Error[[ 
+([[ 
+	exception[[ 
+,[[ 
+$str[[ B
+)[[B C
+;[[C D
+throw\\ 	
+;\\	 
 
-}^^ 
-finally__ 
-{`` 
-NLogbb 
-.bb 	
+}]] 
+finally^^ 
+{__ 
+NLogaa 
+.aa 	
 
-LogManagerbb	 
-.bb 
-Shutdownbb 
-(bb 
-)bb 
-;bb 
-}cc 
-	namespaceee 	
-AWCee
+LogManageraa	 
+.aa 
+Shutdownaa 
+(aa 
+)aa 
+;aa 
+}bb 
+	namespacedd 	
+AWCdd
  
-.ee 
-Serveree 
-{ff 
-publicgg 
+.dd 
+Serverdd 
+{ee 
+publicff 
 
-partialgg 
-classgg 
-Programgg  
-{hh 
-}jj 
-}kk ¥
+partialff 
+classff 
+Programff  
+{gg 
+}ii 
+}jj ¥
 P/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/ServerAssembly.cs
 	namespace 	
 AWC

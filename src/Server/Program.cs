@@ -11,7 +11,6 @@ using MediatR;
 using NLog;
 using NLog.Web;
 
-
 var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 GlobalDiagnosticsContext.Set("logDirectory", Directory.GetCurrentDirectory());
 
@@ -38,8 +37,8 @@ try
     // Add services from namespace Server.Extensions to the container.
     builder.Services.ConfigureCors();
     builder.Services.AddInfrastructureServices();
-    builder.Services.ConfigureEfCoreDbContext(builder.Configuration);
-    builder.Services.ConfigureDapper(builder.Configuration);
+    builder.Services.ConfigureEfCoreDbContext();
+    builder.Services.ConfigureDapper();
     builder.Services.AddMappings();
     builder.Services.AddRepositoryServices();
     builder.Services.AddTransient<ExceptionHandlingMiddleware>();

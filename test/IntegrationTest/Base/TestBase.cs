@@ -15,8 +15,10 @@ namespace AWC.IntegrationTest.Base
 
         protected TestBase()
         {
-            var config = AppSettings.GetConfiguration();
-            _connectionString = config.GetConnectionString("DefaultConnection");
+            // var config = AppSettings.GetConfiguration();
+            // _connectionString = config.GetConnectionString("DefaultConnection")
+
+            _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
             _dapperCtx = new DapperContext(_connectionString);
 
             var optionsBuilder = new DbContextOptionsBuilder<AwcContext>();

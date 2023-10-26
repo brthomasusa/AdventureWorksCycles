@@ -194,7 +194,7 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 
 % 2
 
-ƒ Š
+‚ ‰
 
  
 

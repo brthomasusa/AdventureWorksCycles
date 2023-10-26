@@ -6,11 +6,35 @@
       "tool": {
         "name": "Microsoft (R) Visual C# Compiler",
         "version": "4.7.0.0",
-        "fileVersion": "4.7.0-3.23416.9 (43b0b05c)",
+        "fileVersion": "4.7.0-3.23465.3 (b5c9211b)",
         "semanticVersion": "4.7.0",
         "language": "en-US"
       },
       "results": [
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'connStr' in 'DapperContext.DapperContext(string connStr)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 77,
+                  "endLine": 44,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
         {
           "ruleId": "CS1998",
           "level": "warning",
@@ -84,30 +108,6 @@
           }
         },
         {
-          "ruleId": "CS8604",
-          "level": "warning",
-          "message": "Possible null reference argument for parameter 'connStr' in 'DapperContext.DapperContext(string connStr)'.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
-                "region": {
-                  "startLine": 41,
-                  "startColumn": 77,
-                  "endLine": 41,
-                  "endColumn": 125
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
           "ruleId": "CS0169",
           "level": "warning",
           "message": "The field 'Pages_Error.__tagHelperStringValueBuffer' is never used",
@@ -153,27 +153,6 @@
           }
         },
         {
-          "ruleId": "S2068",
-          "level": "warning",
-          "message": "\"password\" detected here, make sure this is not a hard-coded credential.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/appsettings.json",
-                "region": {
-                  "startLine": 15,
-                  "startColumn": 26,
-                  "endLine": 15,
-                  "endColumn": 170
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
           "ruleId": "S5122",
           "level": "warning",
           "message": "Make sure this permissive CORS policy is safe here.",
@@ -203,9 +182,9 @@
               "resultFile": {
                 "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Program.cs",
                 "region": {
-                  "startLine": 25,
+                  "startLine": 24,
                   "startColumn": 5,
-                  "endLine": 25,
+                  "endLine": 24,
                   "endColumn": 33
                 }
               }
@@ -524,22 +503,6 @@
             "tags": [
               "Compiler",
               "Telemetry"
-            ]
-          }
-        },
-        "S2068": {
-          "id": "S2068",
-          "shortDescription": "Hard-coded credentials are security-sensitive",
-          "fullDescription": "Because it is easy to extract strings from an application source code or binary, credentials should not be hard-coded. This is particularly true for applications that are distributed or that are open-source.",
-          "defaultLevel": "warning",
-          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2068",
-          "properties": {
-            "category": "Blocker Security Hotspot",
-            "isEnabledByDefault": true,
-            "tags": [
-              "C#",
-              "MainSourceScope",
-              "SonarWay"
             ]
           }
         },

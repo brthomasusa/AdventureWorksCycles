@@ -227,7 +227,7 @@ v/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/ApiEnd
 YY =
 [[ ^^ ``% -
 `` aaT `
-aa cc "Œ
+aa cc "¸
 \/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/AppSettingsTests.cs
 
  !
@@ -235,7 +235,10 @@ v/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/ApiEnd
 
 
  6
-  Ÿ
+  
+
+ G
+  ( +Ÿ
 e/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/AddMapsterForTesting.cs
 
  ,
@@ -311,22 +314,21 @@ c/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/R
 # 1
 
 
- )5 E
-$ .E O
- "  ©
+ %5 F
+$ .E O
+ "  “
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/TestBase.cs
 
 
 
  "(
-" 3 + < !(
-& 0    %% 
-) 3 
-   &
-  ( 6
-   ,
+" 3 + < !(
+& 0!! "" '' 
+) 3 
+  !!( 6
+   ,
 
-## »
+%% »
 u/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/CommanHandlers/HumanResources/Helper_Test.cs
 
  

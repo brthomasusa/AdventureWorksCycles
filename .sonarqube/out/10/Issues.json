@@ -6,7 +6,7 @@
       "tool": {
         "name": "Microsoft (R) Visual C# Compiler",
         "version": "4.7.0.0",
-        "fileVersion": "4.7.0-3.23416.9 (43b0b05c)",
+        "fileVersion": "4.7.0-3.23465.3 (b5c9211b)",
         "semanticVersion": "4.7.0",
         "language": "en-US"
       },
@@ -27,102 +27,6 @@
                   "startColumn": 31,
                   "endLine": 27,
                   "endColumn": 41
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8602",
-          "level": "warning",
-          "message": "Dereference of a possibly null reference.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/ApiEndpoints/Lookups/LookupsEndPoint_Tests.cs",
-                "region": {
-                  "startLine": 42,
-                  "startColumn": 30,
-                  "endLine": 42,
-                  "endColumn": 40
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8601",
-          "level": "warning",
-          "message": "Possible null reference assignment.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/TestBase.cs",
-                "region": {
-                  "startLine": 19,
-                  "startColumn": 33,
-                  "endLine": 19,
-                  "endColumn": 80
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8604",
-          "level": "warning",
-          "message": "Possible null reference argument for parameter 'connStr' in 'DapperContext.DapperContext(string connStr)'.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/TestBase.cs",
-                "region": {
-                  "startLine": 20,
-                  "startColumn": 44,
-                  "endLine": 20,
-                  "endColumn": 61
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8602",
-          "level": "warning",
-          "message": "Dereference of a possibly null reference.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/ApiEndpoints/Lookups/LookupsEndPoint_Tests.cs",
-                "region": {
-                  "startLine": 57,
-                  "startColumn": 31,
-                  "endLine": 57,
-                  "endColumn": 43
                 }
               }
             }
@@ -165,12 +69,60 @@
           "locations": [
             {
               "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/ApiEndpoints/Lookups/LookupsEndPoint_Tests.cs",
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 30,
+                  "endLine": 42,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
                 "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/ApiEndpoints/HumanResources/EmployeeEndPoint_Tests.cs",
                 "region": {
                   "startLine": 48,
                   "startColumn": 33,
                   "endLine": 48,
                   "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Dereference of a possibly null reference.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/ApiEndpoints/Lookups/LookupsEndPoint_Tests.cs",
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 31,
+                  "endLine": 57,
+                  "endColumn": 43
                 }
               }
             }
@@ -267,6 +219,54 @@
                   "startColumn": 52,
                   "endLine": 31,
                   "endColumn": 59
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Possible null reference assignment.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/TestBase.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 33,
+                  "endLine": 21,
+                  "endColumn": 104
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'connStr' in 'DapperContext.DapperContext(string connStr)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/TestBase.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 44,
+                  "endLine": 22,
+                  "endColumn": 61
                 }
               }
             }

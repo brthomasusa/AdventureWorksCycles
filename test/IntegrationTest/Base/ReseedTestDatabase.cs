@@ -7,11 +7,10 @@ namespace AWC.IntegrationTest.Base
     {
         public static Result<bool> ReseedDatabase()
         {
-            const string connectionString = "Server=tcp:mssql-server,1433;Database=AdventureWorks_Test;User Id=sa;Password=Info99Gum;MultipleActiveResultSets=true;TrustServerCertificate=true";
-
+            string? _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
             try
             {
-                using SqlConnection connection = new(connectionString);
+                using SqlConnection connection = new(_connectionString);
                 SqlCommand command = new("dbo.usp_InitializeTestDb", connection);
                 command.Connection.Open();
                 command.ExecuteNonQuery();

@@ -3,7 +3,7 @@ namespace AWC.SharedKernel.Guards
 {
     public static partial class GuardClauseExtensions
     {
-        public static int LessThan(this IGuardClause guardClause, int input, int minValue, string parameterName = "Amount", string message = null!)
+        public static int LessThan(this IGuardClause guardClause, int input, int minValue, string parameterName = "Input", string message = null!)
         {
             if (input < minValue)
             {
