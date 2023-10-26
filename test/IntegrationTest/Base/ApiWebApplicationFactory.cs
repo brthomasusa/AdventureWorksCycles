@@ -15,17 +15,11 @@ namespace AWC.IntegrationTest.Base
             {
                 Configuration = new ConfigurationBuilder()
                     .AddJsonFile("integrationsettings.json", optional: false, reloadOnChange: true)
+                    .AddEnvironmentVariables()
                     .Build();
 
                 config.AddConfiguration(Configuration);
             });
-
-            // Is to be called after the `ConfigureServices` from the Startup
-            // which allows you to overwrite the DI with mocked instances
-            // builder.ConfigureTestServices(services =>
-            // {
-            //     // services.AddTransient<IWeatherForecastConfigService, WeatherForecastConfigMock>();
-            // });
         }
     }
 }
