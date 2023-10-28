@@ -63,9 +63,9 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
 j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/DecimalGreaterThanZero.cs 8r	
  !"#x‚œ
 f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/DecimalNotNegative.cs 8r	
- !"#x‚Ë
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/EmailAddressVO.cs 8j"#,036r>	
- %&'(*+-.12479:;<=>?@ABCEFGHIJKLMNOPQx‚'(-.79>BGIM¡
+ !"#x‚Ç
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/EmailAddressVO.cs 8j"#)-03r<	
+ %&'(*+./146789:;<=>?@BCDEFGHIJKLMNx‚*+46;?DFJ¡
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Money.cs 	8r)	
  !"#$%'()*,./01x‚
 !"$)*,.Ž

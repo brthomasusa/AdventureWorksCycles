@@ -1,8 +1,16 @@
+using System.Runtime.CompilerServices;
+
 namespace AWC.SharedKernel.Guards
 {
     public static partial class GuardClauseExtensions
     {
-        public static DateTime DefaultDateTime(this IGuardClause guardClause, DateTime input, string parameterName = "value", string message = null!)
+        public static DateTime DefaultDateTime
+        (
+            this IGuardClause guardClause,
+            DateTime input,
+            string? message = null,
+            [CallerArgumentExpression("input")] string? parameterName = null
+        )
         {
             if (input == default)
             {

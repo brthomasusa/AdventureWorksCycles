@@ -252,11 +252,11 @@ i/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/A
  )
 
 
- , ( 5
+ , ( 5
 
   0
 A H 
-. 4 –
+. 4 –
 `/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/CompanyTestData.cs
 
  '

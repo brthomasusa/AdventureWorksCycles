@@ -20,14 +20,14 @@ namespace AWC.Core.Shared.ValueObjects
             return new EmailAddressVO(value);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string emailAddress)
         {
-            Guard.Against.NullOrEmpty(value, "EmailAddress", "The email address is required.");
-            Guard.Against.LengthGreaterThan(value, 50, "EmailAddress", "The maximum length of the email address is 50 characters.");
+            Guard.Against.NullOrEmpty(emailAddress);
+            Guard.Against.LengthGreaterThan(emailAddress, 50);
 
-            if (!IsValidEmail(value))
+            if (!IsValidEmail(emailAddress))
             {
-                throw new ArgumentException("Invalid email addresss.", nameof(value));
+                throw new ArgumentException("Invalid email addresss.", nameof(emailAddress));
             }
         }
 
@@ -36,9 +36,6 @@ namespace AWC.Core.Shared.ValueObjects
 
         private static bool IsValidEmail(string email)
         {
-            if (string.IsNullOrWhiteSpace(email))
-                return false;
-
             try
             {
                 // Normalize the domain

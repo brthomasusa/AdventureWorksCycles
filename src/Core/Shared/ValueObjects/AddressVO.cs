@@ -4,6 +4,8 @@ namespace AWC.Core.Shared.ValueObjects
 {
     public sealed class AddressVO : ValueObject
     {
+        const int MAX_ADDRESSLINE_LENGTH = 50;
+
         public string? AddressLine1 { get; }
         public string? AddressLine2 { get; }
         public string? City { get; }

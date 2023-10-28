@@ -235,7 +235,7 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/A
 
  
 
-   *  9 O   …
+   *  9 O   ±
 i/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/ApiWebApplicationFactory.cs
  
  
@@ -252,7 +252,7 @@ i/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/A
 
 4 ;
 
-< ?   1 @  #$ 8! ;G L^ b M I 8  h Æ
+< ?   1 @  #$ 8! ;G L^ bÆ
 `/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/CompanyTestData.cs
  
  

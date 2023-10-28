@@ -1,8 +1,8 @@
 using AWC.Application.Features.HumanResources.CreateEmployee;
-using AWC.UnitTest.Data;
+using AWC.UnitTest.Shared.Data;
 using FluentValidation.TestHelper;
 
-namespace AWC.UnitTest.FluentValidators.HumanResources
+namespace AWC.UnitTest.Application.UnitTests.FluentValidators.HumanResources
 {
     public class CreateEmployeeCommandDataValidatorTest
     {

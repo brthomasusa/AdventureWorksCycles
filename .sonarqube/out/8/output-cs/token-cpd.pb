@@ -2535,331 +2535,349 @@ Extensions 
 ;v w
 } 	
 } 
-} Å0
+} •3
 ^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs
-	namespace 	
-AWC
+	namespace 	
+AWC
  
-. 
-Server 
-. 
+. 
+Server 
+. 
 
-Extensions 
-{ 
-public 
+Extensions 
+{ 
+public 
 
-static 
-class 
-ServiceExtensions )
-{ 
-public 
-static 
-void 
-ConfigureCors (
-(( )
-this) -
-IServiceCollection. @
-servicesA I
-)I J
-=>K M
-services 
-. 
-AddCors 
-( 
-options $
-=>% '
-{ 
-options 
-. 
-	AddPolicy !
-(! "
-$str" .
-,. /
-builder0 7
-=>8 :
-builder 
-. 
-AllowAnyOrigin &
-(& '
-)' (
-. 
-AllowAnyMethod 
-(  
-)  !
+static 
+class 
+ServiceExtensions )
+{ 
+public 
+static 
+void 
+ConfigureCors (
+(( )
+this) -
+IServiceCollection. @
+servicesA I
+)I J
+=>K M
+services 
+. 
+AddCors 
+( 
+options $
+=>% '
+{ 
+options 
+. 
+	AddPolicy !
+(! "
+$str" .
+,. /
+builder0 7
+=>8 :
+builder 
+. 
+AllowAnyOrigin &
+(& '
+)' (
 . 
-AllowAnyHeader 
+AllowAnyMethod 
 (  
 )  !
-. 
-WithExposedHeaders #
-(# $
-$str$ 1
-,1 2
-$str3 A
-,A B
-$strC R
-,R S
-$strT j
-,j k
-$str	l „
+. 
+AllowAnyHeader 
+(  
+)  !
+. 
+WithExposedHeaders #
+(# $
+$str$ 1
+,1 2
+$str3 A
+,A B
+$strC R
+,R S
+$strT j
+,j k
+$str	l „
 )
-„ …
+„ …
 )
-… †
+… †
 ;
-† ‡
-} 
-) 
-; 
-public 
-static 
-void $
-ConfigureEfCoreDbContext 3
-(3 4
-this4 8
-IServiceCollection9 K
-servicesL T
-)T U
-{ 	
-string 
-? 
-_connectionString %
-=& '
-Environment( 3
-.3 4"
-GetEnvironmentVariable4 J
-(J K
-$strK n
-)n o
-;o p
-services 
-. 
-AddDbContext !
-<! "
+† ‡
+} 
+) 
+; 
+public 
+static 
+void $
+ConfigureEfCoreDbContext 3
+(3 4
+this4 8
+IServiceCollection9 K
+servicesL T
+)T U
+{ 	
+string 
+? 
+connectionString $
+=% &
+Environment' 2
+.2 3"
+GetEnvironmentVariable3 I
+(I J
+$strJ m
+)m n
+;n o
+Guard 
+. 
+Against 
+. 
+NullOrEmpty %
+(% &
+connectionString& 6
+)6 7
+;7 8
+services!! 
+.!! 
+AddDbContext!! !
+<!!! "
 
-AwcContext" ,
->, -
-(- .
-options. 5
-=>6 8
-options   
-.   
-UseSqlServer   $
-(  $ %
-_connectionString!! %
-,!!% &
-msSqlOptions""  
-=>""! #
-msSqlOptions""$ 0
-.""0 1
-MigrationsAssembly""1 C
-(""C D
-typeof""D J
-(""J K
+AwcContext!!" ,
+>!!, -
+(!!- .
+options!!. 5
+=>!!6 8
+options"" 
+."" 
+UseSqlServer"" $
+(""$ %
+connectionString## $
+,##$ %
+msSqlOptions$$  
+=>$$! #
+msSqlOptions$$$ 0
+.$$0 1
+MigrationsAssembly$$1 C
+($$C D
+typeof$$D J
+($$J K
 
-AwcContext""K U
-)""U V
-.""V W
-Assembly""W _
-.""_ `
-FullName""` h
-)""h i
-)## 
-.$$ &
-EnableSensitiveDataLogging$$ +
-($$+ ,
-)$$, -
-.%%  
-EnableDetailedErrors%% %
-(%%% &
-)%%& '
-)&& 
-;&& 
-}'' 	
-public)) 
-static)) 
-void)) 
-ConfigureDapper)) *
-())* +
-this))+ /
-IServiceCollection))0 B
-services))C K
-)))K L
-{** 	
-string++ 
-?++ 
-_connectionString++ %
-=++& '
-Environment++( 3
-.++3 4"
-GetEnvironmentVariable++4 J
-(++J K
-$str++K n
-)++n o
-;++o p
-_,, 
-=,, 
-services,, 
-.,, 
-AddSingleton,, %
-<,,% &
-DapperContext,,& 3
->,,3 4
-(,,4 5
-_,,5 6
-=>,,7 9
-new,,: =
-DapperContext,,> K
-(,,K L
-_connectionString,,L ]
-),,] ^
-),,^ _
-;,,_ `
-}-- 	
-public// 
-static// 
-IServiceCollection// (%
-AddInfrastructureServices//) B
-(//B C
-this//C G
-IServiceCollection//H Z
-services//[ c
-)//c d
-{00 	
-return11 
-services11 
-.22 
-	AddScoped22 
-<22 
-IUnitOfWork22 &
-,22& '
+AwcContext$$K U
+)$$U V
+.$$V W
+Assembly$$W _
+.$$_ `
+FullName$$` h
+)$$h i
+)%% 
+.&& &
+EnableSensitiveDataLogging&& +
+(&&+ ,
+)&&, -
+.''  
+EnableDetailedErrors'' %
+(''% &
+)''& '
+)(( 
+;(( 
+})) 	
+public++ 
+static++ 
+void++ 
+ConfigureDapper++ *
+(++* +
+this+++ /
+IServiceCollection++0 B
+services++C K
+)++K L
+{,, 	
+string-- 
+?-- 
+connectionString-- $
+=--% &
+Environment--' 2
+.--2 3"
+GetEnvironmentVariable--3 I
+(--I J
+$str--J m
+)--m n
+;--n o
+Guard.. 
+... 
+Against.. 
+... 
+NullOrEmpty.. %
+(..% &
+connectionString..& 6
+)..6 7
+;..7 8
+_// 
+=// 
+services// 
+.// 
+AddSingleton// %
+<//% &
+DapperContext//& 3
+>//3 4
+(//4 5
+_//5 6
+=>//7 9
+new//: =
+DapperContext//> K
+(//K L
+connectionString//L \
+)//\ ]
+)//] ^
+;//^ _
+}00 	
+public22 
+static22 
+IServiceCollection22 (%
+AddInfrastructureServices22) B
+(22B C
+this22C G
+IServiceCollection22H Z
+services22[ c
+)22c d
+{33 	
+return44 
+services44 
+.55 
+	AddScoped55 
+<55 
+IUnitOfWork55 &
+,55& '
 
-UnitOfWork22( 2
->222 3
-(223 4
-)224 5
-;225 6
-}33 	
-public55 
-static55 
-IServiceCollection55 (!
-AddRepositoryServices55) >
-(55> ?
-this55? C
-IServiceCollection55D V
-services55W _
-)55_ `
-{66 	
-return77 
-services77 
-.88 
-	AddScoped88 
-<88 #
-IWriteRepositoryManager88 2
-,882 3"
-WriteRepositoryManager884 J
->88J K
-(88K L
-)88L M
-.99 
-	AddScoped99 
-<99 "
-IReadRepositoryManager99 1
-,991 2!
-ReadRepositoryManager993 H
->99H I
-(99I J
-)99J K
-.:: 
-	AddScoped:: 
-<:: (
-IValidationRepositoryManager:: 7
-,::7 8'
-ValidationRepositoryManager::9 T
->::T U
-(::U V
-)::V W
+UnitOfWork55( 2
+>552 3
+(553 4
+)554 5
+;555 6
+}66 	
+public88 
+static88 
+IServiceCollection88 (!
+AddRepositoryServices88) >
+(88> ?
+this88? C
+IServiceCollection88D V
+services88W _
+)88_ `
+{99 	
+return:: 
+services:: 
 .;; 
 	AddScoped;; 
-<;; %
-ILookupsRepositoryManager;; 4
-,;;4 5$
-LookupsRepositoryManager;;6 N
->;;N O
-(;;O P
-);;P Q
-;;;Q R
-}<< 	
-public>> 
-static>> 
-IServiceCollection>> (
-AddMappings>>) 4
-(>>4 5
-this>>5 9
-IServiceCollection>>: L
-services>>M U
-)>>U V
-{?? 	
-var@@ 
-config@@ 
-=@@ 
-TypeAdapterConfig@@ *
-.@@* +
-GlobalSettings@@+ 9
-;@@9 :
-configAA 
-.AA 
-ScanAA 
-(AA 
-ServerAssemblyBB 
-.BB 
-InstanceBB '
-,BB' ("
-InfrastructureAssemblyCC &
-.CC& '
-InstanceCC' /
-,CC/ 0
-ApplicationAssemblyDD #
-.DD# $
-InstanceDD$ ,
-)EE 
-;EE 
-configFF 
-.FF 
-DefaultFF 
-.FF  
-NameMatchingStrategyFF /
-(FF/ 0 
-NameMatchingStrategyFF0 D
-.FFD E
+<;; #
+IWriteRepositoryManager;; 2
+,;;2 3"
+WriteRepositoryManager;;4 J
+>;;J K
+(;;K L
+);;L M
+.<< 
+	AddScoped<< 
+<<< "
+IReadRepositoryManager<< 1
+,<<1 2!
+ReadRepositoryManager<<3 H
+><<H I
+(<<I J
+)<<J K
+.== 
+	AddScoped== 
+<== (
+IValidationRepositoryManager== 7
+,==7 8'
+ValidationRepositoryManager==9 T
+>==T U
+(==U V
+)==V W
+.>> 
+	AddScoped>> 
+<>> %
+ILookupsRepositoryManager>> 4
+,>>4 5$
+LookupsRepositoryManager>>6 N
+>>>N O
+(>>O P
+)>>P Q
+;>>Q R
+}?? 	
+publicAA 
+staticAA 
+IServiceCollectionAA (
+AddMappingsAA) 4
+(AA4 5
+thisAA5 9
+IServiceCollectionAA: L
+servicesAAM U
+)AAU V
+{BB 	
+varCC 
+configCC 
+=CC 
+TypeAdapterConfigCC *
+.CC* +
+GlobalSettingsCC+ 9
+;CC9 :
+configDD 
+.DD 
+ScanDD 
+(DD 
+ServerAssemblyEE 
+.EE 
+InstanceEE '
+,EE' ("
+InfrastructureAssemblyFF &
+.FF& '
+InstanceFF' /
+,FF/ 0
+ApplicationAssemblyGG #
+.GG# $
+InstanceGG$ ,
+)HH 
+;HH 
+configII 
+.II 
+DefaultII 
+.II  
+NameMatchingStrategyII /
+(II/ 0 
+NameMatchingStrategyII0 D
+.IID E
 
-IgnoreCaseFFE O
-)FFO P
-;FFP Q
-servicesHH 
-.HH 
-AddSingletonHH !
-(HH! "
-configHH" (
-)HH( )
-;HH) *
-servicesII 
-.II 
-	AddScopedII 
-<II 
-IMapperII &
-,II& '
-ServiceMapperII( 5
->II5 6
-(II6 7
-)II7 8
-;II8 9
-returnKK 
-servicesKK 
-;KK 
-}LL 	
-}MM 
-}NN Š?
+IgnoreCaseIIE O
+)IIO P
+;IIP Q
+servicesKK 
+.KK 
+AddSingletonKK !
+(KK! "
+configKK" (
+)KK( )
+;KK) *
+servicesLL 
+.LL 
+	AddScopedLL 
+<LL 
+IMapperLL &
+,LL& '
+ServiceMapperLL( 5
+>LL5 6
+(LL6 7
+)LL7 8
+;LL8 9
+returnNN 
+servicesNN 
+;NN 
+}OO 	
+}PP 
+}QQ Š?
 g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Interceptors/ServerTracingInterceptor.cs
 	namespace 	
 AWC

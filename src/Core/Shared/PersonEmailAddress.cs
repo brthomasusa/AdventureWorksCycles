@@ -27,8 +27,8 @@ namespace AWC.Core.Shared
             {
                 PersonEmailAddress emailAddress = new
                 (
-                    Guard.Against.LessThanZero(id, "BusinessEntityID", "BusinessEntity Id can not be negative."),
-                    Guard.Against.LessThanZero(emailAddressID, "EmailAddressID", "Email address Id can not be negative."),
+                    Guard.Against.LessThan(id, 0, "BusinessEntity Id can not be negative."),
+                    Guard.Against.LessThan(emailAddressID, 0, "Email address Id can not be negative."),
                     EmailAddressVO.Create(email)
                 );
 

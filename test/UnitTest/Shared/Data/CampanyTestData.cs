@@ -1,6 +1,6 @@
 using AWC.Core.HumanResources;
 
-namespace AWC.UnitTest.Data
+namespace AWC.UnitTest.Shared.Data
 {
     public static class CampanyTestData
     {

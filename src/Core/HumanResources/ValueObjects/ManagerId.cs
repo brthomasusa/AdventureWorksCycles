@@ -20,9 +20,9 @@ namespace AWC.Core.HumanResources.ValueObjects
             return new ManagerId(value);
         }
 
-        private static void CheckValidity(int value)
+        private static void CheckValidity(int managerId)
         {
-            Guard.Against.LessThan(value, 0, "Manager Id should be greater than or equal to zero.");
+            Guard.Against.LessThan(managerId, 0, "Manager Id should not be less than zero.");
         }
     }
 }

@@ -5,7 +5,8 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/CampanyT
 Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/EmployeeTestData.csutf-8ï
 ã/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/CreateEmployeeCommandDataValidatorTest.csutf-8ô
 è/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/DepartmentistoryCommandCreateValidatorTest.csutf-8ì
-â/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/PayHistoryCommandCreateValidatorTest.csutf-8s
+â/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/PayHistoryCommandCreateValidatorTest.csutf-8k
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/GuardClause/GuardClauses_Test.csutf-8s
 j/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/HumanResources/CompanyAggregate_Tests.csutf-8Ä
 w/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Mappings/HumanResources/EmployeeMappingConfig_Test.csutf-8T
 K/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Usings.csutf-8n

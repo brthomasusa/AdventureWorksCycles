@@ -23,9 +23,9 @@ namespace AWC.Core.HumanResources.ValueObjects
             return new DateOfRateChange(value);
         }
 
-        private static void CheckValidity(DateTime value)
+        private static void CheckValidity(DateTime rateChangeDate)
         {
-            Guard.Against.DefaultDateTime(value, "RateChangeDate", "The date the rate of pay was set is required.");
+            Guard.Against.DefaultDateTime(rateChangeDate, "The date the rate of pay was set or changed is required.");
         }
     }
 }

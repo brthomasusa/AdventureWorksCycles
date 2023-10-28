@@ -19,12 +19,12 @@ namespace AWC.Core.HumanResources.ValueObjects
             return new EmployerIdentificationNumber(ein);
         }
 
-        private static void CheckValidity(string ein)
+        private static void CheckValidity(string employerIdentificationNumber)
         {
-            Guard.Against.NullOrEmpty(ein, "EmployerIdentificationNumber", "An employer identification number is require.");
+            Guard.Against.NullOrEmpty(employerIdentificationNumber);
 
-            if (!EinRegex().IsMatch(ein))
-                throw new ArgumentException($"Invalid employer identification number {ein}!");
+            if (!EinRegex().IsMatch(employerIdentificationNumber))
+                throw new ArgumentException($"Invalid employer identification number {employerIdentificationNumber}!");
         }
 
         [GeneratedRegex("^\\d{9}|\\d{2}-\\d{7}$")]

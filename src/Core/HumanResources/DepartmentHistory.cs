@@ -38,9 +38,9 @@ namespace AWC.Core.HumanResources
             {
                 return new DepartmentHistory
                     (
-                        Guard.Against.LessThanZero(id, nameof(Id), "Employee id can not be negative."),
-                        Guard.Against.GreaterThan(departmentId, 0, nameof(DepartmentID), "Department id is required."),
-                        Guard.Against.GreaterThan(shiftId, 0, nameof(shiftId), "Shift id is required."),
+                        Guard.Against.LessThan(id, 0, "Employee id can not be negative."),
+                        Guard.Against.LessThan(departmentId, 0),
+                        Guard.Against.LessThan(shiftId, 0),
                         DepartmentStartDate.Create(startDate),
                         DateOnly.FromDateTime(endDate is null ? default : (DateTime)endDate)
                     );

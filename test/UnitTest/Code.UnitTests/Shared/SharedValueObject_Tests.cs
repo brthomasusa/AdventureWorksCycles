@@ -1,7 +1,7 @@
 using AWC.Core.Shared.ValueObjects;
 using AWC.SharedKernel.Exceptions;
 
-namespace AWC.UnitTest.ValueObjects
+namespace AWC.UnitTest.Code.UnitTests.Shared
 {
     public class SharedValueObject_Tests
     {

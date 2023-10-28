@@ -3,10 +3,11 @@ using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Core.HumanResources;
 using AWC.Core.Shared;
-using AWC.UnitTest.Data;
+using AWC.UnitTest.Shared.Data;
+using AWC.UnitTest.Shared;
 using MapsterMapper;
 
-namespace AWC.UnitTest.CommandHandlers
+namespace AWC.UnitTest.Application.UnitTests.CommandHandlers.HumanResources
 {
     public class EmployeeCommandHandler_Test
     {

@@ -19,11 +19,11 @@ namespace AWC.Core.Shared.ValueObjects
             return new PersonType(value);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string personType)
         {
-            Guard.Against.NullOrEmpty(value, "PersonType", "The person type is required.");
+            Guard.Against.NullOrEmpty(personType);
 
-            if (!Array.Exists(_personTypes, element => element == value.ToUpper()))
+            if (!Array.Exists(_personTypes, element => element == personType.ToUpper()))
             {
                 throw new ArgumentException("Invalid person type!");
             }

@@ -22,17 +22,17 @@ namespace AWC.Core.Shared.ValueObjects
             return new PersonName(last, first, mi);
         }
 
-        private static void CheckValidity(string last, string first, string mi)
+        private static void CheckValidity(string lastName, string firstName, string middleName)
         {
-            Guard.Against.NullOrEmpty(last, "LastName", "A last name is required.");
-            Guard.Against.LengthGreaterThan(last, 25, "LastName", "Maximum length of the last name is 25 characters.");
+            Guard.Against.NullOrEmpty(lastName);
+            Guard.Against.LengthGreaterThan(lastName, 25);
 
-            Guard.Against.NullOrEmpty(first, "FirstName", "A first name is required.");
-            Guard.Against.LengthGreaterThan(first, 25, "FirstName", "Maximum length of the first name is 25 characters.");
+            Guard.Against.NullOrEmpty(firstName);
+            Guard.Against.LengthGreaterThan(firstName, 25);
 
-            if (!string.IsNullOrEmpty(mi))
+            if (!string.IsNullOrEmpty(middleName))
             {
-                Guard.Against.LengthGreaterThan(mi, 25, "MiddleName", "Maximum length of the middle name is 25 characters.");
+                Guard.Against.LengthGreaterThan(middleName, 25);
             }
         }
     }

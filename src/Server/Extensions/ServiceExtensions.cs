@@ -6,6 +6,7 @@ using AWC.Infrastructure;
 using AWC.Infrastructure.Persistence;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.SharedKernel.Guards;
 using AWC.SharedKernel.Interfaces;
 using Mapster;
 using MapsterMapper;
@@ -26,11 +27,12 @@ namespace AWC.Server.Extensions
 
         public static void ConfigureEfCoreDbContext(this IServiceCollection services)
         {
-            string? _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
+            string? connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
+            Guard.Against.NullOrEmpty(connectionString);
 
             services.AddDbContext<AwcContext>(options =>
                 options.UseSqlServer(
-                    _connectionString,
+                    connectionString,
                     msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(AwcContext).Assembly.FullName)
                 )
                 .EnableSensitiveDataLogging()
@@ -40,8 +42,9 @@ namespace AWC.Server.Extensions
 
         public static void ConfigureDapper(this IServiceCollection services)
         {
-            string? _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
-            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(_connectionString));
+            string? connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
+            Guard.Against.NullOrEmpty(connectionString);
+            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(connectionString));
         }
 
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)

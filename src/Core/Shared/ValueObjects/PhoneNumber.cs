@@ -21,14 +21,14 @@ namespace AWC.Core.Shared.ValueObjects
             return new PhoneNumber(phoneNumber);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string phoneNumber)
         {
-            Guard.Against.NullOrEmpty(value, "PhoneNumber", "The PhoneNumber number is required.");
-            Guard.Against.LengthGreaterThan(value, 25, "PhoneNumber", "Invalid PhoneNumber number, maximum length is 25 characters.");
+            Guard.Against.NullOrEmpty(phoneNumber);
+            Guard.Against.LengthGreaterThan(phoneNumber, 25);
 
             Regex validatePhoneNumberRegex = TelephoneRegex();
-            if (!validatePhoneNumberRegex.IsMatch(value))
-                throw new ArgumentException($"{value} is not a valid phone number.");
+            if (!validatePhoneNumberRegex.IsMatch(phoneNumber))
+                throw new ArgumentException($"{phoneNumber} is not a valid phone number.");
         }
 
         [GeneratedRegex("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$")]

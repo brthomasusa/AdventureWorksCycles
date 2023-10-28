@@ -1,6 +1,6 @@
 using AWC.Core.HumanResources.ValueObjects;
 
-namespace AWC.UnitTest.ValueObjects;
+namespace AWC.UnitTest.Code.UnitTests.HumanResources;
 
 public class HrValueObject_Tests
 {

@@ -17,13 +17,13 @@ namespace AWC.Core.Shared.ValueObjects
             return new Currency(code, name);
         }
 
-        private static void CheckValidity(string code, string name)
+        private static void CheckValidity(string currencyCode, string currencyName)
         {
-            Guard.Against.NullOrEmpty(code, "CurrencyCode", "A currency code (USD, EUR, etc) is required.");
-            Guard.Against.LengthGreaterThan(code, 3, "Max currency code length is three characters.");
+            Guard.Against.NullOrEmpty(currencyCode, "A currency code (USD, EUR, etc) is required.");
+            Guard.Against.LengthGreaterThan(currencyCode, 3);
 
-            Guard.Against.NullOrEmpty(name, "CurrencyName", "A currency name is required.");
-            Guard.Against.LengthGreaterThan(name, 50, "Max currency name length is fifty characters.");
+            Guard.Against.NullOrEmpty(currencyName);
+            Guard.Against.LengthGreaterThan(currencyName, 50);
         }
     }
 }

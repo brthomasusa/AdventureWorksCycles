@@ -3,11 +3,11 @@ using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Core.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
-using AWC.UnitTest.Data;
-
+using AWC.UnitTest.Shared.Data;
+using AWC.UnitTest.Shared;
 using MapsterMapper;
 
-namespace AWC.UnitTest.Mappings.HumanResources
+namespace AWC.UnitTest.Infrastructure.UnitTests
 {
     public class EmployeeMappingConfig_Test
     {

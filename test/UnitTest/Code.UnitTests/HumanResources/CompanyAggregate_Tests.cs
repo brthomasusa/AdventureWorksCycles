@@ -1,7 +1,7 @@
 using AWC.Core.HumanResources;
-using AWC.UnitTest.Data;
+using AWC.UnitTest.Shared.Data;
 
-namespace AWC.UnitTest.HumanResources
+namespace AWC.UnitTest.Code.UnitTests.HumanResources
 {
     public class CompanyAggregate_Tests
     {

@@ -4,7 +4,7 @@ using AWC.Application;
 using AWC.Infrastructure;
 using AWC.Server;
 
-namespace AWC.UnitTest
+namespace AWC.UnitTest.Shared
 {
     public static class AddMapsterForUnitTests
     {

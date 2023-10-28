@@ -1,19 +1,26 @@
-﻿
+﻿using System.Runtime.CompilerServices;
+
 namespace AWC.SharedKernel.Guards
 {
     public static partial class GuardClauseExtensions
     {
-        public static string InvalidUrl(this IGuardClause guardClause, string url, string parameterName = "URL", string message = null!)
+        public static string InvalidUrl
+        (
+            this IGuardClause guardClause,
+            string input,
+            string message = null!,
+            [CallerArgumentExpression("input")] string? parameterName = null
+        )
         {
             try
             {
-                _ = new Uri(url);
+                _ = new Uri(input);
             }
             catch
             {
-                Error(message ?? $"Must have a valid {parameterName}.");
+                Error(message ?? $"{parameterName} is not a valid URL.");
             }
-            return url;
+            return input;
         }
     }
 }

@@ -41,9 +41,8 @@ namespace AWC.Core.Shared.ValueObjects
             if (currency is null)
                 throw new ArgumentException("A currency is required.");
 
-            Guard.Against.LessThanZero(amount, "Amount", "Money can not be negative.");
-
-            Guard.Against.GreaterThanTwoDecimalPlaces(amount, "Amount");
+            Guard.Against.LessThan(amount, 0M, "Money can not be negative.");
+            Guard.Against.GreaterThanTwoDecimalPlaces(amount);
         }
     }
 }

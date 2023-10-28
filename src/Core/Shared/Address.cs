@@ -39,8 +39,8 @@ namespace AWC.Core.Shared
             {
                 Address address = new
                 (
-                    Guard.Against.LessThanZero(addressID, "Id", "Address Id can not be negative."),
-                    Guard.Against.LessThanZero(businessEntityID, "Id", "BusinessEntity Id can not be negative."),
+                    Guard.Against.LessThan(addressID, 0, "Address Id can not be negative."),
+                    Guard.Against.LessThan(businessEntityID, 0, "BusinessEntity Id can not be negative."),
                     Enum.IsDefined(typeof(AddressType), addressType) ? addressType : throw new ArgumentException("Invalid address type."),
                     AddressVO.Create(line1, line2, city, stateProvinceID, postalCode)
                 );

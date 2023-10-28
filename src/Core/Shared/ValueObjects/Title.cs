@@ -18,11 +18,11 @@ namespace AWC.Core.Shared.ValueObjects
             return new Title(value);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string title)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(title))
             {
-                Guard.Against.LengthGreaterThan(value, 8, "Title", "The maximum length of the title is 8 characters.");
+                Guard.Against.LengthGreaterThan(title, 8);
             }
         }
     }

@@ -2,7 +2,7 @@ using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Shared.Commands.HumanResources;
 using FluentValidation.TestHelper;
 
-namespace AWC.UnitTest.FluentValidators.HumanResources
+namespace AWC.UnitTest.Application.UnitTests.FluentValidators.HumanResources
 {
     public class PayHistoryCommandCreateValidatorTest
     {

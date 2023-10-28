@@ -2970,7 +2970,7 @@ Department662 <
 ;<<< =
 }<<> ?
 }== 
-}>> Ω&
+}>> ñ$
 `/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/DepartmentHistory.cs
 	namespace 	
 AWC
@@ -3076,19 +3076,16 @@ Department662 <
 Guard)) 
 .)) 
 Against)) %
-.))% &
-LessThanZero))& 2
-())2 3
-id))3 5
-,))5 6
-nameof))7 =
-())= >
-Id))> @
-)))@ A
-,))A B
-$str))C e
-)))e f
-,))f g
+.))% &
+LessThan))& .
+()). /
+id))/ 1
+,))1 2
+$num))3 4
+,))4 5
+$str))6 X
+)))X Y
+,))Y Z
 Guard** 
 .** 
 Against** %
@@ -3098,15 +3095,8 @@ Department662 <
 departmentId**2 >
 ,**> ?
 $num**@ A
-,**A B
-nameof**C I
-(**I J
-DepartmentID**J V
-)**V W
-,**W X
-$str**Y u
-)**u v
-,**v w
+)**A B
+,**B C
 Guard++ 
 .++ 
 Against++ %
@@ -3116,15 +3106,8 @@ Department662 <
 shiftId++2 9
 ,++9 :
 $num++; <
-,++< =
-nameof++> D
-(++D E
-shiftId++E L
-)++L M
-,++M N
-$str++O f
-)++f g
-,++g h
+)++< =
+,++= >
 DepartmentStartDate,, +
 .,,+ ,
 Create,,, 2
@@ -6100,7 +6083,7 @@ DateOfHire !
 } 
 } 	
 }   
-}!! û
+}!! è
 l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DateOfRateChange.cs
 	namespace 	
 AWC
@@ -6202,23 +6185,21 @@ l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 void 
 CheckValidity )
 () *
-DateTime* 2
-value3 8
-)8 9
+DateTime* 2
+rateChangeDate3 A
+)A B
 { 	
 Guard 
 . 
 Against 
 . 
 DefaultDateTime )
-() *
-value* /
-,/ 0
-$str1 A
-,A B
-$strC r
-)r s
-;s t
+() *
+rateChangeDate* 8
+,8 9
+$str: t
+)t u
+;u v
 } 	
 } 
 } Æ
@@ -6344,7 +6325,7 @@ o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 Ç É
 } 	
 } 
-} ˜
+} ô
 x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/EmployerIdentificationNumber.cs
 	namespace 	
 AWC
@@ -6428,23 +6409,19 @@ x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 void 
 CheckValidity )
 () *
-string* 0
-ein1 4
-)4 5
+string* 0(
+employerIdentificationNumber1 M
+)M N
 { 	
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-ein& )
-,) *
-$str+ I
-,I J
-$strK z
-)z {
-;{ |
+(% &(
+employerIdentificationNumber& B
+)B C
+;C D
 if 
 ( 
 ! 
@@ -6453,23 +6430,23 @@ x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ) 
 . 
 IsMatch #
-(# $
-ein$ '
-)' (
-)( )
+(# $(
+employerIdentificationNumber$ @
+)@ A
+)A B
 throw 
 new 
 ArgumentException +
 (+ ,
 $", .
 $str. U
-{U V
-einV Y
-}Y Z
-$strZ [
-"[ \
-)\ ]
-;] ^
+{U V(
+employerIdentificationNumberV r
+}r s
+$strs t
+"t u
+)u v
+;v w
 } 	
 [ 	
 GeneratedRegex	 
@@ -6984,7 +6961,7 @@ a/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 }   
 }!! 	
 }"" 
-}## ∞
+}## ∏
 e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/ManagerId.cs
 	namespace 	
 AWC
@@ -7079,23 +7056,23 @@ employeeId 
 void 
 CheckValidity )
 () *
-int* -
-value. 3
-)3 4
+int* -
+	managerId. 7
+)7 8
 { 	
 Guard 
 . 
 Against 
 . 
 LessThan "
-(" #
-value# (
-,( )
-$num* +
-,+ ,
-$str- b
-)b c
-;c d
+(" #
+	managerId# ,
+,, -
+$num. /
+,/ 0
+$str1 [
+)[ \
+;\ ]
 } 	
 } 
 } …
@@ -8284,7 +8261,7 @@ Interfaces 
 >D E
 { 
 } 
-}		 ™3
+}		 ¢3
 N/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Address.cs
 	namespace 	
 AWC
@@ -8401,29 +8378,29 @@ postalCode## 
 Guard** 
 .** 
 Against** !
-.**! "
-LessThanZero**" .
-(**. /
-	addressID**/ 8
-,**8 9
-$str**: >
-,**> ?
-$str**@ a
-)**a b
-,**b c
+.**! "
+LessThan**" *
+(*** +
+	addressID**+ 4
+,**4 5
+$num**6 7
+,**7 8
+$str**9 Z
+)**Z [
+,**[ \
 Guard++ 
 .++ 
 Against++ !
-.++! "
-LessThanZero++" .
-(++. /
-businessEntityID++/ ?
-,++? @
-$str++A E
-,++E F
-$str++G o
-)++o p
-,++p q
+.++! "
+LessThan++" *
+(++* +
+businessEntityID+++ ;
+,++; <
+$num++= >
+,++> ?
+$str++@ h
+)++h i
+,++i j
 Enum,, 
 .,, 
 	IsDefined,, "
@@ -10763,7 +10740,7 @@ AsReadOnly
 ‹‹. /
 }
 ›› 
-}ﬁﬁ ◊
+}ﬁﬁ œ
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonEmailAddress.cs
 	namespace 	
 AWC
@@ -10856,29 +10833,29 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonEmail
 Guard 
 . 
 Against !
-.! "
-LessThanZero" .
-(. /
-id/ 1
-,1 2
-$str3 E
-,E F
-$strG o
-)o p
-,p q
+.! "
+LessThan" *
+(* +
+id+ -
+,- .
+$num/ 0
+,0 1
+$str2 Z
+)Z [
+,[ \
 Guard 
 . 
 Against !
-.! "
-LessThanZero" .
-(. /
-emailAddressID/ =
-,= >
-$str? O
-,O P
-$strQ x
-)x y
-,y z
+.! "
+LessThan" *
+(* +
+emailAddressID+ 9
+,9 :
+$num; <
+,< =
+$str> e
+)e f
+,f g
 EmailAddressVO   "
 .  " #
 Create  # )
@@ -11522,7 +11499,7 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
 }DD 
 }EE 	
 }FF 
-}GG ˛
+}GG â
 \/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Currency.cs
 	namespace 	
 AWC
@@ -11618,65 +11595,55 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
 void 
 CheckValidity )
 () *
-string* 0
-code1 5
-,5 6
-string7 =
-name> B
-)B C
+string* 0
+currencyCode1 =
+,= >
+string? E
+currencyNameF R
+)R S
 { 	
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-code& *
-,* +
-$str, :
-,: ;
-$str< j
-)j k
-;k l
+(% &
+currencyCode& 2
+,2 3
+$str4 b
+)b c
+;c d
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan +
-(+ ,
-code, 0
-,0 1
-$num2 3
-,3 4
-$str5 d
-)d e
-;e f
+(+ ,
+currencyCode, 8
+,8 9
+$num: ;
+); <
+;< =
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-name& *
-,* +
-$str, :
-,: ;
-$str< Z
-)Z [
-;[ \
+(% &
+currencyName& 2
+)2 3
+;3 4
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan +
-(+ ,
-name, 0
-,0 1
-$num2 4
-,4 5
-$str6 e
-)e f
-;f g
+(+ ,
+currencyName, 8
+,8 9
+$num: <
+)< =
+;= >
 } 	
 } 
 } ∂
@@ -11919,7 +11886,7 @@ f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 }   
 }!! 	
 }"" 
-}## å(
+}## Œ%
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/EmailAddressVO.cs
 	namespace 	
 AWC
@@ -12016,48 +11983,38 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 void 
 CheckValidity )
 () *
-string* 0
-value1 6
-)6 7
+string* 0
+emailAddress1 =
+)= >
 { 	
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-value& +
-,+ ,
-$str- ;
-,; <
-$str= ]
-)] ^
-;^ _
+(% &
+emailAddress& 2
+)2 3
+;3 4
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan +
-(+ ,
-value, 1
-,1 2
-$num3 5
-,5 6
-$str7 E
-,E F
-$str	G Ç
-)
-Ç É
-;
-É Ñ
+(+ ,
+emailAddress, 8
+,8 9
+$num: <
+)< =
+;= >
 if 
 ( 
 ! 
 IsValidEmail 
-( 
-value #
-)# $
-)$ %
+( 
+emailAddress *
+)* +
+)+ ,
 { 
 throw 
 new 
@@ -12066,11 +12023,11 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 $str, E
 ,E F
 nameofG M
-(M N
-valueN S
-)S T
-)T U
-;U V
+(M N
+emailAddressN Z
+)Z [
+)[ \
+;\ ]
 } 
 }   	
 private%% 
@@ -12081,150 +12038,138 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 string%%) /
 email%%0 5
 )%%5 6
-{&& 	
-if'' 
-('' 
-string'' 
-.'' 
-IsNullOrWhiteSpace'' )
-('') *
-email''* /
-)''/ 0
-)''0 1
-return(( 
-false(( 
-;(( 
-try** 
-{++ 
-email-- 
-=-- 
-Regex-- 
-.-- 
-Replace-- %
-(--% &
-email--& +
-,--+ ,
-$str--- 7
-,--7 8
-DomainMapper--9 E
-,--E F
-RegexOptions..& 2
-...2 3
-None..3 7
-,..7 8
-TimeSpan..9 A
-...A B
-FromMilliseconds..B R
-(..R S
-$num..S V
-)..V W
-)..W X
-;..X Y
-static11 
-string11 
-DomainMapper11 *
-(11* +
-Match11+ 0
-match111 6
-)116 7
-{22 
-var44 
-idn44 
-=44 
-new44 !
+{&& 	
+try'' 
+{(( 
+email** 
+=** 
+Regex** 
+.** 
+Replace** %
+(**% &
+email**& +
+,**+ ,
+$str**- 7
+,**7 8
+DomainMapper**9 E
+,**E F
+RegexOptions++& 2
+.++2 3
+None++3 7
+,++7 8
+TimeSpan++9 A
+.++A B
+FromMilliseconds++B R
+(++R S
+$num++S V
+)++V W
+)++W X
+;++X Y
+static.. 
+string.. 
+DomainMapper.. *
+(..* +
+Match..+ 0
+match..1 6
+)..6 7
+{// 
+var11 
+idn11 
+=11 
+new11 !
 
-IdnMapping44" ,
-(44, -
-)44- .
-;44. /
-string77 
+IdnMapping11" ,
+(11, -
+)11- .
+;11. /
+string44 
 
-domainName77 %
-=77& '
-idn77( +
-.77+ ,
-GetAscii77, 4
-(774 5
-match775 :
-.77: ;
-Groups77; A
-[77A B
-$num77B C
-]77C D
-.77D E
-Value77E J
-)77J K
-;77K L
-return99 
-match99  
-.99  !
-Groups99! '
-[99' (
-$num99( )
-]99) *
-.99* +
-Value99+ 0
-+991 2
+domainName44 %
+=44& '
+idn44( +
+.44+ ,
+GetAscii44, 4
+(444 5
+match445 :
+.44: ;
+Groups44; A
+[44A B
+$num44B C
+]44C D
+.44D E
+Value44E J
+)44J K
+;44K L
+return66 
+match66  
+.66  !
+Groups66! '
+[66' (
+$num66( )
+]66) *
+.66* +
+Value66+ 0
++661 2
 
-domainName993 =
-;99= >
-}:: 
-};; 
-catch<< 
-(<< &
-RegexMatchTimeoutException<< -
-)<<- .
-{== 
-return>> 
-false>> 
-;>> 
-}?? 
-catch@@ 
-(@@ 
-ArgumentException@@ $
-)@@$ %
-{AA 
-returnBB 
-falseBB 
-;BB 
-}CC 
-tryEE 
-{FF 
-returnGG 
-RegexGG 
-.GG 
-IsMatchGG $
-(GG$ %
-emailGG% *
-,GG* +
-$strHH 1
-,HH1 2
-RegexOptionsII  
-.II  !
+domainName663 =
+;66= >
+}77 
+}88 
+catch99 
+(99 &
+RegexMatchTimeoutException99 -
+)99- .
+{:: 
+return;; 
+false;; 
+;;; 
+}<< 
+catch== 
+(== 
+ArgumentException== $
+)==$ %
+{>> 
+return?? 
+false?? 
+;?? 
+}@@ 
+tryBB 
+{CC 
+returnDD 
+RegexDD 
+.DD 
+IsMatchDD $
+(DD$ %
+emailDD% *
+,DD* +
+$strEE 1
+,EE1 2
+RegexOptionsFF  
+.FF  !
 
-IgnoreCaseII! +
-,II+ ,
-TimeSpanII- 5
-.II5 6
-FromMillisecondsII6 F
-(IIF G
-$numIIG J
-)IIJ K
-)IIK L
-;IIL M
-}JJ 
-catchKK 
-(KK &
-RegexMatchTimeoutExceptionKK -
-)KK- .
-{LL 
-returnMM 
-falseMM 
-;MM 
-}NN 
-}OO 	
-}PP 
-}QQ è&
+IgnoreCaseFF! +
+,FF+ ,
+TimeSpanFF- 5
+.FF5 6
+FromMillisecondsFF6 F
+(FFF G
+$numFFG J
+)FFJ K
+)FFK L
+;FFL M
+}GG 
+catchHH 
+(HH &
+RegexMatchTimeoutExceptionHH -
+)HH- .
+{II 
+returnJJ 
+falseJJ 
+;JJ 
+}KK 
+}LL 	
+}MM 
+}NN ã&
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Money.cs
 	namespace 	
 AWC
@@ -12500,16 +12445,16 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 Guard,, 
 .,, 
 Against,, 
-.,, 
-LessThanZero,, &
-(,,& '
-amount,,' -
+.,, 
+LessThan,, "
+(,," #
+amount,,# )
+,,,) *
+$num,,+ -
 ,,,- .
-$str,,/ 7
-,,,7 8
-$str,,9 U
-),,U V
-;,,V W
+$str,,/ K
+),,K L
+;,,L M
 Guard.. 
 ... 
 Against.. 
@@ -12523,7 +12468,7 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 ;..G H
 }// 	
 }00 
-}11 Í
+}11 Ç
 d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/OrganizationName.cs
 	namespace 	
 AWC
@@ -12616,43 +12561,33 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 void 
 CheckValidity )
 () *
-string* 0
-value1 6
-)6 7
+string* 0
+organizationName1 A
+)A B
 { 	
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-value& +
-,+ ,
-$str- ?
-,? @
-$strA d
-)d e
-;e f
+(% &
+organizationName& 6
+)6 7
+;7 8
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan +
-(+ ,
-value, 1
-,1 2
-$num3 5
-,5 6
-$str7 I
-,I J
-$str	K Ü
-)
-Ü á
-;
-á à
+(+ ,
+organizationName, <
+,< =
+$num> @
+)@ A
+;A B
 } 	
 } 
-} º
+} ¢
 ^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PersonName.cs
 	namespace 	
 AWC
@@ -12784,102 +12719,85 @@ PersonName !
 void 
 CheckValidity )
 () *
-string* 0
-last1 5
-,5 6
-string7 =
-first> C
-,C D
-stringE K
-miL N
-)N O
+string* 0
+lastName1 9
+,9 :
+string; A
+	firstNameB K
+,K L
+stringM S
+
+middleNameT ^
+)^ _
 { 	
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-last& *
-,* +
-$str, 6
-,6 7
-$str8 R
-)R S
-;S T
+(% &
+lastName& .
+). /
+;/ 0
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan +
-(+ ,
-last, 0
-,0 1
-$num2 4
+(+ ,
+lastName, 4
 ,4 5
-$str6 @
-,@ A
-$strB u
-)u v
-;v w
+$num6 8
+)8 9
+;9 :
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-first& +
-,+ ,
-$str- 8
-,8 9
-$str: U
-)U V
-;V W
+(% &
+	firstName& /
+)/ 0
+;0 1
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan +
-(+ ,
-first, 1
-,1 2
-$num3 5
+(+ ,
+	firstName, 5
 ,5 6
-$str7 B
-,B C
-$strD x
-)x y
-;y z
+$num7 9
+)9 :
+;: ;
 if!! 
 (!! 
 !!! 
 string!! 
 .!! 
 IsNullOrEmpty!! %
-(!!% &
-mi!!& (
-)!!( )
-)!!) *
+(!!% &
+
+middleName!!& 0
+)!!0 1
+)!!1 2
 {"" 
 Guard## 
 .## 
 Against## 
 .## 
 LengthGreaterThan## /
-(##/ 0
-mi##0 2
-,##2 3
-$num##4 6
-,##6 7
-$str##8 D
-,##D E
-$str##F {
-)##{ |
-;##| }
+(##/ 0
+
+middleName##0 :
+,##: ;
+$num##< >
+)##> ?
+;##? @
 }$$ 
 }%% 	
 }&& 
-}'' ∞
+}'' ˝
 ^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PersonType.cs
 	namespace 	
 AWC
@@ -12989,23 +12907,21 @@ PersonType !
 void 
 CheckValidity )
 () *
-string* 0
-value1 6
-)6 7
+string* 0
+
+personType1 ;
+); <
 { 	
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-value& +
-,+ ,
-$str- 9
-,9 :
-$str; Y
-)Y Z
-;Z [
+(% &
+
+personType& 0
+)0 1
+;1 2
 if 
 ( 
 ! 
@@ -13018,14 +12934,15 @@ PersonType !
 element, 3
 =>4 6
 element7 >
-==? A
-valueB G
-.G H
-ToUpperH O
-(O P
-)P Q
-)Q R
-)R S
+==? A
+
+personTypeB L
+.L M
+ToUpperM T
+(T U
+)U V
+)V W
+)W X
 { 
 throw 
 new 
@@ -13037,7 +12954,7 @@ PersonType !
 } 
 } 	
 } 
-}   ¢
+}   ∑
 _/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PhoneNumber.cs
 	namespace 	
 AWC
@@ -13120,40 +13037,30 @@ _/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 void 
 CheckValidity )
 () *
-string* 0
-value1 6
-)6 7
+string* 0
+phoneNumber1 <
+)< =
 { 	
 Guard 
 . 
 Against 
 . 
 NullOrEmpty %
-(% &
-value& +
-,+ ,
-$str- :
-,: ;
-$str< a
-)a b
-;b c
+(% &
+phoneNumber& 1
+)1 2
+;2 3
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan +
-(+ ,
-value, 1
-,1 2
-$num3 5
-,5 6
-$str7 D
-,D E
-$str	F Ñ
-)
-Ñ Ö
-;
-Ö Ü
+(+ ,
+phoneNumber, 7
+,7 8
+$num9 ;
+); <
+;< =
 Regex $
 validatePhoneNumberRegex *
 =+ ,
@@ -13167,22 +13074,22 @@ _/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 validatePhoneNumberRegex )
 .) *
 IsMatch* 1
-(1 2
-value2 7
-)7 8
-)8 9
+(1 2
+phoneNumber2 =
+)= >
+)> ?
 throw 
 new 
 ArgumentException +
 (+ ,
 $", .
-{. /
-value/ 4
-}4 5
-$str5 R
-"R S
-)S T
-;T U
+{. /
+phoneNumber/ :
+}: ;
+$str; X
+"X Y
+)Y Z
+;Z [
 }   	
 ["" 	
 GeneratedRegex""	 
@@ -13570,7 +13477,7 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 )II4 5
 ;II5 6
 }JJ 
-}KK à
+}KK …
 Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Suffix.cs
 	namespace 	
 AWC
@@ -13663,9 +13570,9 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 void 
 CheckValidity )
 () *
-string* 0
-value1 6
-)6 7
+string* 0
+suffix1 7
+)7 8
 { 	
 if 
 ( 
@@ -13673,30 +13580,26 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 string 
 . 
 IsNullOrEmpty %
-(% &
-value& +
-)+ ,
+(% &
+suffix& ,
 ), -
+)- .
 { 
 Guard 
 . 
 Against 
 . 
 LengthGreaterThan /
-(/ 0
-value0 5
-,5 6
-$num7 9
-,9 :
-$str; C
-,C D
-$strE y
-)y z
-;z {
+(/ 0
+suffix0 6
+,6 7
+$num8 :
+): ;
+;; <
 } 
 } 	
 } 
-} Ç
+} ¿
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Title.cs
 	namespace 	
 AWC
@@ -13790,7 +13693,7 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 CheckValidity )
 () *
 string* 0
-value1 6
+title1 6
 )6 7
 { 	
 if 
@@ -13800,7 +13703,7 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 . 
 IsNullOrEmpty %
 (% &
-value& +
+title& +
 )+ ,
 ), -
 { 
@@ -13810,15 +13713,11 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 . 
 LengthGreaterThan /
 (/ 0
-value0 5
+title0 5
 ,5 6
 $num7 8
-,8 9
-$str: A
-,A B
-$strC u
-)u v
-;v w
+)8 9
+;9 :
 } 
 } 	
 } 

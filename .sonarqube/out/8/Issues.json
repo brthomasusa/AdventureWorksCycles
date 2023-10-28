@@ -12,30 +12,6 @@
       },
       "results": [
         {
-          "ruleId": "CS8604",
-          "level": "warning",
-          "message": "Possible null reference argument for parameter 'connStr' in 'DapperContext.DapperContext(string connStr)'.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
-                "region": {
-                  "startLine": 44,
-                  "startColumn": 77,
-                  "endLine": 44,
-                  "endColumn": 94
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
           "ruleId": "CS1998",
           "level": "warning",
           "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
@@ -108,6 +84,54 @@
           }
         },
         {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'input' in 'string GuardClauseExtensions.NullOrEmpty(IGuardClause guardClause, string input, string? message = null, string? parameterName = null)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 39,
+                  "endLine": 31,
+                  "endColumn": 55
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'input' in 'string GuardClauseExtensions.NullOrEmpty(IGuardClause guardClause, string input, string? message = null, string? parameterName = null)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 39,
+                  "endLine": 46,
+                  "endColumn": 55
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
           "ruleId": "CS0169",
           "level": "warning",
           "message": "The field 'Pages_Error.__tagHelperStringValueBuffer' is never used",
@@ -161,9 +185,9 @@
               "resultFile": {
                 "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
                 "region": {
-                  "startLine": 21,
+                  "startLine": 22,
                   "startColumn": 17,
-                  "endLine": 21,
+                  "endLine": 22,
                   "endColumn": 41
                 }
               }

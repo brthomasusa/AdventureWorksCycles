@@ -18,11 +18,11 @@ namespace AWC.Core.Shared.ValueObjects
             return new Suffix(value);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string suffix)
         {
-            if (!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(suffix))
             {
-                Guard.Against.LengthGreaterThan(value, 10, "Suffix", "The maximum length of the suffix is 10 characters.");
+                Guard.Against.LengthGreaterThan(suffix, 10);
             }
         }
     }

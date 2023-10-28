@@ -18,10 +18,10 @@ namespace AWC.Core.Shared.ValueObjects
             return new OrganizationName(orgName);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string organizationName)
         {
-            Guard.Against.NullOrEmpty(value, "OrganizationName", "An organization name is required.");
-            Guard.Against.LengthGreaterThan(value, 50, "OrganizationName", "Maximum length of the organization name is 50 characters.");
+            Guard.Against.NullOrEmpty(organizationName);
+            Guard.Against.LengthGreaterThan(organizationName, 50);
         }
     }
 }
