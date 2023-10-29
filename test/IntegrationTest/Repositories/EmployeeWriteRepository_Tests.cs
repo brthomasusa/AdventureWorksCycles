@@ -1,7 +1,7 @@
 using AWC.Application.Features.HumanResources.Common;
 using AWC.Application.Features.HumanResources.CreateEmployee;
-using AWC.Core.HumanResources;
-using AWC.Core.Shared;
+using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.Shared;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.SharedKernel.Utilities;

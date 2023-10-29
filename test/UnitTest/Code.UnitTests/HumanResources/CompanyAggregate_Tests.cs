@@ -1,4 +1,4 @@
-using AWC.Core.HumanResources;
+using AWC.Core.Entities.HumanResources;
 using AWC.UnitTest.Shared.Data;
 
 namespace AWC.UnitTest.Code.UnitTests.HumanResources

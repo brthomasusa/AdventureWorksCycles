@@ -1,4 +1,4 @@
-using AWC.Core.HumanResources;
+using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
 using AWC.SharedKernel.Utilities;
 using MapsterMapper;

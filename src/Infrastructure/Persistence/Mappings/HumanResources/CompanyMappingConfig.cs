@@ -1,5 +1,5 @@
 using CompanyDataModel = AWC.Infrastructure.Persistence.DataModels.HumanResources.Company;
-using CompanyDomainModel = AWC.Core.HumanResources.Company;
+using CompanyDomainModel = AWC.Core.Entities.HumanResources.Company;
 using Mapster;
 
 namespace AWC.Infrastructure.Persistence.Mappings.HumanResources

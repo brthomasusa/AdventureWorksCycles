@@ -1,4 +1,4 @@
-using AWC.Core.Interfaces;
+using AWC.Core.Interfaces.HumanResouces;
 
 namespace AWC.Infrastructure.Persistence.Interfaces
 {

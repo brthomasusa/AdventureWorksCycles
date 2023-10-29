@@ -1,6 +1,6 @@
 using AWC.Application.Features.HumanResources.Common;
 using AWC.Application.Features.HumanResources.CreateEmployee;
-using AWC.Core.HumanResources;
+using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.UnitTest.Shared.Data;
@@ -115,7 +115,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
                 )
             );
 
-            AWC.Core.Shared.Address domainAddress = _employee.Addresses.FirstOrDefault()!;
+            AWC.Core.Entities.Shared.Address domainAddress = _employee.Addresses.FirstOrDefault()!;
             AWC.Infrastructure.Persistence.DataModels.Person.Address dataAddress = personDataModel.BusinessEntityAddresses.FirstOrDefault()!.Address!;
 
             Assert.Equal(domainAddress.Location.AddressLine1, dataAddress.AddressLine1);
@@ -146,7 +146,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
                 )
             );
 
-            AWC.Core.Shared.Address domainAddress = _employee.Addresses.FirstOrDefault()!;
+            AWC.Core.Entities.Shared.Address domainAddress = _employee.Addresses.FirstOrDefault()!;
             AWC.Infrastructure.Persistence.DataModels.Person.Address dataAddress = addresses.FirstOrDefault()!;
 
             Assert.Equal(domainAddress.Location.AddressLine1, dataAddress.AddressLine1);

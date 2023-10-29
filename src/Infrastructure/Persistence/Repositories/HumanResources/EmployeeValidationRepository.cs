@@ -1,5 +1,5 @@
 using Ardalis.Specification.EntityFrameworkCore;
-using AWC.Core.Interfaces;
+using AWC.Core.Interfaces.HumanResouces;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Infrastructure.Persistence.Specifications.HumanResources;

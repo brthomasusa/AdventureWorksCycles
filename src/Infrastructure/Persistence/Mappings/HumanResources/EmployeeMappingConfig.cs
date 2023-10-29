@@ -1,7 +1,7 @@
 #pragma warning disable S4830
 
-using AWC.Core.HumanResources;
-using AWC.Core.Shared;
+using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.Shared;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.SharedKernel.Utilities;
@@ -15,7 +15,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
         {
             // TypeAdapterConfig<TSource, TDestination> ((DateTime?)null)
 
-            _ = config.NewConfig<AWC.Core.Shared.Address, AWC.Infrastructure.Persistence.DataModels.Person.Address>()
+            _ = config.NewConfig<AWC.Core.Entities.Shared.Address, AWC.Infrastructure.Persistence.DataModels.Person.Address>()
             .Map(dest => dest.AddressID, src => src.Id)
             .Map(dest => dest.AddressLine1, src => src.Location.AddressLine1)
             .Map(dest => dest.AddressLine2, src => src.Location.AddressLine2)
@@ -23,12 +23,12 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             .Map(dest => dest.StateProvinceID, src => src.Location.StateProvinceID)
             .Map(dest => dest.PostalCode, src => src.Location.Zipcode);
 
-            _ = config.NewConfig<AWC.Core.Shared.PersonPhone, AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>()
+            _ = config.NewConfig<AWC.Core.Entities.Shared.PersonPhone, AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
             .Map(dest => dest.PhoneNumber, src => src.Telephone.Value)
             .Map(dest => dest.PhoneNumberTypeID, src => (int)src.PhoneNumberType);
 
-            _ = config.NewConfig<AWC.Core.Shared.PersonEmailAddress, AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress>()
+            _ = config.NewConfig<AWC.Core.Entities.Shared.PersonEmailAddress, AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
             .Map(dest => dest.EmailAddressID, src => src.EmailAddressID)
             .Map(dest => dest.MailAddress, src => src.EmailAddress.Value);

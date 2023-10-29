@@ -1,4 +1,4 @@
-using AWC.Core.HumanResources.ValueObjects;
+using AWC.Core.Entities.HumanResources.ValueObjects;
 
 namespace AWC.UnitTest.Code.UnitTests.HumanResources;
 

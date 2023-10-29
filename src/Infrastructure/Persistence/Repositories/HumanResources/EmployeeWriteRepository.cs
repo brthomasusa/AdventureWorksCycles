@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
-using AWC.Core.Interfaces;
+using AWC.Core.Interfaces.HumanResouces;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Infrastructure.Persistence.Mappings.HumanResources;
@@ -12,7 +12,7 @@ using AWC.Infrastructure.Persistence.Specifications.Person;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
 
-using EmployeeDomainModel = AWC.Core.HumanResources.Employee;
+using EmployeeDomainModel = AWC.Core.Entities.HumanResources.Employee;
 using MapsterMapper;
 
 namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
@@ -256,7 +256,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
         private static List<AWC.Infrastructure.Persistence.DataModels.Person.Address> GetDataModelAddresses
         (
-            AWC.Core.HumanResources.Employee employee
+            AWC.Core.Entities.HumanResources.Employee employee
         )
         {
             List<AWC.Infrastructure.Persistence.DataModels.Person.Address> addresses = new();
@@ -279,11 +279,11 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
 
         private static void CreateBusinessEntityAddresses
         (
-            AWC.Core.HumanResources.Employee employee,
+            AWC.Core.Entities.HumanResources.Employee employee,
             ref PersonDataModel person
         )
         {
-            foreach (AWC.Core.Shared.Address addr in employee.Addresses)
+            foreach (AWC.Core.Entities.Shared.Address addr in employee.Addresses)
             {
                 person.BusinessEntityAddresses.Add(
                     new BusinessEntityAddress

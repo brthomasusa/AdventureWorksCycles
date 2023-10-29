@@ -1,6 +1,6 @@
 using AWC.Application.Features.HumanResources.Common;
 using AWC.Application.Interfaces.Messaging;
-using AWC.Core.HumanResources;
+using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.SharedKernel.Utilities;
 using MapsterMapper;

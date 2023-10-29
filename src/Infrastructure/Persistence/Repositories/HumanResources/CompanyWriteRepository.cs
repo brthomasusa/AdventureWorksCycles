@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
 using AWC.Core.Interfaces;
+using AWC.Core.Interfaces.HumanResouces;
 using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
 
 using CompanyDataModel = AWC.Infrastructure.Persistence.DataModels.HumanResources.Company;
-using CompanyDomainModel = AWC.Core.HumanResources.Company;
+using CompanyDomainModel = AWC.Core.Entities.HumanResources.Company;
 using MapsterMapper;
 
 namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
@@ -50,7 +51,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                     return Result<CompanyDomainModel>.Failure<CompanyDomainModel>(new Error("CompanyAggregateRepository.GetByIdAsync", errMsg));
                 }
 
-                Result<AWC.Core.HumanResources.Company> result = CompanyDomainModel.Create(
+                Result<AWC.Core.Entities.HumanResources.Company> result = CompanyDomainModel.Create(
                     companyDataModel.CompanyID,
                     companyDataModel.CompanyName!,
                     companyDataModel.LegalName!,

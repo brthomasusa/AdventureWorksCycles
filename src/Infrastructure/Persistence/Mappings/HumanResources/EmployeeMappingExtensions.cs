@@ -1,5 +1,5 @@
-using AWC.Core.HumanResources;
-using AWC.Core.Shared;
+using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.Shared;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.SharedKernel.Utilities;
@@ -77,12 +77,12 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
         {
             foreach (BusinessEntityAddress bea in person!.BusinessEntityAddresses)
             {
-                Result<Core.Shared.Address> result =
+                Result<Core.Entities.Shared.Address> result =
                     employee.AddAddress
                     (
                         bea.AddressID,
                         bea.BusinessEntityID,
-                        (Core.Shared.AddressType)bea.AddressTypeID,
+                        (Core.Entities.Shared.AddressType)bea.AddressTypeID,
                         bea.Address!.AddressLine1!,
                         bea.Address.AddressLine2,
                         bea.Address!.City!,
@@ -120,10 +120,10 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
         {
             foreach (DataModels.Person.PersonPhone phone in person!.Telephones)
             {
-                Result<Core.Shared.PersonPhone> result = employee.AddPhoneNumber
+                Result<Core.Entities.Shared.PersonPhone> result = employee.AddPhoneNumber
                 (
                         phone.BusinessEntityID,
-                        (Core.Shared.PhoneNumberType)phone.PhoneNumberTypeID,
+                        (Core.Entities.Shared.PhoneNumberType)phone.PhoneNumberTypeID,
                         phone.PhoneNumber!
                 );
 

@@ -1,8 +1,8 @@
 using AWC.Application.Features.HumanResources.Common;
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
-using AWC.Core.HumanResources;
-using AWC.Core.Shared;
+using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.Shared;
 using AWC.UnitTest.Shared.Data;
 using AWC.UnitTest.Shared;
 using MapsterMapper;

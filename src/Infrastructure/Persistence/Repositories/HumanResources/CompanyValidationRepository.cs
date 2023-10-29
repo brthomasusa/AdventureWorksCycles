@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
-using AWC.Core.Interfaces;
+using AWC.Core.Interfaces.HumanResouces;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using AWC.SharedKernel.Utilities;

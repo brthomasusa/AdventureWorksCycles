@@ -1,4 +1,4 @@
-using AWC.Core.Shared.ValueObjects;
+using AWC.Core.Entities.Shared.ValueObjects;
 using AWC.SharedKernel.Exceptions;
 
 namespace AWC.UnitTest.Code.UnitTests.Shared

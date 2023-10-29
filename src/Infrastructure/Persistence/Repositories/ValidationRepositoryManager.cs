@@ -1,4 +1,4 @@
-using AWC.Core.Interfaces;
+using AWC.Core.Interfaces.HumanResouces;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories.HumanResources;
 using Microsoft.Extensions.Logging;
