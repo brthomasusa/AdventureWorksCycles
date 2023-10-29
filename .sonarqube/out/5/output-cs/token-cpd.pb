@@ -9126,7 +9126,7 @@ WebsiteUrl" ,
 ;  < =
 }!! 	
 }"" 
-}## ¬§
+}## ¢¨
 ƒ/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingConfig.cs
 	namespace
 
@@ -9185,26 +9185,28 @@ WebsiteUrl" ,
 AWC! $
 .$ %
 Core% )
-.) *
-Shared* 0
-.0 1
-Address1 8
-,8 9
-AWC: =
-.= >
-Infrastructure> L
-.L M
-PersistenceM X
-.X Y
+.) *
+Entities* 2
+.2 3
+Shared3 9
+.9 :
+Address: A
+,A B
+AWCC F
+.F G
+InfrastructureG U
+.U V
+PersistenceV a
+.a b
 
-DataModelsY c
-.c d
-Persond j
-.j k
-Addressk r
->r s
-(s t
-)t u
+DataModelsb l
+.l m
+Personm s
+.s t
+Addresst {
+>{ |
+(| }
+)} ~
 . 
 Map 
 ( 
@@ -9316,26 +9318,31 @@ PostalCode (
 AWC! $
 .$ %
 Core% )
-.) *
-Shared* 0
-.0 1
-PersonPhone1 <
-,< =
-AWC> A
-.A B
-InfrastructureB P
-.P Q
-PersistenceQ \
-.\ ]
+.) *
+Entities* 2
+.2 3
+Shared3 9
+.9 :
+PersonPhone: E
+,E F
+AWCG J
+.J K
+InfrastructureK Y
+.Y Z
+PersistenceZ e
+.e f
 
-DataModels] g
-.g h
-Personh n
-.n o
-PersonPhoneo z
->z {
-({ |
-)| }
+DataModelsf p
+.p q
+Personq w
+.w x
+PersonPhone	x ƒ
+>
+ƒ „
+(
+„ …
+)
+… †
 . 
 Map 
 ( 
@@ -9396,29 +9403,31 @@ DataModels] g
 AWC! $
 .$ %
 Core% )
-.) *
-Shared* 0
-.0 1
-PersonEmailAddress1 C
-,C D
-AWCE H
-.H I
-InfrastructureI W
-.W X
-PersistenceX c
-.c d
+.) *
+Entities* 2
+.2 3
+Shared3 9
+.9 :
+PersonEmailAddress: L
+,L M
+AWCN Q
+.Q R
+InfrastructureR `
+.` a
+Persistencea l
+.l m
 
-DataModelsd n
-.n o
-Persono u
-.u v
-EmailAddress	v ‚
+DataModelsm w
+.w x
+Personx ~
+.~ 
+EmailAddress	 ‹
 >
-‚ ƒ
+‹ Œ
 (
-ƒ „
+Œ 
 )
-„ …
+ Ž
 .   
 Map   
 (   
@@ -10409,7 +10418,7 @@ MiddleName__ &
 ;nn 
 }oo 	
 }pp 
-}qq ÷›
+}qq ‹
 ‡/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingExtensions.cs
 	namespace 	
 AWC
@@ -10817,13 +10826,15 @@ PayHistory>> !
 ResultPP 
 <PP 
 CorePP 
-.PP 
-SharedPP "
-.PP" #
-AddressPP# *
->PP* +
-resultPP, 2
-=PP3 4
+.PP 
+EntitiesPP $
+.PP$ %
+SharedPP% +
+.PP+ ,
+AddressPP, 3
+>PP3 4
+resultPP5 ;
+=PP< =
 employeeQQ 
 .QQ 
 
@@ -10839,15 +10850,17 @@ AddAddressQQ '
 ,TT, -
 (UU 
 CoreUU 
-.UU 
-SharedUU $
-.UU$ %
-AddressTypeUU% 0
-)UU0 1
-beaUU1 4
-.UU4 5
-AddressTypeIDUU5 B
-,UUB C
+.UU 
+EntitiesUU &
+.UU& '
+SharedUU' -
+.UU- .
+AddressTypeUU. 9
+)UU9 :
+beaUU: =
+.UU= >
+AddressTypeIDUU> K
+,UUK L
 beaVV 
 .VV 
 AddressVV #
@@ -11012,16 +11025,18 @@ TelephonesyyD N
 Result{{ 
 <{{ 
 Core{{ 
-.{{ 
-Shared{{ "
-.{{" #
-PersonPhone{{# .
->{{. /
-result{{0 6
-={{7 8
-employee{{9 A
-.{{A B
-AddPhoneNumber{{B P
+.{{ 
+Entities{{ $
+.{{$ %
+Shared{{% +
+.{{+ ,
+PersonPhone{{, 7
+>{{7 8
+result{{9 ?
+={{@ A
+employee{{B J
+.{{J K
+AddPhoneNumber{{K Y
 (|| 
 phone}} 
 .}} 
@@ -11029,15 +11044,17 @@ TelephonesyyD N
 ,}}. /
 (~~ 
 Core~~ 
-.~~ 
-Shared~~ $
-.~~$ %
-PhoneNumberType~~% 4
-)~~4 5
-phone~~5 :
-.~~: ;
-PhoneNumberTypeID~~; L
-,~~L M
+.~~ 
+Entities~~ &
+.~~& '
+Shared~~' -
+.~~- .
+PhoneNumberType~~. =
+)~~= >
+phone~~> C
+.~~C D
+PhoneNumberTypeID~~D U
+,~~U V
 phone 
 . 
 PhoneNumber )
@@ -17273,7 +17290,7 @@ AwcContext+ 5
 }== 
 }>> 	
 }?? 
-}@@ È‰
+}@@ í‰
 ˆ/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/CompanyWriteRepository.cs
 	namespace 	
 AWC
@@ -17499,17 +17516,19 @@ LogWarning11 &
 AWC55 
 .55 
 Core55 
-.55  
-HumanResources55  .
-.55. /
-Company55/ 6
->556 7
-result558 >
-=55? @
-CompanyDomainModel55A S
-.55S T
-Create55T Z
-(55Z [
+.55  
+Entities55  (
+.55( )
+HumanResources55) 7
+.557 8
+Company558 ?
+>55? @
+result55A G
+=55H I
+CompanyDomainModel55J \
+.55\ ]
+Create55] c
+(55c d
 companyDataModel66 $
 .66$ %
 	CompanyID66% .
@@ -20414,7 +20433,7 @@ department
 áá 	
 }
 ââ 
-}ãã “ï
+}ãã Žð
 ‰/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/EmployeeWriteRepository.cs
 	namespace 	
 AWC
@@ -22536,15 +22555,19 @@ DataModels
 Core
 ƒƒ 
 .
-ƒƒ 
-HumanResources
-ƒƒ #
+ƒƒ 
+Entities
+ƒƒ 
 .
-ƒƒ# $
+ƒƒ 
+HumanResources
+ƒƒ ,
+.
+ƒƒ, -
 Employee
-ƒƒ$ ,
+ƒƒ- 5
 employee
-ƒƒ- 5
+ƒƒ6 >
 )
 „„ 	
 {
@@ -22754,17 +22777,21 @@ PostalCode
 Core
 šš 
 .
-šš 
-HumanResources
-šš #
+šš 
+Entities
+šš 
 .
-šš# $
+šš 
+HumanResources
+šš ,
+.
+šš, -
 Employee
-šš$ ,
+šš- 5
 employee
-šš- 5
+šš6 >
 ,
-šš5 6
+šš> ?
 ref
 ›› 
 PersonDataModel
@@ -22786,25 +22813,29 @@ PostalCode
 Core
 žž 
 .
-žž 
+žž 
+Entities
+žž &
+.
+žž& '
 Shared
-žž $
+žž' -
 .
-žž$ %
+žž- .
 Address
-žž% ,
+žž. 5
 addr
-žž- 1
+žž6 :
 in
-žž2 4
+žž; =
 employee
-žž5 =
+žž> F
 .
-žž= >
+žžF G
 	Addresses
-žž> G
+žžG P
 )
-žžG H
+žžP Q
 {
 ŸŸ 
 person

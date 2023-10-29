@@ -4,8 +4,7 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/Busin
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/DomainEvent.csutf-8\
 S/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/Entity.csutf-8k
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/IgnoreMemberAttribute.csutf-8f
-]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/IntegrationEvent.csutf-8f
-]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValidationResult.csutf-8a
+]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/IntegrationEvent.csutf-8a
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.csutf-8{
 r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Exceptions/BusinessRuleValidationException.csutf-8k
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Exceptions/DomainException.csutf-8m
@@ -28,7 +27,8 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/
 [/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/PagedList.csutf-8k
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/PagingParameters.csutf-8a
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/Result.csutf-8b
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ResultT.csutf-8
+Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ResultT.csutf-8k
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ValidationResult.csutf-8
 t/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/obj/Debug/net7.0/SharedKernel.GlobalUsings.g.csutf-8ê
 Ñ/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.csutf-8}
 r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/obj/Debug/net7.0/SharedKernel.AssemblyInfo.csutf-8

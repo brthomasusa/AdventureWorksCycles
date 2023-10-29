@@ -17,16 +17,22 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/Aggre
  %Ÿ
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/BusinessRule.cs
 
- &2
-' (: ;  !		* += >(
-$ (   
+ &2
+' (: ;  !
+
+* += >(
+$ (   
 
-		 
-		- 1 
+
+
+ 
+
+
+- 1 
 
-4 <
-? F$ +
- - #f
+4 <
+? F$ +
+ - #f
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/DomainEvent.cs
 
  &±
@@ -49,14 +55,7 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/Ignor
  *
 ( * 
   
-! ,  ƒ
-]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValidationResult.cs
-
- !
-
- 
-
- $¸
+! ,  ¸
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.csF
  %3 >' 29 D' 29 D &
 		# -33 "
@@ -172,7 +171,7 @@ i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 
  % * 
   
-8 E4 Aï
+8 E4 Aí
 k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstNumberExtensions.cs
 
   5
@@ -183,7 +182,7 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 
 
    
-   L T
+   K S
   
 8 E% 2
 
@@ -191,7 +190,7 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 
  )
     $$ 
-     ""L T
+     ""K S
  "" 
 8 E""% 2
 
@@ -199,7 +198,7 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 
 )) )
 ** 00 44 
-++ 00  22W _
+++ 00  22H P
 ,, 22 
 --8 E22% 2
 
@@ -207,29 +206,28 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 
 99 )
 :: @@ DD 
-;; @@  BBW _
+;; @@  BBH P
 << BB 
 ==8 EBB% 2
 
 GG 9
 
-GGL W
-GGa fII MM 
-GGo |KK% 2
-
-GG —KK Ú
+II )
+JJ OO SS 
+KK QQ 
+LL8 EQQ% 2Ú
 h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstUrlExtensions.cs
 
-  5
+  5
 
- '
+ '
 
-: E
-N Q
+		 )
+
 
-  
-Z g6 C
-x  ”
+  ! 
+  
+8 E$ 1”
 d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardClauseExtensions.cs
 
   5
@@ -372,36 +370,32 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/
 
 ' 1
 
-7 ?Ì
-X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/Result.csP
-   ## ''! '''P V)) %++ (
+7 ?Ž
+X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/Result.cs
+     (
 ' 0   !(
 8 = " # 
-  " +
- -- $
-  
- $##C J33 
+  " +
+
+ 
+  
+
+ $
 
 % ,
 - 3 #5 ;
-< AJ O
- $##O V
-+ 0@ E
+< A 
 
-!!% ,
-!!- 3!! #
-!!; @!!Y ^
+   $
+  + 0!! 
 
-## #
-##) 2##7 @
+##% ,
+##- 3## #
+##; @$$  %
 
-%%% +(
-%%, 2%% #%%4 :%%s y
-%%< A%%F K%%b g
-
-'') >
-''[ b))6 =
-++ -- // !³
+&&% +(
+&&, 2&& #&&4 :''9 ?
+&&< A'' ''( -³
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ResultT.cs
  ( .<
   " ( / 57 =
@@ -411,4 +405,11 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/
 G L #
 
  
-? DP U
+? DP Uˆ
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ValidationResult.cs
+
+ !
+
+ 
+
+ $

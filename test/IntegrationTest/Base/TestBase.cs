@@ -2,8 +2,6 @@
 
 using AWC.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using TestSupport.Helpers;
 
 namespace AWC.IntegrationTest.Base
 {

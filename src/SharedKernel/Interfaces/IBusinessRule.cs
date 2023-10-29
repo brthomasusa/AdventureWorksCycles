@@ -1,4 +1,3 @@
-using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.SharedKernel.Interfaces

@@ -1,125 +1,78 @@
-û
-Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/AddMapsterForUnitTest.cs
+ß	
+ï/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Application.UnitTests/CommandHandlers/HumanResources/EmployeeCommandHandler_Test.cs
 
-		 .
+ ,ö
+! ( O V!!O V**O V33O V<<O VEEO VNNO VWWO V``O ViiO VuuO V
+ÅÅO V
+ççO V
 
- &(
-    $ˇ
-p/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/CommandHandlers/EmployeeCommandHandler_Test.cs
+ W
+" )F M
+ # $ *
 
- ,ö
-! ( O V  O V))O V22O V;;O VDDO VMMO VVVO V__O VhhO VttO V
-ÄÄO V
-ååO V
+ d
+  " )!!F M
+!! ### 
 
- W
-" )F M
- # $ *
+'' p
+))" )**F M
+** #,, 
 
- d
-" )  F M
-   #"" 
+00 t
+22" )33F M
+33 #55 
 
-&& p
-((" )))F M
-)) #++ 
+99 f
+;;" )<<F M
+<< #>> 
 
-// t
-11" )22F M
-22 #44 
+BB e
+DD" )EEF M
+EE #GG 
 
-88 f
-::" );;F M
-;; #== 
+KK f
+MM" )NNF M
+NN #PP 
 
-AA e
-CC" )DDF M
-DD #FF 
+TT U
+VV" )WWF M
+WW #YY  
 
-JJ f
-LL" )MMF M
-MM #OO 
+]] N
+__" )``F M
+`` #bb  
 
-SS U
-UU" )VVF M
-VV #XX  
+ff S
+hh" )iiF M
+ii #kk %
+kk mm "nn' .
 
-\\ N
-^^" )__F M
-__ #aa  
+rr X
+tt" )uuF M
+uu #ww/ 5
+ww  ,yy 'zz7 C
 
-ee S
-gg" )hhF M
-hh #jj %
-jj ll "mm' .
+~~ Q
 
-qq X
-ss" )ttF M
-tt #vv/ 5
-vv  ,xx 'yy7 C
+ÄÄ" )
+ÅÅF M
 
-}} Q
-" )
-ÄÄF M
+ÅÅ #
+ÉÉ! '$
 
-ÄÄ #
-ÇÇ! '$
+ÉÉ 
+ÖÖ  
+ÜÜ) .
 
-ÇÇ 
-ÑÑ  
-ÖÖ) .
+ää W
 
-ââ W
+åå" )
+ççF M$
 
-ãã" )
-ååF M$
-
-åå #
-éé 
-èè$ *
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/CampanyTestData.cs
-
- '
-
-& @
-
-& G¥
-Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/EmployeeTestData.cs
-
-
-
- (
-
-, I
-
-66, [
-
-``, g
-
-ää, k
-
-¥¥, ]
-
-ﬁﬁ, \
-
-àà, ]
-
-≤≤, g
-
-€€, d
-
-ÄÄ, ]
-
-¶¶, `
-
-œœ, k
-
-˜˜, y
-
-üü, N
-
-««% 6˝
-ã/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/CreateEmployeeCommandDataValidatorTest.cs
+çç #
+èè 
+êê$ *ì
+°/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Application.UnitTests/FluentValidators/HumanResources/CreateEmployeeCommandDataValidatorTest.cs
 
  7¨
 		5 M ' 1 1'' 111 1@@ 1JJ 1TT 1aa 1kk 1uu 1
@@ -369,8 +322,8 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/Employee
 ãã? F
 
 ãã 
-åå ¿
-è/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/DepartmentistoryCommandCreateValidatorTest.cs
+åå ÷
+•/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Application.UnitTests/FluentValidators/HumanResources/DepartmentistoryCommandCreateValidatorTest.cs
 
  ;F
 		: U * 4(( 477 4FF 4VV 4
@@ -396,8 +349,8 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/Employee
 
 KK X
 MM% ,VVB I
-VV WW ¸
-â/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/FluentValidators/HumanResources/PayHistoryCommandCreateValidatorTest.cs
+VV WW í
+ü/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Application.UnitTests/FluentValidators/HumanResources/PayHistoryCommandCreateValidatorTest.cs
 
  5F
 		3 G # -(( -77 -HH -YY -
@@ -426,64 +379,8 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Data/Employee
 OOX dVV +
 QQ %YY; B
 YY ZZ 
-ZZ0 1ZZ5 6†
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/GuardClause/GuardClauses_Test.cs
-
- 
-
-		 J
- I V
-  
-
- G
- I S
-   
-
-## P
-&& ))O T
-)) ,, 
-
-00 `
-33 66O W
-66 99  ::W `
-
->> _
-AA EEO W
-BB EE] dII 
-EE HH  II '
-
-MM N
-PP SSM [
-SS VV 
-
-ZZ K
-]] ``M [
-`` cc  
-
-gg K
-jj !mmF [
-mm pp 
-
-tt H
-ww !zzF [
-zz }}  
-
-ÅÅ O
-
-ÑÑ 
-ááF Q
-
-áá 
-ää 
-
-éé K
-
-ëë 
-îîF Q
-
-îî 
-óó  º
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/HumanResources/CompanyAggregate_Tests.cs
+ZZ0 1ZZ5 6À
+y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/HumanResources/CompanyAggregate_Tests.cs
 
  '
 
@@ -491,78 +388,8 @@ j/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/HumanResource
  " 
 
  H
- " ê
-w/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Mappings/HumanResources/EmployeeMappingConfig_Test.cs
-
- +ò
-! ( O V2 9$$. 5,,2 9//3 :992 9<<: AFF. 5II3 :SS. 5VV/ 6``. 5
-ÑÑ. 5∫
-" + Q Z$$K T,,Q Z.. 99Q Z;; FFK THH SSK TUU ``K Tbb vv4 =
-ÑÑK T
-áá 
-ïï4 =
-" )F M
- # 
-
- Y
- / ,
-
-"" W
-$$ +%% *
-
-)) i
-,, /// !22 -
-..4 7//S V
-
-66 p
-99 /<< !?? -
-;;; ?<<a e
-
-CC g
-FF +II LL +
-HH6 ;	II~ É
-
-PP f
-SS +VV YY +
-UU2 5VVy |
-
-]] p
-`` +cc wwS bd
-bb1 5ff+ /gg$ (jj( ,kk+ /ll+ /mm# 'nn. 2oo) -qq- 1<
-vv$ 1yy &zz &{{ &|| &}} &<
-wwE Pyy> Izz> I{{6 A||A L}}9 D
-
-ÅÅ v
-
-ÑÑ +$
-
-ÖÖK T
-àà 
-ññS \T
-
-áá1 5
-ãã$ (
-åå' +
-çç' +
-éé #
-èè* .
-êê% )H
-
-ïï$ 1
-òò &
-ôô &
-öö &
-õõ &
-úú &H
-
-ññE P
-òò> I
-ôô> I
-öö6 A
-õõA L
-úú9 DM
-K/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Usings.csõ
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/ValueObjects/HrValueObject_Tests.cs
+ " ¨
+v/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/HumanResources/HrValueObject_Tests.cs
 
   
 
@@ -578,8 +405,8 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/ValueObjects/
 
  :
  B K
-   ˜
-i/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/ValueObjects/SharedValueObject_Tests.cs
+   Ä
+r/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/Shared/SharedValueObject_Tests.cs
 
  (
 
@@ -629,4 +456,243 @@ i/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/ValueObjects/
 \\ ``R V
 ]] ``X a
 ^^ ``c i
-`` aa $
+`` aa $ë
+x/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Infrastructure.UnitTests/EmployeeMappingConfig_Test.cs
+
+ +ò
+! ( O V2 9$$. 5,,2 9//3 :992 9<<: AFF. 5II3 :SS. 5VV/ 6``. 5
+ÑÑ. 5∫
+" + Q Z$$K T,,Q Z.. 99Q Z;; FFK THH SSK TUU ``K Tbb vv= F
+ÑÑK T
+áá 
+ïï= F
+" )F M
+ # 
+
+ Y
+ / ,
+
+"" W
+$$ +%% *
+
+)) i
+,, /// !22 -
+..4 7//S V
+
+66 p
+99 /<< !?? -
+;;; ?<<a e
+
+CC g
+FF +II LL +
+HH6 ;	II~ É
+
+PP f
+SS +VV YY +
+UU2 5VVy |
+
+]] p
+`` +cc wwS bd
+bb1 5ff+ /gg$ (jj( ,kk+ /ll+ /mm# 'nn. 2oo) -qq- 1<
+vv- :yy &zz &{{ &|| &}} &<
+wwE Pyy> Izz> I{{6 A||A L}}9 D
+
+ÅÅ v
+
+ÑÑ +$
+
+ÖÖK T
+àà 
+ññS \T
+
+áá1 5
+ãã$ (
+åå' +
+çç' +
+éé #
+èè* .
+êê% )H
+
+ïï- :
+òò &
+ôô &
+öö &
+õõ &
+úú &H
+
+ññE P
+òò> I
+ôô> I
+öö6 A
+õõA L
+úú9 D•
+a/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Shared/AddMapsterForUnitTest.cs
+
+		 .
+
+ &(
+    $Ü
+`/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Shared/Data/CampanyTestData.cs
+
+ '
+
+& @
+
+& Gª
+a/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Shared/Data/EmployeeTestData.cs
+
+
+
+ (
+
+, I
+
+66, [
+
+``, g
+
+ää, k
+
+¥¥, ]
+
+ﬁﬁ, \
+
+àà, ]
+
+≤≤, g
+
+€€, d
+
+ÄÄ, ]
+
+¶¶, `
+
+œœ, k
+
+˜˜, y
+
+üü, N
+
+««% 6ª
+
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/SharedKernel.UnitTests/GuardClauses_Test.cs
+
+ 
+
+		 J
+ I V
+  
+
+ G
+ I S
+   
+
+## P
+&& ))O T
+)) ,, 
+
+00 `
+33 66O W
+66 99  ::W `
+
+>> _
+AA EEO W
+BB EE] dII 
+EE HH  II '
+
+MM N
+PP SSM [
+SS VV 
+
+ZZ K
+]] ``M [
+`` cc  
+
+gg K
+jj !mmF [
+mm pp 
+
+tt H
+ww !zzF [
+zz }}  
+
+ÅÅ O
+
+ÑÑ 
+ááF Q
+
+áá 
+ää 
+
+éé L
+
+ëë 
+îîF Q
+
+îî 
+óó  
+
+õõ N
+
+ûû 
+°°I Z
+
+°° 
+§§ 
+
+®® K
+
+´´ 
+ÆÆI Z
+
+ÆÆ 
+±±  
+
+µµ R
+
+∏∏ !
+ªªI Z
+
+ªª 
+ææ 
+
+¬¬ O
+
+≈≈ !
+»»I Z
+
+»» 
+ÀÀ  
+
+œœ Z
+
+““ 
+’’Y b
+
+’’ 
+ÿÿ 
+
+‹‹ W
+
+ﬂﬂ 
+‚‚Y b
+
+‚‚ 
+ÂÂ  
+
+ÈÈ I
+
+ÏÏ 
+ÔÔH P
+
+ÔÔ 
+ÚÚ 
+
+ˆˆ F
+
+˘˘ 
+¸¸H R
+
+¸¸ 
+ˇˇ  M
+K/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Usings.cs

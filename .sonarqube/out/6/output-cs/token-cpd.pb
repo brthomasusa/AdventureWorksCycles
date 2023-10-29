@@ -3646,187 +3646,195 @@ postalCode
 ÕÕ 
 }ÖÖ É
 ‘/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Features/HumanResources/CreateEmployee/CreateEmployeeBusinessRuleValidator.cs
-	namespace 	
-AWC
+	namespace 	
+AWC
  
-. 
-Application 
-. 
-Features "
-." #
-HumanResources# 1
-.1 2
-CreateEmployee2 @
-{ 
-public		 
+. 
+Application 
+. 
+Features "
+." #
+HumanResources# 1
+.1 2
+CreateEmployee2 @
+{ 
+public 
 
-sealed		 
-class		 /
-#CreateEmployeeBusinessRuleValidator		 ;
-:		< =
-CommandValidator		> N
-<		N O!
-CreateEmployeeCommand		O d
->		d e
-{
+sealed 
+class /
+#CreateEmployeeBusinessRuleValidator ;
+:< =
+CommandValidator> N
+<N O!
+CreateEmployeeCommandO d
+>d e
+{		 
+private
 
- 
-private 
-readonly (
-IValidationRepositoryManager 5
-_repo6 ;
-;; <
-public /
-#CreateEmployeeBusinessRuleValidator 2
-(2 3(
-IValidationRepositoryManager3 O
-repoP T
-)T U
-=> 
-_repo 
-= 
-repo 
-; 
-public 
-override 
-async 
-Task "
-<" #
-Result# )
->) *
-Validate+ 3
-(3 4!
-CreateEmployeeCommand4 I
-commandJ Q
-)Q R
-{ 	*
-CreateEmployeeNameMustBeUnique *"
-verifyNameIsUniqueRule+ A
-=B C
-newD G
-(G H
-_repoH M
-)M N
-;N O+
-CreateEmployeeEmailMustBeUnique +#
-verifyEmailIsUniqueRule, C
-=D E
-newF I
-(I J
-_repoJ O
-)O P
-;P Q6
-*CreateEmployeeNationalIdNumberMustBeUnique 6(
-verifyNationalIdIsUniqueRule7 S
-=T U
-newV Y
-(Y Z
-_repoZ _
-)_ `
-;` a-
-!CreateEmployeeDepartmentMustExist -
-verifyDeptExistRule. A
-=B C
-newD G
-(G H
-_repoH M
-)M N
-;N O(
-CreateEmployeeShiftMustExist ( 
-verifyShiftExistRule) =
+ 
+readonly
+
+ (
+IValidationRepositoryManager
+
+ 5
+_repo
+
+6 ;
+;
+
+; <
+public /
+#CreateEmployeeBusinessRuleValidator 2
+(2 3(
+IValidationRepositoryManager3 O
+repoP T
+)T U
+=> 
+_repo 
+= 
+repo 
+; 
+public 
+override 
+async 
+Task "
+<" #
+Result# )
+>) *
+Validate+ 3
+(3 4!
+CreateEmployeeCommand4 I
+commandJ Q
+)Q R
+{ 	*
+CreateEmployeeNameMustBeUnique *"
+verifyNameIsUniqueRule+ A
+=B C
+newD G
+(G H
+_repoH M
+)M N
+;N O+
+CreateEmployeeEmailMustBeUnique +#
+verifyEmailIsUniqueRule, C
+=D E
+newF I
+(I J
+_repoJ O
+)O P
+;P Q6
+*CreateEmployeeNationalIdNumberMustBeUnique 6(
+verifyNationalIdIsUniqueRule7 S
+=T U
+newV Y
+(Y Z
+_repoZ _
+)_ `
+;` a-
+!CreateEmployeeDepartmentMustExist -
+verifyDeptExistRule. A
+=B C
+newD G
+(G H
+_repoH M
+)M N
+;N O(
+CreateEmployeeShiftMustExist ( 
+verifyShiftExistRule) =
+=> ?
+new@ C
+(C D
+_repoD I
+)I J
+;J K*
+CreateEmployeeManagerMustExist *
+verifyMgrExistRule+ =
 => ?
 new@ C
 (C D
 _repoD I
 )I J
-;J K*
-CreateEmployeeManagerMustExist *
-verifyMgrExistRule+ =
-=> ?
-new@ C
-(C D
-_repoD I
-)I J
-;J K"
-verifyNameIsUniqueRule "
-." #
-SetNext# *
-(* +#
-verifyEmailIsUniqueRule+ B
-)B C
-;C D#
-verifyEmailIsUniqueRule #
-.# $
-SetNext$ +
-(+ ,(
-verifyNationalIdIsUniqueRule, H
-)H I
-;I J(
-verifyNationalIdIsUniqueRule (
-.( )
-SetNext) 0
-(0 1
-verifyDeptExistRule1 D
-)D E
-;E F 
-verifyShiftExistRule  
-.  !
-SetNext! (
-(( )
-verifyMgrExistRule) ;
-); <
-;< =
-ValidationResult 
-result #
-=$ %
-await& +"
-verifyNameIsUniqueRule, B
-.B C
-ValidateC K
-(K L
-commandL S
-)S T
-;T U
-if   
-(   
-result   
-.   
-IsValid   
-)   
-{!! 
-return"" 
-Result"" 
-."" 
-Success"" %
-(""% &
-)""& '
-;""' (
-}## 
-else$$ 
-{%% 
-return&& 
-Result&& 
-.&& 
-Failure&& %
-(&&% &
-new&&& )
-Error&&* /
-(&&/ 0
-$str&&0 ^
-,&&^ _
-result&&` f
-.&&f g
-Messages&&g o
-[&&o p
-$num&&p q
-]&&q r
-)&&r s
-)&&s t
-;&&t u
-}'' 
-}(( 	
-})) 
-}** Õ
+;J K"
+verifyNameIsUniqueRule "
+." #
+SetNext# *
+(* +#
+verifyEmailIsUniqueRule+ B
+)B C
+;C D#
+verifyEmailIsUniqueRule #
+.# $
+SetNext$ +
+(+ ,(
+verifyNationalIdIsUniqueRule, H
+)H I
+;I J(
+verifyNationalIdIsUniqueRule (
+.( )
+SetNext) 0
+(0 1
+verifyDeptExistRule1 D
+)D E
+;E F 
+verifyShiftExistRule  
+.  !
+SetNext! (
+(( )
+verifyMgrExistRule) ;
+); <
+;< =
+ValidationResult 
+result #
+=$ %
+await& +"
+verifyNameIsUniqueRule, B
+.B C
+ValidateC K
+(K L
+commandL S
+)S T
+;T U
+if 
+( 
+result 
+. 
+IsValid 
+) 
+{   
+return!! 
+Result!! 
+.!! 
+Success!! %
+(!!% &
+)!!& '
+;!!' (
+}"" 
+else## 
+{$$ 
+return%% 
+Result%% 
+.%% 
+Failure%% %
+(%%% &
+new%%& )
+Error%%* /
+(%%/ 0
+$str%%0 ^
+,%%^ _
+result%%` f
+.%%f g
+Messages%%g o
+[%%o p
+$num%%p q
+]%%q r
+)%%r s
+)%%s t
+;%%t u
+}&& 
+}'' 	
+}(( 
+})) Õ
 ƒ/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Features/HumanResources/CreateEmployee/CreateEmployeeCommand.cs
 	namespace 	
 AWC
@@ -5540,119 +5548,127 @@ payHistory" ,
 } 
 } ×
 ‘/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Features/HumanResources/DeleteEmployee/DeleteEmployeeBusinessRuleValidator.cs
-	namespace 	
-AWC
+	namespace 	
+AWC
  
-. 
-Application 
-. 
-Features "
-." #
-HumanResources# 1
-.1 2
-DeleteEmployee2 @
-{ 
-public		 
+. 
+Application 
+. 
+Features "
+." #
+HumanResources# 1
+.1 2
+DeleteEmployee2 @
+{ 
+public 
 
-sealed		 
-class		 /
-#DeleteEmployeeBusinessRuleValidator		 ;
-:		< =
-CommandValidator		> N
-<		N O!
-DeleteEmployeeCommand		O d
->		d e
-{
+sealed 
+class /
+#DeleteEmployeeBusinessRuleValidator ;
+:< =
+CommandValidator> N
+<N O!
+DeleteEmployeeCommandO d
+>d e
+{		 
+private
 
- 
-private 
-readonly (
-IValidationRepositoryManager 5
-_repo6 ;
-;; <
-public /
-#DeleteEmployeeBusinessRuleValidator 2
-(2 3(
-IValidationRepositoryManager3 O
-repoP T
-)T U
-=> 
-_repo 
-= 
-repo 
-; 
-public 
-override 
-async 
-Task "
-<" #
-Result# )
->) *
-Validate+ 3
-(3 4!
-DeleteEmployeeCommand4 I
-commandJ Q
-)Q R
-{ 	#
-DeleteEmployeeMustExist #
-verifyEmployeeExist$ 7
-=8 9
-new: =
-(= >
-_repo> C
-)C D
-;D E
-ValidationResult 
-result #
-=$ %
-await& +
-verifyEmployeeExist, ?
-.? @
-Validate@ H
-(H I
-commandI P
-)P Q
-;Q R
-if 
-( 
-result 
-. 
-IsValid 
-) 
-{ 
-return 
-Result 
-. 
-Success %
-(% &
-)& '
-;' (
-} 
-else 
-{ 
-return 
-Result 
-. 
-Failure %
-(% &
-new& )
-Error* /
-(/ 0
-$str0 ^
-,^ _
-result` f
-.f g
-Messagesg o
-[o p
-$nump q
-]q r
-)r s
-)s t
-;t u
-} 
-} 	
-} 
-}   ø
+ 
+readonly
+
+ (
+IValidationRepositoryManager
+
+ 5
+_repo
+
+6 ;
+;
+
+; <
+public /
+#DeleteEmployeeBusinessRuleValidator 2
+(2 3(
+IValidationRepositoryManager3 O
+repoP T
+)T U
+=> 
+_repo 
+= 
+repo 
+; 
+public 
+override 
+async 
+Task "
+<" #
+Result# )
+>) *
+Validate+ 3
+(3 4!
+DeleteEmployeeCommand4 I
+commandJ Q
+)Q R
+{ 	#
+DeleteEmployeeMustExist #
+verifyEmployeeExist$ 7
+=8 9
+new: =
+(= >
+_repo> C
+)C D
+;D E
+ValidationResult 
+result #
+=$ %
+await& +
+verifyEmployeeExist, ?
+.? @
+Validate@ H
+(H I
+commandI P
+)P Q
+;Q R
+if 
+( 
+result 
+. 
+IsValid 
+) 
+{ 
+return 
+Result 
+. 
+Success %
+(% &
+)& '
+;' (
+} 
+else 
+{ 
+return 
+Result 
+. 
+Failure %
+(% &
+new& )
+Error* /
+(/ 0
+$str0 ^
+,^ _
+result` f
+.f g
+Messagesg o
+[o p
+$nump q
+]q r
+)r s
+)s t
+;t u
+} 
+} 	
+} 
+} ø
 ƒ/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Features/HumanResources/DeleteEmployee/DeleteEmployeeCommand.cs
 	namespace 	
 AWC
@@ -7128,149 +7144,157 @@ payHistory" ,
 } 
 } ê
 ‘/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Features/HumanResources/UpdateEmployee/UpdateEmployeeBusinessRuleValidator.cs
-	namespace 	
-AWC
+	namespace 	
+AWC
  
-. 
-Application 
-. 
-Features "
-." #
-HumanResources# 1
-.1 2
-UpdateEmployee2 @
-{ 
-public		 
+. 
+Application 
+. 
+Features "
+." #
+HumanResources# 1
+.1 2
+UpdateEmployee2 @
+{ 
+public 
 
-sealed		 
-class		 /
-#UpdateEmployeeBusinessRuleValidator		 ;
-:		< =
-CommandValidator		> N
-<		N O!
-UpdateEmployeeCommand		O d
->		d e
-{
+sealed 
+class /
+#UpdateEmployeeBusinessRuleValidator ;
+:< =
+CommandValidator> N
+<N O!
+UpdateEmployeeCommandO d
+>d e
+{		 
+private
 
- 
-private 
-readonly (
-IValidationRepositoryManager 5
-_repo6 ;
-;; <
-public /
-#UpdateEmployeeBusinessRuleValidator 2
-(2 3(
-IValidationRepositoryManager3 O
-repoP T
-)T U
-=> 
-_repo 
-= 
-repo 
-; 
-public 
-override 
-async 
-Task "
-<" #
-Result# )
->) *
-Validate+ 3
-(3 4!
-UpdateEmployeeCommand4 I
-commandJ Q
-)Q R
-{ 	#
-UpdateEmployeeMustExist #
-verifyEmployeeExist$ 7
-=8 9
-new: =
-(= >
-_repo> C
-)C D
-;D E*
-UpdateEmployeeNameMustBeUnique *
-verifyNameIsUnique+ =
-=> ?
-new@ C
-(C D
-_repoD I
-)I J
-;J K6
-*UpdateEmployeeNationalIdNumberMustBeUnique 6$
-verifyNationalIdIsUnique7 O
-=P Q
-newR U
-(U V
-_repoV [
-)[ \
-;\ ]
-verifyEmployeeExist 
-.  
-SetNext  '
-(' (
-verifyNameIsUnique( :
-): ;
-;; <
-verifyNameIsUnique 
-. 
-SetNext &
-(& '$
-verifyNationalIdIsUnique' ?
-)? @
-;@ A
-ValidationResult 
-result #
-=$ %
-await& +
-verifyEmployeeExist, ?
-.? @
-Validate@ H
-(H I
-commandI P
-)P Q
-;Q R
-if 
-( 
-result 
-. 
-IsValid 
-) 
-{ 
-return 
-Result 
-. 
-Success %
-(% &
-)& '
-;' (
-} 
-else 
-{   
-return!! 
-Result!! 
-.!! 
-Failure!! %
-(!!% &
-new!!& )
-Error!!* /
-(!!/ 0
-$str!!0 ^
-,!!^ _
-result!!` f
-.!!f g
-Messages!!g o
-[!!o p
-$num!!p q
-]!!q r
-)!!r s
-)!!s t
-;!!t u
-}"" 
-}## 	
-}$$ 
-}%% æ
+ 
+readonly
+
+ (
+IValidationRepositoryManager
+
+ 5
+_repo
+
+6 ;
+;
+
+; <
+public /
+#UpdateEmployeeBusinessRuleValidator 2
+(2 3(
+IValidationRepositoryManager3 O
+repoP T
+)T U
+=> 
+_repo 
+= 
+repo 
+; 
+public 
+override 
+async 
+Task "
+<" #
+Result# )
+>) *
+Validate+ 3
+(3 4!
+UpdateEmployeeCommand4 I
+commandJ Q
+)Q R
+{ 	#
+UpdateEmployeeMustExist #
+verifyEmployeeExist$ 7
+=8 9
+new: =
+(= >
+_repo> C
+)C D
+;D E*
+UpdateEmployeeNameMustBeUnique *
+verifyNameIsUnique+ =
+=> ?
+new@ C
+(C D
+_repoD I
+)I J
+;J K6
+*UpdateEmployeeNationalIdNumberMustBeUnique 6$
+verifyNationalIdIsUnique7 O
+=P Q
+newR U
+(U V
+_repoV [
+)[ \
+;\ ]
+verifyEmployeeExist 
+.  
+SetNext  '
+(' (
+verifyNameIsUnique( :
+): ;
+;; <
+verifyNameIsUnique 
+. 
+SetNext &
+(& '$
+verifyNationalIdIsUnique' ?
+)? @
+;@ A
+ValidationResult 
+result #
+=$ %
+await& +
+verifyEmployeeExist, ?
+.? @
+Validate@ H
+(H I
+commandI P
+)P Q
+;Q R
+if 
+( 
+result 
+. 
+IsValid 
+) 
+{ 
+return 
+Result 
+. 
+Success %
+(% &
+)& '
+;' (
+} 
+else 
+{ 
+return   
+Result   
+.   
+Failure   %
+(  % &
+new  & )
+Error  * /
+(  / 0
+$str  0 ^
+,  ^ _
+result  ` f
+.  f g
+Messages  g o
+[  o p
+$num  p q
+]  q r
+)  r s
+)  s t
+;  t u
+}!! 
+}"" 	
+}## 
+}$$ æ
 ƒ/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Features/HumanResources/UpdateEmployee/UpdateEmployeeCommand.cs
 	namespace 	
 AWC

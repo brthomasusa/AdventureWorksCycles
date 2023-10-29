@@ -319,16 +319,16 @@ c/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/R
  "  “
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Base/TestBase.cs
 
+ "(
 
 
- "(
-" 3 + < !(
-& 0!! "" '' 
-) 3 
-  !!( 6
-   ,
+" 3 + < !(
+& 0    %% 
+) 3 
+  ( 6
+   ,
 
-%% »
+## »
 u/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/CommanHandlers/HumanResources/Helper_Test.cs
 
  
@@ -340,29 +340,29 @@ u/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Comman
  $¹
 €/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/CommanHandlers/HumanResources/HrCommandHandler_Tests.cs
 
- '<
-1 A 7 G((7 G337 G>>6 F(
-! (p wI P((I P
+ '<
+1 A 7 G''7 G227 G==6 F(
+! (p wI P''I P
 
- K
-" )6 =
-) 0' .
-    !! 
+ K
+" )6 =
+) 0' .
+     
 
-%% K
-''" )**6 =
-(() 0**' .
-** ,, 
+$$ K
+&&" )))6 =
+'') 0))' .
+)) ++ 
 
-00 K
-22" )556 =
-33) 055' .
-55 77 
+// K
+11" )446 =
+22) 044' .
+44 66 
 
-;; I
-==! (@@6 =
->>( /@@' .
-@@ BB ä	
+:: I
+<<! (??6 =
+==( /??' .
+?? AA ä	
 l/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/DapperQueries/CompanyQuery_Tests.cs
 
 

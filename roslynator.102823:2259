@@ -1,0 +1,28 @@
+Load solution '/home/bthomas/Projects/NetCore/AdventureWorksCycles/AdventureWorksCycles.sln'
+Done loading solution '/home/bthomas/Projects/NetCore/AdventureWorksCycles/AdventureWorksCycles.sln'
+Analyze solution '/home/bthomas/Projects/NetCore/AdventureWorksCycles/AdventureWorksCycles.sln'
+Analyze 'Shared' 1/11
+Analyze 'SharedKernel' 2/11
+  Interfaces/IBusinessRule.cs(1,1): hidden CS8019: Unnecessary using directive.
+Analyze 'Core' 3/11
+Analyze 'Infrastructure' 4/11
+  Persistence/Repositories/HumanResources/CompanyWriteRepository.cs(6,1): hidden CS8019: Unnecessary using directive.
+Analyze 'Application' 5/11
+  Features/HumanResources/CreateEmployee/CreateEmployeeBusinessRuleValidator.cs(4,1): hidden CS8019: Unnecessary using directive.
+  Features/HumanResources/DeleteEmployee/DeleteEmployeeBusinessRuleValidator.cs(4,1): hidden CS8019: Unnecessary using directive.
+  Features/HumanResources/UpdateEmployee/UpdateEmployeeBusinessRuleValidator.cs(4,1): hidden CS8019: Unnecessary using directive.
+Analyze 'Presentation' 6/11
+Analyze 'gRPC.Contracts' 7/11
+Analyze 'Client' 8/11
+Analyze 'Server' 9/11
+Analyze 'UnitTest' 10/11
+Analyze 'IntegrationTest' 11/11
+  Base/TestBase.cs(5,1): hidden CS8019: Unnecessary using directive.
+  Base/TestBase.cs(6,1): hidden CS8019: Unnecessary using directive.
+  CommanHandlers/HumanResources/HrCommandHandler_Tests.cs(7,1): hidden CS8019: Unnecessary using directive.
+  Validation/HumanResources/EmployeeBusinessRule_Tests.cs(5,1): hidden CS8019: Unnecessary using directive.
+Done analyzing solution '/home/bthomas/Projects/NetCore/AdventureWorksCycles/AdventureWorksCycles.sln' in 00:06.75
+
+9 CS8019 Unnecessary using directive
+
+9 diagnostics found

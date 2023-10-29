@@ -267,30 +267,6 @@
           }
         },
         {
-          "ruleId": "S4035",
-          "level": "warning",
-          "message": "Seal class 'ValueObject' or implement 'IEqualityComparer<T>' instead.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.cs",
-                "region": {
-                  "startLine": 7,
-                  "startColumn": 27,
-                  "endLine": 7,
-                  "endColumn": 38
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
           "ruleId": "S2094",
           "level": "warning",
           "message": "Remove this empty record, write its code or make it an \"interface\".",
@@ -306,6 +282,30 @@
                   "startColumn": 28,
                   "endLine": 7,
                   "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S4035",
+          "level": "warning",
+          "message": "Seal class 'ValueObject' or implement 'IEqualityComparer<T>' instead.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 27,
+                  "endLine": 7,
+                  "endColumn": 38
                 }
               }
             }

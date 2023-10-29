@@ -1,7 +1,6 @@
 using AWC.Application.BusinessRules.HumanResources;
 using AWC.Application.Interfaces.Messaging;
 using AWC.Infrastructure.Persistence.Interfaces;
-using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.CreateEmployee

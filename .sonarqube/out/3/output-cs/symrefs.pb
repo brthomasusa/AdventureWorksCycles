@@ -1,5 +1,5 @@
-É
-V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Company.csP
+Ò
+_/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Company.csP
 
 
  '' $>> OO %OO/ 6SS vv %vv/ 6j
@@ -280,8 +280,8 @@ V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Com
 ¤¤ %
 
 ŸŸ- 2
-ŸŸ6 ;Ë
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Department.csP
+ŸŸ6 ;Ô
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Department.csP
 		 " ) && (&&2 <** "66 (662 <
   
  ! 
@@ -297,8 +297,8 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Dep
 **2 6../ 3
 **? H//4 =
 ::  $ .. 
-<<  ) // Š
-`/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/DepartmentHistory.cs(
+<<  ) // “
+i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/DepartmentHistory.cs(
  ) 033 /339 J
   
   '
@@ -308,16 +308,16 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Dep
 
 2 8
  ))/ 1
- **2 >
-   ++2 9
+ **/ ;
+   ++/ 6
 !! ,,3 <
 "" --. 5--T [
 77  
 88  
 99 ! >>- 6(
 ::   >> >>9 @
-<<  - ï
-W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Employee.csl
+<<  - ø
+`/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Employee.csl
  55 %OO ii &ii0 8mm 
 ‰‰" *
 ‰‰4 <
@@ -522,8 +522,8 @@ W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Emp
 øøj p"
 
 ††  -22 
-—— á
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/PayHistory.cs2
+—— ê
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/PayHistory.cs2
  " )"" .. (..2 <
   
  + +
@@ -539,8 +539,8 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Pay
 22  . 
 33   
 44 ( 2
-77   ''. :44 €
-T/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Shift.csP
+77   ''. :44 ‰
+]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Shift.csP
 		  $%% 00 #00- 244 AA #AA- 2
   
   
@@ -564,8 +564,8 @@ T/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Shi
 44d m::4 =
 EE  88 
 GG " 99 
-II   :: 
-g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DateOfBirth.cs
+II   :: Š
+p/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfBirth.cs
  #1 < !
   K P
 		% . 
@@ -576,8 +576,8 @@ g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
  ) 
 3 8 4 9(
  ! %, 08 <
- < AW \€
-f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DateOfHire.cs
+ < AW \‰
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfHire.cs
  "1 ;  
   J O
 		$ - 
@@ -588,8 +588,8 @@ f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
  ) 
 3 8 4 9(
  ! %, 08 <
- < A\ a²
-l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DateOfRateChange.cs
+ < A\ a»
+u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfRateChange.cs
  !1 A &
   P U
 * 8 "
@@ -598,8 +598,8 @@ l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ' -
 7 < ( -
  ) 
-3 A* 8µ
-o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DepartmentStartDate.cs
+3 A* 8¾
+x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DepartmentStartDate.cs
  $1 D )
   S X
 - 6 
@@ -608,8 +608,8 @@ o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 * 0
 : ? + 0
  ) 
-3 8* /è
-x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/EmployerIdentificationNumber.cs
+3 8* /ò
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmployerIdentificationNumber.cs
   </ K 2
 		  Z _
 4 7 
@@ -619,16 +619,16 @@ x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 A D 4 7
  ) (
 1 M& B$ @V r
-% - 
-l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/EmploymentStatus.cs
+% - ™
+u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmploymentStatus.cs
  (- = &
  		0 5L Q
 		& +		8 =
 > BG K
 
 ' -(
-4 : 2 8U [Æ
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/Gender.cs
+4 : 2 8U [Ï
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Gender.cs
  / 5 
 		  D I
  # 
@@ -637,8 +637,8 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
  #
 + 1   $
  ) 2
-1 7% +7 = %b h¾
-d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/JobTitle.cs
+1 7% +7 = %b hÇ
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/JobTitle.cs
   / 7 
 		  F K
   % 
@@ -647,8 +647,8 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
  %
 - 2   %
  ) (
-1 9% -7 ? »
-a/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/Login.cs
+1 9% -7 ? Ä
+j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Login.cs
  / 4 
 		  C H
  " 
@@ -657,8 +657,8 @@ a/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
  "
 * /  "
  ) (
-1 6% *7 < «
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/ManagerId.cs
+1 6% *7 < ´
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ManagerId.cs
  !, 5 
   D I
 
@@ -669,8 +669,8 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
   &
 + 0 ! &
  ) 
-. 7# ,×
-i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/MaritalStatus.cs
+. 7# ,à
+r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/MaritalStatus.cs
  %/ < #
 		  K P
 % * 
@@ -679,8 +679,8 @@ i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 $ *
 2 8  % +
  ) <
-1 6% *7 < $a fm r€
-f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/NationalID.cs
+1 6% *7 < $a fm r‰
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/NationalID.cs
   */ 9  
   H M
 
@@ -693,18 +693,20 @@ f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
  ) <
 1 9% -7 ? $$7 ?%%/ 7
 ## /$$ .
-))% ,##2 9µ
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/RateOfPay.cs
- !. 7 
-  F K
-		  $ 
-8 <A E
+))% ,##2 9¾
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/RateOfPay.cs
+ !. 7 
+  F K
+
+
+  $ 
+8 <A E
 
-  &
-- 2 ! &
- ) 
-0 5 ( -µ
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/ShiftName.cs
+  &
+- 2 ! &
+ ) 
+0 5 ( -¾
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ShiftName.cs
  / 8 
   G L
 ! %  $
@@ -713,8 +715,8 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
   &
 . 3 ! &
  ) 
-1 6% */ 4‹
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/ShiftTime.cs
+1 6% */ 4”
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ShiftTime.cs
  1 : 
   I N
  "$ (
@@ -726,8 +728,8 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 5 ;  &' -
  ) 
 . 2   
-8 >  $µ
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/SickLeave.cs
+8 >  $¾
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/SickLeave.cs
  !, 5 
   D I
 		 # 
@@ -736,8 +738,8 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
   &
 + 0 ! &
  ) 
-. 3  "´
-d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/Vacation.cs
+. 3  "½
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Vacation.cs
   , 4 
   C H
 		 " 
@@ -746,86 +748,8 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
  %
 * /   %
  ) 
-. 3  $¥
-g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/ICompanyValidationRepository.cs
-
- 1
-
- 0
-
-5 7
-
-@ K
-
-R ^p
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/ICompanyWriteRepository.cs
-
- ,®
-h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/IEmployeeValidationRepository.cs
-
- 2
-
- /
-
-4 6
-
-? D
-
-M R
-
-\ f
-
-m y
-
- 5
-
-: <
-
-E U
-
-\ h
-
-		 2
-
-		7 9
-
-		B M
-
-		T `
-
-
-
- *
-
-
-
-/ 1
-
-
-
-8 D
-
- ,
-
-3 5
-
-< H
-
- '
-
-- /
-
-6 B
-
- )
-
-. 0
-
-7 Cq
-c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/IEmployeeWriteRepository.cs
-
- -Ž
-N/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Address.csP
+. 3  $—
+W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Address.csP
 
 
   &(( 44 %44/ 688 MM %MM/ 6
@@ -855,8 +779,8 @@ N/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Address.cs
 QQ # 
 RR & DD 
 SS ! EE F
-VV   ,,* 5:: DD4 ?RR ò
-N/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Contact.cs
+VV   ,,* 5:: DD4 ?RR û
+W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Contact.cs
   
    /
  # %
@@ -885,8 +809,8 @@ N/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Contact.cs
 
 99 %
 992 7;;> C;;G LF
-@@   ++* 577 99& 1;;0 ;
-M/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Person.cs(
+@@   ++* 577 99& 1;;0 ;Š
+V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Person.cs(
   !! BB $BB. 4@
 		' 1RRA Kbb oo 
 †† 
@@ -1037,8 +961,8 @@ M/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Person.cs(
 
 ÒÒ  $$ 002 ;HH 4
 
-ØØ  ** 44* 8PP 
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonEmailAddress.cs2
+ØØ  ** 44* 8PP –
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonEmailAddress.cs2
 
 
  * 1 "'' 0'': L
@@ -1055,8 +979,8 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonEmail
 -- * 11 
 
 // &
-//. 3111 6˜
-R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone.cs2
+//. 3111 6¡
+[/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonPhone.cs2
 		 # *   ++ )++3 >
   
  % '
@@ -1069,35 +993,37 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
    !'' 
 // . 
 11 $ 2
-44   ##* 9// ù
-]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/AddressVO.cs
- ! 
- # 
- # 
-		  
+44   ##* 9// Ž
+f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/AddressVO.cs
+ ! 
+
+ (
+		 # 
 
 
- " 
-  
-! &  
-0 5  
-> B 
-H Q '
-Z a 
+ # 
+  
+ " 
+  
+! &  
+0 5  
+> B 
+H Q '
+Z a 
 
-  &
-. 3 ! &
-= B! &( -
-K O( ,/ 3
-U ^. 75 >
-g n9 @@ G
- ) 2
-1 6% *  7 <## %%= B(
-@ E((& +((0 5**= B2
-N R--% )//7 ;22 44= A
-X a77 997 @2
-j q<<% ,>>7 >AA CC= Dî
-\/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Currency.cs
+  &
+. 3 ! &
+= B! &( -
+K O( ,/ 3
+U ^. 75 >
+g n9 @@ G
+ ) 2
+1 6  % *""7 <%% ''= B(
+@ E**& +**0 5,,= B2
+N R//% )117 ;44 66= A
+X a99 ;;7 @2
+j q>>% ,@@7 >CC EE= D÷
+e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Currency.cs
    
   $		/ 3
 - 1		5 9
@@ -1109,8 +1035,8 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
 : >  $& *
  ) 
 1 =& 2, 8
-F R& 2, 8º
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/DecimalGreaterThanZero.cs
+F R& 2, 8Ã
+s/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalGreaterThanZero.cs
  .0 F ,
   U Z
 		/ 5 
@@ -1119,8 +1045,8 @@ j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 - 3
 < B  . 4
  ) 
-2 7  ¶
-f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/DecimalNotNegative.cs
+2 7  ¿
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalNotNegative.cs
  *0 B (
   Q V
 		+ 1 
@@ -1129,8 +1055,8 @@ f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 ) /
 8 >  * 0
  ) 
-2 7  è
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/EmailAddressVO.cs
+2 7  ñ
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/EmailAddressVO.cs
  &/ = $
 
 
@@ -1147,8 +1073,8 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 .. ***9 E
 ..1 6445 :66  
 11 44( +
-44 %663 =í
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Money.csP
+44 %663 =ö
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Money.csP
    ' ,3 8 ' ,3 8
  '
 
@@ -1172,8 +1098,8 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 $$„ ‰
 '' ) 
 ''3 ;)) 
-''E K,,# )..6 <´
-d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/OrganizationName.cs
+''E K,,# )--6 <½
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/OrganizationName.cs
  (/ ? &
   N S
 
@@ -1184,8 +1110,8 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 ' -
 5 < !( /
  ) 
-1 A& 6, <Ü
-^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PersonName.cs
+1 A& 6, <å
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PersonName.cs
  "  
 " & 
 / 4
@@ -1205,8 +1131,8 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
  ) 
 1 9& ., 4
 B K& /, 5
-T ^!!& 0##0 :Ú
-^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PersonType.cs
+T ^!!& 0##0 :ã
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PersonType.cs
  "/ 9  
 ) 5 *
 		  H M
@@ -1217,8 +1143,8 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 / 4 " '
  ) 
 1 ;& 0B L
-, 37 >ï
-_/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PhoneNumber.cs
+, 37 >ø
+h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PhoneNumber.cs
   +/ : !
 		  I N
 # . 
@@ -1229,8 +1155,8 @@ _/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
  ) 2
 1 <& 1, 72 =/ :
  * )
-##% 3- ;ä
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PointOfContact.cs
+##% 3- ;í
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PointOfContact.cs
   . $
 & +
 
@@ -1255,8 +1181,8 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 > C% *7 <'' '' ** ,,= B<
 M O44& (66 66 77 99A C2
 X a==% .??7 @BB* 3DDR [
-II% 3BB ª
-Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Suffix.cs
+II% 3BB ³
+c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Suffix.cs
  / 5 
   D I
 
@@ -1267,8 +1193,8 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
  #
 + 0  #
  ) 
-1 7& ,0 6©
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Title.cs
+1 7& ,0 6²
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Title.cs
  / 4 
   C H
 
@@ -1279,8 +1205,8 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
  "
 * /  "
  ) 
-1 6& +0 5Ú
-^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/WebsiteUrl.cs
+1 6& +0 5ã
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/WebsiteUrl.cs
   */ 9  
 
 
@@ -1293,4 +1219,82 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
  ) 
 1 6 "K P
   
-!!% -  
+!!% -  ´
+v/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyValidationRepository.cs
+
+ 1
+
+ 0
+
+5 7
+
+@ K
+
+R ^
+q/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyWriteRepository.cs
+
+ ,½
+w/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/IEmployeeValidationRepository.cs
+
+ 2
+
+ /
+
+4 6
+
+? D
+
+M R
+
+\ f
+
+m y
+
+ 5
+
+: <
+
+E U
+
+\ h
+
+		 2
+
+		7 9
+
+		B M
+
+		T `
+
+
+
+ *
+
+
+
+/ 1
+
+
+
+8 D
+
+ ,
+
+3 5
+
+< H
+
+ '
+
+- /
+
+6 B
+
+ )
+
+. 0
+
+7 C€
+r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/IEmployeeWriteRepository.cs
+
+ -

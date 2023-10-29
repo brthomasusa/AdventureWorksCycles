@@ -1,12 +1,14 @@
-≤¯
-V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Company.cs
+‡¯
+_/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Company.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
+. 
+Entities 
+. 
+HumanResources *
 {		 
 public
 
@@ -2737,15 +2739,17 @@ searchName
 ´´ 	
 }
 ¨¨ 
-}≠≠ ©
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Department.cs
+}≠≠ ◊
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Department.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
+. 
+Entities 
+. 
+HumanResources *
 { 
 public		 
 
@@ -2970,15 +2974,17 @@ Department662 <
 ;<<< =
 }<<> ?
 }== 
-}>> ñ$
-`/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/DepartmentHistory.cs
+}>> æ$
+i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/DepartmentHistory.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
+. 
+Entities 
+. 
+HumanResources *
 { 
 public 
 
@@ -3089,25 +3095,25 @@ Department662 <
 Guard** 
 .** 
 Against** %
-.**% &
-GreaterThan**& 1
-(**1 2
-departmentId**2 >
-,**> ?
-$num**@ A
-)**A B
-,**B C
+.**% &
+LessThan**& .
+(**. /
+departmentId**/ ;
+,**; <
+$num**= >
+)**> ?
+,**? @
 Guard++ 
 .++ 
 Against++ %
-.++% &
-GreaterThan++& 1
-(++1 2
-shiftId++2 9
-,++9 :
-$num++; <
-)++< =
-,++= >
+.++% &
+LessThan++& .
+(++. /
+shiftId++/ 6
+,++6 7
+$num++8 9
+)++9 :
+,++: ;
 DepartmentStartDate,, +
 .,,+ ,
 Create,,, 2
@@ -3233,15 +3239,17 @@ Department662 <
 ;??T U
 }@@ 	
 }AA 
-}BB ¡º
-W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Employee.cs
+}BB Ôº
+`/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Employee.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
+. 
+Entities 
+. 
+HumanResources *
 { 
 public 
 
@@ -5251,15 +5259,17 @@ PersonType
 ãã 	
 }
 åå 
-}çç π
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/PayHistory.cs
+}çç Á
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/PayHistory.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
+. 
+Entities 
+. 
+HumanResources *
 { 
 public 
 
@@ -5475,15 +5485,17 @@ PayHistory..2 <
 =:: 
 $num:: 
 };; 
-}<< Û&
-T/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Shift.cs
+}<< °'
+]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Shift.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
+. 
+Entities 
+. 
+HumanResources *
 { 
 public		 
 
@@ -5758,17 +5770,19 @@ T/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Shi
 ;II3 4
 }II5 6
 }JJ 
-}KK ø
-g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DateOfBirth.cs
+}KK Ì
+p/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfBirth.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -5918,17 +5932,19 @@ g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 } 
 } 	
 }   
-}!! ë
-f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DateOfHire.cs
+}!! ø
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfHire.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6083,17 +6099,19 @@ DateOfHire !
 } 
 } 	
 }   
-}!! è
-l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DateOfRateChange.cs
+}!! Ω
+u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfRateChange.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6202,17 +6220,19 @@ l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ;u v
 } 	
 } 
-} Æ
-o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/DepartmentStartDate.cs
+} ‹
+x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DepartmentStartDate.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6325,17 +6345,19 @@ o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 Ç É
 } 	
 } 
-} ô
-x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/EmployerIdentificationNumber.cs
+} »
+Å/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmployerIdentificationNumber.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6463,17 +6485,19 @@ x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ). /
 ;/ 0
 }   
-}!! Á
-l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/EmploymentStatus.cs
+}!! ï
+u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmploymentStatus.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6557,17 +6581,19 @@ l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ;] ^
 } 	
 } 
-} “
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/Gender.cs
+} Ä
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Gender.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6711,17 +6737,19 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 }   
 }!! 	
 }"" 
-}## ˙
-d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/JobTitle.cs
+}## ®
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/JobTitle.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6836,17 +6864,19 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 }   
 }!! 	
 }"" 
-}## ‹
-a/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/Login.cs
+}## ä
+j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Login.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -6961,17 +6991,19 @@ a/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 }   
 }!! 	
 }"" 
-}## ∏
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/ManagerId.cs
+}## Ê
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ManagerId.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -7075,17 +7107,19 @@ employeeId 
 ;\ ]
 } 	
 } 
-} …
-i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/MaritalStatus.cs
+} ˜
+r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/MaritalStatus.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -7233,17 +7267,19 @@ i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 }   
 }!! 	
 }"" 
-}## ˜
-f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/NationalID.cs
+}## •
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/NationalID.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -7422,127 +7458,141 @@ NationalID !
 )))- .
 ;)). /
 }** 
-}++ æ
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/RateOfPay.cs
-	namespace 	
-AWC
+}++ Ï
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/RateOfPay.cs
+	namespace 	
+AWC
  
-. 
-Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
-{ 
-public 
+. 
+Core 
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
+{ 
+public 
 
-sealed 
-class 
-	RateOfPay !
-:" #
-ValueObject$ /
-{ 
-public 
-Money 
-Value 
-{ 
-get  
-;  !
-}" #
-private		 
-	RateOfPay		 
-(		 
-Money		 
-rate		  $
-)		$ %
-{
+sealed 
+class 
+	RateOfPay !
+:" #
+ValueObject$ /
+{ 
+public 
+Money 
+Value 
+{ 
+get  
+;  !
+}" #
+private
 
- 	
-Value 
-= 
-rate 
-; 
-} 	
-public 
-static 
-implicit 
-operator '
-Money( -
-(- .
-	RateOfPay. 7
-self8 <
-)< =
-=>> @
-selfA E
-.E F
-ValueF K
-!K L
-;L M
-public 
-static 
-	RateOfPay 
-Create  &
-(& '
-Money' ,
-value- 2
-)2 3
-{ 	
-CheckValidity 
-( 
-value 
-)  
-;  !
-return 
-new 
-	RateOfPay  
-(  !
-value! &
-)& '
-;' (
-} 	
-private 
-static 
-void 
-CheckValidity )
-() *
-Money* /
-money0 5
-)5 6
-{ 	
-if 
-( 
-money 
-. 
-Amount 
-< 
-$num $
-||% '
-money( -
-.- .
-Amount. 4
->5 6
-$num7 >
-)> ?
-throw 
-new 
-ArgumentException +
-(+ ,
-$str, `
-)` a
-;a b
-} 	
-} 
-} è
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/ShiftName.cs
+ 
+	RateOfPay
+
+ 
+(
+
+ 
+Money
+
+ 
+rate
+
+  $
+)
+
+$ %
+{ 	
+Value 
+= 
+rate 
+; 
+} 	
+public 
+static 
+implicit 
+operator '
+Money( -
+(- .
+	RateOfPay. 7
+self8 <
+)< =
+=>> @
+selfA E
+.E F
+ValueF K
+!K L
+;L M
+public 
+static 
+	RateOfPay 
+Create  &
+(& '
+Money' ,
+value- 2
+)2 3
+{ 	
+CheckValidity 
+( 
+value 
+)  
+;  !
+return 
+new 
+	RateOfPay  
+(  !
+value! &
+)& '
+;' (
+} 	
+private 
+static 
+void 
+CheckValidity )
+() *
+Money* /
+money0 5
+)5 6
+{ 	
+if 
+( 
+money 
+. 
+Amount 
+< 
+$num $
+||% '
+money( -
+.- .
+Amount. 4
+>5 6
+$num7 >
+)> ?
+throw 
+new 
+ArgumentException +
+(+ ,
+$str, `
+)` a
+;a b
+} 	
+} 
+} Ω
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ShiftName.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -7652,17 +7702,19 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 } 
 } 	
 } 
-} Æ
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/ShiftTime.cs
+} ‹
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ShiftTime.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -7796,17 +7848,19 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ;P Q
 } 	
 } 
-} 
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/SickLeave.cs
+} û
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/SickLeave.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -7902,17 +7956,19 @@ e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ;Y Z
 } 	
 } 
-} ˘
-d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/ValueObjects/Vacation.cs
+} ß
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Vacation.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-HumanResources !
-.! "
-ValueObjects" .
+. 
+Entities 
+. 
+HumanResources *
+.* +
+ValueObjects+ 7
 { 
 public 
 
@@ -8009,267 +8065,17 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/HumanResources/Val
 ;Y Z
 } 	
 } 
-} ∑
-g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/ICompanyValidationRepository.cs
-	namespace 	
-AWC
- 
-. 
-Core 
-. 
-
-Interfaces 
-{ 
-public 
-
-	interface (
-ICompanyValidationRepository 1
-{ 
-Task 
-< 
-Result 
-> '
-ValidateCompanyNameIsUnique 0
-(0 1
-int1 4
-id5 7
-,7 8
-string9 ?
-companyName@ K
-,K L
-boolM Q
-asNoTrackingR ^
-=_ `
-truea e
-)e f
-;f g
-} 
-}		 µ
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/ICompanyWriteRepository.cs
-	namespace 	
-AWC
- 
-. 
-Core 
-. 
-
-Interfaces 
-{ 
-public 
-
-	interface #
-ICompanyWriteRepository ,
-:- .
-IRepository/ :
-<: ;
-Company; B
->B C
-{ 
-}		 
-}
-
- Æ
-h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/IEmployeeValidationRepository.cs
-	namespace 	
-AWC
- 
-. 
-Core 
-. 
-
-Interfaces 
-{ 
-public 
-
-	interface )
-IEmployeeValidationRepository 2
-{ 
-Task 
-< 
-Result 
-> &
-ValidatePersonNameIsUnique /
-(/ 0
-int0 3
-id4 6
-,6 7
-string8 >
-fname? D
-,D E
-stringF L
-lnameM R
-,R S
-stringT Z
-?Z [
-
-middleName\ f
-,f g
-boolh l
-asNoTrackingm y
-=z {
-true	| Ä
-)
-Ä Å
-;
-Å Ç
-Task 
-< 
-Result 
-> ,
- ValidateNationalIdNumberIsUnique 5
-(5 6
-int6 9
-id: <
-,< =
-string> D
-nationalIdNumberE U
-,U V
-boolW [
-asNoTracking\ h
-=i j
-truek o
-)o p
-;p q
-Task		 
-<		 
-Result		 
->		 )
-ValidateEmployeeEmailIsUnique		 2
-(		2 3
-int		3 6
-id		7 9
-,		9 :
-string		; A
-emailAddres		B M
-,		M N
-bool		O S
-asNoTracking		T `
-=		a b
-true		c g
-)		g h
-;		h i
-Task
-
- 
-<
-
- 
-Result
-
- 
->
-
- !
-ValidateEmployeeExist
-
- *
-(
-
-* +
-int
-
-+ .
-id
-
-/ 1
-,
-
-1 2
-bool
-
-3 7
-asNoTracking
-
-8 D
-=
-
-E F
-true
-
-G K
-)
-
-K L
-;
-
-L M
-Task 
-< 
-Result 
-> #
-ValidateDepartmentExist ,
-(, -
-short- 2
-id3 5
-,5 6
-bool7 ;
-asNoTracking< H
-=I J
-trueK O
-)O P
-;P Q
-Task 
-< 
-Result 
-> 
-ValidateShiftExist '
-(' (
-byte( ,
-id- /
-,/ 0
-bool1 5
-asNoTracking6 B
-=C D
-trueE I
-)I J
-;J K
-Task 
-< 
-Result 
->  
-ValidateManagerExist )
-() *
-int* -
-id. 0
-,0 1
-bool2 6
-asNoTracking7 C
-=D E
-trueF J
-)J K
-;K L
-} 
-} ∏
-c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/IEmployeeWriteRepository.cs
-	namespace 	
-AWC
- 
-. 
-Core 
-. 
-
-Interfaces 
-{ 
-public 
-
-	interface $
-IEmployeeWriteRepository -
-:. /
-IRepository0 ;
-<; <
-Employee< D
->D E
-{ 
-} 
-}		 ¢3
-N/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Address.cs
+} –3
+W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Address.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
+. 
+Entities 
+. 
+Shared "
 {		 
 public
 
@@ -8650,15 +8456,17 @@ MainOfficeZZ 
 =]] 
 $num]] 
 }^^ 
-}__ »5
-N/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Contact.cs
+}__ ˆ5
+W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Contact.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
+. 
+Entities 
+. 
+Shared "
 { 
 public 
 
@@ -9032,15 +8840,17 @@ SalesAgentRR 
 =UU 
 $numUU  
 }VV 
-}WW ö®
-M/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/Person.cs
+}WW »®
+V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Person.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
+. 
+Entities 
+. 
+Shared "
 { 
 public 
 
@@ -10740,15 +10550,17 @@ AsReadOnly
 ‹‹. /
 }
 ›› 
-}ﬁﬁ œ
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonEmailAddress.cs
+}ﬁﬁ ˝
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonEmailAddress.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
+. 
+Entities 
+. 
+Shared "
 {		 
 public
 
@@ -10947,15 +10759,17 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonEmail
 ;22  !
 }33 	
 }44 
-}55 —
-R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone.cs
+}55 ˇ
+[/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonPhone.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
+. 
+Entities 
+. 
+Shared "
 { 
 public		 
 
@@ -11125,17 +10939,19 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
 =88 
 $num88 
 }99 
-}:: Ø2
-]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/AddressVO.cs
+}:: ’3
+f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/AddressVO.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -11144,372 +10960,382 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
 	AddressVO !
 :" #
 ValueObject$ /
-{ 
-public 
-string 
-? 
-AddressLine1 #
-{$ %
-get& )
-;) *
-}+ ,
-public 
-string 
-? 
-AddressLine2 #
-{$ %
-get& )
-;) *
-}+ ,
+{ 
+const 
+int "
+MAX_ADDRESSLINE_LENGTH (
+=) *
+$num+ -
+;- .
 public		 
 string		 
-?		 
-City		 
-{		 
-get		 !
-;		! "
-}		# $
+?		 
+AddressLine1		 #
+{		$ %
+get		& )
+;		) *
+}		+ ,
 public
 
- 
-int
+ 
+string
 
- 
-StateProvinceID
+ 
+?
 
- "
+ 
+AddressLine2
+
+ #
 {
 
-# $
+$ %
 get
 
-% (
+& )
 ;
 
-( )
+) *
 }
 
-* +
++ ,
 public 
 string 
-? 
-Zipcode 
-{  
-get! $
-;$ %
-}& '
-private 
-	AddressVO 
-( 
-string  
-line1! &
-,& '
-string( .
-?. /
-line20 5
-,5 6
-string7 =
-city> B
-,B C
-intD G
-	stateCodeH Q
-,Q R
-stringS Y
-zipcodeZ a
-)a b
-{ 	
-AddressLine1 
-= 
-line1  
-;  !
-AddressLine2 
-= 
-line2  
-;  !
-City 
-= 
-city 
-; 
-StateProvinceID 
-= 
-	stateCode '
-;' (
-Zipcode 
-= 
-zipcode 
-; 
-} 	
-public 
-static 
-	AddressVO 
-Create  &
-(& '
-string' -
-line1. 3
-,3 4
-string5 ;
-?; <
-line2= B
-,B C
-stringD J
-cityK O
-,O P
-intQ T
-	stateCodeU ^
-,^ _
-string` f
-zipcodeg n
-)n o
-{ 	
-CheckValidity 
-( 
-line1 
-,  
-line2! &
-,& '
-city( ,
-,, -
-	stateCode. 7
-,7 8
-zipcode9 @
-)@ A
-;A B
-return 
-new 
-	AddressVO  
-(  !
-line1! &
-,& '
-line2( -
-,- .
-city/ 3
-,3 4
-	stateCode5 >
-,> ?
-zipcode@ G
-)G H
-;H I
-} 	
-private 
-static 
-void 
-CheckValidity )
-() *
-string* 0
-line11 6
-,6 7
-string8 >
-?> ?
-line2@ E
-,E F
-stringG M
-cityN R
-,R S
-intT W
-	stateCodeX a
-,a b
-stringc i
-zipcodej q
-)q r
-{ 	
-if 
-( 
-string 
-. 
-IsNullOrEmpty $
-($ %
-line1% *
-)* +
-)+ ,
-{ 
-throw   
-new   !
-ArgumentNullException   /
-(  / 0
-nameof  0 6
-(  6 7
-line1  7 <
-)  < =
-,  = >
-$str  ? d
-)  d e
-;  e f
-}!! 
-if## 
-(## 
-line1## 
-.## 
-Length## 
->## 
-$num## !
-)##! "
-{$$ 
-throw%% 
-new%% '
-ArgumentOutOfRangeException%% 5
-(%%5 6
-nameof%%6 <
-(%%< =
-line1%%= B
-)%%B C
-,%%C D
-$str%%E y
-)%%y z
-;%%z {
-}&& 
-if(( 
-((( 
-!(( 
-string(( 
-.(( 
-IsNullOrEmpty(( %
-(((% &
-line2((& +
-)((+ ,
-&&((- /
-line2((0 5
-.((5 6
-Length((6 <
->((= >
-$num((? A
-)((A B
-{)) 
-throw** 
-new** '
-ArgumentOutOfRangeException** 5
-(**5 6
-nameof**6 <
-(**< =
-line2**= B
-)**B C
-,**C D
-$str**E y
-)**y z
-;**z {
-}++ 
-if-- 
-(-- 
-string-- 
-.-- 
-IsNullOrEmpty-- $
-(--$ %
-city--% )
-)--) *
-)--* +
-{.. 
-throw// 
-new// !
-ArgumentNullException// /
-(/// 0
-nameof//0 6
-(//6 7
-city//7 ;
-)//; <
-,//< =
-$str//> X
-)//X Y
-;//Y Z
-}00 
-if22 
-(22 
-city22 
-.22 
-Length22 
->22 
-$num22  
-)22  !
-{33 
-throw44 
-new44 '
-ArgumentOutOfRangeException44 5
-(445 6
-nameof446 <
-(44< =
-city44= A
-)44A B
-,44B C
-$str44D u
-)44u v
-;44v w
-}55 
-if77 
-(77 
-	stateCode77 
-<=77 
-$num77 
-)77 
-{88 
-throw99 
-new99 !
-ArgumentNullException99 /
-(99/ 0
-nameof990 6
-(996 7
-	stateCode997 @
-)99@ A
-,99A B
-$str99C g
-)99g h
-;99h i
-}:: 
-if<< 
-(<< 
-string<< 
-.<< 
-IsNullOrEmpty<< $
-(<<$ %
-zipcode<<% ,
-)<<, -
-)<<- .
-{== 
-throw>> 
-new>> !
-ArgumentNullException>> /
-(>>/ 0
-nameof>>0 6
-(>>6 7
-zipcode>>7 >
-)>>> ?
-,>>? @
-$str>>A Z
-)>>Z [
-;>>[ \
-}?? 
-ifAA 
-(AA 
-zipcodeAA 
-.AA 
-LengthAA 
->AA  
-$numAA! #
-)AA# $
-{BB 
-throwCC 
-newCC '
-ArgumentOutOfRangeExceptionCC 5
-(CC5 6
-nameofCC6 <
-(CC< =
-zipcodeCC= D
-)CCD E
-,CCE F
-$strCCG z
-)CCz {
-;CC{ |
-}DD 
-}EE 	
-}FF 
-}GG â
-\/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Currency.cs
+? 
+City 
+{ 
+get !
+;! "
+}# $
+public 
+int 
+StateProvinceID "
+{# $
+get% (
+;( )
+}* +
+public 
+string 
+? 
+Zipcode 
+{  
+get! $
+;$ %
+}& '
+private 
+	AddressVO 
+( 
+string  
+line1! &
+,& '
+string( .
+?. /
+line20 5
+,5 6
+string7 =
+city> B
+,B C
+intD G
+	stateCodeH Q
+,Q R
+stringS Y
+zipcodeZ a
+)a b
+{ 	
+AddressLine1 
+= 
+line1  
+;  !
+AddressLine2 
+= 
+line2  
+;  !
+City 
+= 
+city 
+; 
+StateProvinceID 
+= 
+	stateCode '
+;' (
+Zipcode 
+= 
+zipcode 
+; 
+} 	
+public 
+static 
+	AddressVO 
+Create  &
+(& '
+string' -
+line1. 3
+,3 4
+string5 ;
+?; <
+line2= B
+,B C
+stringD J
+cityK O
+,O P
+intQ T
+	stateCodeU ^
+,^ _
+string` f
+zipcodeg n
+)n o
+{ 	
+CheckValidity 
+( 
+line1 
+,  
+line2! &
+,& '
+city( ,
+,, -
+	stateCode. 7
+,7 8
+zipcode9 @
+)@ A
+;A B
+return 
+new 
+	AddressVO  
+(  !
+line1! &
+,& '
+line2( -
+,- .
+city/ 3
+,3 4
+	stateCode5 >
+,> ?
+zipcode@ G
+)G H
+;H I
+} 	
+private 
+static 
+void 
+CheckValidity )
+() *
+string* 0
+line11 6
+,6 7
+string8 >
+?> ?
+line2@ E
+,E F
+stringG M
+cityN R
+,R S
+intT W
+	stateCodeX a
+,a b
+stringc i
+zipcodej q
+)q r
+{ 	
+if   
+(   
+string   
+.   
+IsNullOrEmpty   $
+(  $ %
+line1  % *
+)  * +
+)  + ,
+{!! 
+throw"" 
+new"" !
+ArgumentNullException"" /
+(""/ 0
+nameof""0 6
+(""6 7
+line1""7 <
+)""< =
+,""= >
+$str""? d
+)""d e
+;""e f
+}## 
+if%% 
+(%% 
+line1%% 
+.%% 
+Length%% 
+>%% 
+$num%% !
+)%%! "
+{&& 
+throw'' 
+new'' '
+ArgumentOutOfRangeException'' 5
+(''5 6
+nameof''6 <
+(''< =
+line1''= B
+)''B C
+,''C D
+$str''E y
+)''y z
+;''z {
+}(( 
+if** 
+(** 
+!** 
+string** 
+.** 
+IsNullOrEmpty** %
+(**% &
+line2**& +
+)**+ ,
+&&**- /
+line2**0 5
+.**5 6
+Length**6 <
+>**= >
+$num**? A
+)**A B
+{++ 
+throw,, 
+new,, '
+ArgumentOutOfRangeException,, 5
+(,,5 6
+nameof,,6 <
+(,,< =
+line2,,= B
+),,B C
+,,,C D
+$str,,E y
+),,y z
+;,,z {
+}-- 
+if// 
+(// 
+string// 
+.// 
+IsNullOrEmpty// $
+(//$ %
+city//% )
+)//) *
+)//* +
+{00 
+throw11 
+new11 !
+ArgumentNullException11 /
+(11/ 0
+nameof110 6
+(116 7
+city117 ;
+)11; <
+,11< =
+$str11> X
+)11X Y
+;11Y Z
+}22 
+if44 
+(44 
+city44 
+.44 
+Length44 
+>44 
+$num44  
+)44  !
+{55 
+throw66 
+new66 '
+ArgumentOutOfRangeException66 5
+(665 6
+nameof666 <
+(66< =
+city66= A
+)66A B
+,66B C
+$str66D u
+)66u v
+;66v w
+}77 
+if99 
+(99 
+	stateCode99 
+<=99 
+$num99 
+)99 
+{:: 
+throw;; 
+new;; !
+ArgumentNullException;; /
+(;;/ 0
+nameof;;0 6
+(;;6 7
+	stateCode;;7 @
+);;@ A
+,;;A B
+$str;;C g
+);;g h
+;;;h i
+}<< 
+if>> 
+(>> 
+string>> 
+.>> 
+IsNullOrEmpty>> $
+(>>$ %
+zipcode>>% ,
+)>>, -
+)>>- .
+{?? 
+throw@@ 
+new@@ !
+ArgumentNullException@@ /
+(@@/ 0
+nameof@@0 6
+(@@6 7
+zipcode@@7 >
+)@@> ?
+,@@? @
+$str@@A Z
+)@@Z [
+;@@[ \
+}AA 
+ifCC 
+(CC 
+zipcodeCC 
+.CC 
+LengthCC 
+>CC  
+$numCC! #
+)CC# $
+{DD 
+throwEE 
+newEE '
+ArgumentOutOfRangeExceptionEE 5
+(EE5 6
+nameofEE6 <
+(EE< =
+zipcodeEE= D
+)EED E
+,EEE F
+$strEEG z
+)EEz {
+;EE{ |
+}FF 
+}GG 	
+}HH 
+}II ∑
+e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Currency.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -11646,17 +11472,19 @@ R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/PersonPhone
 ;= >
 } 	
 } 
-} ∂
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/DecimalGreaterThanZero.cs
+} ‰
+s/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalGreaterThanZero.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -11766,17 +11594,19 @@ j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 }   
 }!! 	
 }"" 
-}## û
-f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/DecimalNotNegative.cs
+}## Ã
+o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalNotNegative.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -11886,17 +11716,19 @@ f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 }   
 }!! 	
 }"" 
-}## Œ%
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/EmailAddressVO.cs
+}## ¸%
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/EmailAddressVO.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -12169,17 +12001,19 @@ IgnoreCaseFF! +
 }KK 
 }LL 	
 }MM 
-}NN ã&
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Money.cs
+}NN ò&
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Money.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -12455,30 +12289,30 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 $str,,/ K
 ),,K L
 ;,,L M
-Guard.. 
-... 
-Against.. 
-... '
-GreaterThanTwoDecimalPlaces.. 5
-(..5 6
-amount..6 <
-,..< =
-$str..> F
-)..F G
-;..G H
-}// 	
-}00 
-}11 Ç
-d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/OrganizationName.cs
+Guard-- 
+.-- 
+Against-- 
+.-- '
+GreaterThanTwoDecimalPlaces-- 5
+(--5 6
+amount--6 <
+)--< =
+;--= >
+}.. 	
+}// 
+}00 ∞
+m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/OrganizationName.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -12587,17 +12421,19 @@ d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 ;A B
 } 	
 } 
-} ¢
-^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PersonName.cs
+} –
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PersonName.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -12797,17 +12633,19 @@ middleName##0 :
 }$$ 
 }%% 	
 }&& 
-}'' ˝
-^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PersonType.cs
+}'' ´
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PersonType.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -12954,17 +12792,19 @@ personTypeB L
 } 
 } 	
 } 
-}   ∑
-_/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PhoneNumber.cs
+}   Â
+h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PhoneNumber.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -13106,17 +12946,19 @@ _/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 )##4 5
 ;##5 6
 }$$ 
-}%% ª2
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/PointOfContact.cs
+}%% È2
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PointOfContact.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -13477,17 +13319,19 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 )II4 5
 ;II5 6
 }JJ 
-}KK …
-Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Suffix.cs
+}KK ˜
+c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Suffix.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -13599,17 +13443,19 @@ Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 } 
 } 	
 } 
-} ¿
-Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/Title.cs
+} Ó
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Title.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -13721,17 +13567,19 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObject
 } 
 } 	
 } 
-} ≠
-^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Shared/ValueObjects/WebsiteUrl.cs
+} €
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/WebsiteUrl.cs
 	namespace 	
 AWC
  
 . 
 Core 
-. 
-Shared 
-. 
-ValueObjects &
+. 
+Entities 
+. 
+Shared "
+." #
+ValueObjects# /
 { 
 public 
 
@@ -13893,4 +13741,264 @@ IgnoreCase
 )!!. /
 ;!!/ 0
 }"" 
-}## 
+}## 
+v/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyValidationRepository.cs
+	namespace 	
+AWC
+ 
+. 
+Core 
+. 
+
+Interfaces 
+. 
+HumanResouces +
+{ 
+public 
+
+	interface (
+ICompanyValidationRepository 1
+{ 
+Task 
+< 
+Result 
+> '
+ValidateCompanyNameIsUnique 0
+(0 1
+int1 4
+id5 7
+,7 8
+string9 ?
+companyName@ K
+,K L
+boolM Q
+asNoTrackingR ^
+=_ `
+truea e
+)e f
+;f g
+} 
+}		 Ó
+q/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyWriteRepository.cs
+	namespace 	
+AWC
+ 
+. 
+Core 
+. 
+
+Interfaces 
+. 
+HumanResouces +
+{ 
+public 
+
+	interface #
+ICompanyWriteRepository ,
+:- .
+IRepository/ :
+<: ;
+Company; B
+>B C
+{ 
+}		 
+}
+
+ Á
+w/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/IEmployeeValidationRepository.cs
+	namespace 	
+AWC
+ 
+. 
+Core 
+. 
+
+Interfaces 
+. 
+HumanResouces +
+{ 
+public 
+
+	interface )
+IEmployeeValidationRepository 2
+{ 
+Task 
+< 
+Result 
+> &
+ValidatePersonNameIsUnique /
+(/ 0
+int0 3
+id4 6
+,6 7
+string8 >
+fname? D
+,D E
+stringF L
+lnameM R
+,R S
+stringT Z
+?Z [
+
+middleName\ f
+,f g
+boolh l
+asNoTrackingm y
+=z {
+true	| Ä
+)
+Ä Å
+;
+Å Ç
+Task 
+< 
+Result 
+> ,
+ ValidateNationalIdNumberIsUnique 5
+(5 6
+int6 9
+id: <
+,< =
+string> D
+nationalIdNumberE U
+,U V
+boolW [
+asNoTracking\ h
+=i j
+truek o
+)o p
+;p q
+Task		 
+<		 
+Result		 
+>		 )
+ValidateEmployeeEmailIsUnique		 2
+(		2 3
+int		3 6
+id		7 9
+,		9 :
+string		; A
+emailAddres		B M
+,		M N
+bool		O S
+asNoTracking		T `
+=		a b
+true		c g
+)		g h
+;		h i
+Task
+
+ 
+<
+
+ 
+Result
+
+ 
+>
+
+ !
+ValidateEmployeeExist
+
+ *
+(
+
+* +
+int
+
++ .
+id
+
+/ 1
+,
+
+1 2
+bool
+
+3 7
+asNoTracking
+
+8 D
+=
+
+E F
+true
+
+G K
+)
+
+K L
+;
+
+L M
+Task 
+< 
+Result 
+> #
+ValidateDepartmentExist ,
+(, -
+short- 2
+id3 5
+,5 6
+bool7 ;
+asNoTracking< H
+=I J
+trueK O
+)O P
+;P Q
+Task 
+< 
+Result 
+> 
+ValidateShiftExist '
+(' (
+byte( ,
+id- /
+,/ 0
+bool1 5
+asNoTracking6 B
+=C D
+trueE I
+)I J
+;J K
+Task 
+< 
+Result 
+>  
+ValidateManagerExist )
+() *
+int* -
+id. 0
+,0 1
+bool2 6
+asNoTracking7 C
+=D E
+trueF J
+)J K
+;K L
+} 
+} Ò
+r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/IEmployeeWriteRepository.cs
+	namespace 	
+AWC
+ 
+. 
+Core 
+. 
+
+Interfaces 
+. 
+HumanResouces +
+{ 
+public 
+
+	interface $
+IEmployeeWriteRepository -
+:. /
+IRepository0 ;
+<; <
+Employee< D
+>D E
+{ 
+} 
+}		 

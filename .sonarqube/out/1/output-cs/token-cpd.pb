@@ -105,103 +105,121 @@ AsReadOnlyP Z
 } 
 } À
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/BusinessRule.cs
-	namespace 	
-AWC
+	namespace 	
+AWC
  
-. 
-SharedKernel 
-. 
-Base 
-{ 
-public 
+. 
+SharedKernel 
+. 
+Base 
+{ 
+public 
 
-abstract 
-class 
-BusinessRule &
-<& '
-T' (
->( )
-:* +
-IBusinessRule, 9
-<9 :
-T: ;
->; <
-{ 
-	protected 
-IBusinessRule 
-<  
-T  !
->! "
-?" #
-Next$ (
-{) *
-get+ .
-;. /
-private0 7
-set8 ;
-;; <
-}= >
-public		 
-void		 
-SetNext		 
-(		 
-IBusinessRule		 )
-<		) *
-T		* +
->		+ ,
-next		- 1
-)		1 2
-{
+abstract 
+class 
+BusinessRule &
+<& '
+T' (
+>( )
+:* +
+IBusinessRule, 9
+<9 :
+T: ;
+>; <
+{ 
+	protected 
+IBusinessRule 
+<  
+T  !
+>! "
+?" #
+Next$ (
+{) *
+get+ .
+;. /
+private0 7
+set8 ;
+;; <
+}= >
+public
 
- 	
-Next 
-= 
-next 
-; 
-} 	
-public 
-virtual 
-async 
-Task !
-<! "
-ValidationResult" 2
->2 3
-Validate4 <
-(< =
-T= >
-request? F
-)F G
-{ 	
-ValidationResult 
-validationResult -
-=. /
-new0 3
-(3 4
-)4 5
-;5 6
-if 
-( 
-Next 
-is 
-not 
-null  
-)  !
-{ 
-await 
-Next 
-. 
-Validate #
-(# $
-request$ +
-)+ ,
-;, -
-} 
-return 
-validationResult #
-;# $
-} 	
-} 
-} Ù
+ 
+void
+
+ 
+SetNext
+
+ 
+(
+
+ 
+IBusinessRule
+
+ )
+<
+
+) *
+T
+
+* +
+>
+
++ ,
+next
+
+- 1
+)
+
+1 2
+{ 	
+Next 
+= 
+next 
+; 
+} 	
+public 
+virtual 
+async 
+Task !
+<! "
+ValidationResult" 2
+>2 3
+Validate4 <
+(< =
+T= >
+request? F
+)F G
+{ 	
+ValidationResult 
+validationResult -
+=. /
+new0 3
+(3 4
+)4 5
+;5 6
+if 
+( 
+Next 
+is 
+not 
+null  
+)  !
+{ 
+await 
+Next 
+. 
+Validate #
+(# $
+request$ +
+)+ ,
+;, -
+} 
+return 
+validationResult #
+;# $
+} 	
+} 
+} Ù
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/DomainEvent.cs
 	namespace 	
 AWC
@@ -377,49 +395,7 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/Ignor
 CreatedDate! ,
 ;, -
 } 
-} ˛
-]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValidationResult.cs
-	namespace 	
-AWC
- 
-. 
-SharedKernel 
-. 
-Base 
-{ 
-public 
-
-class 
-ValidationResult !
-{ 
-public 
-bool 
-IsValid 
-{ 
-get !
-;! "
-set# &
-;& '
-}( )
-public 
-List 
-< 
-string 
-> 
-Messages $
-{% &
-get' *
-;* +
-set, /
-;/ 0
-}1 2
-=3 4
-new5 8
-(8 9
-)9 :
-;: ;
-} 
-} ª@
+} ª@
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.cs
 	namespace 	
 AWC
@@ -1514,7 +1490,7 @@ i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 ; 
 } 	
 } 
-} ·-
+} Ÿ.
 k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstNumberExtensions.cs
 	namespace 	
 AWC
@@ -1587,14 +1563,14 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 {$ %
 parameterName% 2
 }2 3
-$str3 K
-{K L
-minValueL T
-}T U
-$strU V
-"V W
-)W X
-;X Y
+$str3 J
+{J K
+minValueK S
+}S T
+$strT U
+"U V
+)V W
+;W X
 } 
 return 
 input 
@@ -1650,14 +1626,14 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 {""$ %
 parameterName""% 2
 }""2 3
-$str""3 K
-{""K L
-minValue""L T
-}""T U
-$str""U V
-"""V W
-)""W X
-;""X Y
+$str""3 J
+{""J K
+minValue""K S
+}""S T
+$str""T U
+"""U V
+)""V W
+;""W X
 }## 
 return$$ 
 input$$ 
@@ -1676,7 +1652,7 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 input** 
 ,** 
 int++ 
-minValue++ 
+maxValue++ 
 ,++ 
 string,, 
 message,, 
@@ -1700,8 +1676,8 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 if00 
 (00 
 input00 
-<00 
-minValue00  
+>00 
+maxValue00  
 )00  !
 {11 
 Error22 
@@ -1713,14 +1689,14 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 {22$ %
 parameterName22% 2
 }222 3
-$str223 V
-{22V W
-minValue22W _
-}22_ `
-$str22` a
-"22a b
-)22b c
-;22c d
+$str223 G
+{22G H
+maxValue22H P
+}22P Q
+$str22Q R
+"22R S
+)22S T
+;22T U
 }33 
 return44 
 input44 
@@ -1737,10 +1713,10 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 ,99) *
 decimal:: 
 input:: 
-,:: 
-int;; 
-minValue;; 
-,;; 
+,:: 
+decimal;; 
+maxValue;; 
+,;; 
 string<< 
 message<< 
 =<< 
@@ -1763,8 +1739,8 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 if@@ 
 (@@ 
 input@@ 
-<@@ 
-minValue@@  
+>@@ 
+maxValue@@  
 )@@  !
 {AA 
 ErrorBB 
@@ -1776,14 +1752,14 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 {BB$ %
 parameterNameBB% 2
 }BB2 3
-$strBB3 V
-{BBV W
-minValueBBW _
-}BB_ `
-$strBB` a
-"BBa b
-)BBb c
-;BBc d
+$strBB3 G
+{BBG H
+maxValueBBH P
+}BBP Q
+$strBBQ R
+"BBR S
+)BBS T
+;BBT U
 }CC 
 returnDD 
 inputDD 
@@ -1793,157 +1769,148 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Gua
 staticGG 
 decimalGG '
 GreaterThanTwoDecimalPlacesGG 9
-(GG9 :
-thisGG: >
-IGuardClauseGG? K
-guardClauseGGL W
-,GGW X
-decimalGGY `
-inputGGa f
-,GGf g
-stringGGh n
-parameterNameGGo |
-=GG} ~
-$str	GG á
-,
-GGá à
-string
-GGâ è
-message
-GGê ó
-=
-GGò ô
-null
-GGö û
-!
-GGû ü
-)
-GGü †
-{HH 	
-ifII 
-(II 
-inputII 
-%II 
-$numII 
-!=II  
-$numII! "
-)II" #
-{JJ 
-ErrorKK 
-(KK 
-messageKK 
-??KK  
-$"KK! #
-$strKK# $
-{KK$ %
-parameterNameKK% 2
-}KK2 3
-$strKK3 V
-"KKV W
-)KKW X
-;KKX Y
-}LL 
-returnMM 
-inputMM 
-;MM 
-}NN 	
-}OO 
-}PP “
-
+(HH 	
+thisII 
+IGuardClauseII 
+guardClauseII )
+,II) *
+decimalJJ 
+inputJJ 
+,JJ 
+stringKK 
+messageKK 
+=KK 
+nullKK !
+!KK! "
+,KK" #
+[LL $
+CallerArgumentExpressionLL %
+(LL% &
+$strLL& -
+)LL- .
+]LL. /
+stringLL0 6
+?LL6 7
+parameterNameLL8 E
+=LLF G
+nullLLH L
+)MM 	
+{NN 	
+ifOO 
+(OO 
+inputOO 
+%OO 
+$numOO 
+!=OO  
+$numOO! "
+)OO" #
+{PP 
+ErrorQQ 
+(QQ 
+messageQQ 
+??QQ  
+$"QQ! #
+$strQQ# $
+{QQ$ %
+parameterNameQQ% 2
+}QQ2 3
+$strQQ3 V
+"QQV W
+)QQW X
+;QQX Y
+}RR 
+returnSS 
+inputSS 
+;SS 
+}TT 	
+}UU 
+}VV ¡
 h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstUrlExtensions.cs
-	namespace 	
-AWC
+	namespace 	
+AWC
  
-. 
-SharedKernel 
-. 
-Guards !
-{ 
-public 
+. 
+SharedKernel 
+. 
+Guards !
+{ 
+public 
 
-static 
-partial 
-class !
-GuardClauseExtensions  5
-{ 
-public 
-static 
-string 
+static 
+partial 
+class !
+GuardClauseExtensions  5
+{ 
+public 
+static 
+string 
 
-InvalidUrl '
-(' (
-this( ,
-IGuardClause- 9
-guardClause: E
-,E F
-stringG M
-urlN Q
-,Q R
-stringS Y
-parameterNameZ g
-=h i
-$strj o
-,o p
-stringq w
-messagex 
-=
-Ä Å
-null
-Ç Ü
-!
-Ü á
-)
-á à
-{ 	
-try 
-{		 
-_
+InvalidUrl '
+( 	
+this		 
+IGuardClause		 
+guardClause		 )
+,		) *
+string
 
- 
-=
+ 
+input
 
- 
-new
+ 
+,
 
- 
-Uri
-
- 
-(
-
- 
-url
-
- 
-)
-
-  
-;
-
-  !
-} 
-catch 
-{ 
-Error 
-( 
-message 
-??  
-$"! #
-$str# 5
-{5 6
-parameterName6 C
-}C D
-$strD E
-"E F
-)F G
-;G H
-} 
-return 
-url 
-; 
-} 	
-} 
-} π
+ 
+string 
+message 
+= 
+null !
+!! "
+," #
+[ $
+CallerArgumentExpression %
+(% &
+$str& -
+)- .
+]. /
+string0 6
+?6 7
+parameterName8 E
+=F G
+nullH L
+) 	
+{ 	
+try 
+{ 
+_ 
+= 
+new 
+Uri 
+( 
+input !
+)! "
+;" #
+} 
+catch 
+{ 
+Error 
+( 
+message 
+??  
+$"! #
+{# $
+parameterName$ 1
+}1 2
+$str2 F
+"F G
+)G H
+;H I
+} 
+return 
+input 
+; 
+} 	
+} 
+} π
 d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardClauseExtensions.cs
 	namespace 	
 AWC
@@ -2870,7 +2837,7 @@ PageNumber' 1
 PageSize7 ?
 )? @
 ;@ A
-} É)
+} ≠
 X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/Result.cs
 	namespace 	
 AWC
@@ -2996,185 +2963,95 @@ X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/
 value< A
 )A B
 =>C E
-newF I
-(I J
-valueJ O
-,O P
-trueQ U
-,U V
-ErrorW \
-.\ ]
-None] a
-)a b
-;b c
-public 
-static 
-Result 
-Failure $
-($ %
-Error% *
-error+ 0
-)0 1
-=>2 4
-new5 8
-(8 9
-false9 >
-,> ?
-error@ E
-)E F
-;F G
-public!! 
-static!! 
-Result!! 
-<!! 
-TValue!! #
->!!# $
-Failure!!% ,
-<!!, -
-TValue!!- 3
->!!3 4
-(!!4 5
-Error!!5 :
-error!!; @
-)!!@ A
-=>!!B D
-new!!E H
-(!!H I
-default!!I P
-,!!P Q
-false!!R W
-,!!W X
-error!!Y ^
-)!!^ _
-;!!_ `
+new 
+( 
+value 
+, 
+true 
+, 
+Error "
+." #
+None# '
+)' (
+;( )
+public   
+static   
+Result   
+Failure   $
+(  $ %
+Error  % *
+error  + 0
+)  0 1
+=>  2 4
+new!! 
+(!! 
+false!! 
+,!! 
+error!! 
+)!! 
+;!! 
 public## 
 static## 
-Result## 
-Create## #
-(### $
-bool##$ (
-	condition##) 2
-)##2 3
-=>##4 6
-	condition##7 @
-?##A B
-Success##C J
-(##J K
-)##K L
-:##M N
-Failure##O V
-(##V W
-Error##W \
-.##\ ]
-ConditionNotMet##] l
-)##l m
-;##m n
-public%% 
-static%% 
-Result%% 
-<%% 
-TValue%% #
->%%# $
-Create%%% +
-<%%+ ,
-TValue%%, 2
->%%2 3
-(%%3 4
-TValue%%4 :
-?%%: ;
-value%%< A
-)%%A B
-=>%%C E
-value%%F K
-is%%L N
-not%%O R
-null%%S W
-?%%X Y
-Success%%Z a
-(%%a b
-value%%b g
-)%%g h
-:%%i j
-Failure%%k r
-<%%r s
-TValue%%s y
->%%y z
-(%%z {
-Error	%%{ Ä
-.
-%%Ä Å
-	NullValue
-%%Å ä
-)
-%%ä ã
-;
-%%ã å
-public'' 
-static'' 
-async'' 
-Task''  
-<''  !
-Result''! '
->''' (!
-FirstFailureOrSuccess'') >
-(''> ?
-params''? E
-Func''F J
-<''J K
-Task''K O
-<''O P
-Result''P V
->''V W
->''W X
-[''X Y
-]''Y Z
-results''[ b
-)''b c
-{(( 	
-foreach)) 
-()) 
-Func)) 
-<)) 
-Task)) 
-<)) 
-Result)) %
->))% &
->))& '
-
-resultTask))( 2
-in))3 5
-results))6 =
-)))= >
-{** 
-Result++ 
-result++ 
-=++ 
-await++  %
-
-resultTask++& 0
-(++0 1
-)++1 2
-;++2 3
-if-- 
-(-- 
-result-- 
-.-- 
-	IsFailure-- $
-)--$ %
-{.. 
-return// 
-result// !
-;//! "
-}00 
-}11 
-return33 
-Success33 
-(33 
-)33 
-;33 
-}44 	
-}55 
-}66 ◊
+Result## 
+<## 
+TValue## #
+>### $
+Failure##% ,
+<##, -
+TValue##- 3
+>##3 4
+(##4 5
+Error##5 :
+error##; @
+)##@ A
+=>##B D
+new$$ 
+($$ 
+default$$ 
+,$$ 
+false$$ 
+,$$ 
+error$$  %
+)$$% &
+;$$& '
+public&& 
+static&& 
+Result&& 
+<&& 
+TValue&& #
+>&&# $
+Create&&% +
+<&&+ ,
+TValue&&, 2
+>&&2 3
+(&&3 4
+TValue&&4 :
+?&&: ;
+value&&< A
+)&&A B
+=>&&C E
+value'' 
+is'' 
+not'' 
+null'' 
+?'' 
+Success''  '
+(''' (
+value''( -
+)''- .
+:''/ 0
+Failure''1 8
+<''8 9
+TValue''9 ?
+>''? @
+(''@ A
+Error''A F
+.''F G
+	NullValue''G P
+)''P Q
+;''Q R
+}(( 
+})) ◊
 Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ResultT.cs
 	namespace 	
 AWC
@@ -3262,4 +3139,46 @@ Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/
 )U V
 ;V W
 } 
-} 
+} à
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ValidationResult.cs
+	namespace 	
+AWC
+ 
+. 
+SharedKernel 
+. 
+	Utilities $
+{ 
+public 
+
+class 
+ValidationResult !
+{ 
+public 
+bool 
+IsValid 
+{ 
+get !
+;! "
+set# &
+;& '
+}( )
+public 
+List 
+< 
+string 
+> 
+Messages $
+{% &
+get' *
+;* +
+set, /
+;/ 0
+}1 2
+=3 4
+new5 8
+(8 9
+)9 :
+;: ;
+} 
+} 

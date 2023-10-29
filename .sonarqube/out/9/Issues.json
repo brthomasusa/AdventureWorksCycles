@@ -21,7 +21,7 @@
           "locations": [
             {
               "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/GuardClause/GuardClauses_Test.cs",
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/SharedKernel.UnitTests/GuardClauses_Test.cs",
                 "region": {
                   "startLine": 28,
                   "startColumn": 74,
