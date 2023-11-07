@@ -10,10 +10,7 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
         protected DateOfRateChange() { }
 
         private DateOfRateChange(DateTime rateChangeDate)
-            : this()
-        {
-            Value = rateChangeDate;
-        }
+            => Value = rateChangeDate;
 
         public static implicit operator DateTime(DateOfRateChange self) => self.Value!;
 
@@ -25,7 +22,12 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         private static void CheckValidity(DateTime rateChangeDate)
         {
-            Guard.Against.DefaultDateTime(rateChangeDate, "The date the rate of pay was set or changed is required.");
+            Guard.Against.DefaultDateTime(rateChangeDate, "The date the rate of pay was set (or changed) is required.");
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value!;
         }
     }
 }

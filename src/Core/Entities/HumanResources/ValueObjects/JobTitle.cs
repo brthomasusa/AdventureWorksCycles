@@ -1,11 +1,12 @@
-#pragma warning disable CS8618
-
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
     public sealed class JobTitle : ValueObject
     {
+        public const int MAX_LENGTH = 50;
+
         public string Value { get; }
 
         private JobTitle(string value)
@@ -21,15 +22,13 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         private static void CheckValidity(string jobTitle)
         {
-            if (string.IsNullOrEmpty(jobTitle))
-            {
-                throw new ArgumentNullException(nameof(jobTitle), "The job title is required.");
-            }
+            Guard.Against.NullOrEmpty(jobTitle);
+            Guard.Against.LengthGreaterThan(jobTitle, MAX_LENGTH);
+        }
 
-            if (jobTitle.Length > 50)
-            {
-                throw new ArgumentException("Invalid job title, maximum length is 50 characters.");
-            }
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

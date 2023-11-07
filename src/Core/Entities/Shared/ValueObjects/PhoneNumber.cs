@@ -6,7 +6,9 @@ namespace AWC.Core.Entities.Shared.ValueObjects
 {
     public sealed partial class PhoneNumber : ValueObject
     {
-        public string? Value { get; }
+        const int Max_Length = 25;
+
+        public string Value { get; }
 
         private PhoneNumber(string phoneNumber)
         {
@@ -24,7 +26,7 @@ namespace AWC.Core.Entities.Shared.ValueObjects
         private static void CheckValidity(string phoneNumber)
         {
             Guard.Against.NullOrEmpty(phoneNumber);
-            Guard.Against.LengthGreaterThan(phoneNumber, 25);
+            Guard.Against.LengthGreaterThan(phoneNumber, Max_Length);
 
             Regex validatePhoneNumberRegex = TelephoneRegex();
             if (!validatePhoneNumberRegex.IsMatch(phoneNumber))
@@ -33,5 +35,10 @@ namespace AWC.Core.Entities.Shared.ValueObjects
 
         [GeneratedRegex("^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$")]
         private static partial Regex TelephoneRegex();
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
+        }
     }
 }

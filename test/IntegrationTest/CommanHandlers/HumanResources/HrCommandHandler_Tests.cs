@@ -43,6 +43,7 @@ namespace AWC.IntegrationTest.HumanResources.CommandHandlers
             Assert.True(result.IsSuccess);
         }
 
+
         [Fact]
         public async Task Handle_DeleteEmployeeCommandHandler_ShouldSucceed()
         {

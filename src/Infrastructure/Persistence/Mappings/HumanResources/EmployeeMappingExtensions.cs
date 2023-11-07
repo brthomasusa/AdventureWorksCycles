@@ -1,3 +1,5 @@
+#pragma warning disable CS8604
+
 using AWC.Core.Entities.HumanResources;
 using AWC.Core.Entities.Shared;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
@@ -139,11 +141,11 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             // Person
             person.PersonType = employee.PersonType;
             person.NameStyle = employee.NameStyle != NameStyle.Western;
-            person.Title = employee.Title;
+            person.Title = employee.Title ?? null;
             person.FirstName = employee.Name.FirstName;
             person.MiddleName = employee.Name.MiddleName!;
             person.LastName = employee.Name.LastName;
-            person.Suffix = employee.Suffix;
+            person.Suffix = employee.Suffix ?? null;
             person.EmailPromotion = (int)employee.EmailPromotions;
 
             // Address. This works because a person who is an employee is restricted to one address
@@ -153,7 +155,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             bea.Address!.AddressLine2 = employee.Addresses.FirstOrDefault()!.Location.AddressLine2;
             bea.Address!.City = employee.Addresses.FirstOrDefault()!.Location.City;
             bea.Address!.StateProvinceID = employee.Addresses.FirstOrDefault()!.Location.StateProvinceID;
-            bea.Address!.PostalCode = employee.Addresses.FirstOrDefault()!.Location.Zipcode;
+            bea.Address!.PostalCode = employee.Addresses.FirstOrDefault()!.Location.PostalCode;
 
             // Email Address. This works because a person who is an employee is restricted to one email address
             person.EmailAddresses.FirstOrDefault()!.MailAddress = employee.EmailAddresses.FirstOrDefault()!.EmailAddress;

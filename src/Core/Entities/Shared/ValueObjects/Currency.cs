@@ -8,8 +8,8 @@ namespace AWC.Core.Entities.Shared.ValueObjects
         private Currency(string code, string name)
             => (CurrencyCode, CurrencyName) = (code, name);
 
-        public string? CurrencyCode { get; init; }
-        public string? CurrencyName { get; init; }
+        public string CurrencyCode { get; init; }
+        public string CurrencyName { get; init; }
 
         public static Currency Create(string code, string name)
         {
@@ -24,6 +24,12 @@ namespace AWC.Core.Entities.Shared.ValueObjects
 
             Guard.Against.NullOrEmpty(currencyName);
             Guard.Against.LengthGreaterThan(currencyName, 50);
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return CurrencyCode;
+            yield return CurrencyName;
         }
     }
 }

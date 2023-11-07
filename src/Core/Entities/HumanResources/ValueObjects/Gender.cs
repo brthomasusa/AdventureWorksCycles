@@ -1,6 +1,5 @@
-#pragma warning disable CS8618
-
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
@@ -21,15 +20,18 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         private static void CheckValidity(string gender)
         {
-            if (string.IsNullOrEmpty(gender))
-            {
-                throw new ArgumentNullException(nameof(gender), "Gender is required.");
-            }
+            Guard.Against.NullOrEmpty(gender);
 
-            if (!string.Equals(gender, "M", StringComparison.OrdinalIgnoreCase) && !string.Equals(gender, "F", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(gender, "M", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(gender, "F", StringComparison.OrdinalIgnoreCase))
             {
-                throw new ArgumentException("Invalid gender, valid statues are 'M' for male and 'F' for female.");
+                throw new ArgumentException("Invalid gender, valid genders are 'M' for male and 'F' for female.");
             }
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

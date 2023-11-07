@@ -6,7 +6,7 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
     public sealed partial class EmployerIdentificationNumber : ValueObject
     {
-        public string? Value { get; init; }
+        public string Value { get; init; }
 
         private EmployerIdentificationNumber(string ein)
             => Value = ein;
@@ -29,5 +29,10 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         [GeneratedRegex("^\\d{9}|\\d{2}-\\d{7}$")]
         private static partial Regex EinRegex();
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
+        }
     }
 }

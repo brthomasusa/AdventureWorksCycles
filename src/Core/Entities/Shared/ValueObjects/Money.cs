@@ -38,11 +38,15 @@ namespace AWC.Core.Entities.Shared.ValueObjects
 
         private static void CheckValidity(Currency currency, decimal amount)
         {
-            if (currency is null)
-                throw new ArgumentException("A currency is required.");
-
+            Guard.Against.Null(currency, "A currency is required.");
             Guard.Against.LessThan(amount, 0M, "Money can not be negative.");
             Guard.Against.GreaterThanTwoDecimalPlaces(amount);
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Currency;
+            yield return Amount;
         }
     }
 }

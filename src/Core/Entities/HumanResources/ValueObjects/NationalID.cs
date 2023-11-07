@@ -1,11 +1,14 @@
 using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
     public sealed partial class NationalID : ValueObject
     {
-        public string? Value { get; }
+        public const int MAX_LENGTH = 15;
+
+        public string Value { get; }
 
         private NationalID(string idNumber)
         {
@@ -14,30 +17,28 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         public static implicit operator string(NationalID self) => self.Value!;
 
-        public static NationalID Create(string idNumber)
+        public static NationalID Create(string nationalIdNumber)
         {
-            CheckValidity(idNumber);
-            return new NationalID(idNumber);
+            CheckValidity(nationalIdNumber);
+            return new NationalID(nationalIdNumber);
         }
 
-        private static void CheckValidity(string idNumber)
+        private static void CheckValidity(string nationalIdNumber)
         {
-            if (string.IsNullOrEmpty(idNumber))
-            {
-                throw new ArgumentNullException(nameof(idNumber), "The national id number is required.");
-            }
-
-            if (idNumber.Length > 15)
-            {
-                throw new ArgumentException("Invalid national id number, maximum length is 15 characters.");
-            }
+            Guard.Against.NullOrEmpty(nationalIdNumber);
+            Guard.Against.LengthGreaterThan(nationalIdNumber, MAX_LENGTH);
 
             Regex validateNationalIdNumberRegex = MyRegex();
-            if (!validateNationalIdNumberRegex.IsMatch(idNumber))
-                throw new ArgumentException($"{idNumber} is not a valid national id number, should be 5 - 9 digits.");
+            if (!validateNationalIdNumberRegex.IsMatch(nationalIdNumber))
+                throw new ArgumentException($"{nationalIdNumber} is not a valid national id number, should be 5 - 9 digits.");
         }
 
         [GeneratedRegex("^\\d{5,9}$")]
         private static partial Regex MyRegex();
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
+        }
     }
 }

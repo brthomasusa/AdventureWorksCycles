@@ -1,16 +1,19 @@
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.Shared.ValueObjects
 {
     public sealed class AddressVO : ValueObject
     {
-        const int MAX_ADDRESSLINE_LENGTH = 50;
+        const int MAX_ADDRESSLINE_LENGTH = 60;
+        const int MAX_CITY_LENGTH = 30;
+        const int MAX_POSTALCODE_LENGTH = 15;
 
-        public string? AddressLine1 { get; }
+        public string AddressLine1 { get; }
         public string? AddressLine2 { get; }
-        public string? City { get; }
+        public string City { get; }
         public int StateProvinceID { get; }
-        public string? Zipcode { get; }
+        public string PostalCode { get; }
 
         private AddressVO(string line1, string? line2, string city, int stateCode, string zipcode)
         {
@@ -18,7 +21,7 @@ namespace AWC.Core.Entities.Shared.ValueObjects
             AddressLine2 = line2;
             City = city;
             StateProvinceID = stateCode;
-            Zipcode = zipcode;
+            PostalCode = zipcode;
         }
 
         public static AddressVO Create(string line1, string? line2, string city, int stateCode, string zipcode)
@@ -29,45 +32,28 @@ namespace AWC.Core.Entities.Shared.ValueObjects
 
         private static void CheckValidity(string line1, string? line2, string city, int stateCode, string zipcode)
         {
-            if (string.IsNullOrEmpty(line1))
-            {
-                throw new ArgumentNullException(nameof(line1), "The first address line is required.");
-            }
+            Guard.Against.NullOrEmpty(line1);
+            Guard.Against.LengthGreaterThan(line1, MAX_ADDRESSLINE_LENGTH);
 
-            if (line1.Length > 30)
-            {
-                throw new ArgumentOutOfRangeException(nameof(line1), "Address line can not be longer than 30 characters.");
-            }
+            if (!string.IsNullOrEmpty(line2))
+                Guard.Against.LengthGreaterThan(line2, MAX_ADDRESSLINE_LENGTH);
 
-            if (!string.IsNullOrEmpty(line2) && line2.Length > 30)
-            {
-                throw new ArgumentOutOfRangeException(nameof(line2), "Address line can not be longer than 30 characters.");
-            }
+            Guard.Against.NullOrEmpty(city);
+            Guard.Against.LengthGreaterThan(city, MAX_CITY_LENGTH);
 
-            if (string.IsNullOrEmpty(city))
-            {
-                throw new ArgumentNullException(nameof(city), "A city name is required.");
-            }
+            Guard.Against.LessThan(stateCode, 1);
 
-            if (city.Length > 30)
-            {
-                throw new ArgumentOutOfRangeException(nameof(city), "City name can not be longer than 30 characters.");
-            }
+            Guard.Against.NullOrEmpty(zipcode);
+            Guard.Against.LengthGreaterThan(zipcode, MAX_POSTALCODE_LENGTH);
+        }
 
-            if (stateCode <= 0)
-            {
-                throw new ArgumentNullException(nameof(stateCode), "A state/province code is required.");
-            }
-
-            if (string.IsNullOrEmpty(zipcode))
-            {
-                throw new ArgumentNullException(nameof(zipcode), "A zip code is required.");
-            }
-
-            if (zipcode.Length > 15)
-            {
-                throw new ArgumentOutOfRangeException(nameof(zipcode), "Postal code can not be longer than 15 characters.");
-            }
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return AddressLine1;
+            yield return AddressLine2!;
+            yield return City;
+            yield return StateProvinceID;
+            yield return PostalCode;
         }
     }
 }

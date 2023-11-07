@@ -1,10 +1,14 @@
 using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.Shared.ValueObjects
 {
     public sealed partial class PointOfContact : ValueObject
     {
+        public const int Name_Max_Length = 50;
+        public const int Phone_Max_Length = 25;
+
         private PointOfContact(string fname, string lname, string? mi, string telephone)
         {
             FirstName = fname;
@@ -13,63 +17,44 @@ namespace AWC.Core.Entities.Shared.ValueObjects
             Telephone = telephone;
         }
 
-        public string? FirstName { get; }
-        public string? LastName { get; }
+        public string FirstName { get; }
+        public string LastName { get; }
         public string? MiddleInitial { get; }
-        public string? Telephone { get; }
+        public string Telephone { get; }
 
-        public static PointOfContact Create(string fname, string lname, string? mi, string telephone)
+        public static PointOfContact Create
+        (
+            string fname,
+            string lname,
+            string? mi,
+            string telephone
+        )
         {
             CheckValidity(fname, lname, mi, telephone);
-            return new PointOfContact(fname, lname, mi, telephone);
+            return new PointOfContact(fname, lname, mi, PhoneNumber.Create(telephone));
         }
 
-        private static void CheckValidity(string last, string first, string? mi, string telephone)
+        private static void CheckValidity(string lastName, string firstName, string? middleName, string phoneNumber)
         {
-            if (string.IsNullOrEmpty(first))
-            {
-                throw new ArgumentNullException(nameof(first), "A first name is required.");
-            }
+            Guard.Against.NullOrEmpty(lastName);
+            Guard.Against.NullOrEmpty(firstName);
 
-            if (string.IsNullOrEmpty(last))
-            {
-                throw new ArgumentNullException(nameof(last), "A last name is required.");
-            }
+            Guard.Against.LengthGreaterThan(lastName, Name_Max_Length);
+            Guard.Against.LengthGreaterThan(firstName, Name_Max_Length);
 
-            first = first.Trim();
-            last = last.Trim();
+            Guard.Against.NullOrEmpty(phoneNumber);
+            Guard.Against.LengthGreaterThan(phoneNumber, Phone_Max_Length);
 
-            if (first.Length > 25)
-            {
-                throw new ArgumentOutOfRangeException(nameof(first), "Maximum length of the first name is 25 characters.");
-            }
-
-            if (last.Length > 25)
-            {
-                throw new ArgumentOutOfRangeException(nameof(last), "Maximum length of the last name is 25 characters.");
-            }
-
-            if (!string.IsNullOrEmpty(mi))
-            {
-                mi = mi.Trim();
-                if (mi.Length > 1)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(mi), "Maximum length of middle initial is 1 character.");
-                }
-            }
-
-            if (string.IsNullOrEmpty(telephone))
-            {
-                throw new ArgumentNullException(nameof(telephone), "The PhoneNumber number is required.");
-            }
-
-            if (!TelephoneRegex().IsMatch(telephone))
-            {
-                throw new ArgumentException("Invalid PhoneNumber number!", nameof(telephone));
-            }
+            if (!string.IsNullOrEmpty(middleName))
+                Guard.Against.LengthGreaterThan(middleName, Name_Max_Length);
         }
 
-        [GeneratedRegex("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$")]
-        private static partial Regex TelephoneRegex();
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return FirstName;
+            yield return LastName;
+            yield return MiddleInitial!;
+            yield return Telephone;
+        }
     }
 }

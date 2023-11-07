@@ -24,5 +24,10 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
             if (value < 0 || value > 120)
                 throw new ArgumentException("Sick leave hours must be between 0 and 120");
         }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
+        }
     }
 }

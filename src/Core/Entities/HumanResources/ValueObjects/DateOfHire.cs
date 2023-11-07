@@ -6,9 +6,9 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
     {
         public DateOnly Value { get; }
 
-        private DateOfHire(DateOnly birthDate)
+        private DateOfHire(DateOnly hireDate)
         {
-            Value = birthDate;
+            Value = hireDate;
         }
 
         public static implicit operator DateOnly(DateOfHire self) => self.Value!;
@@ -19,15 +19,20 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
             return new DateOfHire(value);
         }
 
-        private static void CheckValidity(DateOnly value)
+        private static void CheckValidity(DateOnly hireDate)
         {
             DateTime temp = DateTime.Now;
             DateOnly today = new(temp.Year, temp.Month, temp.Day);
 
-            if (value < new DateOnly(1996, 7, 1) || value > today.AddDays(1))
+            if (hireDate < new DateOnly(1996, 7, 1) || hireDate > today.AddDays(1))
             {
-                throw new ArgumentException($"Employment date must be between 1996-7-1 and {today.AddDays(1).ToShortDateString}");
+                throw new ArgumentException($"Employee hire date must be between 1996-7-1 and {today.AddDays(1).ToShortDateString}");
             }
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value!;
         }
     }
 }

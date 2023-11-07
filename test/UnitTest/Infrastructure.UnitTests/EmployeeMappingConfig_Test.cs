@@ -3,8 +3,8 @@ using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
-using AWC.UnitTest.Shared.Data;
 using AWC.UnitTest.Shared;
+using AWC.UnitTest.Shared.Data;
 using MapsterMapper;
 
 namespace AWC.UnitTest.Infrastructure.UnitTests
@@ -108,7 +108,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
                             AddressLine2 = addr.Location.AddressLine2,
                             City = addr.Location.City,
                             StateProvinceID = addr.Location.StateProvinceID,
-                            PostalCode = addr.Location.Zipcode
+                            PostalCode = addr.Location.PostalCode
                         },
                         AddressTypeID = (int)addr.AddressType
                     }
@@ -122,7 +122,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
             Assert.Equal(domainAddress.Location.AddressLine2, dataAddress.AddressLine2);
             Assert.Equal(domainAddress.Location.City, dataAddress.City);
             Assert.Equal(domainAddress.Location.StateProvinceID, dataAddress.StateProvinceID);
-            Assert.Equal(domainAddress.Location.Zipcode, dataAddress.PostalCode);
+            Assert.Equal(domainAddress.Location.PostalCode, dataAddress.PostalCode);
         }
 
         [Fact]
@@ -141,7 +141,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
                         AddressLine2 = addr.Location.AddressLine2,
                         City = addr.Location.City,
                         StateProvinceID = addr.Location.StateProvinceID,
-                        PostalCode = addr.Location.Zipcode
+                        PostalCode = addr.Location.PostalCode
                     }
                 )
             );
@@ -153,7 +153,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
             Assert.Equal(domainAddress.Location.AddressLine2, dataAddress.AddressLine2);
             Assert.Equal(domainAddress.Location.City, dataAddress.City);
             Assert.Equal(domainAddress.Location.StateProvinceID, dataAddress.StateProvinceID);
-            Assert.Equal(domainAddress.Location.Zipcode, dataAddress.PostalCode);
+            Assert.Equal(domainAddress.Location.PostalCode, dataAddress.PostalCode);
         }
     }
 }

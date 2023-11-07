@@ -1,15 +1,15 @@
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
     public class ShiftName : ValueObject
     {
-        public string? Value { get; }
+        public const int MAX_LENGTH = 50;
 
-        protected ShiftName() { }
+        public string Value { get; }
 
-        private ShiftName(string name)
-            : this() => Value = name;
+        private ShiftName(string name) => Value = name;
 
         public static implicit operator string(ShiftName self) => self.Value!;
 
@@ -19,12 +19,15 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
             return new ShiftName(value);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string shiftName)
         {
-            if (string.IsNullOrEmpty(value) || value.Length > 50)
-            {
-                throw new ArgumentException("The shift name can not be null or greater than 50 characters.");
-            }
+            Guard.Against.NullOrEmpty(shiftName);
+            Guard.Against.LengthGreaterThan(shiftName, MAX_LENGTH);
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

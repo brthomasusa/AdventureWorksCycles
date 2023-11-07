@@ -29,5 +29,10 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
                 throw new ArgumentException($"Birth date must be between 1930-1-1 and {today.AddYears(-18).ToShortDateString}");
             }
         }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value!;
+        }
     }
 }

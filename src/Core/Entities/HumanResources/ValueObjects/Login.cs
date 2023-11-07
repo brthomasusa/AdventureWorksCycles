@@ -1,11 +1,11 @@
-#pragma warning disable CS8618
-
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
     public sealed class Login : ValueObject
     {
+        public const int MAX_LENGTH = 256;
         public string Value { get; }
 
         private Login(string value)
@@ -21,15 +21,13 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         private static void CheckValidity(string login)
         {
-            if (string.IsNullOrEmpty(login))
-            {
-                throw new ArgumentNullException(nameof(login), "The login id is required.");
-            }
+            Guard.Against.NullOrEmpty(login);
+            Guard.Against.LengthGreaterThan(login, MAX_LENGTH);
+        }
 
-            if (login.Length > 256)
-            {
-                throw new ArgumentException("Invalid login id, maximum length is 256 characters.");
-            }
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

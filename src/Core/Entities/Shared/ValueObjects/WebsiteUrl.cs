@@ -2,14 +2,17 @@
 
 using System.Text.RegularExpressions;
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.Shared.ValueObjects
 {
     public sealed partial class WebsiteUrl : ValueObject
     {
+        public const int MaxLength = 50;
+
         public string Value { get; }
 
-        private WebsiteUrl(string value) => Value = value;
+        private WebsiteUrl(string url) => Value = url;
 
         public static implicit operator string(WebsiteUrl self) => self.Value!;
 
@@ -19,17 +22,24 @@ namespace AWC.Core.Entities.Shared.ValueObjects
             return new WebsiteUrl(url);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string url)
         {
+            Guard.Against.LengthGreaterThan(url, MaxLength);
+
             Regex Rgx = UrlRegex();
 
-            if (!Rgx.IsMatch(value))
+            if (!Rgx.IsMatch(url))
             {
-                throw new ArgumentException("Invalid website URL!", nameof(value));
+                throw new ArgumentException("Invalid website URL!", nameof(url));
             }
         }
 
         [GeneratedRegex("^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
         private static partial Regex UrlRegex();
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
+        }
     }
 }

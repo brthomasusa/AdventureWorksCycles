@@ -1,3 +1,4 @@
+using System.Text;
 using AWC.Core.Entities.Shared.ValueObjects;
 using AWC.SharedKernel.Exceptions;
 
@@ -51,6 +52,19 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
         [Fact]
         public void Money_NegativeMoneyAmount_ShouldFail()
         {
+            // Arrange
+            Currency currency = null!;
+
+            // Act
+            var exception = Record.Exception(() => Money.Create(currency, 1.234M));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Money_Null_Should_ThrowException()
+        {
             Currency currency = Currency.Create("USD", "U.S. Dollar");
 
             Assert.Throws<DomainException>(() => Money.Create(currency, -1M));
@@ -96,5 +110,513 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
             var exception = Record.Exception(() => AddressVO.Create(line1, line2, city, stateCode, postal));
             Assert.NotNull(exception);
         }
+
+        [Fact]
+        public void WebsiteUrl_ValidData_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string url = "http://website.info";
+
+            // Act
+            var exception = Record.Exception(() => WebsiteUrl.Create(url));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void WebsiteUrl_MissingHTTP_Should_ThrowException()
+        {
+            // Arrange
+            string url = "://website.info";
+
+            // Act
+            var exception = Record.Exception(() => WebsiteUrl.Create(url));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void WebsiteUrl_TooLong_Should_ThrowException()
+        {
+            // Arrange
+            StringBuilder sb = new("http://website.info") { Length = 51 };
+            string url = sb.ToString();
+
+            // Act
+            var exception = Record.Exception(() => WebsiteUrl.Create(url));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Title_ValidData_NotNull_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string title = "Senor";
+
+            // Act
+            var exception = Record.Exception(() => Title.Create(title));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void Title_ValidData_Null_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string title = null!;
+
+            // Act
+            var exception = Record.Exception(() => Title.Create(title));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void Title_Invalid_TooLong_Should_ThrowException()
+        {
+            // Arrange
+            StringBuilder sb = new("His Royal Badness") { Length = 9 };
+            string title = sb.ToString();
+
+            // Act
+            var exception = Record.Exception(() => Title.Create(title));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Suffix_ValidData_NotNull_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string suffix = "Senior";
+
+            // Act
+            var exception = Record.Exception(() => Suffix.Create(suffix));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void Suffix_ValidData_Null_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string? suffix = null;
+
+            // Act
+            var exception = Record.Exception(() => Suffix.Create(suffix!));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void Suffix_InvalidData_TooLong_Should_ThrowException()
+        {
+            // Arrange
+            StringBuilder sb = new("The Fifth ") { Length = 11 };
+            string? suffix = sb.ToString();
+
+            // Act
+            var exception = Record.Exception(() => Suffix.Create(suffix!));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PointOfContact_ValidData_Should_NotThrowException()
+        {
+            // Arrange
+            string first = "Joe";
+            string last = "Blow";
+            string mi = "J";
+            string telephone = "555-555-5555";
+
+            // Act
+            var exception = Record.Exception(() => PointOfContact.Create(first, last, mi, telephone));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void PointOfContact_NumMiddleName_Should_NotThrowException()
+        {
+            // Arrange
+            string first = "Joe";
+            string last = "Blow";
+            string mi = null!;
+            string telephone = "555-555-5555";
+
+            // Act
+            var exception = Record.Exception(() => PointOfContact.Create(first, last, mi, telephone));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void PointOfContact_NullFirstName_Should_ThrowException()
+        {
+            // Arrange
+            string first = null!;
+            string last = "Blow";
+            string mi = "J";
+            string telephone = "555-555-5555";
+
+            // Act
+            var exception = Record.Exception(() => PointOfContact.Create(first, last, mi, telephone));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PointOfContact_NullLastName_Should_ThrowException()
+        {
+            // Arrange
+            string first = "Joe";
+            string last = null!;
+            string mi = "J";
+            string telephone = "555-555-5555";
+
+            // Act
+            var exception = Record.Exception(() => PointOfContact.Create(first, last, mi, telephone));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PointOfContact_NullTelephone_Should_ThrowException()
+        {
+            // Arrange
+            string first = "Joe";
+            string last = "Blow";
+            string mi = "J";
+            string telephone = null!;
+
+            // Act
+            var exception = Record.Exception(() => PointOfContact.Create(first, last, mi, telephone));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+
+        [Fact]
+        public void PointOfContact_LastNameTooLong_Should_ThrowException()
+        {
+            // Arrange
+            string first = "Joe";
+            string last = "Blow";
+            string mi = "J";
+
+            StringBuilder sb = new("555-555-5555") { Length = 26 };
+            string? telephone = sb.ToString();
+
+            // Act
+            var exception = Record.Exception(() => PointOfContact.Create(first, last, mi, telephone));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PointOfContact_TelephoneTooLong_Should_ThrowException()
+        {
+            // Arrange
+            string first = "Joe";
+            string mi = "J";
+            string telephone = "555-555-5555";
+            StringBuilder sb = new("LongLastName") { Length = 51 };
+            string? last = sb.ToString();
+
+            // Act
+            var exception = Record.Exception(() => PointOfContact.Create(first, last, mi, telephone));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void OrganizationName_ValidData_should_NotThrowException()
+        {
+            // Arrange
+            string orgName = "IBM";
+
+            // Act
+            var exception = Record.Exception(() => OrganizationName.Create(orgName));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void OrganizationName_NullName_should_ThrowException()
+        {
+            // Arrange
+            string orgName = null!;
+
+            // Act
+            var exception = Record.Exception(() => OrganizationName.Create(orgName));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void OrganizationName_OrgNameTooLong_should_ThrowException()
+        {
+            // Arrange9+
+            StringBuilder sb = new("LongOrgName") { Length = 51 };
+            string orgName = sb.ToString();
+
+            // Act
+            var exception = Record.Exception(() => OrganizationName.Create(orgName));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PersonName_ValidData_MiddleName_NotNull_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string firstName = "Joe";
+            string lastName = "Blow";
+            string middleName = "J";
+
+            // Act
+            var exception = Record.Exception(() => PersonName.Create(lastName, firstName, middleName));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void PersonName_ValidData_MiddleName_Null_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string firstName = "Joe";
+            string lastName = "Blow";
+
+            // Act
+            var exception = Record.Exception(() => PersonName.Create(lastName, firstName, null!));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void PersonName_InvalidData_FirstName_Null_Should_ThrowException()
+        {
+            // Arrange
+            string lastName = "Blow";
+            string middleName = "J";
+
+            // Act
+            var exception = Record.Exception(() => PersonName.Create(lastName, null!, middleName));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PersonName_InvalidData_LastName_Null_Should_ThrowException()
+        {
+            // Arrange
+            string firstName = "Joe";
+            string middleName = "J";
+
+            // Act
+            var exception = Record.Exception(() => PersonName.Create(null!, firstName, middleName));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PersonName_InvalidData_FirstName_TooLong_Should_ThrowException()
+        {
+            // Arrange
+            StringBuilder sb = new("LongOrgName") { Length = 51 };
+            string firstName = sb.ToString();
+            string lastName = "Blow";
+            string middleName = "J";
+
+            // Act
+            var exception = Record.Exception(() => PersonName.Create(lastName, firstName, middleName));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PersonName_InvalidData_LastName_TooLong_Should_ThrowException()
+        {
+            // Arrange
+            StringBuilder sb = new("LongOrgName") { Length = 51 };
+            string firstName = "Joe";
+            string lastName = sb.ToString();
+            string middleName = "J";
+
+            // Act
+            var exception = Record.Exception(() => PersonName.Create(lastName, firstName, middleName));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+
+        [Theory]
+        [InlineData("SC")]
+        [InlineData("IN")]
+        [InlineData("SP")]
+        [InlineData("EM")]
+        [InlineData("VC")]
+        [InlineData("GC")]
+        public void PersonType_ValidData_ShouldNot_ThrowException(string personType)
+        {
+            // Arrange
+
+            // Act
+            var exception = Record.Exception(() => PersonType.Create(personType));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void PersonType_InvalidData_Should_ThrowException()
+        {
+            // Arrange
+            string personType = "EMM";
+
+            // Act
+            var exception = Record.Exception(() => PersonType.Create(personType));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Email_ValidData_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string email = @"j.sanchez@aventureworks.com";
+            // Act
+            var exception = Record.Exception(() => Email.Create(email));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Theory]
+        [InlineData("j.sanchez.aventureworks.com")]
+        [InlineData(@"@aventureworks.com")]
+        [InlineData("j.sanchez@")]
+        [InlineData(@"paul@.com")]
+        public void Email_InvalidData_Should_ThrowException(string badEmail)
+        {
+            // Arrange
+
+            // Act
+            var exception = Record.Exception(() => Email.Create(badEmail));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Currency_ValidData_ShouldNot_ThrowException()
+        {
+            // Arrange
+            string code = "USD";
+            string name = "U.S. Dollar";
+
+            // Act
+            var exception = Record.Exception(() => Currency.Create(code, name));
+
+            // Assert
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void Currency_InvalidData_MissingCurrencyCode_Should_ThrowException()
+        {
+            // Arrange
+            string name = "U.S. Dollar";
+
+            // Act
+            var exception = Record.Exception(() => Currency.Create(null!, name));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+
+        [Fact]
+        public void Currency_InvalidData_MissingCurrencyName_Should_ThrowException()
+        {
+            // Arrange
+            string code = "USD";
+
+            // Act
+            var exception = Record.Exception(() => Currency.Create(code, null!));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Currency_InvalidData_CurrencyCodeTooLong_Should_ThrowException()
+        {
+            // Arrange
+            string code = "USDD";
+            string name = "U.S. Dollar";
+
+            // Act
+            var exception = Record.Exception(() => Currency.Create(code, name));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Currency_InvalidData_CurrencyNameTooLong_Should_ThrowException()
+        {
+            // Arrange
+            string code = "USD";
+            StringBuilder sb = new("U.S. Dollar") { Length = 51 };
+            string name = sb.ToString();
+
+            // Act
+            var exception = Record.Exception(() => Currency.Create(code, name));
+
+            // Assert
+            Assert.NotNull(exception);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

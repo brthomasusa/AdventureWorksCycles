@@ -8,9 +8,7 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
         public int Value { get; }
 
         private ManagerId(int employeeId)
-        {
-            Value = employeeId;
-        }
+            => Value = employeeId;
 
         public static implicit operator int(ManagerId self) => self.Value!;
 
@@ -23,6 +21,11 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
         private static void CheckValidity(int managerId)
         {
             Guard.Against.LessThan(managerId, 0, "Manager Id should not be less than zero.");
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

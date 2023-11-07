@@ -13,7 +13,7 @@ namespace AWC.Core.Entities.Shared
         (
             int id,
             int emailAddressID,
-            EmailAddressVO emailAddress
+            Email emailAddress
         )
         {
             Id = id;
@@ -29,7 +29,7 @@ namespace AWC.Core.Entities.Shared
                 (
                     Guard.Against.LessThan(id, 0, "BusinessEntity Id can not be negative."),
                     Guard.Against.LessThan(emailAddressID, 0, "Email address Id can not be negative."),
-                    EmailAddressVO.Create(email)
+                    Email.Create(email)
                 );
 
                 return emailAddress;
@@ -42,11 +42,11 @@ namespace AWC.Core.Entities.Shared
 
         public int EmailAddressID { get; }
 
-        public EmailAddressVO EmailAddress { get; private set; }
+        public Email EmailAddress { get; private set; }
 
         public void UpdateEmailAddress(string email)
         {
-            EmailAddress = EmailAddressVO.Create(email);
+            EmailAddress = Email.Create(email);
             UpdateModifiedDate();
         }
     }

@@ -19,7 +19,7 @@ namespace AWC.SharedKernel.Guards
             return input;
         }
 
-        public static DateOnly DefaultDateTime(this IGuardClause guardClause, DateOnly input, string parameterName = "value", string message = null!)
+        public static DateOnly DefaultDateOnly(this IGuardClause guardClause, DateOnly input, string parameterName = "value", string message = null!)
         {
             if (input == default)
             {

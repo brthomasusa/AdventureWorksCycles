@@ -15,9 +15,9 @@ namespace AWC.Core.Entities.HumanResources
             int employeeID,
             PersonType personType,
             NameStyle nameStyle,
-            Title? title,
+            Title title,
             PersonName name,
-            Suffix? suffix,
+            Suffix suffix,
             EmailPromotion emailPromotionEnum,
             ManagerId managerID,
             NationalID nationalID,
@@ -32,7 +32,7 @@ namespace AWC.Core.Entities.HumanResources
             SickLeave sickLeave,
             EmploymentStatus active
 
-        ) : base(employeeID, personType, nameStyle, title!, name, suffix!, emailPromotionEnum)
+        ) : base(employeeID, personType, nameStyle, title, name, suffix, emailPromotionEnum)
         {
             ManagerID = managerID;
             NationalIDNumber = nationalID;
@@ -58,7 +58,7 @@ namespace AWC.Core.Entities.HumanResources
             string? title,
             string firstName,
             string lastName,
-            string middleName,
+            string? middleName,
             string? suffix,
             int managerID,
             string nationalID,
@@ -81,7 +81,7 @@ namespace AWC.Core.Entities.HumanResources
                     PersonType.Create(personType),
                     nameStyle,
                     Title.Create(title!),
-                    PersonName.Create(lastName, firstName, middleName),
+                    PersonName.Create(lastName, firstName, middleName!),
                     Suffix.Create(suffix!),
                     EmailPromotion.None,
                     ManagerId.Create(managerID),

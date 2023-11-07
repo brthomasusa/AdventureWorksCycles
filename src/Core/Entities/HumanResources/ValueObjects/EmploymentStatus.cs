@@ -17,5 +17,10 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
             else
                 throw new ArgumentException("Employment status is required.", nameof(status));
         }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
+        }
     }
 }

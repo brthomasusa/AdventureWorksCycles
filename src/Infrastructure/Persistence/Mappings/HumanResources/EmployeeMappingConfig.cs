@@ -21,7 +21,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             .Map(dest => dest.AddressLine2, src => src.Location.AddressLine2)
             .Map(dest => dest.City, src => src.Location.City)
             .Map(dest => dest.StateProvinceID, src => src.Location.StateProvinceID)
-            .Map(dest => dest.PostalCode, src => src.Location.Zipcode);
+            .Map(dest => dest.PostalCode, src => src.Location.PostalCode);
 
             _ = config.NewConfig<AWC.Core.Entities.Shared.PersonPhone, AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)

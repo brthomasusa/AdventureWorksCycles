@@ -6,7 +6,7 @@ namespace AWC.Core.Entities.Shared.ValueObjects
     public sealed class PersonType : ValueObject
     {
         private static readonly string[] _personTypes = { "SC", "IN", "SP", "EM", "VC", "GC" };
-        public string? Value { get; }
+        public string Value { get; }
 
         private PersonType(string personType)
             => Value = personType;
@@ -25,8 +25,13 @@ namespace AWC.Core.Entities.Shared.ValueObjects
 
             if (!Array.Exists(_personTypes, element => element == personType.ToUpper()))
             {
-                throw new ArgumentException("Invalid person type!");
+                throw new ArgumentException("Invalid person type. Valid types are SC, IN, SP, EM, VC, and GC.");
             }
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

@@ -269,7 +269,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                         AddressLine2 = addr.Location.AddressLine2,
                         City = addr.Location.City,
                         StateProvinceID = addr.Location.StateProvinceID,
-                        PostalCode = addr.Location.Zipcode
+                        PostalCode = addr.Location.PostalCode
                     }
                 )
             );
@@ -297,7 +297,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                             AddressLine2 = addr.Location.AddressLine2,
                             City = addr.Location.City,
                             StateProvinceID = addr.Location.StateProvinceID,
-                            PostalCode = addr.Location.Zipcode
+                            PostalCode = addr.Location.PostalCode
                         },
                         AddressTypeID = (int)addr.AddressType
                     }

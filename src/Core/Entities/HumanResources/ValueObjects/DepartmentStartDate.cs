@@ -3,17 +3,12 @@ using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
-    public class DepartmentStartDate : ValueObject
+    public sealed class DepartmentStartDate : ValueObject
     {
         public DateOnly Value { get; }
 
-        protected DepartmentStartDate() { }
-
         private DepartmentStartDate(DateOnly startDate)
-            : this()
-        {
-            Value = startDate;
-        }
+            => Value = startDate;
 
         public static implicit operator DateOnly(DepartmentStartDate self) => self.Value!;
 
@@ -23,9 +18,14 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
             return new DepartmentStartDate(value);
         }
 
-        private static void CheckValidity(DateOnly value)
+        private static void CheckValidity(DateOnly departmentStartDate)
         {
-            Guard.Against.DefaultDateTime(value, "StartDate", "The date the employee was assigned to the department is required.");
+            Guard.Against.DefaultDateOnly(departmentStartDate, "StartDate", "The date the employee was assigned to the department is required.");
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

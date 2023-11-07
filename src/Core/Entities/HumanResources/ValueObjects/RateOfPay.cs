@@ -1,5 +1,6 @@
 using AWC.Core.Entities.Shared.ValueObjects;
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
@@ -22,8 +23,15 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         private static void CheckValidity(Money money)
         {
+            Guard.Against.Null(money);
+
             if (money.Amount < 6.50M || money.Amount > 200.00M)
-                throw new ArgumentException("Invalid pay rate, must be between $6.50 and $40.00");
+                throw new ArgumentException("Invalid pay rate, must be between $6.50 and $200.00");
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

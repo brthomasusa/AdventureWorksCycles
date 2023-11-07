@@ -1,6 +1,7 @@
 #pragma warning disable CS8618
 
 using AWC.SharedKernel.Base;
+using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
@@ -19,17 +20,20 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
             return new MaritalStatus(status);
         }
 
-        private static void CheckValidity(string value)
+        private static void CheckValidity(string maritalStatus)
         {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentNullException(nameof(value), "The marital status is required.");
-            }
+            Guard.Against.NullOrEmpty(maritalStatus);
 
-            if (!string.Equals(value, "M", StringComparison.OrdinalIgnoreCase) && !string.Equals(value, "S", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(maritalStatus, "M", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(maritalStatus, "S", StringComparison.OrdinalIgnoreCase))
             {
-                throw new ArgumentException("Invalid marital status, valid statues are 'S' and 'M'.", nameof(value));
+                throw new ArgumentException("Invalid marital status, valid statues are 'S' and 'M'.", nameof(maritalStatus));
             }
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

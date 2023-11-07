@@ -6,8 +6,6 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
     {
         public TimeOnly Value { get; }
 
-        protected ShiftTime() { }
-
         private ShiftTime(int hour, int minute)
             => Value = new TimeOnly(hour, minute);
 
@@ -26,6 +24,11 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
             if (minute < 0 || minute > 59)
                 throw new ArgumentException("Valid minute is between 0 and 59.");
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }

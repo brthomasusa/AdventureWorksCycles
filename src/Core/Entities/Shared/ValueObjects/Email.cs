@@ -5,29 +5,30 @@ using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.Shared.ValueObjects
 {
-    public sealed class EmailAddressVO : ValueObject
+    public sealed class Email : ValueObject
     {
-        public string? Value { get; }
+        public const int MaxLength = 50;
+        public string Value { get; }
 
-        private EmailAddressVO(string email)
+        private Email(string email)
             => Value = email;
 
-        public static implicit operator string(EmailAddressVO self) => self.Value!;
+        public static implicit operator string(Email self) => self.Value!;
 
-        public static EmailAddressVO Create(string value)
+        public static Email Create(string value)
         {
             CheckValidity(value);
-            return new EmailAddressVO(value);
+            return new Email(value);
         }
 
         private static void CheckValidity(string emailAddress)
         {
             Guard.Against.NullOrEmpty(emailAddress);
-            Guard.Against.LengthGreaterThan(emailAddress, 50);
+            Guard.Against.LengthGreaterThan(emailAddress, MaxLength);
 
             if (!IsValidEmail(emailAddress))
             {
-                throw new ArgumentException("Invalid email addresss.", nameof(emailAddress));
+                throw new ArgumentException("Invalid email address.", nameof(emailAddress));
             }
         }
 
@@ -73,6 +74,11 @@ namespace AWC.Core.Entities.Shared.ValueObjects
             {
                 return false;
             }
+        }
+
+        public override IEnumerable<object> GetAtomicValues()
+        {
+            yield return Value;
         }
     }
 }
