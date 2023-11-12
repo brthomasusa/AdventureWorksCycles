@@ -10,12 +10,9 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         public static implicit operator bool(EmploymentStatus self) => self.Value;
 
-        public static EmploymentStatus Create(bool? status)
+        public static EmploymentStatus Create(bool status)
         {
-            if (status is not null)
-                return new EmploymentStatus((bool)status);
-            else
-                throw new ArgumentException("Employment status is required.", nameof(status));
+            return new EmploymentStatus((bool)status);
         }
 
         public override IEnumerable<object> GetAtomicValues()

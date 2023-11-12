@@ -3,11 +3,9 @@ using AWC.SharedKernel.Guards;
 
 namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
-    public class DateOfRateChange : ValueObject
+    public sealed class DateOfRateChange : ValueObject
     {
         public DateTime Value { get; }
-
-        protected DateOfRateChange() { }
 
         private DateOfRateChange(DateTime rateChangeDate)
             => Value = rateChangeDate;

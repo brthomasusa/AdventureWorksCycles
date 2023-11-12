@@ -10,7 +10,7 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
         private DepartmentEndDate(DateOnly? startDate)
             => Value = startDate;
 
-        public static DepartmentEndDate Create(DateOnly value)
+        public static DepartmentEndDate Create(DateOnly? value)
         {
             CheckValidity(value);
             return new DepartmentEndDate(value);

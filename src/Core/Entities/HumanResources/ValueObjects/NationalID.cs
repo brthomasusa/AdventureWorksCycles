@@ -6,8 +6,6 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 {
     public sealed partial class NationalID : ValueObject
     {
-        public const int MAX_LENGTH = 15;
-
         public string Value { get; }
 
         private NationalID(string idNumber)
@@ -26,7 +24,6 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
         private static void CheckValidity(string nationalIdNumber)
         {
             Guard.Against.NullOrEmpty(nationalIdNumber);
-            Guard.Against.LengthGreaterThan(nationalIdNumber, MAX_LENGTH);
 
             Regex validateNationalIdNumberRegex = MyRegex();
             if (!validateNationalIdNumberRegex.IsMatch(nationalIdNumber))

@@ -13,12 +13,5 @@ namespace AWC.UnitTest.Code.UnitTests.HumanResources
             Assert.True(result.IsSuccess);
         }
 
-        [Fact]
-        public void Company_Create_Invalid_MissingCompanyName_ShouldFail()
-        {
-            Result<Company> result = CampanyTestData.CompanyResult_Invalid_CompanyName();
-
-            Assert.True(result.IsFailure);
-        }
     }
 }

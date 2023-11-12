@@ -25,20 +25,30 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
         [Fact]
         public void Money_Add_ShouldSucceed()
         {
-            Money money1 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 100M);
-            Money money2 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 100M);
+            // Arrange
+            Currency usdollar = Currency.Create("USD", "U.S. Dollar");
+            Money money1 = Money.Create(usdollar, 100M);
+            Money money2 = Money.Create(usdollar, 100M);
+
+            // Act
             Money money3 = money1 + money2;
 
+            // Assert
             Assert.Equal(200M, money3.Amount);
         }
 
         [Fact]
         public void Money_Substract_ShouldSucceed()
         {
-            Money money1 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 300M);
-            Money money2 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 100M);
+            // Arrange
+            Currency usdollar = Currency.Create("USD", "U.S. Dollar");
+            Money money1 = Money.Create(usdollar, 300M);
+            Money money2 = Money.Create(usdollar, 100M);
+
+            // Act
             Money money3 = money1 - money2;
 
+            // Assert
             Assert.Equal(200M, money3.Amount);
         }
 
@@ -69,6 +79,7 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
 
             Assert.Throws<DomainException>(() => Money.Create(currency, -1M));
         }
+
 
         [Fact]
         public void AddressVO_ValidData_ShouldSucceed()
@@ -361,8 +372,11 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
         }
 
         [Fact]
-        public void OrganizationName_NullName_should_ThrowException()
+        public void OrganizationName_NullName_shouldNot_ThrowException()
         {
+            // Company name and legal name are both organization names
+            // company name can not be null but legal name can be null
+
             // Arrange
             string orgName = null!;
 
@@ -370,7 +384,7 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
             var exception = Record.Exception(() => OrganizationName.Create(orgName));
 
             // Assert
-            Assert.NotNull(exception);
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -606,7 +620,31 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
             Assert.NotNull(exception);
         }
 
+        [Fact]
+        public void Currency_CompareEqual()
+        {
+            // Arrange
+            Currency currency1 = Currency.Create("USD", "U.S. Dollar");
+            Currency currency2 = Currency.Create("USD", "U.S. Dollar");
 
+            // Act
+
+            // Assert
+            Assert.Equal(currency1, currency2);
+        }
+
+        [Fact]
+        public void Currency_CompareNotEqual()
+        {
+            // Arrange
+            Currency currency1 = Currency.Create("USD", "U.S. Dollar");
+            Currency currency2 = Currency.Create("CAN", "Canadian Dollar");
+
+            // Act
+
+            // Assert
+            Assert.NotEqual(currency1, currency2);
+        }
 
 
 
