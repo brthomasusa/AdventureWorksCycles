@@ -123,6 +123,32 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
         }
 
         [Fact]
+        public void AddressVO_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            AddressVO address1 = AddressVO.Create("1 Main St.", "Apt 1", "Dallas", 73, "75228");
+            AddressVO address2 = AddressVO.Create("1 Main St.", "Apt 1", "Dallas", 73, "75228");
+
+            // Assert
+            Assert.Equal(address1, address2);
+        }
+
+        [Fact]
+        public void AddressVO_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            AddressVO address1 = AddressVO.Create("1 Main St.", "Apt 1", "Dallas", 73, "75228");
+            AddressVO address2 = AddressVO.Create("1 Main St.", "Apt 2", "Dallas", 73, "75228");
+
+            // Assert
+            Assert.NotEqual(address1, address2);
+        }
+
+        [Fact]
         public void WebsiteUrl_ValidData_ShouldNot_ThrowException()
         {
             // Arrange
@@ -160,6 +186,32 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
 
             // Assert
             Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void WebsiteUrl_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            WebsiteUrl url1 = WebsiteUrl.Create("http://website.info");
+            WebsiteUrl url2 = WebsiteUrl.Create("http://website.info");
+
+            // Assert
+            Assert.Equal(url1, url2);
+        }
+
+        [Fact]
+        public void WebsiteUrl_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            WebsiteUrl url1 = WebsiteUrl.Create("http://website.info");
+            WebsiteUrl url2 = WebsiteUrl.Create("http://website.net");
+
+            // Assert
+            Assert.NotEqual(url1, url2);
         }
 
         [Fact]
@@ -203,6 +255,32 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
         }
 
         [Fact]
+        public void Title_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            Title title1 = Title.Create("Ms");
+            Title title2 = Title.Create("Ms");
+
+            // Assert
+            Assert.Equal(title1, title2);
+        }
+
+        [Fact]
+        public void Title_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            Title title1 = Title.Create("Mrs");
+            Title title2 = Title.Create("Mr");
+
+            // Assert
+            Assert.NotEqual(title1, title2);
+        }
+
+        [Fact]
         public void Suffix_ValidData_NotNull_ShouldNot_ThrowException()
         {
             // Arrange
@@ -240,6 +318,32 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
 
             // Assert
             Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Suffix_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            Suffix suffix1 = Suffix.Create("Junior");
+            Suffix suffix2 = Suffix.Create("Junior");
+
+            // Assert
+            Assert.Equal(suffix1, suffix2);
+        }
+
+        [Fact]
+        public void Suffix_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            Suffix suffix1 = Suffix.Create("Junior");
+            Suffix suffix2 = Suffix.Create("Senior");
+
+            // Assert
+            Assert.NotEqual(suffix1, suffix2);
         }
 
         [Fact]
@@ -359,6 +463,32 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
         }
 
         [Fact]
+        public void PointOfContact_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            PointOfContact contact1 = PointOfContact.Create("John", "Doe", "H", "555-555-5555");
+            PointOfContact contact2 = PointOfContact.Create("John", "Doe", "H", "555-555-5555");
+
+            // Assert
+            Assert.Equal(contact1, contact2);
+        }
+
+        [Fact]
+        public void PointOfContact_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            PointOfContact contact1 = PointOfContact.Create("John", "Doe", "H", "555-555-5555");
+            PointOfContact contact2 = PointOfContact.Create("Jonny", "Doe", "H", "555-555-5555");
+
+            // Assert
+            Assert.NotEqual(contact1, contact2);
+        }
+
+        [Fact]
         public void OrganizationName_ValidData_should_NotThrowException()
         {
             // Arrange
@@ -399,6 +529,32 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
 
             // Assert
             Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void OrganizationName_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            OrganizationName organization1 = OrganizationName.Create("Microsoft");
+            OrganizationName organization2 = OrganizationName.Create("Microsoft");
+
+            // Assert
+            Assert.Equal(organization1, organization2);
+        }
+
+        [Fact]
+        public void OrganizationName_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            OrganizationName organization1 = OrganizationName.Create("Microsoft");
+            OrganizationName organization2 = OrganizationName.Create("Google");
+
+            // Assert
+            Assert.NotEqual(organization1, organization2);
         }
 
         [Fact]
@@ -490,6 +646,31 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
             Assert.NotNull(exception);
         }
 
+        [Fact]
+        public void PersonName_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            PersonName person1 = PersonName.Create("Doe", "John", "D");
+            PersonName person2 = PersonName.Create("Doe", "John", "D");
+
+            // Assert
+            Assert.Equal(person1, person2);
+        }
+
+        [Fact]
+        public void PersonName_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            PersonName person1 = PersonName.Create("Doe", "John", "D");
+            PersonName person2 = PersonName.Create("Smith", "John", "D");
+
+            // Assert
+            Assert.NotEqual(person1, person2);
+        }
 
         [Theory]
         [InlineData("SC")]
@@ -523,6 +704,109 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
         }
 
         [Fact]
+        public void PersonType_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            PersonType personType1 = PersonType.Create("EM");
+            PersonType personType2 = PersonType.Create("EM");
+
+            // Assert
+            Assert.Equal(personType1, personType2);
+        }
+
+        [Fact]
+        public void PersonType_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            PersonType personType1 = PersonType.Create("EM");
+            PersonType personType2 = PersonType.Create("SC");
+
+            // Assert
+            Assert.NotEqual(personType1, personType2);
+        }
+
+        [Fact]
+        public void PhoneNumber_ValidData_ShouldNot_ThrowException()
+        {
+            // Given
+            string telephone = "555-555-5555";
+
+            // When
+            var exception = Record.Exception(() => PhoneNumber.Create(telephone));
+
+            // Then
+            Assert.Null(exception);
+        }
+
+        [Fact]
+        public void PhoneNumber_InvalidData_Null_Should_ThrowException()
+        {
+            // Given
+
+            // When
+            var exception = Record.Exception(() => PhoneNumber.Create(null!));
+
+            // Then
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PhoneNumber_InvalidData_TooLong_Should_ThrowException()
+        {
+            // Given
+            StringBuilder sb = new("555-555-5555") { Length = 26 };
+
+            // When
+            var exception = Record.Exception(() => PhoneNumber.Create(sb.ToString()));
+
+            // Then
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PhoneNumber_InvalidData__Null_Should_ThrowException()
+        {
+            // Given
+            string telephone = "aaa-555-5555";
+
+            // When
+            var exception = Record.Exception(() => PhoneNumber.Create(telephone));
+
+            // Then
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void PhoneNumber_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            PhoneNumber phone1 = PhoneNumber.Create("555-555-5555");
+            PhoneNumber phone2 = PhoneNumber.Create("555-555-5555");
+
+            // Assert
+            Assert.Equal(phone1, phone2);
+        }
+
+        [Fact]
+        public void PhoneNumber_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            PhoneNumber phone1 = PhoneNumber.Create("555-555-5555");
+            PhoneNumber phone2 = PhoneNumber.Create("555-555-1234");
+
+            // Assert
+            Assert.NotEqual(phone1, phone2);
+        }
+
+        [Fact]
         public void Email_ValidData_ShouldNot_ThrowException()
         {
             // Arrange
@@ -548,6 +832,32 @@ namespace AWC.UnitTest.Code.UnitTests.Shared
 
             // Assert
             Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void Email_CompareEqual()
+        {
+            // Arrange
+
+            // Act
+            Email email1 = Email.Create(@"j.sanchez@aventureworks.com");
+            Email email2 = Email.Create(@"j.sanchez@aventureworks.com");
+
+            // Assert
+            Assert.Equal(email1, email2);
+        }
+
+        [Fact]
+        public void Email_CompareNotEqual()
+        {
+            // Arrange
+
+            // Act
+            Email email1 = Email.Create(@"j.sanchez@aventureworks.com");
+            Email email2 = Email.Create(@"h.horton@aventureworks.com");
+
+            // Assert
+            Assert.NotEqual(email1, email2);
         }
 
         [Fact]

@@ -1,5 +1,6 @@
 using System.Text;
 using AWC.Core.Entities.HumanResources.ValueObjects;
+using AWC.Core.Entities.Shared.ValueObjects;
 using NLog.Fluent;
 
 namespace AWC.UnitTest.Code.UnitTests.HumanResources;
@@ -185,26 +186,30 @@ public class HrValueObject_Tests
     public void DateOfRateChange_CompareEqual()
     {
         // Arrange
-        DateOnly rateChangeDate1 = new(2023, 11, 9);
-        DateOnly rateChangeDate2 = new(2023, 11, 9);
+        DateTime rateChangeDate1 = new(2023, 11, 9);
+        DateTime rateChangeDate2 = new(2023, 11, 9);
 
         // Act
+        DateOfRateChange dateOfRateChange1 = DateOfRateChange.Create(rateChangeDate1);
+        DateOfRateChange dateOfRateChange2 = DateOfRateChange.Create(rateChangeDate2);
 
         // Assert
-        Assert.Equal(rateChangeDate1, rateChangeDate2);
+        Assert.Equal(dateOfRateChange1, dateOfRateChange2);
     }
 
     [Fact]
     public void DateOfRateChange_CompareNotEqual()
     {
         // Arrange
-        DateOnly rateChangeDate1 = new(2023, 11, 9);
-        DateOnly rateChangeDate2 = new(2022, 11, 9);
+        DateTime rateChangeDate1 = new(2023, 11, 9);
+        DateTime rateChangeDate2 = new(2022, 11, 9);
 
         // Act
+        DateOfRateChange dateOfRateChange1 = DateOfRateChange.Create(rateChangeDate1);
+        DateOfRateChange dateOfRateChange2 = DateOfRateChange.Create(rateChangeDate2);
 
         // Assert
-        Assert.NotEqual(rateChangeDate1, rateChangeDate2);
+        Assert.NotEqual(dateOfRateChange1, dateOfRateChange2);
     }
 
     [Fact]
@@ -241,9 +246,11 @@ public class HrValueObject_Tests
         DateOnly deptStartDate2 = DateOnly.FromDateTime(DateTime.Today);
 
         // Act
+        DepartmentStartDate departmentStartDate1 = DepartmentStartDate.Create(deptStartDate1);
+        DepartmentStartDate departmentStartDate2 = DepartmentStartDate.Create(deptStartDate2);
 
         // Assert
-        Assert.Equal(deptStartDate1, deptStartDate2);
+        Assert.Equal(departmentStartDate1, departmentStartDate2);
     }
 
     [Fact]
@@ -254,10 +261,81 @@ public class HrValueObject_Tests
         DateOnly deptStartDate2 = new(2021, 11, 1);
 
         // Act
+        DepartmentStartDate departmentStartDate1 = DepartmentStartDate.Create(deptStartDate1);
+        DepartmentStartDate departmentStartDate2 = DepartmentStartDate.Create(deptStartDate2);
 
         // Assert
-        Assert.NotEqual(deptStartDate1, deptStartDate2);
+        Assert.NotEqual(departmentStartDate1, departmentStartDate2);
     }
+
+    [Fact]
+    public void DepartmentEndDate_ValidData_ShouldNot_ThrowException()
+    {
+        // Arrange
+        DateOnly endDate = new(2023, 11, 13);
+
+        // Act
+        var exception = Record.Exception(() => DepartmentEndDate.Create(endDate));
+
+        // Assert
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void DepartmentEndDate_ValidData_Null_ShouldNot_ThrowException()
+    {
+        // Arrange
+
+        // Act
+        var exception = Record.Exception(() => DepartmentEndDate.Create(null!));
+
+        // Assert
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void DepartmentEndDate_InvalidData_DefaultDate_Should_ThrowException()
+    {
+        // Arrange
+        DateOnly endDate = new();
+
+        // Act
+        var exception = Record.Exception(() => DepartmentEndDate.Create(endDate));
+
+        // Assert
+        Assert.NotNull(exception);
+    }
+
+    [Fact]
+    public void DepartmentEndDate_CompareNotEqual()
+    {
+        // Arrange
+        DateOnly endDate1 = new(2023, 11, 13);
+        DateOnly endDate2 = new(2023, 11, 13);
+
+        // Act
+        DepartmentEndDate departmentEndDate1 = DepartmentEndDate.Create(endDate1);
+        DepartmentEndDate departmentEndDate2 = DepartmentEndDate.Create(endDate2);
+
+        // Assert
+        Assert.Equal(departmentEndDate1, departmentEndDate2);
+    }
+
+    [Fact]
+    public void DepartmentEndDate_CompareEqual()
+    {
+        // Arrange
+        DateOnly endDate1 = new(2023, 11, 13);
+        DateOnly endDate2 = new(2022, 11, 13);
+
+        // Act
+        DepartmentEndDate departmentEndDate1 = DepartmentEndDate.Create(endDate1);
+        DepartmentEndDate departmentEndDate2 = DepartmentEndDate.Create(endDate2);
+
+        // Assert
+        Assert.NotEqual(departmentEndDate1, departmentEndDate2);
+    }
+
 
     [Fact]
     public void EmployerIdentificationNumber_ValidData_ShouldNot_ThrowException()
@@ -723,32 +801,360 @@ public class HrValueObject_Tests
         Assert.NotEqual(nationalID1, nationalID2);
     }
 
+    [Fact]
+    public void RateOfPay_ValidData_ShouldNot_ThrowException()
+    {
+        // Arrange
+        Money money = Money.Create(Currency.Create("USD", "U.S. Dollar"), 6.50M);
 
+        // Act
+        var exception = Record.Exception(() => RateOfPay.Create(money));
 
+        // Assert
+        Assert.Null(exception);
+    }
 
+    [Fact]
+    public void RateOfPay_InvalidData_TooHigh_Should_ThrowException()
+    {
+        // Arrange
+        Money money = Money.Create(Currency.Create("USD", "U.S. Dollar"), 200.01M);
 
+        // Act
+        var exception = Record.Exception(() => RateOfPay.Create(money));
 
+        // Assert
+        Assert.NotNull(exception);
+    }
 
+    [Fact]
+    public void RateOfPay_InvalidData_TooLow_Should_ThrowException()
+    {
+        // Arrange
+        Money money = Money.Create(Currency.Create("USD", "U.S. Dollar"), 6.49M);
 
+        // Act
+        var exception = Record.Exception(() => RateOfPay.Create(money));
 
+        // Assert
+        Assert.NotNull(exception);
+    }
 
+    [Fact]
+    public void RateOfPay_InvalidData_NullMoney_Should_ThrowException()
+    {
+        // Arrange
 
+        // Act
+        var exception = Record.Exception(() => RateOfPay.Create(null!));
 
+        // Assert
+        Assert.NotNull(exception);
+    }
 
+    [Fact]
+    public void RateOfPay_ShouldEqual()
+    {
+        // Arrange
+        Money money1 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 6.50M);
+        Money money2 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 6.50M);
 
+        // Act
+        RateOfPay rate1 = RateOfPay.Create(money1);
+        RateOfPay rate2 = RateOfPay.Create(money2);
 
+        // Assert
+        Assert.Equal(rate1, rate2);
+    }
 
+    [Fact]
+    public void RateOfPay_ShouldNotEqual()
+    {
+        // Arrange
+        Money money1 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 80.00M);
+        Money money2 = Money.Create(Currency.Create("USD", "U.S. Dollar"), 100.00M);
 
+        // Act
+        RateOfPay rate1 = RateOfPay.Create(money1);
+        RateOfPay rate2 = RateOfPay.Create(money2);
 
+        // Assert
+        Assert.NotEqual(rate1, rate2);
+    }
 
+    [Fact]
+    public void ShiftName_ValidData_ShouldNot_ThrowException()
+    {
+        // Arrange
+        string shiftName = "Day";
 
+        // Act
+        var exception = Record.Exception(() => ShiftName.Create(shiftName));
 
+        // Assert
+        Assert.Null(exception);
+    }
 
+    [Fact]
+    public void ShiftName_InvalidData_NameTooLong_Should_ThrowException()
+    {
+        // Arrange
+        StringBuilder sb = new("The Main Man") { Length = 51 };
 
+        // Act
+        var exception = Record.Exception(() => ShiftName.Create(sb.ToString()));
 
+        // Assert
+        Assert.NotNull(exception);
+    }
 
+    [Fact]
+    public void ShiftName_InvalidData_NameIsNull_Should_ThrowException()
+    {
+        // Arrange
 
+        // Act
+        var exception = Record.Exception(() => ShiftName.Create(null!));
 
+        // Assert
+        Assert.NotNull(exception);
+    }
 
+    [Fact]
+    public void ShiftName_ShouldEqual()
+    {
+        // Arrange
+        string shiftName1 = "Day";
+        string shiftName2 = "Day";
 
+        // Act
+        ShiftName one = ShiftName.Create(shiftName1);
+        ShiftName two = ShiftName.Create(shiftName2);
+
+        // Assert
+        Assert.Equal(one, two);
+    }
+
+    [Fact]
+    public void ShiftName_ShouldNotEqual()
+    {
+        // Arrange
+        string shiftName1 = "Day";
+        string shiftName2 = "Night";
+
+        // Act
+        ShiftName one = ShiftName.Create(shiftName1);
+        ShiftName two = ShiftName.Create(shiftName2);
+
+        // Assert
+        Assert.NotEqual(one, two);
+    }
+
+    [Fact]
+    public void ShiftTime_ValidData_ShouldNot_ThrowException()
+    {
+        // Arrange
+        int minutePart = 0;
+        int hourPart = 7;
+
+        // Act
+        var exception = Record.Exception(() => ShiftTime.Create(hourPart, minutePart));
+
+        // Assert
+        Assert.Null(exception);
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(60)]
+    public void ShiftTime_InvalidData_MinuteTooHighTooLow_Should_ThrowException(int minute)
+    {
+        // Arrange
+        int hourPart = 7;
+
+        // Act
+        var exception = Record.Exception(() => ShiftTime.Create(hourPart, minute));
+
+        // Assert
+        Assert.NotNull(exception);
+    }
+
+    [Theory]
+    [InlineData(-1)]
+    [InlineData(60)]
+    public void ShiftTime_InvalidData_HourTooHighTooLow_Should_ThrowException(int hour)
+    {
+        // Arrange
+        int minutePart = 0;
+
+        // Act
+        var exception = Record.Exception(() => ShiftTime.Create(hour, minutePart));
+
+        // Assert
+        Assert.NotNull(exception);
+    }
+
+    [Fact]
+    public void ShiftTime_ShouldEqual()
+    {
+        // Arrange
+
+        // Act
+        ShiftTime shift1 = ShiftTime.Create(7, 0);
+        ShiftTime shift2 = ShiftTime.Create(7, 0);
+
+        // Assert
+        Assert.Equal(shift1, shift2);
+    }
+
+    [Fact]
+    public void ShiftTime_ShouldNotEqual()
+    {
+        // Arrange
+
+        // Act
+        ShiftTime shift1 = ShiftTime.Create(7, 0);
+        ShiftTime shift2 = ShiftTime.Create(17, 30);
+
+        // Assert
+        Assert.NotEqual(shift1, shift2);
+    }
+
+    [Fact]
+    public void SickLeave_ValidData_ShouldNot_ThrowException()
+    {
+        // Arrange
+        int sickLeaveHours = 10;
+
+        // Act
+        var exception = Record.Exception(() => SickLeave.Create(sickLeaveHours));
+
+        // Assert
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void SickLeave_InvalidData_SickLeaveHoursTooLow_Should_ThrowException()
+    {
+        // Arrange
+        int sickLeaveHours = -1;
+
+        // Act
+        var exception = Record.Exception(() => SickLeave.Create(sickLeaveHours));
+
+        // Assert
+        Assert.NotNull(exception);
+    }
+
+    [Fact]
+    public void SickLeave_InvalidData_SickLeaveHoursTooHigh_Should_ThrowException()
+    {
+        // Arrange
+        int sickLeaveHours = 121;
+
+        // Act
+        var exception = Record.Exception(() => SickLeave.Create(sickLeaveHours));
+
+        // Assert
+        Assert.NotNull(exception);
+    }
+
+    [Fact]
+    public void SickLeave_ShouldEqual()
+    {
+        // Arrange
+        int sickLeaveHours1 = 12;
+        int sickLeaveHours2 = 12;
+
+        // Act
+        SickLeave sickLeave1 = SickLeave.Create(sickLeaveHours1);
+        SickLeave sickLeave2 = SickLeave.Create(sickLeaveHours2);
+
+        // Assert
+        Assert.Equal(sickLeave1, sickLeaveHours2);
+    }
+
+    [Fact]
+    public void SickLeave_ShouldNotEqual()
+    {
+        // Arrange
+        int sickLeaveHours1 = 12;
+        int sickLeaveHours2 = 50;
+
+        // Act
+        SickLeave sickLeave1 = SickLeave.Create(sickLeaveHours1);
+        SickLeave sickLeave2 = SickLeave.Create(sickLeaveHours2);
+
+        // Assert
+        Assert.NotEqual(sickLeave1, sickLeaveHours2);
+    }
+
+    [Fact]
+    public void Vacation_ValidData_ShouldNot_ThrowException()
+    {
+        // Arrange
+        int vacationHours = 20;
+
+        // Act
+        var exception = Record.Exception(() => Vacation.Create(vacationHours));
+
+        // Assert
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void Vacation_InvalidData_VacationHoursTooLow_ShouldNot_ThrowException()
+    {
+        // Arrange
+        int vacationHours = -41;
+
+        // Act
+        var exception = Record.Exception(() => Vacation.Create(vacationHours));
+
+        // Assert
+        Assert.NotNull(exception);
+    }
+
+    [Fact]
+    public void Vacation_InvalidData_VacationHoursTooHigh_ShouldNot_ThrowException()
+    {
+        // Arrange
+        int vacationHours = -241;
+
+        // Act
+        var exception = Record.Exception(() => Vacation.Create(vacationHours));
+
+        // Assert
+        Assert.NotNull(exception);
+    }
+
+    [Fact]
+    public void Vacation_ShouldEqual()
+    {
+        // Arrance
+        int vacationHours1 = 41;
+        int vacationHours2 = 41;
+
+        // Act
+        Vacation vacation1 = Vacation.Create(vacationHours1);
+        Vacation vacation2 = Vacation.Create(vacationHours2);
+
+        // Assert
+        Assert.Equal(vacation1, vacation2);
+    }
+
+    [Fact]
+    public void Vacation_ShouldNotEqual()
+    {
+        // Arrance
+        int vacationHours1 = 41;
+        int vacationHours2 = 0;
+
+        // Act
+        Vacation vacation1 = Vacation.Create(vacationHours1);
+        Vacation vacation2 = Vacation.Create(vacationHours2);
+
+        // Assert
+        Assert.NotEqual(vacation1, vacation2);
+    }
 }

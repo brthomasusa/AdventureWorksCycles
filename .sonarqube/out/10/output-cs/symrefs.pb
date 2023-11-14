@@ -341,7 +341,7 @@ u/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Comman
 €/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/CommanHandlers/HumanResources/HrCommandHandler_Tests.cs
 
  '<
-1 A 7 G''7 G227 G==6 F(
+1 A 7 G''7 G337 G>>6 F(
 ! (p wI P''I P
 
  K
@@ -354,15 +354,15 @@ u/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/Comman
 '') 0))' .
 )) ++ 
 
-// K
-11" )446 =
-22) 044' .
-44 66 
+00 K
+22" )556 =
+33) 055' .
+55 77 
 
-:: I
-<<! (??6 =
-==( /??' .
-?? AA ä	
+;; I
+==! (@@6 =
+>>( /@@' .
+@@ BB ä	
 l/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/IntegrationTest/DapperQueries/CompanyQuery_Tests.cs
 
 

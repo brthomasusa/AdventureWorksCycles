@@ -137,7 +137,7 @@ namespace AWC.IntegrationTest.HumanResources.ApiEndPoint_Tests
             Assert.False(response.IsSuccessStatusCode);
         }
 
-        [Fact(Skip = "Null reference issue")]
+        [Fact]
         public async Task Employee_UpdateEmployeeInfo_ValidData_ShouldSucceed()
         {
             string uri = $"{_urlRoot}employees/update";

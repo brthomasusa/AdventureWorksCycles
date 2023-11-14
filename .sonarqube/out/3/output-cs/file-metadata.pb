@@ -7,7 +7,8 @@ b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanReso
 ]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Shift.csutf-8y
 p/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfBirth.csutf-8x
 o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfHire.csutf-8~
-u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfRateChange.csutf-8Å
+u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfRateChange.csutf-8
+v/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DepartmentEndDate.csutf-8Å
 x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DepartmentStartDate.csutf-8ã
 Å/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmployerIdentificationNumber.csutf-8~
 u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmploymentStatus.csutf-8t
@@ -28,10 +29,8 @@ V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Pe
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonEmailAddress.csutf-8d
 [/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonPhone.csutf-8o
 f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/AddressVO.csutf-8n
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Currency.csutf-8|
-s/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalGreaterThanZero.csutf-8x
-o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalNotNegative.csutf-8t
-k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/EmailAddressVO.csutf-8k
+e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Currency.csutf-8k
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Email.csutf-8k
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Money.csutf-8v
 m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/OrganizationName.csutf-8p
 g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PersonName.csutf-8p
@@ -40,7 +39,8 @@ h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Va
 k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PointOfContact.csutf-8l
 c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Suffix.csutf-8k
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Title.csutf-8p
-g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/WebsiteUrl.csutf-8
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/WebsiteUrl.csutf-8c
+Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Exceptions/DomainException.csutf-8
 v/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyValidationRepository.csutf-8z
 q/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyWriteRepository.csutf-8Ä
 w/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/IEmployeeValidationRepository.csutf-8{

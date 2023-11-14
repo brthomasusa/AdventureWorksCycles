@@ -1,572 +1,463 @@
-…
-o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Commands/HumanResources/CompanyGenericCommand.cs
+Ï
+Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/AggregateRoot.cs
 
- &
+ '
+( )4 52
+# 0A N   
 
- 
-
- !
-
- 
-
- 
-
-		 $
+1 =
 
 
 
- &
+ %
+
+
+2 ; '
 
- &
+ %ü
+Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/BusinessRule.cs
 
- 
-
- &
-
- $
-
- *
-
- *
-
- "
-
- *
-
- (
-
- 
-
- º
-r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Commands/HumanResources/DepartmentHistoryCommand.cs
-
- 0
-
- #
-
- 
-
- 
-
- !
-
-		  Ú
-p/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Commands/HumanResources/EmployeeGenericCommand.cs
-
- .
-
- #
-
- 
-
- 
-
-  
-
-		 !
+ &2
+' (: ;  !
+
+* += >(
+$ (   
 
 
 
- 
+ 
+
+
+- 1 
 
- 
+4 <
+? F$ +
+ - #f
+X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/DomainEvent.cs
 
- 
+ &±
+S/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/Entity.cs
 
- "
+  
+! " 
 
- $
+ 
+		 % 
 
- #
+ &
 
- !
+ ,¥	
+X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/Enumeration.csZ
+ %: E !))' 2))> I88' 288= HVV# .mm %æ
+& +F K " '5 :		9 >))3 8))J O883 888I N>>* /EE EE` eLL VV/ 4mm& +ss' ,uu# (xx& +2
+= S>>@ VEE/ ELL6 LSS/ E
+" $ 
+- 1 R
+""  ]]9 ;]]C EmmF HmmP Rqq- /
+ssã ç(
+''  # 'LLq u(
+)); <++ 00 55 (
+))R S++ 00 55 
+88: ;88X Y
+88P Q88] ^
 
- '
+>>1 :
 
- 
+EE #
+EE( *EEX Z
+EEg r	EEv Å
 
- #
+LL %
+LL- 1LLy }
+LLj kLLo p
 
- #
+SS #
+SS( *SSX Z
+VV "55 (
+VV7 <XX ]]  %]]3 8
 
- 
+aa #(
+aa, /cc hh  mm 
+mm- 7mm; E
 
- "
+qq '
+ss. I		 1
+ssO Wssm u
 
- !
+ssÑ Ö
+ssâ ä
+uu* :ss\ l
+uu@ Hvv ww$ ,
+ww  ww> G
+xx !xx, 5p
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/IgnoreMemberAttribute.cs
 
- (
+ &∑
+]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/IntegrationEvent.cs
 
- !
+ *
+( * 
+  
+! ,  ﬁ
+X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Base/ValueObject.cs2
+ %3 >		 & %$ /(
+, ; " "9 H
 
- $
+		 
+		( - 7 <
 
- 
+ #
+, / 
+& +> C
 
-  
+ '
+ #( 6/ =
+0 53 8¬
+r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Exceptions/BusinessRuleValidationException.cs
 
- 
+ 0
+6 =T [
+I K] _
+		6 =		F M≤
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Exceptions/DomainException.cs
 
-  
+  
+& -D K
+9 ;M O
+
+
+& -
+
+6 =¥
+d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Exceptions/NotFoundException.cs
 
- !
+ "
+
+
+( /
+
+8 ?
+) 0T [
+= K] ké
+T/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/Guard.cs
+ !  ,
+
+ "
 
-   
-
-!! 
-
-""/ B
-
-##( 4©
-k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Commands/HumanResources/PayHistoryCommand.cs
-
- )
-
- #
-
- &
-
- 
-
- ¡
-g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/CompanyDetails.cs
-
- &
-
- 
-
- !
-
- 
-
- 
-
-		 $
+ 
 
 
 
- &
+# *»
+p/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstDefaultDateExtensions.cs
 
- &
+  5
 
- 
+ .
 
- +
+		 )
+
+
+   
+  
+8 E4 A
 
- $
+ .
 
- *
+A L
+W \  
+e r4 A
 
- *
+Ö å ˝
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstLengthExtensions.cs
 
- "
+  5
 
- /
+ .
 
- (
+		 )
+
+
+   
+  ([ d
+  
+8 E% 2ø
+i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstNullExtensions.cs
 
- 
+  5
 
- »
-n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/CompanyGenericCommand.cs
+ (
 
- -
+		 )
+
+
+ % * 
+  
+8 E4 A
 
- 
+ !
 
- !
+ )
+  "" 
+    
+8 E  4 AÌ
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstNumberExtensions.cs
 
- 
+  5
 
- 
+ "
 
-		 $
+		 )
+
+
+   
+   K S
+  
+8 E% 2
+
+ &
+
+ )
+    $$ 
+     ""K S
+ "" 
+8 E""% 2
+
+'' %
+
+)) )
+** 00 44 
+++ 00  22H P
+,, 22 
+--8 E22% 2
+
+77 )
+
+99 )
+:: @@ DD 
+;; @@  BBH P
+<< BB 
+==8 EBB% 2
+
+GG 9
+
+II )
+JJ OO SS 
+KK QQ 
+LL8 EQQ% 2⁄
+h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardAgainstUrlExtensions.cs
+
+  5
+
+ '
+
+		 )
+
+
+  ! 
+  
+8 E$ 1î
+d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Guards/GuardClauseExtensions.cs
+
+  5
+
+ !
+) 0		& -o
+a/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Interfaces/IAggregateRoot.cs
+
+ #»
+`/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Interfaces/IBusinessRule.cs
+ " "
+# $# $		( )
+
+ 
+
+& *
+
+		 '
+
+		* 1 
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Interfaces/ICommandHandler.cs
+ $		 $
+% -" *		% -
+
+ !
+
++ 2
+
+		 
+
+		/ 3Ç
+^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Interfaces/IRepository.cs
+
+  (
+! " & '		! "
+
+ $
+
+) +
+
+2 >
+
+ %
+
+( .
+
+		  
+
+		# )
 
 
 
- &
-
- &
-
- 
-
- &
-
- $
-
- *
-
- *
-
- "
-
- *
-
- (
-
- 
-
- ®
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/DepartmentDetails.cs
-
- )
-
- 
-
- 
-
-  
-
- $¥
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/DepartmentHistory.cs
-
- )
-
- #
-
- !
-
- 
-
- !
-
-		  ª
-q/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/DepartmentHistoryCommand.cs
-
- 0
-
- #
-
- 
-
- 
-
- !
-
-		  ¶
-h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/EmployeeDetails.cs
-
- '
-
- #
-
-  
-
- 
-
-  
-
-		 !
+  
 
 
 
- 
+% -Ñ
+^/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Interfaces/IUnitOfWork.cs
 
- 
+  
 
- 
+ 
 
- "
+0 Aœ
+W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/Error.csx
+ $ ) $ $		 $/ 4' ,1 6&&' ,&&1 6((# (22; @
 
- &
+% )
 
- #
+% .
 
- %
+		% 4
+   
+) 0 F
+  E I// //! %44> B66- 12
+  //) 0//: A44D K
+5 :? D(
+. /  ## (
+8 9  ## 
+&&. /&&@ A
+&&8 9&&E F
+(( "## 22J P(
+((* /** //  //4 9
 
- '
+22 #
+22, /224 7
+22A F22Q V
 
- 
+44 '
 
- #
-
- #
-
- 
-
- (
-
- !
-
- (
-
- !
-
- $
-
- 
-
-  
-
- 
-
-  
-
- !
-
-   
-
-!! #
-
-"" 
-
-## "
-
-$$ !
-
-%% 
-
-&& 
-
-''( ;
-
-((! -Ò
-o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/EmployeeGenericCommand.cs
-
- .
-
- #
-
- 
-
- 
-
-  
-
-		 !
-
-
-
- 
-
- 
-
- 
-
- "
-
- $
-
- #
-
- !
-
- '
-
- 
-
- #
-
- #
-
- 
-
- "
-
- !
-
- (
-
- !
-
- $
-
- 
-
-  
-
- 
-
-  
-
- !
-
-   
-
-!! 
-
-""/ B
-
-##( 4ü
-i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/EmployeeListItem.cs
-
- (
-
- #
-
- 
-
-  
-
- !
-
-		 
-
-
-
- !
-
- 
-
- "
-
- #
-
- 
-
- 
-
- 
-
- #
-
- "°
-c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/PayHistory.cs
-
- "
-
- #
-
- &
-
- 
-
- #®
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/PayHistoryCommand.cs
-
- )
-
- #
-
- &
-
- 
-
- Ø
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/HumanResources/ShiftDetails.cs
-
- $
-
- 
-
- 
-
-  
-
- 
-
-		 $ì
-m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/Lookups/HumanResources/DepartmentId.cs
-
- $
-
- 
-
- %¥
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/Lookups/HumanResources/ManagerId.cs
-
- !
-
- #
-
- 
-
- %
-
- 
-
-		 &é
-h/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/Lookups/HumanResources/ShiftId.cs
+66 'Û
+Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/Helpers.cs
 
  
 
- 
+ 0(
+; = + -8 :
 
-  ∏
-n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/Lookups/HumanResources/SimpleLookups.cs
+. :2
+D H  $ "! %  $
+
+
+$ , Œ
+Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/MetaData.cs
 
- %
+ 
+ 		# .
+
+ *
+ 
+
+- 7
 
-3 E
+ 
 
-* 4
+ 
 
-- :
-
-< W
-
-  0 A
-
-''3 F
-
-//0 @2
-88 !" +   
-:: " $" $
-;; * .* .2
->> '" 1 " # #
-@@ ( *( *
-AA 3 93 92
-DD " (   
-FF  ! !
-GG * .* .<
-JJ 0" : + , , ,(
-LL 1 31 31 3(
-MM *9 L9 L9 L2
-PP $  " .!! ##  $$  
-RR ##% '$$% '
-SS ##- 1$$- 1<
-VV '''" 1(( "** #++ #,, #(
-XX **( *++( *,,( *(
-YY **0 4++0 4,,0 42
-\\ $//" .00 22  33  
-^^ 22% '33% '
-__ 221 5330 4ä
-d/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/Lookups/Shared/CountryCode.cs
-
- $
-
-, =
-
-F Jî
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/Lookups/Shared/StateCode.cs
-
- !
-
- "
-
- (
-
- («
-e/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Queries/Shared/StringSearchCriteria.cs
-
- -
-
- 
-
- 
-
- 
-
- 
-
-		 
+		 
 
 
 
- 
+ ó
+[/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/PagedList.cs
+  <
+ % &   !8 9! "
+  		 
+! & 
+, 1 "/ 4
+7 A (
+G O #? G
 
- t
-P/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/SharedAssembly.cs
- "6 D
+# 2
+; A$ *
+G S, 8
+Y c: D
+i qF Nà
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/PagingParameters.cs
 
-$ ,ô
-Q/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/WeatherForecast.cs
+ "
 
- 
+' 1
 
- 
- * 6
+7 ?é
+X/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/Result.cs
+     (
+' 0   !(
+8 = " # 
+  " +
 
-		 
+ 
+  
 
- 
+ $
+
+% ,
+- 3 #5 ;
+< A 
+
+   $
+  + 0!! 
+
+##% ,
+##- 3## #
+##; @$$  %
+
+&&% +(
+&&, 2&& #&&4 :''9 ?
+&&< A'' ''( -¶
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ResultExtensions.cs
+
+ (
+
+  &2
+' ( 		 
+
+ E F2
+		 !   #- 3
+
+
+ # 
+ H M
+
+# &
+' *  (
+, 0 !  #(
+ # + 1% +
+ ' *≥
+Y/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ResultT.cs
+ ( .<
+  " ( / 57 =
+! '		  
+* /		 
+6 ? 
+G L #
+
+ 
+? DP Uà
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/Utilities/ValidationResult.cs
+
+ !
+
+ 
+
+ $

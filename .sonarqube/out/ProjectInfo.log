@@ -1,13 +1,13 @@
 Product projects
 ---------------------------------------
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Infrastructure.csproj
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/SharedKernel.csproj
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/gRPC.Contracts.csproj
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Presentation/Presentation.csproj
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Application/Application.csproj
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Shared.csproj
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/SharedKernel/SharedKernel.csproj
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Client/Client.csproj
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Server.csproj
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/gRPC.Contracts/gRPC.Contracts.csproj
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Shared/Shared.csproj
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Core.csproj
 
 

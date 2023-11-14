@@ -70,7 +70,7 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_GetStateCodeIdForAllQueryHandler.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_GetStateCodeIdForAllRequest.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_GetStateCodeIdForUsaQueryHandler.html
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_GetStateCodeIdForUsaRequest.html
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_GetStateCodeIdForUSARequest.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_LoggingBehavior_2.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_PayHistoryCreateValidator.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Application_PayHistoryUpdateValidator.html
@@ -99,6 +99,8 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_Department.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_DepartmentHistory.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_DepartmentStartDate.html
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_DomainException.html
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_Email.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_EmailAddressVO.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_Employee.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/Core_EmployerIdentificationNumber.html
@@ -292,6 +294,7 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/SharedKernel_PagedList_1.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/SharedKernel_PagingParameters.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/SharedKernel_Result.html
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/SharedKernel_ResultExtensions.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/SharedKernel_Result_1.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/SharedKernel_ValidationResult.html
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/TestResults/core.html/SharedKernel_ValueObject.html

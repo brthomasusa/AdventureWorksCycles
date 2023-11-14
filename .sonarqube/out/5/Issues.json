@@ -36,6 +36,54 @@
           }
         },
         {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'self' in 'Title.implicit operator string(Title self)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingExtensions.cs",
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 28,
+                  "endLine": 144,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'self' in 'Suffix.implicit operator string(Suffix self)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingExtensions.cs",
+                "region": {
+                  "startLine": 148,
+                  "startColumn": 29,
+                  "endLine": 148,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
           "ruleId": "S4487",
           "level": "warning",
           "message": "Remove this unread private field '_mapper' or refactor the code to use its value.",

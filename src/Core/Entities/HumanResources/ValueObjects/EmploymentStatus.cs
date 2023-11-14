@@ -12,7 +12,7 @@ namespace AWC.Core.Entities.HumanResources.ValueObjects
 
         public static EmploymentStatus Create(bool status)
         {
-            return new EmploymentStatus((bool)status);
+            return new EmploymentStatus(status);
         }
 
         public override IEnumerable<object> GetAtomicValues()

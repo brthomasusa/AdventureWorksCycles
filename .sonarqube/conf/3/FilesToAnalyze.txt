@@ -7,6 +7,7 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfBirth.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfHire.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfRateChange.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DepartmentEndDate.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DepartmentStartDate.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmployerIdentificationNumber.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/EmploymentStatus.cs
@@ -28,9 +29,7 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonPhone.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/AddressVO.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Currency.cs
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalGreaterThanZero.cs
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/DecimalNotNegative.cs
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/EmailAddressVO.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Email.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Money.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/OrganizationName.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/PersonName.cs
@@ -40,6 +39,7 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Suffix.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Title.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/WebsiteUrl.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Exceptions/DomainException.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyValidationRepository.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyWriteRepository.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/IEmployeeValidationRepository.cs

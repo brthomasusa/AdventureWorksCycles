@@ -1,4 +1,3 @@
-using AWC.SharedKernel.Guards;
 using AWC.SharedKernel.Utilities;
 
 namespace SharedKernel.Utilities

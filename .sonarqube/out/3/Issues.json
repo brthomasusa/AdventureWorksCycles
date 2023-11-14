@@ -11,47 +11,7 @@
         "language": "en-US"
       },
       "results": [
-        {
-          "ruleId": "S1144",
-          "level": "warning",
-          "message": "Remove the unused private field 'MAX_ADDRESSLINE_LENGTH'.",
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/AddressVO.cs",
-                "region": {
-                  "startLine": 7,
-                  "startColumn": 9,
-                  "endLine": 7,
-                  "endColumn": 47
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        }
-      ],
-      "rules": {
-        "S1144": {
-          "id": "S1144",
-          "shortDescription": "Unused private types or members should be removed",
-          "fullDescription": "private or internal types or private members that are never executed or referenced are unused code: unnecessary, inoperative code that should be removed.",
-          "defaultLevel": "warning",
-          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1144",
-          "properties": {
-            "category": "Major Code Smell",
-            "isEnabledByDefault": true,
-            "tags": [
-              "C#",
-              "MainSourceScope",
-              "TestSourceScope",
-              "SonarWay"
-            ]
-          }
-        }
-      }
+      ]
     }
   ]
 }
