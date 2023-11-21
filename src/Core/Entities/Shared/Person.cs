@@ -1,10 +1,12 @@
+using AWC.Core.Entities.Shared.EntityIDs;
 using AWC.Core.Entities.Shared.ValueObjects;
+using AWC.Core.Enums;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.Shared
 {
-    public abstract class Person : Entity<int>
+    public abstract class Person : Entity<PersonID>
     {
         private readonly List<Address> _addresses = new();
         private readonly List<PersonEmailAddress> _emailAddresses = new();
@@ -12,7 +14,7 @@ namespace AWC.Core.Entities.Shared
 
         protected Person
         (
-            int personID,
+            PersonID personID,
             PersonType personType,
             NameStyle nameStyle,
             Title title,
@@ -83,8 +85,7 @@ namespace AWC.Core.Entities.Shared
 
         public Result<Address> AddAddress
         (
-            int addressID,
-            int businessEntityID,
+            AddressID addressID,
             AddressType addressType,
             string line1,
             string? line2,
@@ -95,18 +96,28 @@ namespace AWC.Core.Entities.Shared
         {
             try
             {
-                if (_addresses.Find(addr => addr.Id == addressID) is not null)
+                // No duplicate non-zero IDs
+                if (addressID.Value != 0)
                 {
-                    return Result.Failure<Address>(new Error("Person.AddAddress", "There is already an address with this Id."));
+                    if (_addresses.Exists(addr => addr.Id.Value == addressID.Value))
+                        return Result.Failure<Address>(new Error("Person.AddAddress", "There is already an address with this Id."));
                 }
+
+                // No duplicate address
+                AddressVO addressVO = AddressVO.Create(line1, line2, city, stateProvinceID, postalCode);
+                bool foundAddressVO = _addresses.Exists(addr => addr.Location.Equals(addressVO) && addr.AddressType == addressType);
+                if (foundAddressVO)
+                    return Result.Failure<Address>(new Error("Person.AddAddress", "There is already an address matching this one."));
 
                 Result<Address> result = Address.Create
                 (
-                    addressID, businessEntityID, addressType, line1, line2, city, stateProvinceID, postalCode
+                    addressID, addressType, line1, line2, city, stateProvinceID, postalCode
                 );
 
                 if (result.IsFailure)
                     return Result<Address>.Failure<Address>(new Error("Address.Create", result.Error.Message));
+
+                result.Value.EntityStatus = EntityStatus.Added;
 
                 _addresses.Add(result.Value);
                 return result.Value;
@@ -119,8 +130,7 @@ namespace AWC.Core.Entities.Shared
 
         public Result<Address> UpdateAddress
         (
-            int addressID,
-            int businessEntityID,
+            AddressID addressID,
             AddressType addressType,
             string line1,
             string? line2,
@@ -131,19 +141,29 @@ namespace AWC.Core.Entities.Shared
         {
             try
             {
-                if (_addresses.Find(addr => addr.Id == addressID && addr.BusinessEntityID == businessEntityID) is null)
-                {
-                    return Result<Address>.Failure<Address>(new Error("Person.AddAddress", $"Unable to locate an address with this Id {addressID}-{businessEntityID}."));
-                }
+                Address? address = _addresses.Find(addr => addr.Id.Value == addressID.Value);
 
-                var address = _addresses.Find(addr => addr.Id == addressID && addr.BusinessEntityID == businessEntityID);
-                Result<Address> result = address!.Update
+                if (address is null)
+                    return Result<Address>.Failure<Address>(new Error("Person.AddAddress", $"Unable to locate an address with this Id {addressID.Value}."));
+
+                AddressVO addressVO = AddressVO.Create(line1, line2, city, stateProvinceID, postalCode);
+                Address? duplicateAddress = _addresses.Find(addr => addr.Location.Equals(addressVO) &&
+                                                                    addr.AddressType.Equals(addressType) &&
+                                                                    addr.Id.Value != addressID.Value);
+
+                if (duplicateAddress is not null && !duplicateAddress.Id.Value.Equals(addressID.Value))
+                    return Result.Failure<Address>(new Error("Person.UpdateAddress", "Updating this address would result in duplicate addresses."));
+
+                Result<Address> result = address.Update
                 (
                     addressType, line1, line2, city, stateProvinceID, postalCode
                 );
 
                 if (result.IsFailure)
                     return Result<Address>.Failure<Address>(new Error("Person.UpdateAddress", result.Error.Message));
+
+                if (result.Value.EntityStatus == EntityStatus.Unmodified)
+                    result.Value.EntityStatus = EntityStatus.Modified;
 
                 return address;
             }
@@ -153,22 +173,47 @@ namespace AWC.Core.Entities.Shared
             }
         }
 
-        public virtual IReadOnlyCollection<PersonEmailAddress> EmailAddresses => _emailAddresses.AsReadOnly();
-
-        public Result<PersonEmailAddress> AddEmailAddress(int id, int emailAddressId, string emailAddress)
+        public Result DeleteAddress(AddressID id)
         {
             try
             {
-                var searchResult = _emailAddresses.Find(mail => mail.Id == id && mail.EmailAddressID == emailAddressId);
-                if (searchResult is not null)
-                    return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.AddEmailAddress", "This is a duplicate email address."));
+                Address? search = _addresses.Find(a => a.Id.Value == id.Value);
 
-                Result<PersonEmailAddress> result = PersonEmailAddress.Create(id, emailAddressId, emailAddress);
+                if (search is null)
+                    return Result.Failure(new Error("Person.DeleteAddress", $"Delete failed, could not locate address with ID {id}."));
+
+                search.EntityStatus = EntityStatus.Deleted;
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure(new Error("Person.DeleteAddress", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
+        public virtual IReadOnlyCollection<PersonEmailAddress> EmailAddresses => _emailAddresses.AsReadOnly();
+
+        public Result<PersonEmailAddress> AddEmailAddress(PersonEmailAddressID emailAddressId, string emailAddress)
+        {
+            try
+            {
+                bool searchByID = _emailAddresses.Exists(email => email.Id.Value.Equals(emailAddressId.Value) && emailAddressId.Value != 0);
+                if (searchByID)
+                    return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.AddEmailAddress", "There is already an email address with this Id."));
+
+                bool searchByEmail = _emailAddresses.Exists(email => string.Equals(email.EmailAddress, emailAddress, StringComparison.OrdinalIgnoreCase));
+                if (searchByEmail)
+                    return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.AddEmailAddress", "Adding this would result in duplicate email addresses."));
+
+                Result<PersonEmailAddress> result = PersonEmailAddress.Create(emailAddressId, emailAddress);
 
                 if (result.IsFailure)
                     return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.AddEmailAddress", result.Error.Message));
 
                 _emailAddresses.Add(result.Value);
+
+                if (result.Value.Id.Equals(0))
+                    result.Value.EntityStatus = EntityStatus.Added;
 
                 return result.Value;
             }
@@ -178,23 +223,69 @@ namespace AWC.Core.Entities.Shared
             }
         }
 
-        public virtual IReadOnlyCollection<PersonPhone> Telephones => _telephones.AsReadOnly();
-
-        public Result<PersonPhone> AddPhoneNumber(int id, PhoneNumberType phoneType, string phoneNumber)
+        public Result<PersonEmailAddress> UpdateEmailAddress(PersonEmailAddressID emailAddressId, string emailAddress)
         {
             try
             {
-                var searchResult = _telephones.Find(tel => tel.Id == id &&
-                                                           tel.PhoneNumberType == phoneType &&
-                                                           tel.Telephone == phoneNumber);
+                PersonEmailAddress? searchByID = _emailAddresses.Find(email => email.Id.Value.Equals(emailAddressId.Value));
+                if (searchByID is null)
+                    return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.UpdateEmailAddress", "Update failed; unable to locate email address with Id {}"));
 
-                if (searchResult is not null)
+                bool searchByEmail = _emailAddresses.Exists(email => string.Equals(email.EmailAddress, emailAddress, StringComparison.OrdinalIgnoreCase));
+                if (searchByEmail)
+                    return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.AddEmailAddress", "Adding this would result in duplicate email addresses."));
+
+                Result<PersonEmailAddress> result = searchByID.UpdateEmailAddress(emailAddress);
+
+                return searchByID;
+
+            }
+            catch (Exception ex)
+            {
+                return Result<PersonEmailAddress>.Failure<PersonEmailAddress>(new Error("Person.UpdateEmailAddress", Helpers.GetExceptionMessage(ex)));
+            }
+            throw new NotImplementedException();
+        }
+
+        public Result DeleteEmailAddress(PersonEmailAddressID id)
+        {
+            try
+            {
+                PersonEmailAddress? search = _emailAddresses.Find(a => a.Id.Value == id.Value);
+
+                if (search is null)
+                    return Result.Failure(new Error("Person.DeleteEmailAddress", $"Delete failed, could not locate email address with ID {id}."));
+
+                search.EntityStatus = EntityStatus.Deleted;
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure(new Error("Person.DeleteEmailAddress", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
+
+
+        public virtual IReadOnlyCollection<PersonPhone> Telephones => _telephones.AsReadOnly();
+
+        public Result<PersonPhone> AddPhoneNumber(PersonPhoneID id, PhoneNumberType phoneType, string phoneNumber)
+        {
+            try
+            {
+                bool isDupeID = _telephones.Exists(tel => tel.Id.Value.Equals(id.Value) && !id.Value.Equals(0));
+                if (isDupeID)
+                    return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.AddPhoneNumber", $"There is already a phone number with id {id.Value}."));
+
+                bool isDupePhoneNumber = _telephones.Exists(tel => tel.PhoneNumberType == phoneType && tel.Telephone == phoneNumber);
+                if (isDupePhoneNumber)
                     return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.AddPhoneNumber", "This is a duplicate phone number."));
 
                 Result<PersonPhone> result = PersonPhone.Create(id, phoneType, phoneNumber);
 
                 if (result.IsFailure)
                     return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.AddPhoneNumber", result.Error.Message));
+
 
                 _telephones.Add(result.Value);
 
@@ -205,18 +296,52 @@ namespace AWC.Core.Entities.Shared
                 return Result<PersonPhone>.Failure<PersonPhone>(new Error("", Helpers.GetExceptionMessage(ex)));
             }
         }
-    }
 
-    public enum NameStyle
-    {
-        Western = 0,
-        Eastern = 1
-    }
+        public Result<PersonPhone> UpdatePhoneNumber(PersonPhoneID id, PhoneNumberType phoneType, string phoneNumber)
+        {
+            try
+            {
+                Result<PersonPhone> telephone = _telephones.Find(tel => tel.Id.Value.Equals(id.Value));
+                if (telephone is null)
+                    return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.UpdatePhoneNumber", $"Update failed, a phone number with id {id.Value} was not found."));
 
-    public enum EmailPromotion
-    {
-        None = 0,
-        FromAdventureWorksOnly = 1,
-        FromAdventureWorksAndSelectPartners = 2
+                bool isDupePhoneNumber = _telephones.Exists(tel => tel.PhoneNumberType.Equals(phoneType) && tel.Telephone.Value.Equals(phoneNumber));
+
+                if (isDupePhoneNumber)
+                    return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.UpdatePhoneNumber", "Updating this telephone would result in duplicate telephone numbers."));
+
+                Result<PersonPhone> result = telephone.Value.Update(phoneType, phoneNumber);
+
+                if (result.IsFailure)
+                    return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.UpdatePhoneNumber", result.Error.Message));
+
+
+                _telephones.Add(result.Value);
+
+                return result.Value;
+            }
+            catch (Exception ex)
+            {
+                return Result<PersonPhone>.Failure<PersonPhone>(new Error("", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
+        public Result DeletePhoneNumber(PersonPhoneID id)
+        {
+            try
+            {
+                PersonPhone? search = _telephones.Find(ph => ph.Id.Value == id.Value);
+
+                if (search is null)
+                    return Result.Failure(new Error("Person.DeletePhoneNumber", $"Delete failed, could not locate phone number with ID {id}."));
+
+                search.EntityStatus = EntityStatus.Deleted;
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                return Result.Failure(new Error("Person.DeletePhoneNumber", Helpers.GetExceptionMessage(ex)));
+            }
+        }
     }
 }

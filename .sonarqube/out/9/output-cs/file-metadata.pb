@@ -3,7 +3,8 @@
 °/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Application.UnitTests/FluentValidators/HumanResources/CreateEmployeeCommandDataValidatorTest.csutf-8Ø
 •/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Application.UnitTests/FluentValidators/HumanResources/DepartmentistoryCommandCreateValidatorTest.csutf-8©
 ü/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Application.UnitTests/FluentValidators/HumanResources/PayHistoryCommandCreateValidatorTest.csutf-8Ç
-y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/HumanResources/CompanyAggregate_Tests.csutf-8
+y/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/HumanResources/CompanyAggregate_Tests.csutf-8É
+z/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/HumanResources/EmployeeAggregate_Tests.csutf-8
 v/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/HumanResources/HrValueObject_Tests.csutf-8{
 r/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Code.UnitTests/Shared/SharedValueObject_Tests.csutf-8Å
 x/home/bthomas/Projects/NetCore/AdventureWorksCycles/test/UnitTest/Infrastructure.UnitTests/EmployeeMappingConfig_Test.csutf-8j

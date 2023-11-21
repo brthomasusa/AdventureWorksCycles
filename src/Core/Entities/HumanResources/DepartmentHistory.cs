@@ -1,3 +1,4 @@
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.HumanResources.ValueObjects;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Guards;
@@ -5,21 +6,21 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.HumanResources
 {
-    public sealed class DepartmentHistory : Entity<int>
+    public sealed class DepartmentHistory : Entity<DepartmentHistoryID>
     {
         private DepartmentHistory
         (
-            int id,
-            int departmentId,
-            int shiftId,
+            DepartmentHistoryID id,
+            DepartmentID departmentId,
+            ShiftID shiftId,
             DepartmentStartDate startDate,
-            DateOnly? endDate
+            DepartmentEndDate endDate
         )
         {
             Id = id;
             DepartmentID = departmentId;
             ShiftID = shiftId;
-            StartDate = startDate.Value;
+            StartDate = startDate;
             EndDate = endDate;
 
             CheckValidity();
@@ -27,22 +28,22 @@ namespace AWC.Core.Entities.HumanResources
 
         internal static Result<DepartmentHistory> Create
         (
-            int id,
-            int departmentId,
-            int shiftId,
+            DepartmentHistoryID id,
+            DepartmentID departmentId,
+            ShiftID shiftId,
             DateOnly startDate,
-            DateTime? endDate
+            DateOnly? endDate
         )
         {
             try
             {
                 return new DepartmentHistory
                     (
-                        Guard.Against.LessThan(id, 0, "Employee id can not be negative."),
-                        Guard.Against.LessThan(departmentId, 0),
-                        Guard.Against.LessThan(shiftId, 0),
+                        id,
+                        departmentId,
+                        shiftId,
                         DepartmentStartDate.Create(startDate),
-                        DateOnly.FromDateTime(endDate is null ? default : (DateTime)endDate)
+                        DepartmentEndDate.Create(endDate)
                     );
 
             }
@@ -52,14 +53,14 @@ namespace AWC.Core.Entities.HumanResources
             }
         }
 
-        public int DepartmentID { get; }
-        public int ShiftID { get; }
-        public DateOnly StartDate { get; }
-        public DateOnly? EndDate { get; private set; }
+        public DepartmentID DepartmentID { get; }
+        public ShiftID ShiftID { get; }
+        public DepartmentStartDate StartDate { get; }
+        public DepartmentEndDate EndDate { get; private set; }
 
         protected override void CheckValidity()
         {
-            if (EndDate != new DateOnly() && StartDate > EndDate)
+            if (EndDate.Value != new DateOnly() && StartDate.Value > EndDate.Value)
                 throw new ArgumentException("Start date can not be after end date.");
         }
     }

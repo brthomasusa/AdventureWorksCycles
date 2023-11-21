@@ -99,11 +99,10 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
                 personDataModel.BusinessEntityAddresses.Add(
                     new BusinessEntityAddress
                     {
-                        BusinessEntityID = addr.BusinessEntityID,
-                        AddressID = addr.Id,
+                        AddressID = addr.Id.Value,
                         Address = new()
                         {
-                            AddressID = addr.Id,
+                            AddressID = addr.Id.Value,
                             AddressLine1 = addr.Location.AddressLine1,
                             AddressLine2 = addr.Location.AddressLine2,
                             City = addr.Location.City,
@@ -136,7 +135,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests
                 addresses.Add(
                     new()
                     {
-                        AddressID = addr.Id,
+                        AddressID = addr.Id.Value,
                         AddressLine1 = addr.Location.AddressLine1,
                         AddressLine2 = addr.Location.AddressLine2,
                         City = addr.Location.City,

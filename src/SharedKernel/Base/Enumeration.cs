@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace SharedKernel.Base
+namespace AWC.SharedKernel.Base
 {
     public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>>
         where TEnum : Enumeration<TEnum>
@@ -8,11 +8,6 @@ namespace SharedKernel.Base
         private static readonly Lazy<Dictionary<int, TEnum>> EnumerationsDictionary =
             new(() => CreateEnumerationDictionary(typeof(TEnum)));
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Enumeration{TEnum}"/> class.
-        /// </summary>
-        /// <param name="id">The enumeration identifier.</param>
-        /// <param name="name">The enumeration name.</param>
         protected Enumeration(int id, string name)
             : this()
         {
@@ -20,23 +15,11 @@ namespace SharedKernel.Base
             Name = name;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Enumeration{TEnum}"/> class.
-        /// </summary>
-        /// <remarks>
-        /// Required for deserialization.
-        /// </remarks>
         protected Enumeration() => Name = string.Empty;
 
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
         public int Id { get; protected init; }
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        public string Name { get; protected init; }
+        public string Name { get; protected init; } = string.Empty;
 
         public static bool operator ==(Enumeration<TEnum>? a, Enumeration<TEnum>? b)
         {
@@ -55,31 +38,12 @@ namespace SharedKernel.Base
 
         public static bool operator !=(Enumeration<TEnum> a, Enumeration<TEnum> b) => !(a == b);
 
-        /// <summary>
-        /// Gets the enumeration values.
-        /// </summary>
-        /// <returns>The read-only collection of enumeration values.</returns>
         public static IReadOnlyCollection<TEnum> GetValues() => EnumerationsDictionary.Value.Values.ToList();
 
-        /// <summary>
-        /// Creates an enumeration of the specified type based on the specified identifier.
-        /// </summary>
-        /// <param name="id">The enumeration identifier.</param>
-        /// <returns>The enumeration instance that matches the specified identifier, if it exists.</returns>
         public static TEnum? FromId(int id) => EnumerationsDictionary.Value.TryGetValue(id, out TEnum? enumeration) ? enumeration : null;
 
-        /// <summary>
-        /// Creates an enumeration of the specified type based on the specified name.
-        /// </summary>
-        /// <param name="name">The enumeration name.</param>
-        /// <returns>The enumeration instance that matches the specified name, if it exists.</returns>
         public static TEnum? FromName(string name) => EnumerationsDictionary.Value.Values.SingleOrDefault(x => x.Name == name);
 
-        /// <summary>
-        /// Checks if the enumeration with the specified identifier exists.
-        /// </summary>
-        /// <param name="id">The enumeration identifier.</param>
-        /// <returns>True if an enumeration with the specified identifier exists, otherwise false.</returns>
         public static bool Contains(int id) => EnumerationsDictionary.Value.ContainsKey(id);
 
         /// <inheritdoc />

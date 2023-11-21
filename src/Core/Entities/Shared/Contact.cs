@@ -1,6 +1,8 @@
 #pragma warning disable CS8618
 
+using AWC.Core.Enums;
 using AWC.Core.Entities.Shared.ValueObjects;
+using AWC.Core.Entities.Shared.EntityIDs;
 
 namespace AWC.Core.Entities.Shared
 {
@@ -8,26 +10,22 @@ namespace AWC.Core.Entities.Shared
     {
         private Contact
         (
-            int businessEntityID,
-            ContactType contactType,
-            int personID,
+            ContactID contactID,
             PersonType personType,
             NameStyle nameStyle,
             Title title,
             PersonName name,
             Suffix suffix,
-            EmailPromotion emailPromotionEnum
-        ) : base(personID, personType, nameStyle, title, name, suffix, emailPromotionEnum)
+            EmailPromotion emailPromotionEnum,
+            ContactType contactType
+        ) : base(new PersonID(contactID.Value), personType, nameStyle, title, name, suffix, emailPromotionEnum)
         {
-            BusinessEntityID = businessEntityID;
             ContactType = contactType;
         }
 
         public static Contact Create
         (
-            int businessEntityID,
-            ContactType contactType,
-            int personID,
+            ContactID contactID,
             string personType,
             NameStyle nameStyle,
             string title,
@@ -35,19 +33,19 @@ namespace AWC.Core.Entities.Shared
             string? middleName,
             string lastName,
             string? suffix,
-            EmailPromotion emailPromotionEnum
+            EmailPromotion emailPromotionEnum,
+            ContactType contactType
         )
             => new
                 (
-                    businessEntityID,
-                    Enum.IsDefined(typeof(ContactType), contactType) ? contactType : throw new ArgumentException("Invalid contact type."),
-                    personID,
+                    contactID,
                     PersonType.Create(personType),
                     Enum.IsDefined(typeof(NameStyle), nameStyle) ? nameStyle : throw new ArgumentException("Invalid names style"),
                     Title.Create(title),
                     PersonName.Create(lastName, firstName, middleName!),
                     Suffix.Create(suffix!),
-                    Enum.IsDefined(typeof(EmailPromotion), emailPromotionEnum) ? emailPromotionEnum : throw new ArgumentException("Invalid email promotion flag")
+                    Enum.IsDefined(typeof(EmailPromotion), emailPromotionEnum) ? emailPromotionEnum : throw new ArgumentException("Invalid email promotion flag"),
+                    Enum.IsDefined(typeof(ContactType), contactType) ? contactType : throw new ArgumentException("Invalid contact type.")
                 );
 
         public int BusinessEntityID { get; }
@@ -59,29 +57,5 @@ namespace AWC.Core.Entities.Shared
             ContactType = Enum.IsDefined(typeof(ContactType), value) ? value : throw new ArgumentException("Invalid contact type.");
             UpdateModifiedDate();
         }
-    }
-
-    public enum ContactType
-    {
-        AccountingManager = 1,
-        AssistantSalesAgent = 2,
-        AssistantSalesRepresentative = 3,
-        CoordinatorForeignMarkets = 4,
-        ExportAdministrator = 5,
-        InternationalMarketingManager = 6,
-        MarketingAssistant = 7,
-        MarketingManager = 8,
-        MarketingRepresentative = 9,
-        OrderAdministrator = 10,
-        Owner = 11,
-        OwnerMarketingAssistant = 12,
-        ProductManager = 13,
-        PurchasingAgent = 14,
-        PurchasingManager = 15,
-        RegionalAccountRepresentative = 16,
-        SalesAgent = 17,
-        SalesAssociate = 18,
-        SalesManager = 19,
-        SalesRepresentative = 20
     }
 }

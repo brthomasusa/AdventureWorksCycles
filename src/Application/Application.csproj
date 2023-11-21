@@ -23,6 +23,7 @@
         <_Parameter1>AWC.IntegrationTest</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
+  
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
         <_Parameter1>AWC.UnitTest</_Parameter1>

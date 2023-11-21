@@ -1,7 +1,10 @@
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.Shared;
+using AWC.Core.Entities.Shared.EntityIDs;
+using AWC.Core.Enums;
 using AWC.Shared.Commands.HumanResources;
 using AWC.SharedKernel.Utilities;
 using MapsterMapper;
@@ -46,7 +49,7 @@ namespace AWC.Application.Features.HumanResources.Common
             // 1. Create an employee from the GenericEmployeeComand
             Result<Employee> employeeResult = Employee.Create
             (
-                command.BusinessEntityID,
+                new EmployeeID(command.BusinessEntityID),
                 "EM",
                 (NameStyle)command.NameStyle,
                 command.Title,
@@ -54,7 +57,7 @@ namespace AWC.Application.Features.HumanResources.Common
                 command.LastName!,
                 command.MiddleName!,
                 command.Suffix,
-                command.ManagerID,
+                new EmployeeID(command.ManagerID),
                 command.NationalIDNumber!,
                 command.LoginID!,
                 command.JobTitle!,
@@ -132,11 +135,12 @@ namespace AWC.Application.Features.HumanResources.Common
             {
                 Result<DepartmentHistory> result = employee.AddDepartmentHistory
                 (
-                    department.BusinessEntityID,
-                    department.DepartmentID,
-                    department.ShiftID,
+                    new DepartmentHistoryID(department.BusinessEntityID),
+                    new DepartmentID(department.DepartmentID),
+                    new ShiftID(department.ShiftID),
                     DateOnly.FromDateTime(department.StartDate),
-                    department.EndDate
+                    DateOnly.FromDateTime((DateTime)department.EndDate!)
+
                 );
 
                 if (result.IsFailure)
@@ -150,7 +154,7 @@ namespace AWC.Application.Features.HumanResources.Common
             foreach (PayHistoryCommand pay in payHistories!)
             {
                 Result result = employee.AddPayHistory(
-                    pay.BusinessEntityID,
+                    new PayHistoryID(pay.BusinessEntityID),
                     pay.RateChangeDate,
                     pay.Rate,
                     (PayFrequency)pay.PayFrequency
@@ -175,8 +179,7 @@ namespace AWC.Application.Features.HumanResources.Common
         {
             Result result = employee.AddAddress
             (
-                addressID,
-                employee.Id,
+                new AddressID(addressID),
                 AddressType.Home,
                 line1,
                 line2,
@@ -193,7 +196,7 @@ namespace AWC.Application.Features.HumanResources.Common
 
         private static Result AddEmailAddress(ref Employee employee, int emailAddressId, string emailAddress)
         {
-            Result result = employee.AddEmailAddress(employee.Id, emailAddressId, emailAddress);
+            Result result = employee.AddEmailAddress(new PersonEmailAddressID(emailAddressId), emailAddress);
 
             if (result.IsFailure)
                 return Result.Failure(new Error("EmployeeDomainObjectBuilder.AddEmailAddress", result.Error.Message));
@@ -203,7 +206,7 @@ namespace AWC.Application.Features.HumanResources.Common
 
         private static Result AddPersonPhone(ref Employee employee, PhoneNumberType phoneNumberType, string phoneNumber)
         {
-            Result result = employee.AddPhoneNumber(employee.Id, phoneNumberType, phoneNumber);
+            Result result = employee.AddPhoneNumber(new PersonPhoneID(employee.Id.Value), phoneNumberType, phoneNumber);
 
             if (result.IsFailure)
                 return Result.Failure(new Error("EmployeeDomainObjectBuilder.AddPersonPhone", result.Error.Message));

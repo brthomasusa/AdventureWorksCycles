@@ -121,11 +121,10 @@ x/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persiste
 r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Interfaces/SpecificationBase.cs 8r	
 Ç≈
 Ç/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/CompanyMappingConfig.cs 8jr	
- !"#Ç –
-É/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingConfig.cs 8jre
- !"$%&'()*,-./023456789:;<=>?ABCDEFGHIJKLMNOPQRSUVWXYZ[\]^_`abcdefghijklmnopqxÇS !"$%&'()*,-./023456789:;<=>?ABCDEFGHIJKLMNOPQRSUVWYZ[\]^_`abcdefghijklÈ
-á/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingExtensions.cs4 8jçó†£r«	
- !"#$%&()*+,-./01235679:<=>?@ABCDEGHIKLNOPQRSTUVWXYZ[\]_`acdfghijklmnoprstvwyz{|}~ÄÅÇÑÖÜàâãåéèêëíìîïòöõúùû°§•¶ß®©™´¨≠ÆØ∞≤≥¥µ∂∑xÇ~ !"#$*,./012569>@ABCDGHKPSUVWXYZ[\_`chkmnorsv{}ÄÅÑÖàéèêëíìîïòöõúùû°§•¶ß®©™´¨≠Æ™
+ !"#Ç ¢
+É/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingConfig.cs 8jrN	 !"#%&'()*+,-/012356789:;<=>?@ABDEFGHIJKLMNOPQRSTUVWXYÇ> !"#%&'()*+,-/012356789:;<=>?@ABDEFGHIJKLMNOPQRSTUVÍ
+á/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingExtensions.cs4 8jéò°§r…	
+ !"#$%&'()+,-./012345689:<=?@ABCDEFGHJKLNOQRSTUVWXYZ[\]^_abcefhijklmnopqstuwxz{|}~ÄÅÇÉÖÜáâäåçèêëíìîïñôõúùûü¢•¶ß®©™´¨≠ÆØ∞±≥¥µ∂∑∏xÇ} !"#$%&'-/1234589<ACDEFGJKNSVXYZ[\]^abejmopstw|~ÄÅÇÖÜâèêëíìîïñôõúùûü¢•¶ß®©™´¨≠ÆØ™
 |/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Queries/HumanResources/CompanyQuerySql.csr(	
  "#$%&'()*+,´
 }/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Queries/HumanResources/EmployeeQuerySql.csrß	
@@ -174,16 +173,17 @@ u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persiste
 !"$%&'Ç"%„
 ç/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/CompanyValidationRepository.cs
  8r9	
- !"#%&()*+,-./012356789:;<=>?@xÇ"%&(35:¯
+ !"#%&()*+,-./012356789:;<=>?@xÇ"%&(35:˚
 à/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/CompanyWriteRepository.cs 8
-rì	!"#$%'()*+,./012356789:;<=>?@ABCDEFGIJKLMOQRSTUWXYZ[\]_`abcdefgijlmnopqrstuvwxyz{|}~ÄÅÇÉÖáàâäãåçéèëíìîxÇJ(*.1256789:;<=>?@ABCDEFIKLOQRTWXZ[_cdepqrstuvwxyz{|}~ÄÅÇÖáãåç¬
+rï	
+ "#$%&()*+,-/012346789:;<=>?@ABCDEFGHJKLMNPRSTUVXYZ[\]^`abcdefghjkmnopqrstuvwxyz{|}~ÄÅÇÉÑÜàâäãåçéèêíìîïxÇK)+/236789:;<=>?@ABCDEFGJLMPRSUXY[\`defqrstuvwxyz{|}~ÄÅÇÉÜàåçé¬
 à/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/EmployeeReadRepository.cs 8r!	
  !#$&'()Ç	!$'ï
 é/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/EmployeeValidationRepository.cs: 8rö
  !"#$&')*+,-./012346789:;<=>?ABCDEGHIJKLMNPQSTUVWXYZ\]^_`bcdefghiklnopqrstuwxyz{}~ÄÅÇÉÑÜáâäãåçéèêíìîïñòôöõúùûü°¢§•¶ß®©™´≠ÆØ∞±≥¥µ∂∑∏π∫ºΩø¿¡¬√ƒ≈∆»… ÀÃŒœ–—“”‘’◊ÿ⁄€‹›ﬁﬂ‡·‚„xÇZ #&')46;HJMPQSWXcehklnrs~ÄÉÜáâçéôõû°¢§®©¥∂πºΩø√ƒœ—‘◊ÿ⁄ﬁﬂÂ
 â/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/EmployeeWriteRepository.csS 8j+67ILORUfknsx{ÄÖàãèìó€‡„ÊÈÏÔÚrÎ	
- !#$%&')*+,-.0123489:;<=?@BDEGJMPSVXYZ[\]^_`bcdegilopqtuvy|}~ÅÇÉÜâåçêëîïòôöõúûü†°£•¶ß®©™´¨≠Ø∞±≤≥µ∂∑∏π∫ºΩæø¿¬√ƒ≈∆«»… ÀÃÕŒœ–“”‘’÷◊Ÿ‹›ﬁ·‰ÁÍÌÛı˜¯˘˙˚¸˝˛ˇÅÇÉÑÖÜáàâäãåçéèêëíìïñòôöõúùûü†°¢£§•¶ß®©™´¨≠ÆØ∞±≤≥¥x
-Ç∞ *,0389<?@BDEGJMPSVX\]^giloptuy|}ÅÇÜâåçëîïôöõû£•©™´∂∏πºæø¿¬∆«ÃÕŒ÷◊Ÿ‹›ﬁ·‰ÁÍÌÛı˜˚¸˝áàãåçéèêïû†£§ß®©™´¨Æ±∞
+ !#$%&')*+,-.0123489:;<=?@BDEGJMPSVXYZ[\]^_`bcdegilopqtuvy|}~ÅÇÉÜâåçêëîïòôöõúûü†°£•¶ß®©™´¨≠Ø∞±≤≥µ∂∑∏π∫ºΩæø¿¬√ƒ≈∆«»… ÀÃÕŒœ–“”‘’÷◊Ÿ‹›ﬁ·‰ÁÍÌÛı˜¯˘˙˚¸˝˛ˇÅÇÉÑÖÜàâäãåçéèêëíìîñóôöõúùûü†°¢£§•¶ß®©™´¨≠ÆØ∞±≤≥¥µx
+Ç∞ *,0389<?@BDEGJMPSVX\]^giloptuy|}ÅÇÜâåçëîïôöõû£•©™´∂∏πºæø¿¬∆«ÃÕŒ÷◊Ÿ‹›ﬁ·‰ÁÍÌÛı˜˚¸˝àâåçéèêëñü°§•®©™´¨≠Ø≤∞
 ä/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/Lookups/HumanResourcesLookupsRepository.cs 8r	
 Ç©
 Ç/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/Lookups/SharedLookupsRepository.cs 8r	

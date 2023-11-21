@@ -182,7 +182,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                     SpecificationEvaluator.Default.GetQuery
                     (
                         _context.Set<PersonDataModel>().AsTracking(),
-                        new PersonByIDWithEmployeeSpec(employee.Id)
+                        new PersonByIDWithEmployeeSpec(employee.Id.Value)
                     ).FirstOrDefaultAsync(cancellationToken);
 
                 if (person is not null)
@@ -260,11 +260,12 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         )
         {
             List<AWC.Infrastructure.Persistence.DataModels.Person.Address> addresses = new();
+
             employee.Addresses.ToList().ForEach(addr =>
                 addresses.Add(
                     new()
                     {
-                        AddressID = addr.Id,
+                        AddressID = addr.Id.Value,
                         AddressLine1 = addr.Location.AddressLine1,
                         AddressLine2 = addr.Location.AddressLine2,
                         City = addr.Location.City,
@@ -288,11 +289,11 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 person.BusinessEntityAddresses.Add(
                     new BusinessEntityAddress
                     {
-                        BusinessEntityID = employee.Id,
-                        AddressID = addr.Id,
+                        BusinessEntityID = employee.Id.Value,
+                        AddressID = addr.Id.Value,
                         Address = new Address
                         {
-                            AddressID = addr.Id,
+                            AddressID = addr.Id.Value,
                             AddressLine1 = addr.Location.AddressLine1,
                             AddressLine2 = addr.Location.AddressLine2,
                             City = addr.Location.City,

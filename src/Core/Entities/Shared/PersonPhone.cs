@@ -1,16 +1,16 @@
-#pragma warning disable CS8618
-
+using AWC.Core.Entities.Shared.EntityIDs;
 using AWC.Core.Entities.Shared.ValueObjects;
+using AWC.Core.Enums;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.Shared
 {
-    public sealed class PersonPhone : Entity<int>
+    public sealed class PersonPhone : Entity<PersonPhoneID>
     {
         private PersonPhone
         (
-            int id,
+            PersonPhoneID id,
             PhoneNumberType phoneType,
             PhoneNumber phoneNumber
         )
@@ -22,7 +22,7 @@ namespace AWC.Core.Entities.Shared
 
         internal static Result<PersonPhone> Create
         (
-            int id,
+            PersonPhoneID id,
             PhoneNumberType phoneNumberType,
             string telephone
         )
@@ -44,15 +44,25 @@ namespace AWC.Core.Entities.Shared
             }
         }
 
-        public PhoneNumberType PhoneNumberType { get; }
+        internal Result<PersonPhone> Update(PhoneNumberType phoneNumberType, string telephone)
+        {
+            try
+            {
+                PhoneNumberType = phoneNumberType;
+                Telephone = PhoneNumber.Create(telephone);
 
-        public PhoneNumber Telephone { get; }
-    }
+                UpdateModifiedDate();
 
-    public enum PhoneNumberType
-    {
-        Cell = 1,
-        Home = 2,
-        Work = 3
+                return this;
+            }
+            catch (Exception ex)
+            {
+                return Result<PersonPhone>.Failure<PersonPhone>(new Error("PersonPhone.Update", Helpers.GetExceptionMessage(ex)));
+            }
+        }
+
+        public PhoneNumberType PhoneNumberType { get; private set; }
+
+        public PhoneNumber Telephone { get; private set; }
     }
 }

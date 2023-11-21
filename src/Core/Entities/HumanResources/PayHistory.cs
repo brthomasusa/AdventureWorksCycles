@@ -1,3 +1,5 @@
+using AWC.Core.Enums;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.HumanResources.ValueObjects;
 using AWC.Core.Entities.Shared.ValueObjects;
 using AWC.SharedKernel.Base;
@@ -5,11 +7,11 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.HumanResources
 {
-    public sealed class PayHistory : Entity<int>
+    public sealed class PayHistory : Entity<PayHistoryID>
     {
         private PayHistory
         (
-            int id,
+            PayHistoryID id,
             DateOfRateChange rateChangeDate,
             RateOfPay rate,
             PayFrequency payFrequency
@@ -23,7 +25,7 @@ namespace AWC.Core.Entities.HumanResources
 
         internal static Result<PayHistory> Create
         (
-            int id,
+            PayHistoryID id,
             DateTime rateChangeDate,
             decimal rate,
             PayFrequency payFrequency
@@ -47,14 +49,8 @@ namespace AWC.Core.Entities.HumanResources
             }
         }
 
-        public DateOfRateChange RateChangeDate { get; }
-        public RateOfPay PayRate { get; }
-        public PayFrequency PayFrequency { get; }
-    }
-
-    public enum PayFrequency
-    {
-        Monthly = 1,
-        BiWeekly = 2
+        public DateOfRateChange RateChangeDate { get; private set; }
+        public RateOfPay PayRate { get; private set; }
+        public PayFrequency PayFrequency { get; private set; }
     }
 }

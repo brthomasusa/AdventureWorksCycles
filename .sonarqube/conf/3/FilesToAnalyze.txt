@@ -2,6 +2,12 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Department.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/DepartmentHistory.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Employee.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/CompanyID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/DepartmentHistoryID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/DepartmentID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/EmployeeID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/PayHistoryID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/ShiftID.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/PayHistory.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Shift.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfBirth.cs
@@ -14,7 +20,6 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Gender.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/JobTitle.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Login.cs
-/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ManagerId.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/MaritalStatus.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/NationalID.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/RateOfPay.cs
@@ -24,6 +29,12 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Vacation.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Address.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Contact.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/AddressID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/BusinessEntityID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/ContactID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/PersonEmailAddressID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/PersonID.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/PersonPhoneID.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Person.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonEmailAddress.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonPhone.cs
@@ -39,6 +50,12 @@
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Suffix.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Title.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/WebsiteUrl.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/AddressType.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/ContactType.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/EmailPromotion.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/NameStyle.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/PayFrequency.cs
+/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/PhoneNumberType.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Exceptions/DomainException.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyValidationRepository.cs
 /home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Interfaces/HumanResources/ICompanyWriteRepository.cs

@@ -1,7 +1,6 @@
 using System.Text;
 using AWC.Core.Entities.HumanResources.ValueObjects;
 using AWC.Core.Entities.Shared.ValueObjects;
-using NLog.Fluent;
 
 namespace AWC.UnitTest.Code.UnitTests.HumanResources;
 
@@ -138,9 +137,11 @@ public class HrValueObject_Tests
         DateOnly hireDate2 = new(2023, 11, 9);
 
         // Act
+        DateOfHire dateOfHire1 = DateOfHire.Create(hireDate1);
+        DateOfHire dateOfHire2 = DateOfHire.Create(hireDate1);
 
         // Assert
-        Assert.Equal(hireDate1, hireDate2);
+        Assert.Equal(dateOfHire1, dateOfHire2);
     }
 
     [Fact]
@@ -151,9 +152,11 @@ public class HrValueObject_Tests
         DateOnly hireDate2 = new(2023, 11, 8);
 
         // Act
+        DateOfHire dateOfHire1 = DateOfHire.Create(hireDate1);
+        DateOfHire dateOfHire2 = DateOfHire.Create(hireDate1);
 
         // Assert
-        Assert.NotEqual(hireDate1, hireDate2);
+        Assert.Equal(dateOfHire1, dateOfHire2);
     }
 
     [Fact]

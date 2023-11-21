@@ -15,7 +15,7 @@ namespace AWC.Core.Entities.Shared.ValueObjects
             Value = phoneNumber;
         }
 
-        public static implicit operator string(PhoneNumber self) => self.Value!;
+        public static implicit operator string(PhoneNumber self) => self.Value;
 
         public static PhoneNumber Create(string phoneNumber)
         {

@@ -1,16 +1,17 @@
 #pragma warning disable CS8618
 
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.HumanResources.ValueObjects;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.HumanResources
 {
-    public sealed class Shift : Entity<int>
+    public sealed class Shift : Entity<ShiftID>
     {
         private Shift
         (
-            int id,
+            ShiftID id,
             ShiftName name,
             ShiftTime startTime,
             ShiftTime endTime
@@ -24,7 +25,7 @@ namespace AWC.Core.Entities.HumanResources
 
         internal static Result<Shift> Create
         (
-            int id,
+            ShiftID id,
             string name,
             int startHour,
             int startMinute,
@@ -34,8 +35,8 @@ namespace AWC.Core.Entities.HumanResources
         {
             try
             {
-                Shift shift = new
-                 (id,
+                Shift shift = new(
+                 id,
                  ShiftName.Create(name),
                  ShiftTime.Create(startHour, startMinute),
                  ShiftTime.Create(endHour, endMinute)

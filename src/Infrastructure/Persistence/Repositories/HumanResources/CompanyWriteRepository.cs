@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
 using AWC.Core.Interfaces.HumanResouces;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
@@ -81,14 +82,14 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 var departments = await _context.Department!.ToListAsync();
                 if (departments.Any())
                 {
-                    departments.ForEach(dept => companyDomainModel.AddDepartment(dept.DepartmentID, dept.Name!, dept.GroupName!));
+                    departments.ForEach(dept => companyDomainModel.AddDepartment(new DepartmentID(dept.DepartmentID), dept.Name!, dept.GroupName!));
                 }
 
                 var shifts = await _context.Shift!.ToListAsync();
                 if (shifts.Any())
                 {
                     shifts.ForEach(shift => companyDomainModel.AddShift(
-                        shift.ShiftID, shift.Name!, shift.StartTime.Hours, shift.StartTime.Minutes, shift.EndTime.Hours, shift.EndTime.Minutes
+                        new ShiftID(shift.ShiftID), shift.Name!, shift.StartTime.Hours, shift.StartTime.Minutes, shift.EndTime.Hours, shift.EndTime.Minutes
                     ));
                 }
 
@@ -110,7 +111,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             try
             {
                 await _context.Company!
-                    .Where(comp => comp.CompanyID == entity.Id)
+                    .Where(comp => comp.CompanyID == entity.Id.Value)
                     .ExecuteUpdateAsync(setters => setters
                         .SetProperty(comp => comp.CompanyName, entity.CompanyName)
                         .SetProperty(comp => comp.LegalName, entity.LegalName!)

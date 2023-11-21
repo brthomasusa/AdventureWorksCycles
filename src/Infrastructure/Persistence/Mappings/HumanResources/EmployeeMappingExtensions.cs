@@ -1,7 +1,10 @@
 #pragma warning disable CS8604
 
 using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.Shared;
+using AWC.Core.Entities.Shared.EntityIDs;
+using AWC.Core.Enums;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.SharedKernel.Utilities;
@@ -14,7 +17,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
         {
             return Employee.Create
             (
-                person!.BusinessEntityID,
+                new EmployeeID(person!.BusinessEntityID),
                 person!.PersonType!,
                 person!.NameStyle ? NameStyle.Eastern : NameStyle.Western,
                 person!.Title,
@@ -22,7 +25,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 person!.LastName!,
                 person!.MiddleName!,
                 person!.Suffix,
-                person!.Employee!.ManagerID,
+                new EmployeeID(person!.Employee!.ManagerID),
                 person!.Employee!.NationalIDNumber!,
                 person!.Employee!.LoginID!,
                 person!.Employee!.JobTitle!,
@@ -43,11 +46,11 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             {
                 Result<DepartmentHistory> result = employee.AddDepartmentHistory
                 (
-                    department.BusinessEntityID,
-                    department.DepartmentID,
-                    department.ShiftID,
+                    new DepartmentHistoryID(department.BusinessEntityID),
+                    new DepartmentID(department.DepartmentID),
+                    new ShiftID(department.ShiftID),
                     DateOnly.FromDateTime(department.StartDate),
-                    department.EndDate
+                    DateOnly.FromDateTime((DateTime)department.EndDate!)
                 );
 
                 if (result.IsFailure)
@@ -62,7 +65,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             foreach (EmployeePayHistory pay in person!.Employee!.PayHistories)
             {
                 Result<PayHistory> result = employee.AddPayHistory(
-                    pay.BusinessEntityID,
+                    new PayHistoryID(pay.BusinessEntityID),
                     pay.RateChangeDate,
                     pay.Rate,
                     (PayFrequency)pay.PayFrequency
@@ -82,9 +85,8 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 Result<Core.Entities.Shared.Address> result =
                     employee.AddAddress
                     (
-                        bea.AddressID,
-                        bea.BusinessEntityID,
-                        (Core.Entities.Shared.AddressType)bea.AddressTypeID,
+                        new AddressID(bea.AddressID),
+                        (Core.Enums.AddressType)bea.AddressTypeID,
                         bea.Address!.AddressLine1!,
                         bea.Address.AddressLine2,
                         bea.Address!.City!,
@@ -106,8 +108,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
                 Result<PersonEmailAddress> result =
                     employee.AddEmailAddress
                     (
-                        email.BusinessEntityID,
-                        email.EmailAddressID,
+                        new PersonEmailAddressID(email.EmailAddressID),
                         email.MailAddress!
                     );
 
@@ -124,8 +125,8 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             {
                 Result<Core.Entities.Shared.PersonPhone> result = employee.AddPhoneNumber
                 (
-                        phone.BusinessEntityID,
-                        (Core.Entities.Shared.PhoneNumberType)phone.PhoneNumberTypeID,
+                        new PersonPhoneID(phone.BusinessEntityID),
+                        (Core.Enums.PhoneNumberType)phone.PhoneNumberTypeID,
                         phone.PhoneNumber!
                 );
 

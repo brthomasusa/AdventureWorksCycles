@@ -6,7 +6,7 @@
       "tool": {
         "name": "Microsoft (R) Visual C# Compiler",
         "version": "4.7.0.0",
-        "fileVersion": "4.7.0-3.23465.3 (b5c9211b)",
+        "fileVersion": "4.7.0-3.23517.17 (9d4cc030)",
         "semanticVersion": "4.7.0",
         "language": "en-US"
       },
@@ -26,30 +26,6 @@
                   "startLine": 31,
                   "startColumn": 39,
                   "endLine": 31,
-                  "endColumn": 55
-                }
-              }
-            }
-          ],
-          "properties": {
-            "warningLevel": 1
-          }
-        },
-        {
-          "ruleId": "CS8604",
-          "level": "warning",
-          "message": "Possible null reference argument for parameter 'input' in 'string GuardClauseExtensions.NullOrEmpty(IGuardClause guardClause, string input, string? message = null, string? parameterName = null)'.",
-          "suppressionStates": [
-            "suppressedInSource"
-          ],
-          "locations": [
-            {
-              "resultFile": {
-                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
-                "region": {
-                  "startLine": 46,
-                  "startColumn": 39,
-                  "endLine": 46,
                   "endColumn": 55
                 }
               }
@@ -123,6 +99,30 @@
                   "startColumn": 234,
                   "endLine": 97,
                   "endColumn": 236
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Possible null reference argument for parameter 'input' in 'string GuardClauseExtensions.NullOrEmpty(IGuardClause guardClause, string input, string? message = null, string? parameterName = null)'.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Server/Extensions/ServiceExtensions.cs",
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 39,
+                  "endLine": 46,
+                  "endColumn": 55
                 }
               }
             }

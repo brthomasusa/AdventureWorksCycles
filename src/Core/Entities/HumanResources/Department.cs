@@ -1,16 +1,17 @@
 #pragma warning disable CS8618
 
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.Shared.ValueObjects;
 using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.HumanResources
 {
-    public sealed class Department : Entity<int>
+    public sealed class Department : Entity<DepartmentID>
     {
         private Department
         (
-            int id,
+            DepartmentID id,
             OrganizationName name,
             OrganizationName groupName
         )
@@ -20,10 +21,13 @@ namespace AWC.Core.Entities.HumanResources
             GroupName = groupName;
         }
 
-        internal static Result<Department> Create(int id, string name, string groupName)
+        internal static Result<Department> Create(DepartmentID id, string name, string groupName)
         {
             try
             {
+                ArgumentNullException.ThrowIfNull(name);
+                ArgumentNullException.ThrowIfNull(groupName);
+
                 Department dept = new
                 (
                     id,
@@ -43,6 +47,9 @@ namespace AWC.Core.Entities.HumanResources
         {
             try
             {
+                ArgumentNullException.ThrowIfNull(name);
+                ArgumentNullException.ThrowIfNull(groupName);
+
                 Name = OrganizationName.Create(name);
                 GroupName = OrganizationName.Create(groupName);
                 UpdateModifiedDate();

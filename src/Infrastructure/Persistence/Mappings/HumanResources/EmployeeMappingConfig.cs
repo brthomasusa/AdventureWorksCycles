@@ -1,7 +1,8 @@
 #pragma warning disable S4830
 
+using AWC.Core.Enums;
 using AWC.Core.Entities.HumanResources;
-using AWC.Core.Entities.Shared;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.SharedKernel.Utilities;
@@ -37,8 +38,10 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             .Map(dest => dest.BusinessEntityID, src => src.Id)
             .Map(dest => dest.DepartmentID, src => src.DepartmentID)
             .Map(dest => dest.ShiftID, src => src.ShiftID)
-            .Map(dest => dest.StartDate, src => src.StartDate.ToDateTime(TimeOnly.MinValue))
-            .Map(dest => dest.EndDate, src => new DateTime(src.EndDate!.Value.Year, src.EndDate.Value.Month, src.EndDate.Value.Day, 0, 0, 0, DateTimeKind.Local), srcCond => srcCond.EndDate != null)
+            .Map(dest => dest.StartDate, src => src.StartDate.Value.ToDateTime(TimeOnly.MinValue))
+            .Map(dest => dest.EndDate, src => new DateTime(((DateOnly)src.EndDate!.Value!).Year,
+                                                           ((DateOnly)src.EndDate!.Value).Month,
+                                                           ((DateOnly)src.EndDate!.Value).Day, 0, 0, 0, DateTimeKind.Local), srcCond => srcCond.EndDate != null)
             .Ignore(dest => dest.EndDate!);
 
             _ = config.NewConfig<PayHistory, EmployeePayHistory>()
@@ -64,7 +67,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
 
             _ = config.NewConfig<Employee, EmployeeDataModel>()
             .Map(dest => dest.BusinessEntityID, src => src.Id)
-            .Map(dest => dest.ManagerID, src => src.ManagerID)
+            .Map(dest => dest.ManagerID, src => src.ManagerID.Value)
             .Map(dest => dest.NationalIDNumber, src => src.NationalIDNumber.Value)
             .Map(dest => dest.BusinessEntityID, src => src.Id)
             .Map(dest => dest.LoginID, src => src.LoginID.Value)
@@ -81,33 +84,6 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
             .Map(dest => dest.PayHistories, src => src.PayHistories)
             .Ignore(dest => dest.DepartmentHistories)
             .Ignore(dest => dest.PayHistories);
-
-            _ = TypeAdapterConfig<PersonDataModel, Result<Employee>>.NewConfig()
-                .ConstructUsing(src =>
-                    Employee.Create
-                    (
-                        src.BusinessEntityID,
-                        src.PersonType!,
-                        src.NameStyle ? NameStyle.Eastern : NameStyle.Western,
-                        src.Title,
-                        src.FirstName!,
-                        src.LastName!,
-                        src.MiddleName!,
-                        src.Suffix,
-                        src.Employee!.ManagerID,
-                        src.Employee!.NationalIDNumber!,
-                        src.Employee!.LoginID!,
-                        src.Employee!.JobTitle!,
-                        DateOnly.FromDateTime(src.Employee!.BirthDate),
-                        src.Employee!.MaritalStatus!,
-                        src.Employee!.Gender!,
-                        DateOnly.FromDateTime(src.Employee!.HireDate),
-                        src.Employee!.SalariedFlag,
-                        src.Employee!.VacationHours,
-                        src.Employee!.SickLeaveHours,
-                        src.Employee!.CurrentFlag
-                    )
-                );
         }
     }
 }

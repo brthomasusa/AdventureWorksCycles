@@ -1,6 +1,10 @@
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.HumanResources.ValueObjects;
 using AWC.Core.Entities.Shared;
+using AWC.Core.Entities.Shared.EntityIDs;
 using AWC.Core.Entities.Shared.ValueObjects;
+using AWC.Core.Enums;
+using AWC.SharedKernel.Base;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.HumanResources
@@ -12,14 +16,14 @@ namespace AWC.Core.Entities.HumanResources
 
         protected Employee
         (
-            int employeeID,
+            EmployeeID employeeID,
             PersonType personType,
             NameStyle nameStyle,
             Title title,
             PersonName name,
             Suffix suffix,
             EmailPromotion emailPromotionEnum,
-            ManagerId managerID,
+            EmployeeID managerID,
             NationalID nationalID,
             Login login,
             JobTitle jobTitle,
@@ -32,7 +36,7 @@ namespace AWC.Core.Entities.HumanResources
             SickLeave sickLeave,
             EmploymentStatus active
 
-        ) : base(employeeID, personType, nameStyle, title, name, suffix, emailPromotionEnum)
+        ) : base(new PersonID(employeeID.Value), personType, nameStyle, title, name, suffix, emailPromotionEnum)
         {
             ManagerID = managerID;
             NationalIDNumber = nationalID;
@@ -52,7 +56,7 @@ namespace AWC.Core.Entities.HumanResources
 
         public static Result<Employee> Create
         (
-            int employeeID,
+            EmployeeID employeeID,
             string personType,
             NameStyle nameStyle,
             string? title,
@@ -60,7 +64,7 @@ namespace AWC.Core.Entities.HumanResources
             string lastName,
             string? middleName,
             string? suffix,
-            int managerID,
+            EmployeeID managerID,
             string nationalID,
             string login,
             string jobTitle,
@@ -84,7 +88,7 @@ namespace AWC.Core.Entities.HumanResources
                     PersonName.Create(lastName, firstName, middleName!),
                     Suffix.Create(suffix!),
                     EmailPromotion.None,
-                    ManagerId.Create(managerID),
+                    managerID,
                     NationalID.Create(nationalID),
                     Login.Create(login),
                     JobTitle.Create(jobTitle),
@@ -158,7 +162,7 @@ namespace AWC.Core.Entities.HumanResources
             }
         }
 
-        public ManagerId ManagerID { get; }
+        public EmployeeID ManagerID { get; }
 
         public NationalID NationalIDNumber { get; private set; }
 
@@ -186,34 +190,37 @@ namespace AWC.Core.Entities.HumanResources
 
         public Result<DepartmentHistory> AddDepartmentHistory
         (
-            int id,
-            int departmentId,
-            int shiftId,
+            DepartmentHistoryID id,
+            DepartmentID departmentId,
+            ShiftID shiftId,
             DateOnly startDate,
-            DateTime? endDate
+            DateOnly? endDate
         )
         {
             try
             {
-                DepartmentHistory? search = _deptHistories.Find(dept => dept.DepartmentID == id && dept.ShiftID == shiftId && dept.StartDate == startDate);
+                bool search = _deptHistories.Exists(deptHistory => deptHistory.DepartmentID.Value == departmentId.Value && deptHistory.ShiftID.Value == shiftId.Value && deptHistory.StartDate == startDate);
 
-                if (search is null)
-                {
-                    Result<DepartmentHistory> result = DepartmentHistory.Create(id, departmentId, shiftId, startDate, endDate);
-                    if (result.IsSuccess)
-                    {
-                        _deptHistories.Add(result.Value);
-                        return result.Value;
-                    }
-                    else
-                    {
-                        return Result<DepartmentHistory>.Failure<DepartmentHistory>(new Error("Employee.AddDepartmentHistory", result.Error.Message));
-                    }
-                }
-                else
-                {
+                if (search)
                     return Result<DepartmentHistory>.Failure<DepartmentHistory>(new Error("Employee.AddDepartmentHistory", "This is a duplicate department history."));
-                }
+
+                Result<DepartmentHistory> result = DepartmentHistory.Create
+                (
+                    id,
+                    departmentId,
+                    shiftId,
+                    startDate,
+                    endDate
+                );
+
+                if (result.IsFailure)
+                    return Result<DepartmentHistory>.Failure<DepartmentHistory>(new Error("Employee.AddDepartmentHistory", result.Error.Message));
+
+                if (id.Value == 0)
+                    result.Value.EntityStatus = EntityStatus.Added;
+
+                _deptHistories.Add(result.Value);
+                return result;
             }
             catch (Exception ex)
             {
@@ -225,7 +232,7 @@ namespace AWC.Core.Entities.HumanResources
 
         public Result<PayHistory> AddPayHistory
         (
-            int id,
+            PayHistoryID id,
             DateTime rateChangeDate,
             decimal rate,
             PayFrequency payFrequency
@@ -233,24 +240,23 @@ namespace AWC.Core.Entities.HumanResources
         {
             try
             {
-                PayHistory? search = _payHistories.Find(pay => pay.Id == id && pay.RateChangeDate == rateChangeDate && pay.PayRate.Value.Amount == rate);
+                bool found = _payHistories.Exists(pay => pay.Id.Value == id.Value && pay.RateChangeDate == rateChangeDate && pay.PayRate.Value.Amount == rate);
 
-                if (search is null)
+                if (found)
+                    return Result<PayHistory>.Failure<PayHistory>(new Error("Employee.AddPayHistory", "This is a duplicate pay history."));
+
+                Result<PayHistory> result = PayHistory.Create(id, rateChangeDate, rate, payFrequency);
+                if (result.IsSuccess)
                 {
-                    Result<PayHistory> result = PayHistory.Create(id, rateChangeDate, rate, payFrequency);
-                    if (result.IsSuccess)
-                    {
-                        _payHistories.Add(result.Value);
-                        return result.Value;
-                    }
-                    else
-                    {
-                        return Result<PayHistory>.Failure<PayHistory>(new Error("Employee.AddPayHistory", result.Error.Message));
-                    }
+                    if (id.Value == 0)
+                        result.Value.EntityStatus = EntityStatus.Added;
+
+                    _payHistories.Add(result.Value);
+                    return result.Value;
                 }
                 else
                 {
-                    return Result<PayHistory>.Failure<PayHistory>(new Error("Employee.AddPayHistory", "This is a duplicate pay history."));
+                    return Result<PayHistory>.Failure<PayHistory>(new Error("Employee.AddPayHistory", result.Error.Message));
                 }
             }
             catch (Exception ex)

@@ -6,7 +6,7 @@
       "tool": {
         "name": "Microsoft (R) Visual C# Compiler",
         "version": "4.7.0.0",
-        "fileVersion": "4.7.0-3.23465.3 (b5c9211b)",
+        "fileVersion": "4.7.0-3.23517.17 (9d4cc030)",
         "semanticVersion": "4.7.0",
         "language": "en-US"
       },
@@ -47,9 +47,9 @@
               "resultFile": {
                 "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingExtensions.cs",
                 "region": {
-                  "startLine": 144,
+                  "startLine": 145,
                   "startColumn": 28,
-                  "endLine": 144,
+                  "endLine": 145,
                   "endColumn": 50
                 }
               }
@@ -71,9 +71,9 @@
               "resultFile": {
                 "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Mappings/HumanResources/EmployeeMappingExtensions.cs",
                 "region": {
-                  "startLine": 148,
+                  "startLine": 149,
                   "startColumn": 29,
-                  "endLine": 148,
+                  "endLine": 149,
                   "endColumn": 52
                 }
               }
@@ -95,9 +95,9 @@
               "resultFile": {
                 "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/CompanyWriteRepository.cs",
                 "region": {
-                  "startLine": 23,
+                  "startLine": 24,
                   "startColumn": 34,
-                  "endLine": 23,
+                  "endLine": 24,
                   "endColumn": 41
                 }
               }
@@ -143,9 +143,9 @@
               "resultFile": {
                 "uri": "file:///home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Infrastructure/Persistence/Repositories/HumanResources/EmployeeWriteRepository.cs",
                 "region": {
-                  "startLine": 305,
+                  "startLine": 306,
                   "startColumn": 14,
-                  "endLine": 305,
+                  "endLine": 306,
                   "endColumn": 15
                 }
               }

@@ -1,16 +1,23 @@
-¡
-_/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Company.cs_ 8/r”	
- !"#$%'()*+,-./0123456789:;<=>?@ABCDEFGHIKLMNOPQSTUVWXYZ[\]^_`abcdefghijklmnoprstuvwxz{|}~€ƒ…†‡ˆ‰Š‹‘“”•–—™š›œŸ¡¢£¤¥¦§©ª«­¯°²³´µ¶·¸º»¼½¾ÀÁÃÄÅÆÇÈÉÊÌÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜŞßáâãåçèêëìíîïğñóôõö÷øùúûüışÿ€ƒ„…‡ˆŠ‹Œ‘“”•–—˜™›œŸ¡¢¤¥¦§¨©ª«¬­x‚› !"#$ABCDEFGHKOijklmnoprvƒ‰Š‹‘“•–™¥¦§©ª«­¯°²¶¾ÀÁÃÄÈÌÚÛÜáâãåçèêëïÿ€ƒ„…Š‹Œ‘“—Ÿ¡¢¤¥©´
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Department.cs 8r5	
- "#$%&'(*+,-./02345678:<=>x‚"&./026Å
-i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/DepartmentHistory.cs 8r<	
- !"#$%&'()*+,-.012345789:<=>?@ABx‚')*+,-3>?Ç
-`/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Employee.cs: 8)ræ	
- !#$%&'()*+,-./02356789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcefghijkmnopqrstuvwxyz{|}~€‚ƒ„…†ˆ‰‹Œ‘’“”•—˜™š›œŸ¡£¥§©«­¯±³µ·¹»¼½¾¿ÀÁÂÃÄÅÆÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞàâãäåæçèéêëìîïğñòóôõö÷øùúûüışÿ€‚ƒ„†‡‰Š‹Œx‚o%&'()*+,-./02QSTUVWXYZ[\]^`abei†ˆ‰‹Œ‘’“”•—˜™¹ÆÈÊËÍÎÒ×Üàìîğñóôøı‚‰Š´
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/PayHistory.cs 8r8	
- !"#$%&'()*+,-./02345789:;<x‚	%&'*.¾
-]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Shift.cs 	8	rA	
- !"#$%&'()*,-./012456789:;=>?@ABCEGIJKx‚'(),089:;=A©
+™
+_/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Company.cs[ 83r	
+ !"#$&'()*+,-./0123456789:;<=>?@ABCDEFGHJKLMNOPRSTUVWXYZ[\]^_`abcdefghjklmnopqstuvwxy{|}~€‚„†‡ˆ‰Š‹’“”•–˜™š›œ ¡¢£¤¦§©ª¬®¯±²³´µ¶·¹º»¼½¿ÀÂÃÄÅÆÇÈÉËÍÎÏĞÑÒÓÔÕÖ×ØÙÚÜİßàâãåçèêëìíîïğñóôõö÷øùúûüışÿ€ƒ„†‡‰ŠŒ‘’“”•–—™š›œŸ ¢£¤¥¦§¨©ª«x‚š !"#@ABCDEFGJNhjklmnopqsw„Š‹’”•˜œ¤¦§©ª¬®¯±µ½¿ÀÂÃÇËÙÚÜİßàâãåçèêëïÿ€ƒ„†‡‰ŠŒ‘•Ÿ ¢£§½
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Department.cs 8r:	
+ !"#$&'()*+,./01235679:;<=>?ACDEx‚"#&*235679=Ã
+i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/DepartmentHistory.cs 8
+r=	
+ !"#$%&'()*+,-./12345689:;=>?@ABCx‚(-.4?@Ï
+`/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Employee.cs> 8+ræ
+ !"#$%'()*+,-./01234679:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefgijklmnoqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰ŠŒ‘’“”•–—˜™›œŸ ¡¢£¥§©«­¯±³µ·¹»½¿ÀÁÂÃÄÅÆÇÈÉÊÌÍÏĞÑÒÓÔÕÖØÙÛÜŞßàáâãäåçéêëìíîïğñòóõöøùúûüşÿ€‚ƒ„…†‡ˆ‰ŠŒ‘’“x‚w')*+,-./012346UWXYZ\]^_`abdefimŠŒ‘’“”•–—˜™›œ¡½ÊÌÍÏØÙÛÜŞßãçóõöøùûüşÿƒˆy
+k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/CompanyID.csr	ƒ
+u/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/DepartmentHistoryID.csr	|
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/DepartmentID.csr	z
+l/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/EmployeeID.csr	|
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/PayHistoryID.csr	u
+i/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/EntityIDs/ShiftID.csr	±
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/PayHistory.cs 8	r5	
+ !"#$%&'()*+,-./01245678x‚	'(),0¿
+]/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/Shift.cs 	8	rB	
+ !"#$%&'()*+-./012356789:;<>?@ABCDFHJKLx‚()*-19:;<>B©
 p/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfBirth.cs 8r	
 !"#$%&x‚	#¨
 o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/DateOfHire.cs 8r	
@@ -27,9 +34,7 @@ k/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanReso
  !"#$%x‚	"
 m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/JobTitle.cs 8r
  !"‚š
-j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Login.cs 8r	 !‚›
-n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/ManagerId.cs 8r
-‚ª
+j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Login.cs 8r	 !‚ª
 r/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/MaritalStatus.cs 8r	
  "#$%&'x‚	$ª
 o/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/NationalID.cs 8r!	!"$%&'()x‚	&¥
@@ -41,20 +46,24 @@ n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanReso
 n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/SickLeave.cs 8r	
  !x‚ 
 m/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/HumanResources/ValueObjects/Vacation.cs 8r	
- !x‚Ì
-W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Address.cs 8
-rU	
- !"#$%&'()*+,-.012345689:;<=>?@ABCDEGIJKLMNOQRSTVWXYZ[\]^_x‚*+,-04DEGIMÂ
-W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Contact.cs 8
-rO	
- !"#$%&'()*+,-./0123579:;<=>@ABCDEFGHIJKLMNOPQRSTUVWx‚+-./012;<È
-V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Person.cs9 8$r‰	
-!"#$%&'()*+,-./0123456789:;=>?@ABCDFHJLNPRTUVWXYZ[\]^_`abcdeghijlmopqrstuvxyz{|}~€‚ƒ„…†‡ˆ‰‹Œ‘’”•–—˜™šœŸ ¡¢£¤¦¨©«­®¯°±²³µ·¸¹º»¼½¿ÀÂÄÅÇÉÊËÌÍÎÏĞÒÓÔÕÖØÙÚÛÜİŞx‚W/012346:=>BRbdglmopt†ˆ‹Œ‘’”˜œ¢£¤¦¨©«­±µ»¼½¿ÀÂÄÅÇÉÍª
-b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonEmailAddress.cs	 8r-	
- !#$%&'()+-/012345x‚
- #'12¥
-[/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonPhone.cs 8r2	
- !"#$%'()*+,-/12456789:x‚#$'+½
+ !x‚¼
+W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Address.cs 8	rH	
+ !"#$%&'()*+-./012356789:;<=>?@ABDFGHIJKLNOPQx‚)*-1ABDFJ©
+W/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Contact.cs 8
+r6	
+ !"#$%&'()*+,-./0135789:;<=x‚*+,-./09:q
+c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/AddressID.csr	x
+j/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/BusinessEntityID.csr	q
+c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/ContactID.csr	|
+n/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/PersonEmailAddressID.csr	p
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/PersonID.csr	u
+g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/EntityIDs/PersonPhoneID.csr	ú
+V/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Person.csz 8;jcjrÄ	
+ !#$%&'()*+,-./0123456789:;<=?@ABCDEFHJLNPRTVWXYZ[\]^_`abdefghklmnpqrsuvxz{|}~€ƒ„…†‡ˆ‰Š‹Œ’“•–—˜š›Ÿ ¢£¥¦¨©ª«¬­®°±²³´¶·¹º»¼½¾¿ÀÂÄÅÆÇÈÉÊÌÍÎĞÒÓÕ×ØÚÛÜİŞßàâãäåæçèêëìîğòóôõö÷øúûüış€ƒ„…†‡ˆ‰Š‘’“”•–˜™šœŸ¢¤¥¦§¨©ª¬­®¯°±²´¶·¹»¼¿ÁÂÃÄÅÆÇÉÊËÌÍÏĞÒÓÔÕÖ×ØÙÚÛx,‚É 1234568<?@DTdfgklmnpuvxz{’“•–—˜š›¢£¥¦¨¬´¶·¹º¾ÂÈÉÊÌÍÎĞÒÓÕ×ØÚŞæçèêëìîğõ÷ş€ƒ„ˆ”•–˜™šœŸ¢¤¨°±²´¶·¹»¼¿ÁÅÍÏĞÒÓ×®
+b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonEmailAddress.cs 8r2	
+ !"#$%&()*+,.01234568:<=x‚	 $,.04´
+[/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/PersonPhone.cs 8r<	
+ !"#$%'()*+,-/01234689:;<=>@BCDx‚#$'+3468<½
 f/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/AddressVO.cs 	8
 r1	
 !"#$&')*,./023456789:;x‚#$&')*,./45678™
@@ -79,7 +88,15 @@ c/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/Va
  !"x‚”
 b/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/Title.cs 8r	 !x‚¡
 g/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Entities/Shared/ValueObjects/WebsiteUrl.cs 8r!	
- !"#%&()*+,-x‚!*n
+ !"#%&()*+,-x‚!*a
+Q/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/AddressType.csr	
+o
+Q/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/ContactType.csr	
+a
+T/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/EmailPromotion.csr		[
+O/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/NameStyle.csr^
+R/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/PayFrequency.csrb
+U/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Enums/PhoneNumberType.csr		n
 Z/home/bthomas/Projects/NetCore/AdventureWorksCycles/src/Core/Exceptions/DomainException.cs 8r
 	
 „

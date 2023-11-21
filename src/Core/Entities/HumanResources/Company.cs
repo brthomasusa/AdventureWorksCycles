@@ -1,5 +1,4 @@
-#pragma warning disable CS8618
-
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Entities.HumanResources.ValueObjects;
 using AWC.Core.Entities.Shared.ValueObjects;
 using AWC.SharedKernel.Base;
@@ -7,16 +6,16 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Core.Entities.HumanResources
 {
-    public sealed class Company : AggregateRoot<int>
+    public sealed class Company : AggregateRoot<CompanyID>
     {
         private readonly List<Department> _departments = new();
         private readonly List<Shift> _shifts = new();
 
         private Company
         (
-            int companyId,
+            CompanyID companyId,
             OrganizationName companyName,
-            OrganizationName? legalName,
+            OrganizationName legalName,
             EmployerIdentificationNumber ein,
             WebsiteUrl companyWebSite,
             AddressVO postalAddress,
@@ -40,7 +39,7 @@ namespace AWC.Core.Entities.HumanResources
         (
             int companyId,
             string companyName,
-            string legalName,
+            string? legalName,
             string ein,
             string companyWebSite,
             string mailLine1,
@@ -61,8 +60,8 @@ namespace AWC.Core.Entities.HumanResources
             {
                 Company company = new
                 (
-                    companyId,
-                    OrganizationName.Create(companyName),
+                    new CompanyID(companyId),
+                    OrganizationName.Create(companyName ?? throw new ArgumentNullException(nameof(companyName))),
                     OrganizationName.Create(legalName!),
                     EmployerIdentificationNumber.Create(ein),
                     WebsiteUrl.Create(companyWebSite!),
@@ -102,6 +101,8 @@ namespace AWC.Core.Entities.HumanResources
         {
             try
             {
+                ArgumentNullException.ThrowIfNull(companyName);
+
                 CompanyName = OrganizationName.Create(companyName);
                 LegalName = OrganizationName.Create(legalName);
                 EIN = EmployerIdentificationNumber.Create(ein);
@@ -120,9 +121,9 @@ namespace AWC.Core.Entities.HumanResources
         }
 
         public OrganizationName CompanyName { get; private set; }
-        public OrganizationName? LegalName { get; private set; }
+        public OrganizationName LegalName { get; private set; }
         public EmployerIdentificationNumber EIN { get; private set; }
-        public WebsiteUrl? CompanyWebSite { get; private set; }
+        public WebsiteUrl CompanyWebSite { get; private set; }
         public AddressVO PostalAddress { get; private set; }
         public AddressVO DeliveryAddress { get; private set; }
         public PhoneNumber Telephone { get; private set; }
@@ -130,16 +131,14 @@ namespace AWC.Core.Entities.HumanResources
 
         public IReadOnlyCollection<Department> Departments => _departments.AsReadOnly();
 
-        public Result AddDepartment(int id, string name, string groupName)
+        public Result AddDepartment(DepartmentID id, string name, string groupName)
         {
             try
             {
-                Department? dupeID = _departments.Find(dept => dept.Id == id);
-                if (dupeID is not null)
+                if (_departments.Exists(dept => dept.Id.Value == id.Value && id.Value != 0))
                     return Result.Failure(new Error("Company.AddDepartment", $"There is already a department with ID {id}."));
 
-                Department? dupeName = _departments.Find(dept => dept.Name == name);
-                if (dupeName is not null)
+                if (_departments.Exists(dept => string.Equals(dept.Name, name, StringComparison.OrdinalIgnoreCase)))
                     return Result.Failure(new Error("Company.AddDepartment", $"There is already a department with department name {name}."));
 
                 Result<Department> result = Department.Create(id, name, groupName);
@@ -158,17 +157,17 @@ namespace AWC.Core.Entities.HumanResources
             }
         }
 
-        public Result UpdateDepartment(int id, string name, string groupName)
+        public Result UpdateDepartment(DepartmentID id, string name, string groupName)
         {
             try
             {
-                Department? dupeName = _departments.Find(dept => dept.Name == name);
-                if (dupeName is not null && dupeName.Id != id)
-                    return Result.Failure(new Error("Company.UpdateDepartment", "Updating this department would result in two departments with the same name."));
+                Department? search = _departments.Find(dept => dept.Id.Value == id.Value);
 
-                Department? search = _departments.Find(dept => dept.Id == id);
                 if (search is null)
                     return Result.Failure(new Error("Company.UpdateDepartment", $"Update failed, could not locate department with ID {id}."));
+
+                if (_departments.Exists(dept => string.Equals(dept.Name, name, StringComparison.OrdinalIgnoreCase) && dept.Id.Value != id.Value))
+                    return Result.Failure(new Error("Company.UpdateDepartment", "Updating this department would result in two departments with the same name."));
 
                 Result<Department> result = search.Update(name, groupName);
 
@@ -183,16 +182,16 @@ namespace AWC.Core.Entities.HumanResources
             }
         }
 
-        public Result DeleteDepartment(int id)
+        public Result DeleteDepartment(DepartmentID id)
         {
             try
             {
-                Department? search = _departments.Find(dept => dept.Id == id);
+                Department? search = _departments.Find(dept => dept.Id.Value == id.Value);
 
                 if (search is null)
                     return Result.Failure(new Error("Company.DeleteDepartment", $"Delete failed, could not locate department with ID {id}."));
 
-                _departments.Remove(search);
+                search.EntityStatus = EntityStatus.Deleted;
                 return Result.Success();
             }
             catch (Exception ex)
@@ -205,7 +204,7 @@ namespace AWC.Core.Entities.HumanResources
 
         public Result AddShift
         (
-            int id,
+            ShiftID id,
             string name,
             int startHour,
             int startMinute,
@@ -215,16 +214,17 @@ namespace AWC.Core.Entities.HumanResources
         {
             try
             {
-                Shift? searchID = _shifts.Find(shift => shift.Id == id);
-                if (searchID is not null)
+                if (_shifts.Exists(shift => shift.Id.Value == id.Value && id.Value != 0))
                     return Result.Failure(new Error("Company.AddShift", $"A shift with ID {id} already exists."));
 
-                TimeOnly startTime = new(startHour, startMinute);
-                TimeOnly endTime = new(endHour, endMinute);
+                if (_shifts.Exists(shift => string.Equals(shift.Name, name, StringComparison.OrdinalIgnoreCase)))
+                    return Result.Failure(new Error("Company.AddShift", $"A shift with name {name} already exists."));
 
-                Shift? searchHours = _shifts.Find(shift => shift.StartTime == startTime && shift.EndTime == endTime);
-                if (searchHours is not null)
-                    return Result.Failure(new Error("Company.AddShift", "A shift with these hours already exists."));
+                ShiftTime startTime = ShiftTime.Create(startHour, startMinute);
+                ShiftTime endTime = ShiftTime.Create(endHour, endMinute);
+
+                if (_shifts.Exists(shift => shift.StartTime.Equals(startTime) && shift.EndTime.Equals(endTime)))
+                    return Result.Failure(new Error("Company.AddShift", "A shift with the same start and end time already exists."));
 
                 Result<Shift> result = Shift.Create(id, name, startHour, startMinute, endHour, endMinute);
 
@@ -242,7 +242,7 @@ namespace AWC.Core.Entities.HumanResources
 
         public Result UpdateShift
         (
-            int id,
+            ShiftID id,
             string name,
             int startHour,
             int startMinute,
@@ -252,20 +252,18 @@ namespace AWC.Core.Entities.HumanResources
         {
             try
             {
-                Shift? search = _shifts.Find(shift => shift.Id == id);
+                Shift? search = _shifts.Find(shift => shift.Id.Value == id.Value);
                 if (search is null)
                     return Result.Failure(new Error("Company.UpdateShift", $"Update failed, could not locate shift with ID {id}."));
 
-                Shift? searchName = _shifts.Find(shift => string.Equals(shift.Name, name, StringComparison.OrdinalIgnoreCase));
-                if (searchName is not null && searchName.Id != id)
-                    return Result.Failure(new Error("Company.UpdateShift", $"Update failed, an existing shift already has this name: {name}."));
+                if (_shifts.Exists(shift => string.Equals(shift.Name, name, StringComparison.OrdinalIgnoreCase) && shift.Id.Value != id.Value))
+                    return Result.Failure(new Error("Company.AddShift", $"A shift with name {name} already exists."));
 
-                TimeOnly startTime = new(startHour, startMinute);
-                TimeOnly endTime = new(endHour, endMinute);
+                ShiftTime startTime = ShiftTime.Create(startHour, startMinute);
+                ShiftTime endTime = ShiftTime.Create(endHour, endMinute);
 
-                Shift? searchHours = _shifts.Find(shift => shift.StartTime == startTime && shift.EndTime == endTime);
-                if (searchHours is not null && searchHours.Id != id)
-                    return Result.Failure(new Error("Company.UpdateShift", "A shift with these hours already exists."));
+                if (_shifts.Exists(shift => shift.StartTime.Equals(startTime) && shift.EndTime.Equals(endTime) && shift.Id.Value != id.Value))
+                    return Result.Failure(new Error("Company.AddShift", "A shift with the same start and end time already exists."));
 
                 Result<Shift> result = search.Update(name, startHour, startMinute, endHour, endMinute);
 
@@ -280,16 +278,16 @@ namespace AWC.Core.Entities.HumanResources
             }
         }
 
-        public Result DeleteShift(int id)
+        public Result DeleteShift(ShiftID id)
         {
             try
             {
-                Shift? search = _shifts.Find(shift => shift.Id == id);
+                Shift? search = _shifts.Find(shift => shift.Id.Value == id.Value);
 
                 if (search is null)
                     return Result.Failure(new Error("Company.DeleteShift", $"Delete failed, could not locate shift with ID {id}."));
 
-                _shifts.Remove(search);
+                search.EntityStatus = EntityStatus.Deleted;
                 return Result.Success();
             }
             catch (Exception ex)

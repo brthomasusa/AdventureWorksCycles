@@ -1,5 +1,8 @@
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
+using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.HumanResources.EntityIDs;
+using AWC.Core.Enums;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Shared.Commands.HumanResources;
@@ -9,6 +12,35 @@ namespace AWC.UnitTest.Shared.Data
 {
     public static class EmployeeTestData
     {
+        public static Result<Employee> GetValidEmployee()
+        {
+            Result<Employee> employee = Employee.Create
+            (
+                new EmployeeID(1),
+                "EM",
+                NameStyle.Western,
+                "Mr.",
+                "John",
+                "Doe",
+                "J",
+                null,
+                new EmployeeID(0),
+                "13232145",
+                @"adventure-works\johnny0",
+                "The Man",
+                new DateOnly(2003, 1, 17),
+                "M",
+                "M",
+                new DateOnly(2020, 1, 28),
+                true,
+                5,
+                1,
+                true
+            );
+
+            return employee;
+        }
+
         public static CreateEmployeeCommand GetValidCreateEmployeeCommand()
         {
             return new(
@@ -615,11 +647,11 @@ namespace AWC.UnitTest.Shared.Data
                             MailAddress = "johnnydoe@adventureworks.com"
                         }
                     },
-                    Telephones = new List<PersonPhone>()
+                    Telephones = new List<AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>()
                     {
-                        new PersonPhone { PhoneNumber = "214-555-4567", PhoneNumberTypeID = 1},
-                        new PersonPhone { PhoneNumber = "972-555-1234", PhoneNumberTypeID = 2},
-                        new PersonPhone { PhoneNumber = "469-555-4567", PhoneNumberTypeID = 3}
+                        new() { PhoneNumber = "214-555-4567", PhoneNumberTypeID = 1},
+                        new() { PhoneNumber = "972-555-1234", PhoneNumberTypeID = 2},
+                        new() { PhoneNumber = "469-555-4567", PhoneNumberTypeID = 3}
                     }
                 }
             };

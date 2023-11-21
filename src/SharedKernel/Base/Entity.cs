@@ -6,6 +6,8 @@ namespace AWC.SharedKernel.Base
     {
         public T Id { get; protected set; }
 
+        public EntityStatus EntityStatus { get; set; } = EntityStatus.Unmodified;
+
         public DateTime? ModifiedDate { get; private set; }
 
         public void UpdateModifiedDate()
