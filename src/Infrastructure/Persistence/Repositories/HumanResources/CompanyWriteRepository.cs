@@ -3,8 +3,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
-using AWC.Core.Interfaces.HumanResouces;
 using AWC.Core.Entities.HumanResources.EntityIDs;
+using AWC.Core.Interfaces.HumanResouces;
 using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
@@ -52,7 +52,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 }
 
                 Result<AWC.Core.Entities.HumanResources.Company> result = CompanyDomainModel.Create(
-                    companyDataModel.CompanyID,
+                    new CompanyID(companyDataModel.CompanyID),
                     companyDataModel.CompanyName!,
                     companyDataModel.LegalName!,
                     companyDataModel.EIN!,

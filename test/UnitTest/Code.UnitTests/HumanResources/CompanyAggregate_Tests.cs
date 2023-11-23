@@ -195,7 +195,7 @@ namespace AWC.UnitTest.Code.UnitTests.HumanResources
             // Act
             Result<Company> result = Company.Create
             (
-                0,
+                new CompanyID(0),
                 companyName,
                 "Test Company",
                 ein,

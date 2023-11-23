@@ -37,7 +37,7 @@ namespace AWC.Core.Entities.HumanResources
 
         public static Result<Company> Create
         (
-            int companyId,
+            CompanyID companyId,
             string companyName,
             string? legalName,
             string ein,
@@ -60,7 +60,7 @@ namespace AWC.Core.Entities.HumanResources
             {
                 Company company = new
                 (
-                    new CompanyID(companyId),
+                    companyId,
                     OrganizationName.Create(companyName ?? throw new ArgumentNullException(nameof(companyName))),
                     OrganizationName.Create(legalName!),
                     EmployerIdentificationNumber.Create(ein),

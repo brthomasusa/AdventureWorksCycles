@@ -7,7 +7,7 @@ using AWC.UnitTest.Shared;
 using AWC.UnitTest.Shared.Data;
 using MapsterMapper;
 
-namespace AWC.UnitTest.Infrastructure.UnitTests
+namespace AWC.UnitTest.Infrastructure.UnitTests.Persistence.HumanResources.Mappings
 {
     public class EmployeeMappingConfig_Test
     {

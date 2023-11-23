@@ -1,5 +1,6 @@
 using AWC.Application.Features.HumanResources.UpdateCompany;
 using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTest.Base
@@ -10,7 +11,7 @@ namespace AWC.IntegrationTest.Base
         {
             Result<Company> result = Company.Create
             (
-                1,
+                new CompanyID(1),
                 "Test Company",
                 "Test Company",
                 "123456789",
@@ -36,7 +37,7 @@ namespace AWC.IntegrationTest.Base
         {
             Result<Company> result = Company.Create
             (
-                11,
+                new CompanyID(11),
                 "Test Company",
                 "Test Company",
                 "123456789",
@@ -62,7 +63,7 @@ namespace AWC.IntegrationTest.Base
         {
             Result<Company> result = Company.Create
             (
-                0,
+                new CompanyID(0),
                 "Test Company",
                 "Test Company",
                 "123456789",
@@ -83,21 +84,21 @@ namespace AWC.IntegrationTest.Base
 
             _ = result.Value.AddDepartment
             (
-                1,
+                new DepartmentID(1),
                 "QA",
                 "Quality Assurance"
             );
 
             _ = result.Value.AddDepartment
             (
-                2,
+                new DepartmentID(2),
                 "R&D",
                 "Research and Development"
             );
 
             _ = result.Value.AddShift
             (
-                1,
+                new ShiftID(1),
                 "Midnight",
                 23,
                 0,
@@ -107,7 +108,7 @@ namespace AWC.IntegrationTest.Base
 
             _ = result.Value.AddShift
             (
-                2,
+                new ShiftID(2),
                 "Weekend",
                 10,
                 0,

@@ -1,5 +1,6 @@
 using AWC.Application.Interfaces.Messaging;
 using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.SharedKernel.Utilities;
 
@@ -18,7 +19,7 @@ namespace AWC.Application.Features.HumanResources.UpdateCompany
             try
             {
                 Result<Company> result = Company.Create(
-                    request.CompanyID,
+                    new CompanyID(request.CompanyID),
                     request.CompanyName!,
                     request.LegalName!,
                     request.EIN!,

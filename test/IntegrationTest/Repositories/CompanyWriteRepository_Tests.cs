@@ -44,7 +44,7 @@ namespace AWC.IntegrationTests.Repositories
 
             Assert.True(result.IsSuccess);
 
-            Result<Company> searchResult = await writeRepository.CompanyAggregateRepository.GetByIdAsync(company.Id);
+            Result<Company> searchResult = await writeRepository.CompanyAggregateRepository.GetByIdAsync(company.Id.Value);
             Assert.True(searchResult.IsSuccess);
             Assert.Equal(company.CompanyName, searchResult.Value.CompanyName);
         }

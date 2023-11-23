@@ -1,4 +1,5 @@
 using AWC.Core.Entities.HumanResources;
+using AWC.Core.Entities.HumanResources.EntityIDs;
 
 namespace AWC.UnitTest.Shared.Data
 {
@@ -7,7 +8,7 @@ namespace AWC.UnitTest.Shared.Data
         public static Result<Company> CompanyResultWithValidData()
             => Company.Create
             (
-                0,
+                new CompanyID(1),
                 "Test Company",
                 "Test Company",
                 "123456789",
@@ -29,7 +30,7 @@ namespace AWC.UnitTest.Shared.Data
         public static Result<Company> CompanyResult_Invalid_CompanyName()
             => Company.Create
             (
-                0,
+                new CompanyID(1),
                 "",
                 "Test Company",
                 "123456789",

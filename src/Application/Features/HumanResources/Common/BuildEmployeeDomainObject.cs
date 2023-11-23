@@ -139,8 +139,7 @@ namespace AWC.Application.Features.HumanResources.Common
                     new DepartmentID(department.DepartmentID),
                     new ShiftID(department.ShiftID),
                     DateOnly.FromDateTime(department.StartDate),
-                    DateOnly.FromDateTime((DateTime)department.EndDate!)
-
+                    department.EndDate is null ? null : DateOnly.FromDateTime((DateTime)department.EndDate!)
                 );
 
                 if (result.IsFailure)
