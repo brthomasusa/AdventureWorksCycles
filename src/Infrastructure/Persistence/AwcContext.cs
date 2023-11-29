@@ -23,7 +23,7 @@ namespace AWC.Infrastructure.Persistence
         public virtual DbSet<SalesTerritory>? SalesTerritory { get; set; }
         public virtual DbSet<StateProvince>? StateProvince { get; set; }
         public virtual DbSet<BusinessEntity>? BusinessEntity { get; set; }
-        public virtual DbSet<Company>? Company { get; set; }
+        public virtual DbSet<Company>? Company { get; set; } = default!;
         public virtual DbSet<EmployeeDataModel>? Employee { get; set; }
         public virtual DbSet<BusinessEntityAddress>? BusinessEntityAddress { get; set; }
         public virtual DbSet<BusinessEntityContact>? BusinessEntityContact { get; set; }

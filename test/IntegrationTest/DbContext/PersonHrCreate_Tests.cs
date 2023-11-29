@@ -1,6 +1,7 @@
-using AWC.Infrastructure.Persistence.DataModels.Person;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using AWC.Infrastructure.Persistence.DataModels.Person;
+using AWC.IntegrationTest.Data;
 
 namespace AWC.IntegrationTest.DbContext
 {

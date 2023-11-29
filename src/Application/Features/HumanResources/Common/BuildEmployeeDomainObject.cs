@@ -2,7 +2,6 @@ using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Core.Entities.HumanResources;
 using AWC.Core.Entities.HumanResources.EntityIDs;
-using AWC.Core.Entities.Shared;
 using AWC.Core.Entities.Shared.EntityIDs;
 using AWC.Core.Enums;
 using AWC.Shared.Commands.HumanResources;
@@ -13,13 +12,13 @@ namespace AWC.Application.Features.HumanResources.Common
 {
     public static class BuildEmployeeDomainObject
     {
-        public static Result<Employee> Build(CreateEmployeeCommand command, IMapper mapper)
+        public static Result<Employee> ConvertToGenericCommand(CreateEmployeeCommand command, IMapper mapper)
         {
             EmployeeGenericCommand genericCommand = mapper.Map<EmployeeGenericCommand>(command);
             return BuildEmployee(genericCommand);
         }
 
-        public static Result<Employee> Build(UpdateEmployeeCommand command, IMapper mapper)
+        public static Result<Employee> ConvertToGenericCommand(UpdateEmployeeCommand command, IMapper mapper)
         {
             EmployeeGenericCommand genericCommand = mapper.Map<EmployeeGenericCommand>(command);
             return BuildEmployee(genericCommand);
@@ -27,8 +26,8 @@ namespace AWC.Application.Features.HumanResources.Common
 
         private static Result<Employee> BuildEmployee(EmployeeGenericCommand command)
         {
-            // Build employee with department history and payhistory
-            Result<Employee> aggregateRootResult = BuildAggregateRoot(command);
+            // Build employee domain object with department histories and pay histories
+            Result<Employee> aggregateRootResult = BuildEmployeeAggregateRoot(command);
 
             if (aggregateRootResult.IsFailure)
                 return Result<Employee>.Failure<Employee>(new Error("BuildEmployeeDomainObject.BuildEmployee", aggregateRootResult.Error.Message));
@@ -37,16 +36,16 @@ namespace AWC.Application.Features.HumanResources.Common
             Employee employee = aggregateRootResult.Value;
 
             // Add Address, EmailAddress, and PersonPhone to aggregate root
-            Result entitiesResult = BuildAggregateEntities(command, ref employee);
+            Result entitiesResult = AddEntitiesToAggregateRoot(command, ref employee);
             if (entitiesResult.IsFailure)
                 return Result<Employee>.Failure<Employee>(new Error("BuildEmployeeDomainObject.BuildEmployee", entitiesResult.Error.Message));
 
             return employee;
         }
 
-        private static Result<Employee> BuildAggregateRoot(EmployeeGenericCommand command)
+        private static Result<Employee> BuildEmployeeAggregateRoot(EmployeeGenericCommand command)
         {
-            // 1. Create an employee from the GenericEmployeeComand
+            // 1. Create an employee domain object from the GenericEmployeeComand
             Result<Employee> employeeResult = Employee.Create
             (
                 new EmployeeID(command.BusinessEntityID),
@@ -96,7 +95,7 @@ namespace AWC.Application.Features.HumanResources.Common
             return employeeResult.Value;
         }
 
-        private static Result BuildAggregateEntities(EmployeeGenericCommand command, ref Employee employee)
+        private static Result AddEntitiesToAggregateRoot(EmployeeGenericCommand command, ref Employee employee)
         {
             // 4. Create an Address (domain obj) from fields in the CreateEmployeeCommand
             Result addressResult = AddAddress(

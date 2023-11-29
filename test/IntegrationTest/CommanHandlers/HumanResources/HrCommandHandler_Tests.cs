@@ -4,6 +4,7 @@ using AWC.Application.Features.HumanResources.UpdateCompany;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.IntegrationTest.Data;
 using AWC.SharedKernel.Utilities;
 using MapsterMapper;
 

@@ -2,6 +2,7 @@ using AWC.Application.BusinessRules.HumanResources;
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.IntegrationTest.Data;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.IntegrationTest.Validation.HumanResources

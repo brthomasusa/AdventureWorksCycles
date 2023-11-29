@@ -17,7 +17,7 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
 
         public async Task<Result<int>> Handle(CreateEmployeeCommand command, CancellationToken cancellationToken)
         {
-            Result<Employee> employeeDomainObject = BuildEmployeeDomainObject.Build(command, _mapper);
+            Result<Employee> employeeDomainObject = BuildEmployeeDomainObject.ConvertToGenericCommand(command, _mapper);
 
             if (employeeDomainObject.IsFailure)
                 return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", employeeDomainObject.Error.Message));

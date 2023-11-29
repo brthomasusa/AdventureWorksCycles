@@ -8,12 +8,8 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
     {
         public void Register(TypeAdapterConfig config)
         {
-            /*
-                    TypeAdapterConfig<TSource, TDestination>   
-            */
-
             config.NewConfig<CompanyDomainModel, CompanyDataModel>()
-                .Map(dest => dest.CompanyID, src => src.Id)
+                .Map(dest => dest.CompanyID, src => src.Id.Value)
                 .Map(dest => dest.CompanyName, src => src.CompanyName.Value)
                 .Map(dest => dest.LegalName, src => src.LegalName!.Value)
                 .Map(dest => dest.EIN, src => src.EIN.Value)

@@ -10,8 +10,8 @@ namespace AWC.Infrastructure.Persistence.Repositories
     {
         private readonly ILogger<WriteRepositoryManager> _logger;
         private readonly AwcContext _context;
-        private readonly Lazy<IEmployeeWriteRepository> _employeeRepository;
-        private readonly Lazy<ICompanyWriteRepository> _companyRepository;
+        private IEmployeeWriteRepository? _employeeRepository;
+        private ICompanyWriteRepository? _companyRepository;
         private readonly IMapper _mapper;
 
         public WriteRepositoryManager
@@ -24,15 +24,31 @@ namespace AWC.Infrastructure.Persistence.Repositories
             _context = context;
             _logger = logger;
             _mapper = mapper;
-
-            _employeeRepository = new Lazy<IEmployeeWriteRepository>(()
-                => new EmployeeWriteRepository(_context, _logger, _mapper));
-
-            _companyRepository = new Lazy<ICompanyWriteRepository>(()
-                => new CompanyWriteRepository(_context, _logger, _mapper));
         }
 
-        public IEmployeeWriteRepository EmployeeAggregateRepository => _employeeRepository.Value;
-        public ICompanyWriteRepository CompanyAggregateRepository => _companyRepository.Value;
+        public IEmployeeWriteRepository EmployeeAggregateRepository
+        {
+            get
+            {
+                _employeeRepository ??= new EmployeeWriteRepository(_context, _logger, _mapper);
+
+                return _employeeRepository;
+            }
+        }
+
+        public ICompanyWriteRepository CompanyAggregateRepository
+        {
+            get
+            {
+                _companyRepository ??= new CompanyWriteRepository(_context, _logger, _mapper);
+
+                return _companyRepository;
+            }
+        }
+
+
+        public async Task<int> SaveAsync(CancellationToken cancellationToken = default)
+            => await _context.SaveChangesAsync(cancellationToken);
+
     }
 }

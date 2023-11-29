@@ -20,7 +20,7 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         {
             try
             {
-                Result<Employee> employeeDomainObject = BuildEmployeeDomainObject.Build(command, _mapper);
+                Result<Employee> employeeDomainObject = BuildEmployeeDomainObject.ConvertToGenericCommand(command, _mapper);
 
                 if (employeeDomainObject.IsFailure)
                     return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", employeeDomainObject.Error.Message));

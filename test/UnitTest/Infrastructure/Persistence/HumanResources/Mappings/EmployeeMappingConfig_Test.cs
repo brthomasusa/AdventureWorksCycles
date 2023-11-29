@@ -19,7 +19,7 @@ namespace AWC.UnitTest.Infrastructure.UnitTests.Persistence.HumanResources.Mappi
             _mapper = AddMapsterForUnitTests.GetMapper();
 
             CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();
-            Result<Employee> result = BuildEmployeeDomainObject.Build(command, _mapper);
+            Result<Employee> result = BuildEmployeeDomainObject.ConvertToGenericCommand(command, _mapper);
             _employee = result.Value;
         }
 

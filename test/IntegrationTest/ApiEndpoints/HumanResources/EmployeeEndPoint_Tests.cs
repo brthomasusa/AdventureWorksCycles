@@ -3,11 +3,12 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
+using Microsoft.AspNetCore.WebUtilities;
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.DeleteEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
+using AWC.IntegrationTest.Data;
 using AWC.Shared.Queries.HumanResources;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace AWC.IntegrationTest.HumanResources.ApiEndPoint_Tests
 {

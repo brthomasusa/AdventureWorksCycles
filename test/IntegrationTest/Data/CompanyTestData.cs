@@ -3,7 +3,7 @@ using AWC.Core.Entities.HumanResources;
 using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.IntegrationTest.Base
+namespace AWC.IntegrationTest.Data
 {
     public static class CompanyTestData
     {

@@ -1,8 +1,8 @@
 #pragma warning disable CS8603
 
+using Microsoft.Extensions.Logging;
 using AWC.SharedKernel.Utilities;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace AWC.Application.Behaviors
 {

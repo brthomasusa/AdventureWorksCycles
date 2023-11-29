@@ -26,6 +26,8 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>    
     <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="MockQueryable.Moq" Version="7.0.0" />
+    <PackageReference Include="Moq.EntityFrameworkCore" Version="7.0.0.2" />    
   </ItemGroup>
 
   <ItemGroup>

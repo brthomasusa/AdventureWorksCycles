@@ -1,5 +1,3 @@
-#pragma warning disable CS8601, CS8604
-
 using AWC.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,22 +5,18 @@ namespace AWC.IntegrationTest.Base
 {
     public abstract class TestBase : IDisposable
     {
-        protected readonly string _connectionString;
         protected readonly AwcContext _dbContext;
         protected readonly DapperContext _dapperCtx;
 
         protected TestBase()
         {
-            // var config = AppSettings.GetConfiguration();
-            // _connectionString = config.GetConnectionString("DefaultConnection")
-
-            _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
-            _dapperCtx = new DapperContext(_connectionString);
+            string? connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__TestConnection");
+            _dapperCtx = new DapperContext(connectionString!);
 
             var optionsBuilder = new DbContextOptionsBuilder<AwcContext>();
 
             optionsBuilder.UseSqlServer(
-                _connectionString,
+                connectionString!,
                 msSqlOptions => msSqlOptions.MigrationsAssembly(typeof(AwcContext).Assembly.FullName)
             )
             .EnableSensitiveDataLogging()

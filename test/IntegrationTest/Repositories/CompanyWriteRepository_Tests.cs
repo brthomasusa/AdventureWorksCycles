@@ -1,5 +1,6 @@
 using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.IntegrationTest.Data;
 using AWC.SharedKernel.Utilities;
 using MapsterMapper;
 

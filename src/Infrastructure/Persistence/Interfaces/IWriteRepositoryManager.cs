@@ -6,5 +6,6 @@ namespace AWC.Infrastructure.Persistence.Interfaces
     {
         IEmployeeWriteRepository EmployeeAggregateRepository { get; }
         ICompanyWriteRepository CompanyAggregateRepository { get; }
+        Task<int> SaveAsync(CancellationToken cancellationToken = default);
     }
 }

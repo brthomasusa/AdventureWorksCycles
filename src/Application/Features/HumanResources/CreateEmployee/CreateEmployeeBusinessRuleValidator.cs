@@ -34,7 +34,7 @@ namespace AWC.Application.Features.HumanResources.CreateEmployee
             }
             else
             {
-                return Result.Failure(new Error("CreateEmployeeBusinessRuleValidator.Validate", result.Messages[0]));
+                return Result.Failure(new Error("CreateEmployeeBusinessRuleValidator.Validate", result.Messages.FirstOrDefault()!));
             }
         }
     }

@@ -111,12 +111,14 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 employee.EmailAddresses.ToList().ForEach(email =>
                     person.EmailAddresses.Add(_mapper.Map<AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress>(email))
                 );
+                // The PersonEmailAddress domain object does not contain a BusinessEntityID property as it's a database concept.
                 person.EmailAddresses.ForEach(email => email.BusinessEntityID = employee.Id.Value);
 
                 // Step 4: Add person phones to person data model
                 employee.Telephones.ToList().ForEach(tel =>
                     person.Telephones.Add(_mapper.Map<AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>(tel))
                 );
+                // The PersonPhone domain object does not contain a BusinessEntityID property as it's a database concept.
                 person.Telephones.ForEach(tel => tel.BusinessEntityID = employee.Id.Value);
 
                 // Step 5: Extract an EmployeeDataModel from the employee domain obj

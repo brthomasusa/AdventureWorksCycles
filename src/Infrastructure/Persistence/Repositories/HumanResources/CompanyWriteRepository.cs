@@ -3,14 +3,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
-using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Core.Interfaces.HumanResouces;
-using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
-
-using CompanyDataModel = AWC.Infrastructure.Persistence.DataModels.HumanResources.Company;
+using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using CompanyDomainModel = AWC.Core.Entities.HumanResources.Company;
+using CompanyDataModel = AWC.Infrastructure.Persistence.DataModels.HumanResources.Company;
+using AWC.Infrastructure.Persistence.Specifications.HumanResources;
 using MapsterMapper;
 
 namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
@@ -51,47 +50,10 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                     return Result<CompanyDomainModel>.Failure<CompanyDomainModel>(new Error("CompanyAggregateRepository.GetByIdAsync", errMsg));
                 }
 
-                Result<AWC.Core.Entities.HumanResources.Company> result = CompanyDomainModel.Create(
-                    new CompanyID(companyDataModel.CompanyID),
-                    companyDataModel.CompanyName!,
-                    companyDataModel.LegalName!,
-                    companyDataModel.EIN!,
-                    companyDataModel.WebsiteUrl!,
-                    companyDataModel.MailAddressLine1!,
-                    companyDataModel.DeliveryAddressLine2,
-                    companyDataModel.MailCity!,
-                    companyDataModel.MailStateProvinceID,
-                    companyDataModel.MailPostalCode!,
-                    companyDataModel.DeliveryAddressLine1!,
-                    companyDataModel.DeliveryAddressLine2,
-                    companyDataModel.DeliveryCity!,
-                    companyDataModel.DeliveryStateProvinceID,
-                    companyDataModel.DeliveryPostalCode!,
-                    companyDataModel.Telephone!,
-                    companyDataModel.Fax!
-                );
-
-                if (result.IsFailure)
-                {
-                    _logger.LogWarning($"Code Path: {result.Error.Code} - Message: {result.Error.Message}");
-                    return Result<CompanyDomainModel>.Failure<CompanyDomainModel>(new Error("CompanyAggregateRepository.GetByIdAsync", result.Error.Message));
-                }
-
-                CompanyDomainModel companyDomainModel = result.Value;
-
                 var departments = await _context.Department!.ToListAsync();
-                if (departments.Any())
-                {
-                    departments.ForEach(dept => companyDomainModel.AddDepartment(new DepartmentID(dept.DepartmentID), dept.Name!, dept.GroupName!));
-                }
-
                 var shifts = await _context.Shift!.ToListAsync();
-                if (shifts.Any())
-                {
-                    shifts.ForEach(shift => companyDomainModel.AddShift(
-                        new ShiftID(shift.ShiftID), shift.Name!, shift.StartTime.Hours, shift.StartTime.Minutes, shift.EndTime.Hours, shift.EndTime.Minutes
-                    ));
-                }
+
+                Result<CompanyDomainModel> companyDomainModel = CompanyDomainModelDataMapper.MapFromDataModel(companyDataModel, departments, shifts);
 
                 return companyDomainModel;
             }

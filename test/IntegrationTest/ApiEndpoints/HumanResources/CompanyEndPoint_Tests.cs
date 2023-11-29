@@ -3,9 +3,10 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
-using AWC.Application.Features.HumanResources.UpdateCompany;
-using AWC.Shared.Queries.HumanResources;
 using Microsoft.AspNetCore.WebUtilities;
+using AWC.Application.Features.HumanResources.UpdateCompany;
+using AWC.IntegrationTest.Data;
+using AWC.Shared.Queries.HumanResources;
 
 namespace AWC.IntegrationTest.HumanResources.ApiEndPoint_Tests
 {

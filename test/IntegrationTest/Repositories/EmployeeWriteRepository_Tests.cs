@@ -4,6 +4,7 @@ using AWC.Core.Enums;
 using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.Infrastructure.Persistence.Repositories;
+using AWC.IntegrationTest.Data;
 using AWC.SharedKernel.Utilities;
 using MapsterMapper;
 
@@ -42,7 +43,7 @@ namespace AWC.IntegrationTests.Repositories
         public async Task InsertAsync_EmployeeWriteRepo_ShouldSucceed()
         {
             CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();
-            Result<Employee> employeeResult = BuildEmployeeDomainObject.Build(command, _mapper);
+            Result<Employee> employeeResult = BuildEmployeeDomainObject.ConvertToGenericCommand(command, _mapper);
 
             Result<int> result = await _writeRepository.EmployeeAggregateRepository.InsertAsync(employeeResult.Value);
 

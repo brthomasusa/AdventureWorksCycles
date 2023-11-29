@@ -1,12 +1,11 @@
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 
-namespace AWC.UnitTest.Shared.MockDbContext
+namespace AWC.UnitTest.Shared.Data.MockRepositories
 {
     public class GetCompanyMockData
     {
         public static List<Company> GetCompanies()
-        {
-            List<Company> companies = new()
+            => new()
             {
                 new()
                 {
@@ -49,8 +48,5 @@ namespace AWC.UnitTest.Shared.MockDbContext
                     Fax = "512-555-1234"
                 }
             };
-
-            return companies;
-        }
     }
 }

@@ -2,7 +2,7 @@
 
 using AWC.SharedKernel.Guards;
 
-namespace AWC.UnitTest.SharedKernel.UnitTests;
+namespace AWC.UnitTest.SharedKernel;
 public class GuardClauses_Test
 {
     [Fact]
