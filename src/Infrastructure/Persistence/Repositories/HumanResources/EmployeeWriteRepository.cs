@@ -9,7 +9,6 @@ using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.Person;
-using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
 
 using EmployeeDomainModel = AWC.Core.Entities.HumanResources.Employee;
@@ -21,13 +20,11 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
     {
         private readonly ILogger<WriteRepositoryManager> _logger;
         private readonly AwcContext _context;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public EmployeeWriteRepository(AwcContext ctx, ILogger<WriteRepositoryManager> logger, IMapper mapper)
         {
             _context = ctx;
-            _unitOfWork = new UnitOfWork(_context);
             _logger = logger;
             _mapper = mapper;
         }
@@ -193,7 +190,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 {
                     employee.MapToPersonDataModel(ref person);
                     _context.Person!.Update(person);
-                    await _unitOfWork.CommitAsync();
+                    await _context.SaveChangesAsync();
 
                     return Result<int>.Success<int>(0);
                 }

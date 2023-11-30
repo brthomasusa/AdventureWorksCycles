@@ -23,6 +23,9 @@ namespace AWC.Application.Behaviors
             RequestHandlerDelegate<TResponse> next
         )
         {
+            if (IsNotCommand())
+                return await next();
+
             if (_validators.Any())
             {
                 var context = new ValidationContext<TRequest>(request);
@@ -43,6 +46,7 @@ namespace AWC.Application.Behaviors
             return await next();
         }
 
-
+        private static bool IsNotCommand()
+            => !typeof(TRequest).Name.EndsWith("Command");
     }
 }

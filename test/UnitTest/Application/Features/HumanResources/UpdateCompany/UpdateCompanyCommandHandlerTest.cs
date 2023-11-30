@@ -12,7 +12,7 @@ using AWC.UnitTest.Shared.Data;
 using MapsterMapper;
 using MockQueryable.Moq;
 using Moq;
-using Moq.EntityFrameworkCore;
+using AWC.UnitTest.Shared.MockRepositories;
 
 namespace AWC.UnitTest.Application.Features.HumanResources.UpdateCompany
 {
@@ -22,24 +22,15 @@ namespace AWC.UnitTest.Application.Features.HumanResources.UpdateCompany
         public async Task UpdateCompanyCommandHandler_Handle_ShouldReturn_Success()
         {
             // Arrange
+            var repositoryManagerMock = MockWriteRepositoryManager.GetMock();
+            UpdateCompanyCommandHandler handler = new(repositoryManagerMock.Object);
             UpdateCompanyCommand command = CampanyTestData.GetUpdateCompanyCommandWithValidData();
-            Result<Company> company = CampanyTestData.CompanyResultWithValidData();
-
-            var companyrepositoryMock = new Mock<ICompanyWriteRepository>();
-            companyrepositoryMock.Setup(r => r.Update(company.Value))
-                                 .Returns(Task.FromResult(Result<int>.Success<int>(0)));
-
-            var writeRepositoryMock = new Mock<IWriteRepositoryManager>();
-            writeRepositoryMock.Setup(r => r.CompanyAggregateRepository)
-                               .Returns(companyrepositoryMock.Object);
-
-            UpdateCompanyCommandHandler handler = new(writeRepositoryMock.Object);
 
             // Act
             Result<int> result = await handler.Handle(command, new CancellationToken());
 
             // Assert
-            Assert.Equal(0, result.Value);
+            Assert.True(result.IsSuccess);
         }
     }
 }

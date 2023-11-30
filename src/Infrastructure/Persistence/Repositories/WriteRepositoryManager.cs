@@ -45,10 +45,5 @@ namespace AWC.Infrastructure.Persistence.Repositories
                 return _companyRepository;
             }
         }
-
-
-        public async Task<int> SaveAsync(CancellationToken cancellationToken = default)
-            => await _context.SaveChangesAsync(cancellationToken);
-
     }
 }

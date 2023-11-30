@@ -1,9 +1,4 @@
-using AWC.Infrastructure.Persistence.DataModels.HumanResources;
-using AWC.Core.Interfaces.HumanResouces;
 using AWC.Infrastructure.Persistence.Interfaces;
-using AWC.Infrastructure.Persistence.Repositories.HumanResources;
-using Microsoft.Extensions.Logging;
-using MapsterMapper;
 using Moq;
 
 namespace AWC.UnitTest.Shared.MockRepositories
@@ -14,6 +9,11 @@ namespace AWC.UnitTest.Shared.MockRepositories
         {
             var mock = new Mock<IWriteRepositoryManager>();
 
+            var companyRepoMock = MockCompanyWriteRepository.GetMock();
+            var employeeRepoMock = MockEmployeeWriteRepository.GetMock();
+
+            mock.Setup(m => m.CompanyAggregateRepository).Returns(() => companyRepoMock.Object);
+            mock.Setup(m => m.EmployeeAggregateRepository).Returns(() => employeeRepoMock.Object);
 
             return mock;
         }
