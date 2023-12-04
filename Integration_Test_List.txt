@@ -52,6 +52,16 @@ reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:TestResults/core.h
 </Project>
 
 
+            List<PayHistory> payHistoriesHistories = domainModel.PayHistories.ToList();
+            personDataModel.Employee.PayHistories = payHistoriesHistories.ConvertAll(x => new EmployeePayHistory
+            {
+                BusinessEntityID = x.Id.Value,
+                RateChangeDate = x.RateChangeDate,
+                Rate = x.PayRate.Value.Amount,
+                PayFrequency = (byte)x.PayFrequency
+            });
+
+
 
 
 

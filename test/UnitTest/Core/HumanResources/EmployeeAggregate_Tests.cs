@@ -6,7 +6,7 @@ using AWC.Core.Enums;
 using AWC.SharedKernel.Base;
 using AWC.UnitTest.Shared.Data;
 
-namespace AWC.UnitTest.Code.UnitTests.HumanResources;
+namespace AWC.UnitTest.Core.UnitTests.HumanResources;
 
 public class EmployeeAggregate_Tests
 {

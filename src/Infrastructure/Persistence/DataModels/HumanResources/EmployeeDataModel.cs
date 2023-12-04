@@ -1,3 +1,5 @@
+using AWC.Infrastructure.Persistence.DataModels.Person;
+
 namespace AWC.Infrastructure.Persistence.DataModels.HumanResources
 {
     public class EmployeeDataModel

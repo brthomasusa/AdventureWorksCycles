@@ -1,18 +1,9 @@
-using AWC.Application.Features.HumanResources.Common;
 using AWC.Application.Features.HumanResources.UpdateCompany;
-using AWC.Application.Features.HumanResources.ViewCompanyDepartments;
-using AWC.Application.Features.HumanResources.ViewCompanyDetails;
-using AWC.Application.Features.HumanResources.ViewCompanyShifts;
 using AWC.Core.Entities.HumanResources;
-using AWC.Core.Entities.Shared;
-using AWC.Core.Interfaces.HumanResouces;
-using AWC.Infrastructure.Persistence.Interfaces;
-using AWC.UnitTest.Shared;
 using AWC.UnitTest.Shared.Data;
-using MapsterMapper;
-using MockQueryable.Moq;
-using Moq;
+using AWC.UnitTest.Shared.Data.MockRepositories;
 using AWC.UnitTest.Shared.MockRepositories;
+using Moq;
 
 namespace AWC.UnitTest.Application.Features.HumanResources.UpdateCompany
 {

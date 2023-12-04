@@ -60,27 +60,11 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 var result = query.FirstOrDefault();
                 person.Employee!.ManagerID = result!.ManagerID;
 
-                Result<EmployeeDomainModel> employeeDomainResult = person.MapToEmployeeDomainModel();
+                PersonDataModelToEmployeeDomainModelMapper dataMapper = new();
+                Result<EmployeeDomainModel> employee = dataMapper.Map(person);
 
-                if (employeeDomainResult.IsFailure)
-                    return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeWriteRepository.GetByIdAsync", employeeDomainResult.Error.Message));
-
-                EmployeeDomainModel employee = employeeDomainResult.Value;
-
-                // Add department histories
-                person.MapDepartmentHistories(ref employee);
-
-                // Add pay histories
-                person.MapPayHistories(ref employee);
-
-                // Add addresses
-                person.MapAddresses(ref employee);
-
-                // Add email addresses
-                person.MapEmailAddresses(ref employee);
-
-                // Add person phones
-                person.MapPersonPhones(ref employee);
+                if (employee.IsFailure)
+                    return Result<EmployeeDomainModel>.Failure<EmployeeDomainModel>(new Error("EmployeeWriteRepository.GetByIdAsync", employee.Error.Message));
 
                 return employee;
             }

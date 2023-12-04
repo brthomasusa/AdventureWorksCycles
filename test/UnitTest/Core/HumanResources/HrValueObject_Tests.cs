@@ -2,7 +2,7 @@ using System.Text;
 using AWC.Core.Entities.HumanResources.ValueObjects;
 using AWC.Core.Entities.Shared.ValueObjects;
 
-namespace AWC.UnitTest.Code.UnitTests.HumanResources;
+namespace AWC.UnitTest.Core.UnitTests.HumanResources;
 
 public class HrValueObject_Tests
 {

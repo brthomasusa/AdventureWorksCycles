@@ -17,12 +17,10 @@ namespace AWC.Infrastructure.Persistence.Mappings.Shared
             .Map(dest => dest.PostalCode, src => src.Location.PostalCode);
 
             _ = config.NewConfig<AWC.Core.Entities.Shared.PersonPhone, AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>()
-            .Map(dest => dest.BusinessEntityID, src => 0)
             .Map(dest => dest.PhoneNumber, src => src.Telephone.Value)
             .Map(dest => dest.PhoneNumberTypeID, src => (int)src.PhoneNumberType);
 
             _ = config.NewConfig<AWC.Core.Entities.Shared.PersonEmailAddress, AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress>()
-            .Map(dest => dest.BusinessEntityID, src => 0)
             .Map(dest => dest.EmailAddressID, src => src.EmailAddressID.Value)
             .Map(dest => dest.MailAddress, src => src.EmailAddress.Value);
         }
