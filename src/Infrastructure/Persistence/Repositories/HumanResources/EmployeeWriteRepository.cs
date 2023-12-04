@@ -4,8 +4,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ardalis.Specification.EntityFrameworkCore;
+using AWC.Core.Entities.HumanResources;
 using AWC.Core.Interfaces.HumanResouces;
-using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Infrastructure.Persistence.Mappings.HumanResources;
 using AWC.Infrastructure.Persistence.Specifications.Person;
@@ -76,60 +76,31 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result<int>> InsertAsync(EmployeeDomainModel employee)
+        public async Task<Result<int>> InsertAsync(Employee employee)
         {
             try
             {
-                // Step 1: Get a list of data model addresses. These need to be inserted first.
-                List<AWC.Infrastructure.Persistence.DataModels.Person.Address> addresses = GetDataModelAddresses(employee);
+                // Step 1: Map data from employee domain model to person data model                
+                EmployeeDomainModelToPersonDataModelMapper modelMapper = new(_mapper);
+                Result<PersonDataModel> personDataModel = modelMapper.Map(employee);
 
-                PersonDataModel person = _mapper.Map<PersonDataModel>(employee);
+                if (personDataModel.IsFailure)
+                {
+                    return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.InsertAsync",
+                                                               personDataModel.Error.Message));
+                }
 
-                // Step 2: Create a list of BusinessEntityAddresses and add it to PersonDataModel
-                CreateBusinessEntityAddresses(employee, ref person);
-
-                // Step 3: Add email addresses from employee domain obj to person data model
-                employee.EmailAddresses.ToList().ForEach(email =>
-                    person.EmailAddresses.Add(_mapper.Map<AWC.Infrastructure.Persistence.DataModels.Person.EmailAddress>(email))
-                );
-                // The PersonEmailAddress domain object does not contain a BusinessEntityID property as it's a database concept.
-                person.EmailAddresses.ForEach(email => email.BusinessEntityID = employee.Id.Value);
-
-                // Step 4: Add person phones to person data model
-                employee.Telephones.ToList().ForEach(tel =>
-                    person.Telephones.Add(_mapper.Map<AWC.Infrastructure.Persistence.DataModels.Person.PersonPhone>(tel))
-                );
-                // The PersonPhone domain object does not contain a BusinessEntityID property as it's a database concept.
-                person.Telephones.ForEach(tel => tel.BusinessEntityID = employee.Id.Value);
-
-                // Step 5: Extract an EmployeeDataModel from the employee domain obj
-                EmployeeDataModel employeeDataModel = _mapper.Map<EmployeeDataModel>(employee);
-
-                // Step 6: Add department histories to employee data model
-                employee.DepartmentHistories.ToList().ForEach(dept =>
-                    employeeDataModel.DepartmentHistories.Add(_mapper.Map<EmployeeDepartmentHistory>(dept))
-                );
-
-                // Step 7: Add pay histories to employee data model
-                employee.PayHistories.ToList().ForEach(pay =>
-                    employeeDataModel.PayHistories.Add(_mapper.Map<EmployeePayHistory>(pay))
-                );
-
-                // Step 8: Add employee data model to person data model
-                person.Employee = employeeDataModel;
-
-                // Step 9: Start a transaction
+                // Step 2: Start a transaction
                 using var transaction = _context.Database.BeginTransaction();
 
-                // Step 10: Insert addresses into database
-                await _context.AddRangeAsync(addresses);
+                // Step 3: Insert addresses into database
+                await _context.Address!.AddAsync(personDataModel.Value.BusinessEntityAddresses.FirstOrDefault()!.Address!);
                 await _context.SaveChangesAsync();
 
-                // Step 10: Create a BusinessEntity instance and connect it to person data model
-                BusinessEntity businessEntity = new() { PersonModel = person };
-                await _context.SaveChangesAsync();
+                // Step 4: Create a BusinessEntity instance and connect it to person data model
+                BusinessEntity businessEntity = new() { PersonModel = personDataModel.Value };
 
-                // Step 11: Update db and commit changes
+                // Step 5: Update db and commit changes
                 await _context.AddAsync(businessEntity);
                 await _context.SaveChangesAsync();
 
@@ -161,6 +132,15 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         {
             try
             {
+                // EmployeeDomainModelToPersonDataModelMapper modelMapper = new(_mapper);
+                // Result<PersonDataModel> personDataModel = modelMapper.Map(employee);
+                // var entityState = _context.Entry<PersonDataModel>(personDataModel.Value).State;
+                // _context.Person!.Update(personDataModel.Value);
+                // entityState = _context.Entry<PersonDataModel>(personDataModel.Value).State;
+                // await _context.SaveChangesAsync();
+
+                // return Result<int>.Success<int>(0);
+
                 CancellationToken cancellationToken = default;
 
                 var person = await

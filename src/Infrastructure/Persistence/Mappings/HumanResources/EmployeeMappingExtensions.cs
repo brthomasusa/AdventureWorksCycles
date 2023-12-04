@@ -1,13 +1,8 @@
 #pragma warning disable CS8604
 
 using AWC.Core.Entities.HumanResources;
-using AWC.Core.Entities.HumanResources.EntityIDs;
-using AWC.Core.Entities.Shared;
-using AWC.Core.Entities.Shared.EntityIDs;
 using AWC.Core.Enums;
-using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
-using AWC.SharedKernel.Utilities;
 
 namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
 {

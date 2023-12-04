@@ -25,13 +25,17 @@ namespace AWC.Infrastructure.Persistence.Configurations.Person
             entity.HasMany(p => p.EmailAddresses)
                 .WithOne()
                 .HasForeignKey(p => p.BusinessEntityID)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(p => p.Telephones)
                 .WithOne()
-                .HasForeignKey(p => p.BusinessEntityID);
+                .HasForeignKey(p => p.BusinessEntityID)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(p => p.BusinessEntityAddresses)
                 .WithOne()
                 .HasForeignKey(p => p.BusinessEntityID)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
             entity.Property(e => e.BusinessEntityID)

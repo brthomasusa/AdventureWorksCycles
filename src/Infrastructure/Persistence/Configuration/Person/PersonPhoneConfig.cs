@@ -11,10 +11,6 @@ namespace AWC.Infrastructure.Persistence.Configurations.Person
             entity.ToTable("PersonPhone", schema: "Person");
             entity.HasKey(e => new { e.BusinessEntityID, e.PhoneNumber, e.PhoneNumberTypeID });
             entity.HasIndex(p => p.PhoneNumber).IsUnique();
-            entity.HasOne<PhoneNumberType>()
-                .WithMany()
-                .HasForeignKey(p => p.PhoneNumberTypeID)
-                .IsRequired();
 
             entity.Property(e => e.BusinessEntityID)
                 .HasColumnName("BusinessEntityID")

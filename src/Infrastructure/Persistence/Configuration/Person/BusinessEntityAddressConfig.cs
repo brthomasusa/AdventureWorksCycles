@@ -10,17 +10,9 @@ namespace AWC.Infrastructure.Persistence.Configurations.Person
         {
             entity.ToTable("BusinessEntityAddress", schema: "Person");
             entity.HasKey(e => new { e.BusinessEntityID, e.AddressID, e.AddressTypeID });
-            entity.HasOne<PersonDataModel>()
-                .WithMany()
-                .HasForeignKey(p => p.BusinessEntityID)
-                .IsRequired();
             entity.HasOne(businessEntityAddress => businessEntityAddress.Address)
                 .WithMany()
                 .HasForeignKey(businessEntityAddress => businessEntityAddress.AddressID)
-                .IsRequired();
-            entity.HasOne<AddressType>()
-                .WithMany()
-                .HasForeignKey(p => p.AddressTypeID)
                 .IsRequired();
 
             entity.Property(e => e.BusinessEntityID)
