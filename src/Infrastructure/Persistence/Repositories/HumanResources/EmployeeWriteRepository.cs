@@ -93,9 +93,8 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
                 // Step 2: Start a transaction
                 using var transaction = _context.Database.BeginTransaction();
 
-                // Step 3: Insert addresses into database
+                // Step 3: Insert addresses into database, address must exist before businessentityaddress
                 await _context.Address!.AddAsync(personDataModel.Value.BusinessEntityAddresses.FirstOrDefault()!.Address!);
-                await _context.SaveChangesAsync();
 
                 // Step 4: Create a BusinessEntity instance and connect it to person data model
                 BusinessEntity businessEntity = new() { PersonModel = personDataModel.Value };
@@ -132,37 +131,18 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
         {
             try
             {
-                // EmployeeDomainModelToPersonDataModelMapper modelMapper = new(_mapper);
-                // Result<PersonDataModel> personDataModel = modelMapper.Map(employee);
-                // var entityState = _context.Entry<PersonDataModel>(personDataModel.Value).State;
-                // _context.Person!.Update(personDataModel.Value);
-                // entityState = _context.Entry<PersonDataModel>(personDataModel.Value).State;
-                // await _context.SaveChangesAsync();
+                EmployeeDomainModelToPersonDataModelMapper modelMapper = new(_mapper);
+                Result<PersonDataModel> personDataModel = modelMapper.Map(employee);
 
-                // return Result<int>.Success<int>(0);
+                await UpdatePerson(personDataModel.Value);
+                await UpdateEmployee(personDataModel.Value);
+                await UpdateAddress(personDataModel.Value);
+                await UpdateEmailAddress(personDataModel.Value);
+                await UpdatePhoneNumber(personDataModel.Value);
 
-                CancellationToken cancellationToken = default;
+                await _context.SaveChangesAsync();
 
-                var person = await
-                    SpecificationEvaluator.Default.GetQuery
-                    (
-                        _context.Set<PersonDataModel>().AsTracking(),
-                        new PersonByIDWithEmployeeSpec(employee.Id.Value)
-                    ).FirstOrDefaultAsync(cancellationToken);
-
-                if (person is not null)
-                {
-                    employee.MapToPersonDataModel(ref person);
-                    _context.Person!.Update(person);
-                    await _context.SaveChangesAsync();
-
-                    return Result<int>.Success<int>(0);
-                }
-                else
-                {
-                    return Result<int>.Failure<int>(new Error("EmployeeWriteRepository.Update",
-                                                              $"Failed to retrieve employee with ID: {employee.Id} for editing."));
-                }
+                return 0;
             }
             catch (Exception ex)
             {
@@ -219,56 +199,74 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        private static List<AWC.Infrastructure.Persistence.DataModels.Person.Address> GetDataModelAddresses
-        (
-            AWC.Core.Entities.HumanResources.Employee employee
-        )
-        {
-            List<AWC.Infrastructure.Persistence.DataModels.Person.Address> addresses = new();
-
-            employee.Addresses.ToList().ForEach(addr =>
-                addresses.Add(
-                    new()
-                    {
-                        AddressID = addr.Id.Value,
-                        AddressLine1 = addr.Location.AddressLine1,
-                        AddressLine2 = addr.Location.AddressLine2,
-                        City = addr.Location.City,
-                        StateProvinceID = addr.Location.StateProvinceID,
-                        PostalCode = addr.Location.PostalCode
-                    }
-                )
-            );
-
-            return addresses;
-        }
-
-        private static void CreateBusinessEntityAddresses
-        (
-            AWC.Core.Entities.HumanResources.Employee employee,
-            ref PersonDataModel person
-        )
-        {
-            foreach (AWC.Core.Entities.Shared.Address addr in employee.Addresses)
-            {
-                person.BusinessEntityAddresses.Add(
-                    new BusinessEntityAddress
-                    {
-                        BusinessEntityID = employee.Id.Value,
-                        AddressID = addr.Id.Value,
-                        Address = new Address
-                        {
-                            AddressID = addr.Id.Value,
-                            AddressLine1 = addr.Location.AddressLine1,
-                            AddressLine2 = addr.Location.AddressLine2,
-                            City = addr.Location.City,
-                            StateProvinceID = addr.Location.StateProvinceID,
-                            PostalCode = addr.Location.PostalCode
-                        },
-                        AddressTypeID = (int)addr.AddressType
-                    }
+        private async Task UpdatePerson(PersonDataModel dataModel)
+            => await _context.Person!
+                .Where(p => p.BusinessEntityID == dataModel.BusinessEntityID)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(person => person.PersonType, dataModel.PersonType)
+                    .SetProperty(person => person.NameStyle, dataModel.NameStyle)
+                    .SetProperty(person => person.Title, dataModel.Title)
+                    .SetProperty(person => person.FirstName, dataModel.FirstName)
+                    .SetProperty(person => person.MiddleName, dataModel.MiddleName)
+                    .SetProperty(person => person.LastName, dataModel.LastName)
+                    .SetProperty(person => person.Suffix, dataModel.Suffix)
+                    .SetProperty(person => person.EmailPromotion, dataModel.EmailPromotion)
                 );
-            };
+
+        private async Task UpdateEmployee(PersonDataModel dataModel)
+            => await _context.Employee!
+                .Where(e => e.BusinessEntityID == dataModel.BusinessEntityID)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(emp => emp.NationalIDNumber, dataModel.Employee!.NationalIDNumber)
+                    .SetProperty(emp => emp.LoginID, dataModel.Employee!.LoginID)
+                    .SetProperty(emp => emp.JobTitle, dataModel.Employee!.JobTitle)
+                    .SetProperty(emp => emp.BirthDate, dataModel.Employee!.BirthDate)
+                    .SetProperty(emp => emp.MaritalStatus, dataModel.Employee!.MaritalStatus)
+                    .SetProperty(emp => emp.Gender, dataModel.Employee!.Gender)
+                    .SetProperty(emp => emp.HireDate, dataModel.Employee!.HireDate)
+                    .SetProperty(emp => emp.SalariedFlag, dataModel.Employee!.SalariedFlag)
+                    .SetProperty(emp => emp.VacationHours, dataModel.Employee!.VacationHours)
+                    .SetProperty(emp => emp.SickLeaveHours, dataModel.Employee!.SickLeaveHours)
+                    .SetProperty(emp => emp.CurrentFlag, dataModel.Employee!.CurrentFlag)
+                );
+
+        private async Task UpdateAddress(PersonDataModel dataModel)
+        {
+            Address address = dataModel.BusinessEntityAddresses.SingleOrDefault()!.Address!;
+
+            await _context.Address!
+                .Where(a => a.AddressID == address.AddressID)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(addr => addr.AddressLine1, address.AddressLine1)
+                    .SetProperty(addr => addr.AddressLine2, address.AddressLine2)
+                    .SetProperty(addr => addr.City, address.City)
+                    .SetProperty(addr => addr.StateProvinceID, address.StateProvinceID)
+                    .SetProperty(addr => addr.PostalCode, address.PostalCode)
+                );
         }
+
+        private async Task UpdateEmailAddress(PersonDataModel dataModel)
+        {
+            EmailAddress emailAddress = dataModel.EmailAddresses.SingleOrDefault()!;
+
+            await _context.EmailAddress!
+                .Where(a => a.BusinessEntityID == dataModel.BusinessEntityID)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(email => email.MailAddress, emailAddress.MailAddress)
+                );
+        }
+
+        private async Task UpdatePhoneNumber(PersonDataModel dataModel)
+        {
+            PersonPhone phone = dataModel.Telephones.SingleOrDefault()!;
+
+            await _context.PersonPhone!
+                .Where(tel => tel.BusinessEntityID == dataModel.BusinessEntityID)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(ph => ph.PhoneNumber, phone.PhoneNumber)
+                    .SetProperty(ph => ph.PhoneNumberTypeID, phone.PhoneNumberTypeID)
+                );
+        }
+
     }
 }

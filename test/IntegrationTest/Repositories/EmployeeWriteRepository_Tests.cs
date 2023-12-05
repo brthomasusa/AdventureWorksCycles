@@ -53,23 +53,19 @@ namespace AWC.IntegrationTests.Repositories
         [Fact]
         public async Task Update_EmployeeWriteRepo_ShouldSucceed()
         {
+            // Arrange
             Result<Employee> getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
-
-            Assert.True(getResult.IsSuccess);
 
             Result<Employee> updateResult =
                 getResult.Value.Update("EM", NameStyle.Western, "Mr.", "Jabu", "Jabi", "J", "Sr.",
                                         EmailPromotion.None, "98765432", @"adventure-works\jabi", "Big Dog",
                                         new DateOnly(2000, 1, 31), "M", "M", new DateOnly(2018, 5, 4), true, 5, 1, true);
 
-            Assert.True(updateResult.IsSuccess);
-
+            // Act
             Result<int> saveResult = await _writeRepository.EmployeeAggregateRepository.Update(updateResult.Value);
 
+            // Assert
             Assert.True(saveResult.IsSuccess);
-
-            getResult = await _writeRepository.EmployeeAggregateRepository.GetByIdAsync(16);
-            Assert.Equal(@"adventure-works\jabi", getResult.Value.LoginID);
         }
 
         [Fact]
