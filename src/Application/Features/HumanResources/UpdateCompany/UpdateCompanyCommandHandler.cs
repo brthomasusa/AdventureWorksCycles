@@ -6,7 +6,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.UpdateCompany
 {
-    public sealed class UpdateCompanyCommandHandler : ICommandHandler<UpdateCompanyCommand, int>
+    internal sealed class UpdateCompanyCommandHandler : ICommandHandler<UpdateCompanyCommand, int>
     {
         private const int RETURN_VALUE = 0;
         private readonly IWriteRepositoryManager _repo;

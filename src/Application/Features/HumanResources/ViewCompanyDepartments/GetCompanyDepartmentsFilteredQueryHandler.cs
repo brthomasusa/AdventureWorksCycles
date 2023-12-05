@@ -5,7 +5,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyDepartments
 {
-    public sealed class GetCompanyDepartmentsFilteredQueryHandler : IQueryHandler<GetCompanyDepartmentsFilteredRequest, PagedList<DepartmentDetails>>
+    internal sealed class GetCompanyDepartmentsFilteredQueryHandler : IQueryHandler<GetCompanyDepartmentsFilteredRequest, PagedList<DepartmentDetails>>
     {
         private readonly IReadRepositoryManager _repo;
 

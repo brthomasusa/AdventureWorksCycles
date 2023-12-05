@@ -7,7 +7,7 @@ using MapsterMapper;
 
 namespace AWC.Application.Features.HumanResources.CreateEmployee
 {
-    public sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand, int>
+    internal sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand, int>
     {
         private readonly IWriteRepositoryManager _repo;
         private readonly IMapper _mapper;

@@ -5,7 +5,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyShifts
 {
-    public class GetCompanyShiftsQueryHandler : IQueryHandler<GetCompanyShiftsRequest, PagedList<ShiftDetails>>
+    internal class GetCompanyShiftsQueryHandler : IQueryHandler<GetCompanyShiftsRequest, PagedList<ShiftDetails>>
     {
         private readonly IReadRepositoryManager _repo;
 

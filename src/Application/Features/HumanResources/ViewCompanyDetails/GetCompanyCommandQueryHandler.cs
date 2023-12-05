@@ -5,7 +5,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewCompanyDetails
 {
-    public sealed class GetCompanyCommandQueryHandler : IQueryHandler<GetCompanyCommandRequest, CompanyGenericCommand>
+    internal sealed class GetCompanyCommandQueryHandler : IQueryHandler<GetCompanyCommandRequest, CompanyGenericCommand>
     {
         private readonly IReadRepositoryManager _repo;
 

@@ -7,7 +7,7 @@ using MapsterMapper;
 
 namespace AWC.Application.Features.HumanResources.UpdateEmployee
 {
-    public sealed class UpdateEmployeeCommandHandler : ICommandHandler<UpdateEmployeeCommand, int>
+    internal sealed class UpdateEmployeeCommandHandler : ICommandHandler<UpdateEmployeeCommand, int>
     {
         private const int RETURN_VALUE = 0;
         private readonly IWriteRepositoryManager _repo;

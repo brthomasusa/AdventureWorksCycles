@@ -4,7 +4,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.DeleteEmployee
 {
-    public sealed class DeleteEmployeeCommandHandler : ICommandHandler<DeleteEmployeeCommand, int>
+    internal sealed class DeleteEmployeeCommandHandler : ICommandHandler<DeleteEmployeeCommand, int>
     {
         private const int RETURN_VALUE = 0;
         private readonly IWriteRepositoryManager _repo;

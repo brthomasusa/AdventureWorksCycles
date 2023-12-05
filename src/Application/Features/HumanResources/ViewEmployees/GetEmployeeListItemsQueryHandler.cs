@@ -5,7 +5,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployees
 {
-    public sealed class GetEmployeeListItemsQueryHandler : IQueryHandler<GetEmployeeListItemsRequest, PagedList<EmployeeListItem>>
+    internal sealed class GetEmployeeListItemsQueryHandler : IQueryHandler<GetEmployeeListItemsRequest, PagedList<EmployeeListItem>>
     {
         private readonly IReadRepositoryManager _repo;
 

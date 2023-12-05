@@ -5,7 +5,7 @@ using AWC.SharedKernel.Utilities;
 
 namespace AWC.Application.Features.HumanResources.ViewEmployeeDetails
 {
-    public class GetEmployeeCommandQueryHandler : IQueryHandler<GetEmployeeCommandRequest, EmployeeGenericCommand>
+    internal class GetEmployeeCommandQueryHandler : IQueryHandler<GetEmployeeCommandRequest, EmployeeGenericCommand>
     {
         private readonly IReadRepositoryManager _repo;
 
