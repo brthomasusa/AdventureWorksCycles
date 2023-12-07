@@ -60,7 +60,8 @@ namespace AWC.IntegrationTest.HumanResources.CommandHandlers
         public async Task Handle_UpdatCompanyCommandHandler_ShouldSucceed()
         {
             UpdateCompanyCommand command = CompanyTestData.GetUpdateCompanyCommandWithValidData();
-            UpdateCompanyCommandHandler handler = new(_writeRepository);
+
+            UpdateCompanyCommandHandler handler = new(_writeRepository, _mapper);
 
             Result<int> result = await handler.Handle(command, new CancellationToken());
 

@@ -1,5 +1,5 @@
-using AWC.Application.Features.HumanResources.Common;
 using AWC.Application.Features.HumanResources.CreateEmployee;
+using AWC.Application.Mappings.HumanResources;
 using AWC.Core.Enums;
 using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.Interfaces;
@@ -43,9 +43,10 @@ namespace AWC.IntegrationTests.Repositories
         public async Task InsertAsync_EmployeeWriteRepo_ShouldSucceed()
         {
             CreateEmployeeCommand command = EmployeeTestData.GetValidCreateEmployeeCommand();
-            Result<Employee> employeeResult = BuildEmployeeDomainObject.ConvertToGenericCommand(command, _mapper);
+            CreateEmployeeCommandToEmployeeDomainModelMapper modelMapper = new(_mapper);
+            Result<Employee> employee = modelMapper.Map(command);
 
-            Result<int> result = await _writeRepository.EmployeeAggregateRepository.InsertAsync(employeeResult.Value);
+            Result<int> result = await _writeRepository.EmployeeAggregateRepository.InsertAsync(employee.Value);
 
             Assert.True(result.IsSuccess);
         }

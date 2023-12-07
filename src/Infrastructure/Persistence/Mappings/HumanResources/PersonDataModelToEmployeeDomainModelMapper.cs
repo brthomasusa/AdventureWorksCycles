@@ -5,6 +5,7 @@ using AWC.Core.Entities.Shared.EntityIDs;
 using AWC.Core.Enums;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
+using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
 
 namespace AWC.Infrastructure.Persistence.Mappings.HumanResources

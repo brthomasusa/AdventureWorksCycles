@@ -1,6 +1,7 @@
 using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
+using AWC.SharedKernel.Interfaces;
 using AWC.SharedKernel.Utilities;
 using Mapster;
 using MapsterMapper;
@@ -12,9 +13,7 @@ namespace AWC.Infrastructure.Persistence.Mappings.HumanResources
         private readonly IMapper _mapper;
 
         public EmployeeDomainModelToPersonDataModelMapper(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
+            => _mapper = mapper;
 
         public override Result<PersonDataModel> Map(Employee domainModel)
         {

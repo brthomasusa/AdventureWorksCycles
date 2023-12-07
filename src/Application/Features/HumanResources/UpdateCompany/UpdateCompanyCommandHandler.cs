@@ -3,6 +3,7 @@ using AWC.Core.Entities.HumanResources;
 using AWC.Core.Entities.HumanResources.EntityIDs;
 using AWC.Infrastructure.Persistence.Interfaces;
 using AWC.SharedKernel.Utilities;
+using MapsterMapper;
 
 namespace AWC.Application.Features.HumanResources.UpdateCompany
 {
@@ -10,33 +11,16 @@ namespace AWC.Application.Features.HumanResources.UpdateCompany
     {
         private const int RETURN_VALUE = 0;
         private readonly IWriteRepositoryManager _repo;
+        private readonly IMapper _mapper;
 
-        public UpdateCompanyCommandHandler(IWriteRepositoryManager repo)
-            => _repo = repo;
+        public UpdateCompanyCommandHandler(IWriteRepositoryManager repo, IMapper mapper)
+            => (_repo, _mapper) = (repo, mapper);
 
         public async Task<Result<int>> Handle(UpdateCompanyCommand request, CancellationToken cancellationToken)
         {
             try
             {
-                Result<Company> result = Company.Create(
-                    new CompanyID(request.CompanyID),
-                    request.CompanyName!,
-                    request.LegalName!,
-                    request.EIN!,
-                    request.CompanyWebSite!,
-                    request.MailAddressLine1!,
-                    request.MailAddressLine2,
-                    request.MailCity!,
-                    request.MailStateProvinceID,
-                    request.MailPostalCode!,
-                    request.DeliveryAddressLine1!,
-                    request.DeliveryAddressLine2,
-                    request.DeliveryCity!,
-                    request.DeliveryStateProvinceID,
-                    request.DeliveryPostalCode!,
-                    request.Telephone!,
-                    request.Fax!
-                );
+                Result<Company> result = _mapper.Map<Result<Company>>(request);
 
                 if (result.IsFailure)
                     return Result<int>.Failure<int>(new Error("UpdateCompanyCommandHandler.Handle", result.Error.Message));

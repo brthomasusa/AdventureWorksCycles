@@ -15,10 +15,12 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         string JobTitle,
         string PhoneNumber,
         int PhoneNumberTypeID,
+        int EmailAddressID,         // new
         string EmailAddress,
         int EmailPromotion,
         string NationalIDNumber,
         string LoginID,
+        int AddressID,              // new
         string AddressLine1,
         string AddressLine2,
         string City,

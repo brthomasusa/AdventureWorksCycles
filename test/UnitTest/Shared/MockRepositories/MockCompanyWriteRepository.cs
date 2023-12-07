@@ -17,6 +17,7 @@ namespace AWC.UnitTest.Shared.MockRepositories
 
             mock.Setup(m => m.Update(It.IsAny<Company>()))
                .ReturnsAsync(() => { return Result<int>.Success<int>(1); });
+
             return mock;
         }
     }

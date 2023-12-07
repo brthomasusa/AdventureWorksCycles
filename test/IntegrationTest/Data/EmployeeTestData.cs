@@ -1,5 +1,6 @@
 using AWC.Application.Features.HumanResources.CreateEmployee;
 using AWC.Application.Features.HumanResources.UpdateEmployee;
+using AWC.Core.Entities.Shared.EntityIDs;
 using AWC.Infrastructure.Persistence.DataModels.HumanResources;
 using AWC.Infrastructure.Persistence.DataModels.Person;
 using AWC.Shared.Commands.HumanResources;
@@ -21,10 +22,12 @@ namespace AWC.IntegrationTest.Data
                         JobTitle: "The Man",
                         PhoneNumber: "555-555-5555",
                         PhoneNumberTypeID: 2,
+                        EmailAddressID: 0,
                         EmailAddress: "johnny@adventure-works.com",
                         EmailPromotion: 2,
                         NationalIDNumber: "13232145",
                         LoginID: @"adventure-works\johnny0",
+                        AddressID: 0,
                         AddressLine1: "123 street",
                         AddressLine2: "Apt 123",
                         City: "Somewhere",
@@ -41,11 +44,11 @@ namespace AWC.IntegrationTest.Data
                         ManagerID: 1,
                         DepartmentHistories: new List<DepartmentHistoryCommand>()
                         {
-                            new DepartmentHistoryCommand(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
+                            new(){ BusinessEntityID = 0, DepartmentID = 16, ShiftID = 1, StartDate = new DateTime(2020, 1, 28) }
                         },
                         PayHistories: new List<PayHistoryCommand>()
                         {
-                            new PayHistoryCommand() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
+                            new() {BusinessEntityID = 0, RateChangeDate = new DateTime(2020, 1, 28), Rate = 20M, PayFrequency = 2}
                         }
                     );
         }
@@ -62,10 +65,12 @@ namespace AWC.IntegrationTest.Data
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
                 PhoneNumberTypeID: 2,
+                EmailAddressID: 0,
                 EmailAddress: "johnny@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "13232145",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 0,
                 AddressLine1: "123 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",
@@ -102,10 +107,12 @@ namespace AWC.IntegrationTest.Data
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
                 PhoneNumberTypeID: 2,
+                EmailAddressID: 0,
                 EmailAddress: "johnny@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "13232145",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 0,
                 AddressLine1: "123 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",
@@ -142,10 +149,12 @@ namespace AWC.IntegrationTest.Data
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
                 PhoneNumberTypeID: 2,
+                EmailAddressID: 0,
                 EmailAddress: "johnny@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "295847284",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 0,
                 AddressLine1: "12345 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",
@@ -182,10 +191,12 @@ namespace AWC.IntegrationTest.Data
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
                 PhoneNumberTypeID: 2,
+                EmailAddressID: 0,
                 EmailAddress: "jean0@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "295847211",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 0,
                 AddressLine1: "12345 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",
@@ -222,10 +233,12 @@ namespace AWC.IntegrationTest.Data
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
                 PhoneNumberTypeID: 2,
+                EmailAddressID: 0,
                 EmailAddress: "jean0@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "295847211",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 0,
                 AddressLine1: "12345 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",
@@ -262,10 +275,12 @@ namespace AWC.IntegrationTest.Data
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
                 PhoneNumberTypeID: 2,
+                EmailAddressID: 0,
                 EmailAddress: "jean0@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "295847211",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 0,
                 AddressLine1: "12345 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",
@@ -302,10 +317,12 @@ namespace AWC.IntegrationTest.Data
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
                 PhoneNumberTypeID: 2,
+                EmailAddressID: 0,
                 EmailAddress: "jean0@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "295847211",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 0,
                 AddressLine1: "12345 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",
@@ -341,11 +358,13 @@ namespace AWC.IntegrationTest.Data
                 Suffix: null,
                 JobTitle: "The Man",
                 PhoneNumber: "555-555-5555",
-                PhoneNumberTypeID: 2,
+                PhoneNumberTypeID: 1,
+                EmailAddressID: 273,
                 EmailAddress: "johnny@adventure-works.com",
                 EmailPromotion: 2,
                 NationalIDNumber: "13232145",
                 LoginID: @"adventure-works\johnny0",
+                AddressID: 279,
                 AddressLine1: "123 street",
                 AddressLine2: "Apt 123",
                 City: "Somewhere",

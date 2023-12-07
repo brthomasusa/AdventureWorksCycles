@@ -1,4 +1,4 @@
-using AWC.Application.Features.HumanResources.Common;
+using AWC.Application.Mappings.HumanResources;
 using AWC.Application.Interfaces.Messaging;
 using AWC.Core.Entities.HumanResources;
 using AWC.Infrastructure.Persistence.Interfaces;
@@ -20,12 +20,13 @@ namespace AWC.Application.Features.HumanResources.UpdateEmployee
         {
             try
             {
-                Result<Employee> employeeDomainObject = BuildEmployeeDomainObject.ConvertToGenericCommand(command, _mapper);
+                UpdateEmployeeCommandToEmployeeDomainModelMapper modelMapper = new(_mapper);
+                Result<Employee> result = modelMapper.Map(command);
 
-                if (employeeDomainObject.IsFailure)
-                    return Result<int>.Failure<int>(new Error("CreateEmployeeCommandHandler.Handle", employeeDomainObject.Error.Message));
+                if (result.IsFailure)
+                    return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", result.Error.Message));
 
-                Result<int> updateDbResult = await _repo.EmployeeAggregateRepository.Update(employeeDomainObject.Value);
+                Result<int> updateDbResult = await _repo.EmployeeAggregateRepository.Update(result.Value);
 
                 if (updateDbResult.IsFailure)
                     return Result<int>.Failure<int>(new Error("UpdateEmployeeCommandHandler.Handle", updateDbResult.Error.Message));

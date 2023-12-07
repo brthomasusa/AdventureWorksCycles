@@ -1,6 +1,6 @@
 using AWC.SharedKernel.Utilities;
 
-namespace AWC.Infrastructure.Persistence.Mappings
+namespace AWC.SharedKernel.Interfaces
 {
     public abstract class ModelMapper<TSource, TDestination>
     {
