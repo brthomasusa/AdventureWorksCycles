@@ -15,7 +15,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidatePersonNameIsUnique_EmployeeValidationRepo_NewRecord_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidatePersonNameIsUnique(0, "Henry", "Jones", "Z");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsPersonNameIsUnique(0, "Henry", "Jones", "Z");
 
             Assert.True(result.IsSuccess);
         }
@@ -23,7 +23,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidatePersonNameIsUnique_EmployeeValidationRepo_EditingExistingWithoutNameChange_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidatePersonNameIsUnique(25, "James", "Hamilton", "R");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsPersonNameIsUnique(25, "James", "Hamilton", "R");
 
             Assert.True(result.IsSuccess);
         }
@@ -32,7 +32,7 @@ namespace AWC.IntegrationTest.Repositories
         public async Task ValidatePersonNameIsUnique_EmployeeValidationRepo_EditingExistingNameChangeWouldCauseDupe_ShouldReturnFalse()
         {
             // EmployeeID 2 is Terri Lee Duffy, changing name to James R Hamilton would be a duplicate name of EmployeeID 25
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidatePersonNameIsUnique(2, "James", "Hamilton", "R");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsPersonNameIsUnique(2, "James", "Hamilton", "R");
 
             Assert.False(result.IsSuccess);
         }
@@ -40,7 +40,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateNationalIdNumberIsUnique_EmployeeValidationRepo_NewRecord_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(0, "632145877");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsNationalIdNumberIsUnique(0, "632145877");
 
             Assert.True(result.IsSuccess);
         }
@@ -48,7 +48,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateNationalIdNumberIsUnique_EmployeeValidationRepo_EditingExistingWithoutNatlIDChange_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(2, "245797967");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsNationalIdNumberIsUnique(2, "245797967");
 
             Assert.True(result.IsSuccess);
         }
@@ -56,7 +56,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateNationalIdNumberIsUnique_EmployeeValidationRepo_EditingExistingWithNatlIDChange_ShouldReturnFalse()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateNationalIdNumberIsUnique(1, "245797967");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsNationalIdNumberIsUnique(1, "245797967");
 
             Assert.True(result.IsFailure);
         }
@@ -64,7 +64,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateEmployeeEmailIsUnique_EmployeeValidationRepo_NewRecord_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique(0, "david4@adventure-works.com");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsEmployeeEmailIsUnique(0, "david4@adventure-works.com");
 
             Assert.True(result.IsFailure);
         }
@@ -72,7 +72,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateEmployeeEmailIsUnique_EmployeeValidationRepo_EditingExistingWithoutEmailChange_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique(16, "david0@adventure-works.com");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsEmployeeEmailIsUnique(16, "david0@adventure-works.com");
 
             Assert.True(result.IsSuccess);
         }
@@ -80,7 +80,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateEmployeeEmailIsUnique_EmployeeValidationRepo_EditingExistingWithEmailChange_ShouldReturnFalse()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateEmployeeEmailIsUnique(25, "david0@adventure-works.com");
+            Result result = await _validationRepository.EmployeeAggregateRepository.IsEmployeeEmailIsUnique(25, "david0@adventure-works.com");
 
             Assert.True(result.IsFailure);
         }
@@ -88,7 +88,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateDepartmentExist_EmployeeValidationRepo_NewEmployeeDeptAssignment_ValidID_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateDepartmentExist(16);
+            Result result = await _validationRepository.EmployeeAggregateRepository.DoesDepartmentExist(16);
 
             Assert.True(result.IsSuccess);
         }
@@ -96,7 +96,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateDepartmentExist_EmployeeValidationRepo_NewEmployeeDeptAssignment_InvalidID_ShouldReturnFalse()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateDepartmentExist(56);
+            Result result = await _validationRepository.EmployeeAggregateRepository.DoesDepartmentExist(56);
 
             Assert.True(result.IsFailure);
         }
@@ -104,7 +104,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateShiftExist_EmployeeValidationRepo_NewEmployeeShiftAssignment_ValidID_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateShiftExist(1);
+            Result result = await _validationRepository.EmployeeAggregateRepository.DoesShiftExist(1);
 
             Assert.True(result.IsSuccess);
         }
@@ -112,7 +112,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateShiftExist_EmployeeValidationRepo_NewEmployeeShiftAssignment_InvalidID_ShouldReturnFalse()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateShiftExist(11);
+            Result result = await _validationRepository.EmployeeAggregateRepository.DoesShiftExist(11);
 
             Assert.True(result.IsFailure);
         }
@@ -120,7 +120,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateManagerExist_EmployeeValidationRepo_NewEmployeeMgrAssignment_ValidID_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateManagerExist(1);
+            Result result = await _validationRepository.EmployeeAggregateRepository.DoesManagerExist(1);
 
             Assert.True(result.IsSuccess);
         }
@@ -128,7 +128,7 @@ namespace AWC.IntegrationTest.Repositories
         [Fact]
         public async Task ValidateManagerExist_EmployeeValidationRepo_NewEmployeeMgrAssignment_InvalidID_ShouldReturnTrue()
         {
-            Result result = await _validationRepository.EmployeeAggregateRepository.ValidateManagerExist(1012);
+            Result result = await _validationRepository.EmployeeAggregateRepository.DoesManagerExist(1012);
 
             Assert.True(result.IsFailure);
         }

@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using AWC.Application.Features.HumanResources.UpdateCompany;
 using AWC.Application.Features.HumanResources.ViewCompanyDepartments;
 using AWC.Application.Features.HumanResources.ViewCompanyDetails;
@@ -7,10 +10,6 @@ using AWC.Shared.Queries.Shared;
 using AWC.SharedKernel.Utilities;
 using Carter;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-
 
 namespace AWC.Presentation.HumanResources.Company
 {
@@ -87,7 +86,6 @@ namespace AWC.Presentation.HumanResources.Company
 
             app.MapPut("api/companies/update", async (UpdateCompanyCommand cmd, ISender sender) =>
             {
-                Console.WriteLine($"CompanyID: {cmd.CompanyID}");
                 Result<int> result = await sender.Send(cmd);
 
                 if (result.IsSuccess)

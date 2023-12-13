@@ -20,7 +20,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             _logger = logger;
         }
 
-        public async Task<Result> ValidatePersonNameIsUnique(int id, string fname, string lname, string? middleName, bool asNoTracking = true)
+        public async Task<Result> IsPersonNameIsUnique(int id, string fname, string lname, string? middleName, bool asNoTracking = true)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result> ValidateNationalIdNumberIsUnique(int id, string nationalIdNumber, bool asNoTracking = true)
+        public async Task<Result> IsNationalIdNumberIsUnique(int id, string nationalIdNumber, bool asNoTracking = true)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result> ValidateEmployeeEmailIsUnique(int id, string emailAddres, bool asNoTracking = true)
+        public async Task<Result> IsEmployeeEmailIsUnique(int id, string emailAddres, bool asNoTracking = true)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result> ValidateEmployeeExist(int id, bool asNoTracking = true)
+        public async Task<Result> DoesEmployeeExist(int id, bool asNoTracking = true)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result> ValidateDepartmentExist(short id, bool asNoTracking = true)
+        public async Task<Result> DoesDepartmentExist(short id, bool asNoTracking = true)
         {
             try
             {
@@ -170,7 +170,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result> ValidateShiftExist(byte id, bool asNoTracking = true)
+        public async Task<Result> DoesShiftExist(byte id, bool asNoTracking = true)
         {
             try
             {
@@ -197,7 +197,7 @@ namespace AWC.Infrastructure.Persistence.Repositories.HumanResources
             }
         }
 
-        public async Task<Result> ValidateManagerExist(int id, bool asNoTracking = true)
+        public async Task<Result> DoesManagerExist(int id, bool asNoTracking = true)
         {
             try
             {

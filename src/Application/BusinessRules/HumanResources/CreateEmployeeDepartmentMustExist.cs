@@ -18,7 +18,7 @@ namespace AWC.Application.BusinessRules.HumanResources
             var department = employee.DepartmentHistories!.FirstOrDefault();
 
             Result result =
-                await _repository.EmployeeAggregateRepository.ValidateDepartmentExist((short)department!.DepartmentID);
+                await _repository.EmployeeAggregateRepository.DoesDepartmentExist((short)department!.DepartmentID);
 
             if (result.IsSuccess)
             {

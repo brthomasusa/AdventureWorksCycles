@@ -18,7 +18,7 @@ namespace AWC.Application.BusinessRules.HumanResources
             var department = employee.DepartmentHistories!.FirstOrDefault();
 
             Result result =
-                await _repository.EmployeeAggregateRepository.ValidateShiftExist((byte)department!.ShiftID);
+                await _repository.EmployeeAggregateRepository.DoesShiftExist((byte)department!.ShiftID);
 
             if (result.IsSuccess)
             {

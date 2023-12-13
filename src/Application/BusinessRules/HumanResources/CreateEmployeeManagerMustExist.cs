@@ -17,7 +17,7 @@ namespace AWC.Application.BusinessRules.HumanResources
             ValidationResult validationResult = new();
 
             Result result =
-                await _repository.EmployeeAggregateRepository.ValidateManagerExist(employee.ManagerID);
+                await _repository.EmployeeAggregateRepository.DoesManagerExist(employee.ManagerID);
 
             if (result.IsSuccess)
             {
